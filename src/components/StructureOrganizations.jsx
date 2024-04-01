@@ -4,7 +4,13 @@ import { Avatar, Button, IconButton } from "@mui/material";
 import UserStructure from "./UserStructure";
 import { useDispatch, useSelector } from "react-redux";
 import { actions } from "../slices/chat-slice";
-import { getUsers, postUsers, getUserStructure } from "../actions/chatApi";
+import {
+  getUsers,
+  postUsers,
+  getUserStructure,
+  multiDeleteUsers,
+  postUserChat,
+} from "../actions/chatApi";
 import { deleteUsers } from "../actions/chatApi";
 
 const StructureOrganizations = () => {
@@ -14,6 +20,7 @@ const StructureOrganizations = () => {
   const showStructure = useSelector((store) => store.chat.showStructure);
   const users = useSelector((store) => store.chat.users);
   const userStructure = useSelector((store) => store.chat.userStructure);
+  const userChats = useSelector((store) => store.chat.userChats);
 
   const handleModal = () => {
     Dispatch(setShowStructure(false));
@@ -25,12 +32,15 @@ const StructureOrganizations = () => {
 
   const handlePostUser = (newObj) => {
     Dispatch(postUsers(newObj));
+    Dispatch(postUserChat(newObj));
   };
 
   useEffect(() => {
     Dispatch(getUsers());
     Dispatch(getUserStructure());
   }, [Dispatch]);
+
+  console.log(userChats);
 
   return (
     <div
@@ -108,7 +118,13 @@ const StructureOrganizations = () => {
           </div>
           <div className="panel-control">
             <Button
-              onClick={handleModal}
+              onClick={async () => {
+                handleModal();
+                Dispatch(actions.setSubmitUserChat(true));
+                for (const user of userStructure) {
+                  await Dispatch(multiDeleteUsers(user.id));
+                }
+              }}
               variant="contained"
               sx={{
                 textTransform: "none",

@@ -14,7 +14,8 @@
 }
 
 .wrapper-tab:hover > p,
-.wrapper-tab:hover > .colorIcon {
+.wrapper-tab:hover > .colorIcon,
+.wrapper-chat:hover .user-info > p {
   color: #fff;
   transition: all 0.1s;
 }

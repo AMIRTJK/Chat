@@ -14,11 +14,19 @@ import { Button } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { actions } from "./slices/chat-slice";
 
+import { getUserChats } from "./actions/chatApi";
+import LoadingChat from "./components/LoadingChat";
+
+import ChatUser from "./components/ChatUser";
+
 function App() {
   const Dispatch = useDispatch();
 
   const { setShowStructure } = actions;
   const showStructure = useSelector((store) => store.chat.showStructure);
+  const userStructure = useSelector((store) => store.chat.userStructure);
+  const userChats = useSelector((store) => store.chat.userChats);
+  const submitUserChat = useSelector((store) => store.chat.submitUserChat);
 
   const handleClick = () => {
     Dispatch(setShowStructure(true));
@@ -27,10 +35,16 @@ function App() {
   const ministerImg = "https://i.ibb.co/HqvF08R/image.jpg";
   const docNo1Img = "https://i.ibb.co/L1Bj3fb/Document-1.png";
 
+  useEffect(() => {
+    Dispatch(getUserChats());
+  }, [Dispatch]);
+
+  console.log(submitUserChat);
+
   return (
     <>
       <main className="flex">
-        <aside className="left bg-[#f9f9f9] p-[20px] h-[100vh] flex flex-col justify-between">
+        <aside className="left bg-[#f9f9f9] p-[20px] h-[100vh] flex flex-col justify-between w-[17%]">
           <div
             className={`${showStructure ? "blur-[3px]" : "none"} wrapperNo1`}
           >
@@ -77,6 +91,13 @@ function App() {
                   <AttachedDocuments document={docNo1Img} />
                 </div>
               </div>
+              <div className="wrapper-chats flex flex-col gap-5">
+                {userChats.length > 0 &&
+                  submitUserChat === true &&
+                  userChats.map((e) => {
+                    return <ChatUser key={e.id} item={e} dispatch={Dispatch} />;
+                  })}
+              </div>
             </div>
           </div>
           <div
@@ -96,7 +117,9 @@ function App() {
           </div>
           {showStructure && <StructureOrganizations />}
         </aside>
-        <aside className="right"></aside>
+        <aside className="right w-[83%]">
+          <LoadingChat />
+        </aside>
       </main>
     </>
   );
