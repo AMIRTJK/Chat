@@ -14,8 +14,6 @@ import { Button } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { actions } from "./slices/chat-slice";
 
-import ministerImg from "./imageUrl";
-
 function App() {
   const Dispatch = useDispatch();
 
@@ -25,6 +23,8 @@ function App() {
   const handleClick = () => {
     Dispatch(setShowStructure(true));
   };
+
+  const ministerImg = "https://i.ibb.co/HqvF08R/image.jpg";
 
   return (
     <>
