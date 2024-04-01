@@ -14,7 +14,7 @@ import { Button } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { actions } from "./slices/chat-slice";
 
-import ministerImg from "./assets/КАХХОРЗОДА ФАЙЗИДДИН САТТОР.jpg";
+import ministerImg from "https://i.ibb.co/HqvF08R/image.jpg";
 
 function App() {
   const Dispatch = useDispatch();
@@ -35,7 +35,7 @@ function App() {
           >
             <div className="avatar flex items-center gap-5 mb-[30px]">
               <div className="wrapper-image w-[60px] h-[60px] rounded-[30px] overflow-hidden border-[1px] border-[#007cd2]">
-                <img src="src/assets/КАХХОРЗОДА ФАЙЗИДДИН САТТОР.jpg" alt="" />
+                <img src={ministerImg} alt="" />
               </div>
 
               <div className="text">
