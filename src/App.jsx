@@ -14,6 +14,9 @@ import { Button } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { actions } from "./slices/chat-slice";
 
+import ministerImg from "./assets/КАХХОРЗОДА ФАЙЗИДДИН САТТОР.jpg";
+import docNo1 from "./assets/Document№1.png";
+
 function App() {
   const Dispatch = useDispatch();
 
@@ -33,7 +36,7 @@ function App() {
           >
             <div className="avatar flex items-center gap-5 mb-[30px]">
               <div className="wrapper-image w-[60px] h-[60px] rounded-[30px] overflow-hidden border-[1px] border-[#007cd2]">
-                <img src="src/assets/КАХХОРЗОДА ФАЙЗИДДИН САТТОР.jpg" alt="" />
+                <img src={ministerImg} alt="" />
               </div>
 
               <div className="text">
@@ -70,8 +73,8 @@ function App() {
                   Вложенные документы
                 </p>
                 <div className="wrapper-list flex gap-4">
-                  <AttachedDocuments document="src/assets/Document№1.png" />
-                  <AttachedDocuments document="src/assets/Document№1.png" />
+                  <AttachedDocuments document={docNo1} />
+                  <AttachedDocuments document={docNo1} />
                 </div>
               </div>
             </div>
