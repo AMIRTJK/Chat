@@ -14,7 +14,7 @@ import { Button } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { actions } from "./slices/chat-slice";
 
-import { ministerImg, docNo1 } from "./imageUrl";
+import ministerImg from "./assets/КАХХОРЗОДА ФАЙЗИДДИН САТТОР.jpg";
 
 function App() {
   const Dispatch = useDispatch();
