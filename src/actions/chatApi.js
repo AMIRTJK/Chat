@@ -184,22 +184,53 @@ export const getVisaList = createAsyncThunk(
   }
 );
 
-export const putVisaStatus = createAsyncThunk(
-  "putVisaStatus",
+export const getVisaListTemp = createAsyncThunk(
+  "getVisaListTemp",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await fetch(import.meta.env.VITE_API_VISA_LIST_TEMP);
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const postVisaListTemp = createAsyncThunk(
+  "postVisaListTemp",
   async (newObj, { rejectWithValue, dispatch }) => {
     try {
+      const response = await fetch(import.meta.env.VITE_API_VISA_LIST_TEMP, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newObj),
+      });
+      const data = await response.json();
+      dispatch(getVisaListTemp());
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const deleteVisaListTemp = createAsyncThunk(
+  "deleteVisaListTemp",
+  async (id, { rejectWithValue, dispatch }) => {
+    try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_VISA_LIST}/${newObj.id}`,
+        `${import.meta.env.VITE_API_VISA_LIST_TEMP}/${id}`,
         {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(newObj),
+          method: "DELETE",
         }
       );
       const data = await response.json();
-      dispatch(getVisaList());
+      dispatch(getVisaListTemp());
       return data;
     } catch (error) {
       console.error(error);

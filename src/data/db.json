@@ -23,31 +23,25 @@
     {
       "id": 5,
       "name": "Барои хулоса",
-      "status": true
+      "status": false
     },
     {
       "id": 6,
       "name": "Барои мувофика",
-      "status": true
+      "status": false
     },
     {
       "id": 7,
       "name": "Барои тафтиш",
-      "status": true
+      "status": false
     },
     {
       "id": 8,
       "name": "Барои омузиш",
-      "status": true
-    }
-  ],
-  "visaListTemp": [
-    {
-      "id": 1,
-      "name": "Барои корбари",
       "status": false
     }
   ],
+  "visaListTemp": [],
   "users": [
     {
       "id": 1,

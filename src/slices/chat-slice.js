@@ -6,7 +6,8 @@ import {
   postUserChat,
   getUserChats,
   getVisaList,
-  putVisaStatus,
+  getVisaListTemp,
+  postVisaListTemp,
 } from "../actions/chatApi";
 
 const initialState = {
@@ -18,6 +19,7 @@ const initialState = {
   activeChat: null,
   showVisa: false,
   visaList: [],
+  visaListTemp: [],
 };
 
 const chatSlice = createSlice({
@@ -53,8 +55,11 @@ const chatSlice = createSlice({
     builder.addCase(getVisaList.fulfilled, (state, action) => {
       state.visaList = action.payload;
     });
-    builder.addCase(putVisaStatus.fulfilled, (state, action) => {
-      state.visaList = action.payload;
+    builder.addCase(getVisaListTemp.fulfilled, (state, action) => {
+      state.visaListTemp = action.payload;
+    });
+    builder.addCase(postVisaListTemp.fulfilled, (state, action) => {
+      state.visaListTemp = action.payload;
     });
   },
 });

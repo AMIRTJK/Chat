@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
 import VisaList from "./VisaList";
 import { Button } from "@mui/material";
-import { getVisaList, putVisaStatus } from "../actions/chatApi";
+import { getVisaList, getVisaListTemp } from "../actions/chatApi";
 import { useSelector, useDispatch } from "react-redux";
 
 const VisaModal = ({ handleShowVisa }) => {
   const Dispatch = useDispatch();
 
   const visaList = useSelector((store) => store.chat.visaList);
+  const visaListTemp = useSelector((store) => store.chat.visaListTemp);
 
   const handlePropagation = (event) => {
     event.stopPropagation();
@@ -15,7 +16,19 @@ const VisaModal = ({ handleShowVisa }) => {
 
   useEffect(() => {
     Dispatch(getVisaList());
+    Dispatch(getVisaListTemp());
   }, []);
+
+  console.log(visaListTemp);
+
+  let newObj = null;
+
+  Array.isArray(visaListTemp) &&
+    visaListTemp.map((e) => {
+      return (newObj = e);
+    });
+
+  console.log(newObj);
 
   return (
     <div
@@ -34,7 +47,14 @@ const VisaModal = ({ handleShowVisa }) => {
         <main className="bg-[#f9f9f9] overflow-auto h-[30vh]">
           {Array.isArray(visaList) &&
             visaList.map((e) => {
-              return <VisaList key={e.id} name={e.name} item={e} />;
+              return (
+                <VisaList
+                  key={e.id}
+                  name={e.name}
+                  item={e}
+                  deleteItem={newObj}
+                />
+              );
             })}
         </main>
         <footer className="bg-[#007cd2] flex justify-center items-center py-[10px]">
