@@ -83,6 +83,7 @@ const StructureOrganizations = () => {
                     userImage={e.image}
                     userName={e.name}
                     userPosition={e.role}
+                    userStatus={e.status}
                     userId={e.id}
                     handlePostUser={handlePostUser}
                   />
@@ -120,7 +121,6 @@ const StructureOrganizations = () => {
             <Button
               onClick={async () => {
                 handleModal();
-                Dispatch(actions.setSubmitUserChat(true));
                 for (const user of userStructure) {
                   await Dispatch(multiDeleteUsers(user.id));
                 }

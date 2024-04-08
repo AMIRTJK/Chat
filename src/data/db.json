@@ -1,0 +1,76 @@
+{
+  "visaList": [
+    {
+      "id": 1,
+      "name": "Барои корбари",
+      "status": false
+    },
+    {
+      "id": 2,
+      "name": "Барои пешбари",
+      "status": false
+    },
+    {
+      "id": 3,
+      "name": "Барои пешниход",
+      "status": false
+    },
+    {
+      "id": 4,
+      "name": "Барои барраси",
+      "status": false
+    },
+    {
+      "id": 5,
+      "name": "Барои хулоса",
+      "status": true
+    },
+    {
+      "id": 6,
+      "name": "Барои мувофика",
+      "status": true
+    },
+    {
+      "id": 7,
+      "name": "Барои тафтиш",
+      "status": true
+    },
+    {
+      "id": 8,
+      "name": "Барои омузиш",
+      "status": true
+    }
+  ],
+  "visaListTemp": [
+    {
+      "id": 1,
+      "name": "Барои корбари",
+      "status": false
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Қаҳҳорзода Файзиддин",
+      "role": "Министр Финансов",
+      "image": "https://i.ibb.co/HqvF08R/image.jpg",
+      "status": false
+    },
+    {
+      "id": 2,
+      "name": "Қурбониён Сарвар",
+      "role": "Заминистр",
+      "image": "https://i.ibb.co/zRQyxxP/image.jpg",
+      "status": false
+    },
+    {
+      "id": 3,
+      "name": "Маҷиди Юсуф",
+      "role": "Заминистр",
+      "image": "https://i.ibb.co/fvwb1qX/image.jpg",
+      "status": false
+    }
+  ],
+  "userStructure": [],
+  "userChats": []
+}

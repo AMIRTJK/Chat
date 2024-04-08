@@ -6,6 +6,7 @@ const UserStructure = ({
   userImage,
   userName,
   userPosition,
+  userStatus,
   handlePostUser,
 }) => {
   return (
@@ -17,6 +18,7 @@ const UserStructure = ({
             name: userName,
             role: userPosition,
             image: userImage,
+            status: userStatus,
           })
         }
       >

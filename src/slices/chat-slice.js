@@ -5,6 +5,8 @@ import {
   getUserStructure,
   postUserChat,
   getUserChats,
+  getVisaList,
+  putVisaStatus,
 } from "../actions/chatApi";
 
 const initialState = {
@@ -13,7 +15,9 @@ const initialState = {
   users: [],
   userStructure: [],
   userChats: [],
-  submitUserChat: false,
+  activeChat: null,
+  showVisa: false,
+  visaList: [],
 };
 
 const chatSlice = createSlice({
@@ -23,8 +27,11 @@ const chatSlice = createSlice({
     setShowStructure: (state, action) => {
       state.showStructure = action.payload;
     },
-    setSubmitUserChat: (state, actions) => {
-      state.submitUserChat = actions.payload;
+    setActiveChat: (state, action) => {
+      state.activeChat = action.payload;
+    },
+    setShowVisa: (state, action) => {
+      state.showVisa = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -42,6 +49,12 @@ const chatSlice = createSlice({
     });
     builder.addCase(getUserChats.fulfilled, (state, action) => {
       state.userChats = action.payload;
+    });
+    builder.addCase(getVisaList.fulfilled, (state, action) => {
+      state.visaList = action.payload;
+    });
+    builder.addCase(putVisaStatus.fulfilled, (state, action) => {
+      state.visaList = action.payload;
     });
   },
 });
