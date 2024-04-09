@@ -45,3 +45,26 @@
   color: #ffffffa2;
   transition: all 0.1s;
 }
+
+/* SCROLLBAR */
+/* Let's get this party started */
+.category-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+.category-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+  border: 4px solid transparent;
+  background-clip: content-box; /* THIS IS IMPORTANT */
+}
+
+/* Handle */
+.category-scrollbar::-webkit-scrollbar-thumb {
+  background: #dfe4e9;
+  border-radius: 10px;
+}
+
+.category-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #abaeb2;
+}

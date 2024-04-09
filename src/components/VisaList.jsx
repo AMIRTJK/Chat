@@ -37,7 +37,7 @@ const VisaList = ({ name, item, deleteItem }) => {
       }}
       className={`${
         isActive ? "bg-[#e8e8e8]" : ""
-      } list border-b-[1px] p-[15px] hover:bg-[#e8e8e8] cursor-pointer flex items-center justify-between`}
+      } list border-b-[1px] border-b-[#00000020] p-[15px] hover:bg-[#e8e8e8] cursor-pointer flex items-center justify-between`}
     >
       <div className="wrapper-info flex items-center gap-2">
         <AssignmentIcon className="text-[#007cd2]" />

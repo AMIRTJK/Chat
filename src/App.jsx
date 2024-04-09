@@ -15,12 +15,19 @@ import { Button } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { actions } from "./slices/chat-slice";
 
-import { getUserChats, putUserChatStatus } from "./actions/chatApi";
+import {
+  getUsers,
+  getUserChats,
+  putUserChatStatus,
+  getVisaListTemp,
+} from "./actions/chatApi";
 import LoadingChat from "./components/LoadingChat";
 
 import { IconButton } from "@mui/material";
 
 import ChatUser from "./components/ChatUser";
+
+import MemoVisa from "./components/MemoVisa";
 
 function App() {
   const Dispatch = useDispatch();
@@ -31,6 +38,8 @@ function App() {
   const userChats = useSelector((store) => store.chat.userChats);
   const activeChat = useSelector((store) => store.chat.activeChat);
   const showVisa = useSelector((store) => store.chat.showVisa);
+  const users = useSelector((store) => store.chat.users);
+  const visaListTemp = useSelector((store) => store.chat.visaListTemp);
 
   const { setActiveChat } = actions;
 
@@ -51,12 +60,14 @@ function App() {
 
   useEffect(() => {
     Dispatch(getUserChats());
+    Dispatch(getUsers());
+    Dispatch(getVisaListTemp());
   }, [Dispatch]);
 
   return (
     <>
       <main className="flex">
-        <aside className="left bg-[#f9f9f9] p-[20px] h-[100vh] flex flex-col justify-between w-[17%]">
+        <aside className="left category-scrollbar bg-[#f9f9f9] p-[20px] h-[100vh] flex flex-col justify-between w-[20%] overflow-auto">
           <div
             className={`${showStructure ? "blur-[3px]" : "none"} wrapperNo1`}
           >
@@ -73,6 +84,13 @@ function App() {
               </div>
             </div>
             <div className="panel-control flex flex-col gap-5">
+              {visaListTemp.length > 0 && (
+                <MemoVisa
+                  item={users}
+                  userChats={userChats}
+                  visaListTemp={visaListTemp}
+                />
+              )}
               <TabVisa
                 handleClick={handleClick}
                 text="Исполнитель"
@@ -128,7 +146,9 @@ function App() {
             </div>
           </div>
           <div
-            className={`${showStructure ? "blur-[3px]" : "none"} wrapperNo2`}
+            className={`${
+              showStructure ? "blur-[3px]" : "none"
+            } wrapperNo2 pt-[20px]`}
           >
             <Button
               variant="contained"

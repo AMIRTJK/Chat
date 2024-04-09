@@ -1,7 +1,11 @@
 import React, { useEffect } from "react";
 import VisaList from "./VisaList";
 import { Button } from "@mui/material";
-import { getVisaList, getVisaListTemp } from "../actions/chatApi";
+import {
+  getVisaList,
+  getVisaListTemp,
+  deleteVisaListTemp,
+} from "../actions/chatApi";
 import { useSelector, useDispatch } from "react-redux";
 
 const VisaModal = ({ handleShowVisa }) => {
@@ -28,11 +32,12 @@ const VisaModal = ({ handleShowVisa }) => {
       return (newObj = e);
     });
 
-  console.log(newObj);
-
   return (
     <div
-      onClick={() => handleShowVisa(false)}
+      onClick={() => {
+        handleShowVisa(false);
+        Dispatch(deleteVisaListTemp(newObj.id));
+      }}
       className="modal fixed w-full h-full bg-transparent"
     >
       <div
@@ -59,7 +64,9 @@ const VisaModal = ({ handleShowVisa }) => {
         </main>
         <footer className="bg-[#007cd2] flex justify-center items-center py-[10px]">
           <Button
-            onClick={() => handleShowVisa(false)}
+            onClick={() =>
+              visaListTemp.length > 0 ? handleShowVisa(false) : ""
+            }
             variant="outlined"
             sx={{
               border: "1px solid #f9f9f9",

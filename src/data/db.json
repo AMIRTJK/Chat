@@ -17,7 +17,7 @@
     },
     {
       "id": 4,
-      "name": "Барои барраси",
+      "name": "Барои барраси тибки тартиби мукарраргардида",
       "status": false
     },
     {
@@ -41,7 +41,13 @@
       "status": false
     }
   ],
-  "visaListTemp": [],
+  "visaListTemp": [
+    {
+      "id": 4,
+      "name": "Барои барраси тибки тартиби мукарраргардида",
+      "status": true
+    }
+  ],
   "users": [
     {
       "id": 1,
@@ -66,5 +72,20 @@
     }
   ],
   "userStructure": [],
-  "userChats": []
+  "userChats": [
+    {
+      "id": 2,
+      "name": "Қурбониён Сарвар",
+      "image": "https://i.ibb.co/zRQyxxP/image.jpg",
+      "role": "Заминистр",
+      "status": true
+    },
+    {
+      "id": 3,
+      "name": "Маҷиди Юсуф",
+      "role": "Заминистр",
+      "image": "https://i.ibb.co/fvwb1qX/image.jpg",
+      "status": false
+    }
+  ]
 }
