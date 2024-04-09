@@ -29,10 +29,19 @@ import ChatUser from "./components/ChatUser";
 
 import MemoVisa from "./components/MemoVisa";
 
+import DocumentPdf from "./components/DocumentPdf";
+
+import TitleChat from "./components/TitleChat";
+
+import InputMessage from "./components/InputMessage";
+
+import BodyMessages from "./components/BodyMessages";
+
 function App() {
   const Dispatch = useDispatch();
 
-  const { setShowStructure, setShowVisa } = actions;
+  const { setShowStructure, setShowVisa, setShowDocPdf, setAsideMessage } =
+    actions;
   const showStructure = useSelector((store) => store.chat.showStructure);
   const userStructure = useSelector((store) => store.chat.userStructure);
   const userChats = useSelector((store) => store.chat.userChats);
@@ -40,6 +49,8 @@ function App() {
   const showVisa = useSelector((store) => store.chat.showVisa);
   const users = useSelector((store) => store.chat.users);
   const visaListTemp = useSelector((store) => store.chat.visaListTemp);
+  const showDocPdf = useSelector((store) => store.chat.showDocPdf);
+  const asideMessage = useSelector((store) => store.chat.asideMessage);
 
   const { setActiveChat } = actions;
 
@@ -55,6 +66,14 @@ function App() {
     Dispatch(setShowVisa(state));
   };
 
+  const handleShowDocPdf = (state) => {
+    Dispatch(setShowDocPdf(state));
+  };
+
+  const handlePropagation = (event) => {
+    event.stopPropagation();
+  };
+
   const ministerImg = "https://i.ibb.co/HqvF08R/image.jpg";
   const docNo1Img = "https://i.ibb.co/L1Bj3fb/Document-1.png";
 
@@ -66,7 +85,7 @@ function App() {
 
   return (
     <>
-      <main className="flex">
+      <main className="flex overflow-hidden">
         <aside className="left category-scrollbar bg-[#f9f9f9] p-[20px] h-[100vh] flex flex-col justify-between w-[20%] overflow-auto">
           <div
             className={`${showStructure ? "blur-[3px]" : "none"} wrapperNo1`}
@@ -124,8 +143,14 @@ function App() {
                   Вложенные документы
                 </p>
                 <div className="wrapper-list flex gap-4">
-                  <AttachedDocuments document={docNo1Img} />
-                  <AttachedDocuments document={docNo1Img} />
+                  <AttachedDocuments
+                    handleShowDocPdf={handleShowDocPdf}
+                    document={docNo1Img}
+                  />
+                  <AttachedDocuments
+                    handleShowDocPdf={handleShowDocPdf}
+                    document={docNo1Img}
+                  />
                 </div>
               </div>
               <div className="wrapper-chats flex flex-col gap-5">
@@ -151,6 +176,7 @@ function App() {
             } wrapperNo2 pt-[20px]`}
           >
             <Button
+              onClick={() => Dispatch(setAsideMessage(true))}
               variant="contained"
               fullWidth
               sx={{
@@ -164,10 +190,28 @@ function App() {
           </div>
           {showStructure && <StructureOrganizations />}
           {showVisa && <VisaModal handleShowVisa={handleShowVisa} />}
+          {showDocPdf && (
+            <div
+              onClick={(event) => handleShowDocPdf(false, event)}
+              className="wrapper-pdf fixed top-0 left-0 w-full h-full z-10 bg-[#00000020]"
+            >
+              <div
+                onClick={(event) => handlePropagation(event)}
+                className="pdf h-[60vh] w-[26%] absolute translate-x-[-50%] translate-y-[-50%] top-1/2 left-1/2 shadow-lg border-[1px] rounded-lg"
+              >
+                <DocumentPdf />
+              </div>
+            </div>
+          )}
         </aside>
-        <aside className="right w-[83%]">
-          {userChats.length < 1 && <LoadingChat />}
-        </aside>
+        {asideMessage && (
+          <aside className="right w-[80%]">
+            {userChats.length < 1 && <LoadingChat />}
+            <TitleChat />
+            <BodyMessages />
+            <InputMessage />
+          </aside>
+        )}
       </main>
     </>
   );

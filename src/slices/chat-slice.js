@@ -20,6 +20,9 @@ const initialState = {
   showVisa: false,
   visaList: [],
   visaListTemp: [],
+  showDocPdf: false,
+  asideMessage: false,
+  showSend: ""
 };
 
 const chatSlice = createSlice({
@@ -35,6 +38,15 @@ const chatSlice = createSlice({
     setShowVisa: (state, action) => {
       state.showVisa = action.payload;
     },
+    setShowDocPdf: (state, action) => {
+      state.showDocPdf = action.payload;
+    },
+    setAsideMessage: (state, action) => {
+      state.asideMessage = action.payload
+    },
+    setShowSend: (state, action) => {
+      state.showSend = action.payload
+    }
   },
   extraReducers: (builder) => {
     builder.addCase(getUsers.fulfilled, (state, action) => {
