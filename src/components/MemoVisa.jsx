@@ -8,14 +8,12 @@ const MemoVisa = ({ item, userChats, visaListTemp }) => {
 
   const fullName = item && item[0]?.name.split(" ");
 
+  const emblem = "https://i.ibb.co/tJcpFmh/Emblem-of-Tajikistan-svg.png";
+
   return (
     <div className="wrapper w-full border-[2px] p-[15px] rounded-lg flex flex-col gap-4">
       <header className="flex flex-col items-center gap-2">
-        <img
-          src="src/assets/Emblem_of_Tajikistan.svg.png"
-          alt=""
-          className="w-[33%]"
-        />
+        <img src={emblem} alt="" className="w-[33%]" />
         <h1 className="uppercase text-center text-[#345581] font-semibold">
           Вазири молияи Чумхурии Точикистон
         </h1>
