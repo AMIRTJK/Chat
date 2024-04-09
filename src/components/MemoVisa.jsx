@@ -8,7 +8,7 @@ const MemoVisa = ({ item, userChats, visaListTemp }) => {
 
   const fullName = item && item[0]?.name.split(" ");
 
-  const emblem = "https://i.ibb.co/tJcpFmh/Emblem-of-Tajikistan-svg.png";
+  const emblem = "https://i.ibb.co/xCjbnnw/emblem.png";
 
   return (
     <div className="wrapper w-full border-[2px] p-[15px] rounded-lg flex flex-col gap-4">
