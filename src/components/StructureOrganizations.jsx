@@ -44,7 +44,7 @@ const StructureOrganizations = () => {
   return (
     <div
       onClick={handleModal}
-      className="wrapper-modal w-full h-full bg-red fixed top-0 left-0"
+      className="wrapper-modal w-full h-full bg-red fixed top-0 left-0 z-10"
     >
       <div
         onClick={stopPropagation}

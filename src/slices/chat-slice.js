@@ -18,7 +18,6 @@ const initialState = {
   users: [],
   userStructure: [],
   userChats: [],
-  activeChat: null,
   showVisa: false,
   visaList: [],
   visaListTemp: [],
@@ -35,9 +34,6 @@ const chatSlice = createSlice({
   reducers: {
     setShowStructure: (state, action) => {
       state.showStructure = action.payload;
-    },
-    setActiveChat: (state, action) => {
-      state.activeChat = action.payload;
     },
     setShowVisa: (state, action) => {
       state.showVisa = action.payload;

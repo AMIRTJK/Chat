@@ -22,7 +22,7 @@ import {
   getVisaListTemp,
   getUserMessage,
   postUserMessage,
-  clearUserMessage,
+  // clearUserMessage,
 } from "./actions/chatApi";
 import LoadingChat from "./components/LoadingChat";
 
@@ -36,7 +36,7 @@ import DocumentPdf from "./components/DocumentPdf";
 
 import TitleChat from "./components/TitleChat";
 
-import InputMessage from "./components/InputMessage";
+import WrapperInputMessage from "./components/WrapperInputMessage";
 
 import BodyMessages from "./components/BodyMessages";
 
@@ -46,17 +46,12 @@ function App() {
   const { setShowStructure, setShowVisa, setShowDocPdf, setAsideMessage } =
     actions;
   const showStructure = useSelector((store) => store.chat.showStructure);
-  const userStructure = useSelector((store) => store.chat.userStructure);
   const userChats = useSelector((store) => store.chat.userChats);
-  const activeChat = useSelector((store) => store.chat.activeChat);
   const showVisa = useSelector((store) => store.chat.showVisa);
   const users = useSelector((store) => store.chat.users);
   const visaListTemp = useSelector((store) => store.chat.visaListTemp);
   const showDocPdf = useSelector((store) => store.chat.showDocPdf);
-  const asideMessage = useSelector((store) => store.chat.asideMessage);
   const userMessage = useSelector((store) => store.chat.userMessage);
-
-  const { setActiveChat } = actions;
 
   const handleClick = (state) => {
     Dispatch(setShowStructure(state));
@@ -171,8 +166,6 @@ function App() {
                         key={e.id}
                         item={e}
                         handlePutUserChatStatus={handlePutUserChatStatus}
-                        activeChat={activeChat}
-                        setActiveChat={setActiveChat}
                       />
                     );
                   })}
@@ -197,7 +190,7 @@ function App() {
                     );
                   }
                   if (userMessage[0] && userMessage[0].userChatId) {
-                    Dispatch(clearUserMessage(userMessage[0].id));
+                    // Dispatch(clearUserMessage(userMessage[0].id));
                   }
                 });
               }}
@@ -231,9 +224,11 @@ function App() {
         {userMessage.length > 0 && (
           <aside className="right w-[80%]">
             {userChats.length < 1 && <LoadingChat />}
-            {userMessage.length > 0 && <TitleChat />}
+            {userMessage.length > 0 && (
+              <TitleChat userChats={userChats} userMessage={userMessage} />
+            )}
             {userMessage.length > 0 && <BodyMessages />}
-            {userMessage.length > 0 && <InputMessage />}
+            {userMessage.length > 0 && <WrapperInputMessage />}
           </aside>
         )}
       </main>
