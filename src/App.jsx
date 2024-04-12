@@ -189,9 +189,6 @@ function App() {
                       })
                     );
                   }
-                  if (userMessage[0] && userMessage[0].userChatId) {
-                    // Dispatch(clearUserMessage(userMessage[0].id));
-                  }
                 });
               }}
               variant="contained"
