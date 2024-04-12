@@ -66,5 +66,21 @@
     }
   ],
   "userStructure": [],
-  "userChats": []
+  "userChats": [
+    {
+      "id": 2,
+      "name": "Қурбониён Сарвар",
+      "image": "https://i.ibb.co/zRQyxxP/image.jpg",
+      "role": "Заминистр",
+      "status": false
+    },
+    {
+      "id": 3,
+      "name": "Маҷиди Юсуф",
+      "image": "https://i.ibb.co/fvwb1qX/image.jpg",
+      "role": "Заминистр",
+      "status": true
+    }
+  ],
+  "userMessage": []
 }

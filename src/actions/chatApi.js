@@ -238,3 +238,60 @@ export const deleteVisaListTemp = createAsyncThunk(
     }
   }
 );
+
+export const getUserMessage = createAsyncThunk(
+  "getUserMessage",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await fetch(import.meta.env.VITE_API_USERS_MESSAGE);
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const clearUserMessage = createAsyncThunk(
+  "clearUserMessage",
+  async (id, { rejectWithValue, dispatch }) => {
+    console.log(id);
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_USERS_MESSAGE}/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+      const data = await response.json();
+      dispatch(getUserMessage());
+      console.log(response);
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const postUserMessage = createAsyncThunk(
+  "postUserMessage",
+  async (newObj, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await fetch(import.meta.env.VITE_API_USERS_MESSAGE, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newObj),
+      });
+      const data = await response.json();
+      dispatch(getUserMessage());
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);

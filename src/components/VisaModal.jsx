@@ -23,7 +23,6 @@ const VisaModal = ({ handleShowVisa }) => {
     Dispatch(getVisaListTemp());
   }, []);
 
-  console.log(visaListTemp);
 
   let newObj = null;
 

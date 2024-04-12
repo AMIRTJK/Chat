@@ -8,6 +8,8 @@ import {
   getVisaList,
   getVisaListTemp,
   postVisaListTemp,
+  getUserMessage,
+  postUserMessage,
 } from "../actions/chatApi";
 
 const initialState = {
@@ -22,7 +24,9 @@ const initialState = {
   visaListTemp: [],
   showDocPdf: false,
   asideMessage: false,
-  showSend: ""
+  showSend: "",
+  moreVert: false,
+  userMessage: [],
 };
 
 const chatSlice = createSlice({
@@ -42,11 +46,14 @@ const chatSlice = createSlice({
       state.showDocPdf = action.payload;
     },
     setAsideMessage: (state, action) => {
-      state.asideMessage = action.payload
+      state.asideMessage = action.payload;
     },
     setShowSend: (state, action) => {
-      state.showSend = action.payload
-    }
+      state.showSend = action.payload;
+    },
+    setMoreVert: (state, action) => {
+      state.moreVert = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getUsers.fulfilled, (state, action) => {
@@ -72,6 +79,12 @@ const chatSlice = createSlice({
     });
     builder.addCase(postVisaListTemp.fulfilled, (state, action) => {
       state.visaListTemp = action.payload;
+    });
+    builder.addCase(getUserMessage.fulfilled, (state, action) => {
+      state.userMessage = action.payload;
+    });
+    builder.addCase(postUserMessage.fulfilled, (state, action) => {
+      state.userMessage = action.payload;
     });
   },
 });

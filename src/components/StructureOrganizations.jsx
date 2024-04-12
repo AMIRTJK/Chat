@@ -40,7 +40,6 @@ const StructureOrganizations = () => {
     Dispatch(getUserStructure());
   }, [Dispatch]);
 
-  console.log(userChats);
 
   return (
     <div

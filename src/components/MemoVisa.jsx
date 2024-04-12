@@ -21,10 +21,18 @@ const MemoVisa = ({ item, userChats, visaListTemp }) => {
       <main className="flex flex-col items-center">
         {Array.isArray(userChats) &&
           userChats.map((e) => {
-            return <p className="font-semibold">{e.name},</p>;
+            return (
+              <p key={e.id} className="font-semibold">
+                {e.name},
+              </p>
+            );
           })}
         {visaListTemp.map((e) => {
-          return <p className="text-center">{e.name}</p>;
+          return (
+            <p key={e.id} className="text-center">
+              {e.name}
+            </p>
+          );
         })}
       </main>
       <footer className="flex flex-col gap-2">

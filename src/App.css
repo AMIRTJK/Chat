@@ -46,6 +46,10 @@
   transition: all 0.1s;
 }
 
+.wrapper-chat:hover .more-vert {
+  color: #f9f9f9;
+}
+
 /* SCROLLBAR */
 /* Let's get this party started */
 .category-scrollbar::-webkit-scrollbar {

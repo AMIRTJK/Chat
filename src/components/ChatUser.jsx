@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Avatar, IconButton } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
-
-import { deleteUserChats } from "../actions/chatApi";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import MoreVert from "./MoreVert";
+import { useDispatch } from "react-redux";
 
 const ChatUser = (props) => {
+  const Dispatch = useDispatch();
+
   const { id, name, image, role, status } = props.item;
 
   const newObj = {
@@ -16,7 +18,13 @@ const ChatUser = (props) => {
   };
 
   const handleChangeStatus = () => {
-    props.dispatch(props.setActiveChat(id));
+    Dispatch(props.setActiveChat(id));
+  };
+
+  const [showMoreVert, setShowMoreVert] = useState(false); // Локальное состояние для каждого ChatUser
+
+  const handleShowMoreVert = () => {
+    setShowMoreVert(!showMoreVert);
   };
 
   return (
@@ -40,11 +48,15 @@ const ChatUser = (props) => {
             {name}
           </p>
         </div>
-
-        <div className="panel-control">
-          <IconButton onClick={() => props.dispatch(deleteUserChats(id))}>
-            <DeleteIcon className="text-[red]" />
+        <div className="panel-control relative">
+          <IconButton onClick={() => handleShowMoreVert()}>
+            <MoreVertIcon
+              className={`${
+                props.activeChat === id ? "text-[#f9f9f9]" : ""
+              } more-vert`}
+            />
           </IconButton>
+          {showMoreVert && <MoreVert id={id} />}
         </div>
       </header>
     </div>

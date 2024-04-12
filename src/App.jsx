@@ -20,6 +20,9 @@ import {
   getUserChats,
   putUserChatStatus,
   getVisaListTemp,
+  getUserMessage,
+  postUserMessage,
+  clearUserMessage,
 } from "./actions/chatApi";
 import LoadingChat from "./components/LoadingChat";
 
@@ -51,6 +54,7 @@ function App() {
   const visaListTemp = useSelector((store) => store.chat.visaListTemp);
   const showDocPdf = useSelector((store) => store.chat.showDocPdf);
   const asideMessage = useSelector((store) => store.chat.asideMessage);
+  const userMessage = useSelector((store) => store.chat.userMessage);
 
   const { setActiveChat } = actions;
 
@@ -59,6 +63,11 @@ function App() {
   };
 
   const handlePutUserChatStatus = (newObj) => {
+    userChats.forEach((e) => {
+      if (e.status === true) {
+        Dispatch(putUserChatStatus({ ...e, status: false }));
+      }
+    });
     Dispatch(putUserChatStatus(newObj));
   };
 
@@ -81,6 +90,7 @@ function App() {
     Dispatch(getUserChats());
     Dispatch(getUsers());
     Dispatch(getVisaListTemp());
+    Dispatch(getUserMessage());
   }, [Dispatch]);
 
   return (
@@ -160,7 +170,6 @@ function App() {
                       <ChatUser
                         key={e.id}
                         item={e}
-                        dispatch={Dispatch}
                         handlePutUserChatStatus={handlePutUserChatStatus}
                         activeChat={activeChat}
                         setActiveChat={setActiveChat}
@@ -176,7 +185,22 @@ function App() {
             } wrapperNo2 pt-[20px]`}
           >
             <Button
-              onClick={() => Dispatch(setAsideMessage(true))}
+              onClick={() => {
+                Dispatch(setAsideMessage(true));
+                userChats.forEach((e) => {
+                  if (e.status === true) {
+                    Dispatch(
+                      postUserMessage({
+                        id: Date.now(),
+                        userChatId: e.id,
+                      })
+                    );
+                  }
+                  if (userMessage[0] && userMessage[0].userChatId) {
+                    Dispatch(clearUserMessage(userMessage[0].id));
+                  }
+                });
+              }}
               variant="contained"
               fullWidth
               sx={{
@@ -204,12 +228,12 @@ function App() {
             </div>
           )}
         </aside>
-        {asideMessage && (
+        {userMessage.length > 0 && (
           <aside className="right w-[80%]">
             {userChats.length < 1 && <LoadingChat />}
-            <TitleChat />
-            <BodyMessages />
-            <InputMessage />
+            {userMessage.length > 0 && <TitleChat />}
+            {userMessage.length > 0 && <BodyMessages />}
+            {userMessage.length > 0 && <InputMessage />}
           </aside>
         )}
       </main>
