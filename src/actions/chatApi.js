@@ -253,28 +253,6 @@ export const getUserMessage = createAsyncThunk(
   }
 );
 
-// export const clearUserMessage = createAsyncThunk(
-//   "clearUserMessage",
-//   async (id, { rejectWithValue, dispatch }) => {
-//     console.log(id);
-//     try {
-//       const response = await fetch(
-//         `${import.meta.env.VITE_API_USERS_MESSAGE}/${id}`,
-//         {
-//           method: "DELETE",
-//         }
-//       );
-//       const data = await response.json();
-//       dispatch(getUserMessage());
-//       console.log(response);
-//       return data;
-//     } catch (error) {
-//       console.error(error);
-//       return rejectWithValue(error);
-//     }
-//   }
-// );
-
 export const postUserMessage = createAsyncThunk(
   "postUserMessage",
   async (newObj, { rejectWithValue, dispatch }) => {
@@ -288,6 +266,20 @@ export const postUserMessage = createAsyncThunk(
       });
       const data = await response.json();
       dispatch(getUserMessage());
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const getMessages = createAsyncThunk(
+  "getMessages",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await fetch(import.meta.env.VITE_API_MESSAGES);
+      const data = await response.json();
       return data;
     } catch (error) {
       console.error(error);

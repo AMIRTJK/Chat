@@ -72,14 +72,14 @@
       "name": "Қурбониён Сарвар",
       "image": "https://i.ibb.co/zRQyxxP/image.jpg",
       "role": "Заминистр",
-      "status": false
+      "status": true
     },
     {
       "id": 3,
       "name": "Маҷиди Юсуф",
       "image": "https://i.ibb.co/fvwb1qX/image.jpg",
       "role": "Заминистр",
-      "status": true
+      "status": false
     }
   ],
   "userMessage": [
@@ -90,6 +90,18 @@
     {
       "id": 1712919686833,
       "userChatId": 3
+    }
+  ],
+  "messages": [
+    {
+      "id": 1712919683862,
+      "userChatId": 2,
+      "text": "Барои корбари пешниход менамоям!"
+    },
+    {
+      "id": 1712919683877,
+      "userChatId": 3,
+      "text": "Барои маълумот пешниход карда шуд!"
     }
   ]
 }

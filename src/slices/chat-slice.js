@@ -10,6 +10,7 @@ import {
   postVisaListTemp,
   getUserMessage,
   postUserMessage,
+  getMessages,
 } from "../actions/chatApi";
 
 const initialState = {
@@ -26,6 +27,7 @@ const initialState = {
   showSend: "",
   moreVert: false,
   userMessage: [],
+  messages: [],
 };
 
 const chatSlice = createSlice({
@@ -81,6 +83,9 @@ const chatSlice = createSlice({
     });
     builder.addCase(postUserMessage.fulfilled, (state, action) => {
       state.userMessage = action.payload;
+    });
+    builder.addCase(getMessages.fulfilled, (state, action) => {
+      state.messages = action.payload;
     });
   },
 });
