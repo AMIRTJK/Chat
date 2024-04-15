@@ -11,6 +11,7 @@ import {
   getChatById,
   getMessageById,
   getShowUserChat,
+  postMessageById,
 } from "../actions/chatApi";
 
 const initialState = {
@@ -87,6 +88,9 @@ const chatSlice = createSlice({
     });
     builder.addCase(getShowUserChat.fulfilled, (state, action) => {
       state.showUserChat = action.payload;
+    });
+    builder.addCase(postMessageById.fulfilled, (state, action) => {
+      state.messageById = action.payload;
     });
   },
 });

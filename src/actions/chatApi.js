@@ -306,6 +306,47 @@ export const postShowUserChat = createAsyncThunk(
   }
 );
 
+export const postMessageById = createAsyncThunk(
+  "postMessageById",
+  async ({ newObj, id }, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await fetch(import.meta.env.VITE_API_MESSAGES, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newObj),
+      });
+      const data = await response.json();
+      dispatch(getMessageById(id));
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const deleteMessageById = createAsyncThunk(
+  "deleteMessageById",
+  async ({ id, userChatId }, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_MESSAGES}/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+      const data = await response.json();
+      dispatch(getMessageById(userChatId));
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
 // export const postUserMessage = createAsyncThunk(
 //   "postUserMessage",
 //   async (newObj, { rejectWithValue, dispatch }) => {

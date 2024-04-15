@@ -8,12 +8,25 @@ import AddToDriveIcon from "@mui/icons-material/AddToDrive";
 import SendIcon from "@mui/icons-material/Send";
 
 import MentionUsersChat from "./MentionUsersChat";
+import { postMessageById } from "../actions/chatApi";
 
 const InputMessage = () => {
   const { setShowSend } = actions;
   const showSend = useSelector((store) => store.chat.showSend);
   const Dispatch = useDispatch();
   const arr = showSend.split("");
+
+  const chatById = useSelector((store) => store.chat.chatById);
+
+  const obj = {
+    newObj: {
+      id: Date.now(),
+      userChatId: chatById[0]?.id,
+      text: showSend,
+    },
+    id: chatById[0]?.id,
+  };
+
   return (
     <div className="input-message border-[2px] rounded-lg border-[#007fd2] p-[5px] w-full flex justify-between relative">
       <input
@@ -27,7 +40,12 @@ const InputMessage = () => {
         <IconButton>
           <AddToDriveIcon />
         </IconButton>
-        <IconButton>
+        <IconButton
+          onClick={() => {
+            Dispatch(postMessageById(obj));
+            Dispatch(setShowSend(""));
+          }}
+        >
           <SendIcon
             className={`${showSend.length > 0 ? "text-[#007fd2]" : ""}`}
           />

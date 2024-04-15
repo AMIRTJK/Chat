@@ -14,7 +14,7 @@ const TitleChat = () => {
   }, [Dispatch]);
 
   return (
-    <div className="wrapper-title p-[30px] border-b-[1px] flex justify-between items-center">
+    <div className="wrapper-title p-[30px] h-[10%] border-b-[1px] flex justify-between items-center">
       <div className="wrapper-user flex items-center gap-2">
         <IconButton sx={{ padding: "0px" }}>
           <Avatar src={chatById[0]?.image} />

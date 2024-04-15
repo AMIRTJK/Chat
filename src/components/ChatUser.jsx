@@ -8,7 +8,7 @@ import { getChatById, getMessageById } from "../actions/chatApi";
 const ChatUser = ({ item, handlePutUserChatStatus }) => {
   const Dispatch = useDispatch();
 
-  const messageById = useSelector((store) => store.chat.messageById);
+
 
   const { id, name, image, role, status } = item;
 

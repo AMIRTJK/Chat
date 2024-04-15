@@ -50,7 +50,6 @@ function App() {
   const users = useSelector((store) => store.chat.users);
   const visaListTemp = useSelector((store) => store.chat.visaListTemp);
   const showDocPdf = useSelector((store) => store.chat.showDocPdf);
-  const chatById = useSelector((store) => store.chat.chatById);
   const showUserChat = useSelector((store) => store.chat.showUserChat);
 
   const handleClick = (state) => {
@@ -87,8 +86,6 @@ function App() {
     Dispatch(getVisaListTemp());
     Dispatch(getShowUserChat());
   }, [Dispatch]);
-
-  console.log(showUserChat);
 
   return (
     <>
