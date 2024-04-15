@@ -185,7 +185,7 @@ function App() {
                 if (userChats.length > 0) {
                   Dispatch(
                     postShowUserChat({
-                      userChatId: Date.now(),
+                      id: Date.now(),
                     })
                   );
                 }
