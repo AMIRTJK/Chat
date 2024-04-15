@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import { Avatar, IconButton } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import MoreVert from "./MoreVert";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getChatById, getMessageById } from "../actions/chatApi";
 
 const ChatUser = ({ item, handlePutUserChatStatus }) => {
   const Dispatch = useDispatch();
+
+  const messageById = useSelector((store) => store.chat.messageById);
 
   const { id, name, image, role, status } = item;
 
@@ -23,10 +26,16 @@ const ChatUser = ({ item, handlePutUserChatStatus }) => {
     setShowMoreVert(!showMoreVert);
   };
 
+  const handleGetById = () => {
+    Dispatch(getChatById(newObj.id));
+    Dispatch(getMessageById(newObj.id));
+  };
+
   return (
     <div
       onClick={() => {
         handlePutUserChatStatus(newObj);
+        handleGetById();
       }}
       className={`${
         item.status ? "bg-[#007cd2]" : "bg-[#f9f9f9]"

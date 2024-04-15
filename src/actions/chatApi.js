@@ -239,11 +239,13 @@ export const deleteVisaListTemp = createAsyncThunk(
   }
 );
 
-export const getUserMessage = createAsyncThunk(
-  "getUserMessage",
-  async (_, { rejectWithValue }) => {
+export const getChatById = createAsyncThunk(
+  "getChatById",
+  async (id, { rejectWithValue }) => {
     try {
-      const response = await fetch(import.meta.env.VITE_API_USERS_MESSAGE);
+      const response = await fetch(
+        `${import.meta.env.VITE_API_USERS_CHATS}?id=${id}`
+      );
       const data = await response.json();
       return data;
     } catch (error) {
@@ -253,11 +255,41 @@ export const getUserMessage = createAsyncThunk(
   }
 );
 
-export const postUserMessage = createAsyncThunk(
-  "postUserMessage",
+export const getMessageById = createAsyncThunk(
+  "getMessageById",
+  async (id, { rejectWithValue }) => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_MESSAGES}?userChatId=${id}`
+      );
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const getShowUserChat = createAsyncThunk(
+  "getShowUserChat",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await fetch(import.meta.env.VITE_API_SHOW_USER_CHAT);
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const postShowUserChat = createAsyncThunk(
+  "postShowUserChat",
   async (newObj, { rejectWithValue, dispatch }) => {
     try {
-      const response = await fetch(import.meta.env.VITE_API_USERS_MESSAGE, {
+      const response = await fetch(import.meta.env.VITE_API_SHOW_USER_CHAT, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -265,7 +297,7 @@ export const postUserMessage = createAsyncThunk(
         body: JSON.stringify(newObj),
       });
       const data = await response.json();
-      dispatch(getUserMessage());
+      dispatch(getShowUserChat());
       return data;
     } catch (error) {
       console.error(error);
@@ -274,16 +306,37 @@ export const postUserMessage = createAsyncThunk(
   }
 );
 
-export const getMessages = createAsyncThunk(
-  "getMessages",
-  async (_, { rejectWithValue }) => {
-    try {
-      const response = await fetch(import.meta.env.VITE_API_MESSAGES);
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error(error);
-      return rejectWithValue(error);
-    }
-  }
-);
+// export const postUserMessage = createAsyncThunk(
+//   "postUserMessage",
+//   async (newObj, { rejectWithValue, dispatch }) => {
+//     try {
+//       const response = await fetch(import.meta.env.VITE_API_USERS_MESSAGE, {
+//         method: "POST",
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify(newObj),
+//       });
+//       const data = await response.json();
+//       dispatch(getUserMessage());
+//       return data;
+//     } catch (error) {
+//       console.error(error);
+//       return rejectWithValue(error);
+//     }
+//   }
+// );
+
+// export const getMessages = createAsyncThunk(
+//   "getMessages",
+//   async (_, { rejectWithValue }) => {
+//     try {
+//       const response = await fetch(import.meta.env.VITE_API_MESSAGES);
+//       const data = await response.json();
+//       return data;
+//     } catch (error) {
+//       console.error(error);
+//       return rejectWithValue(error);
+//     }
+//   }
+// );

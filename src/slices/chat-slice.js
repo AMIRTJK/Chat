@@ -8,9 +8,9 @@ import {
   getVisaList,
   getVisaListTemp,
   postVisaListTemp,
-  getUserMessage,
-  postUserMessage,
-  getMessages,
+  getChatById,
+  getMessageById,
+  getShowUserChat,
 } from "../actions/chatApi";
 
 const initialState = {
@@ -26,8 +26,9 @@ const initialState = {
   asideMessage: false,
   showSend: "",
   moreVert: false,
-  userMessage: [],
-  messages: [],
+  chatById: [],
+  messageById: [],
+  showUserChat: [],
 };
 
 const chatSlice = createSlice({
@@ -78,14 +79,14 @@ const chatSlice = createSlice({
     builder.addCase(postVisaListTemp.fulfilled, (state, action) => {
       state.visaListTemp = action.payload;
     });
-    builder.addCase(getUserMessage.fulfilled, (state, action) => {
-      state.userMessage = action.payload;
+    builder.addCase(getChatById.fulfilled, (state, action) => {
+      state.chatById = action.payload;
     });
-    builder.addCase(postUserMessage.fulfilled, (state, action) => {
-      state.userMessage = action.payload;
+    builder.addCase(getMessageById.fulfilled, (state, action) => {
+      state.messageById = action.payload;
     });
-    builder.addCase(getMessages.fulfilled, (state, action) => {
-      state.messages = action.payload;
+    builder.addCase(getShowUserChat.fulfilled, (state, action) => {
+      state.showUserChat = action.payload;
     });
   },
 });

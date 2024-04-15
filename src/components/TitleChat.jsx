@@ -1,33 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Avatar, IconButton } from "@mui/material";
 import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
 import AccessTimeOutlinedIcon from "@mui/icons-material/AccessTimeOutlined";
+import { getChatById } from "../actions/chatApi";
+import { useSelector, useDispatch } from "react-redux";
 
-const TitleChat = ({ userChats, userMessage }) => {
-  let item = null;
-  Array.isArray(userChats) &&
-    userChats.forEach((e) => {
-      Array.isArray(userMessage) &&
-        userMessage.forEach((e2) => {
-          if (e.id === e2.userChatId && e.status === true) {
-            item = {
-              id: e.id,
-              name: e.name,
-              image: e.image,
-              role: e.role,
-              status: e.status,
-            };
-          }
-        });
-    });
+const TitleChat = () => {
+  const Dispatch = useDispatch();
+  const chatById = useSelector((store) => store.chat.chatById);
+
+  useEffect(() => {
+    getChatById();
+  }, [Dispatch]);
 
   return (
     <div className="wrapper-title p-[30px] border-b-[1px] flex justify-between items-center">
       <div className="wrapper-user flex items-center gap-2">
         <IconButton sx={{ padding: "0px" }}>
-          <Avatar src={item?.image} />
+          <Avatar src={chatById[0]?.image} />
         </IconButton>
-        <p className="text-[#007cd2] font-[500]">{item?.name}</p>
+        <div className="text flex flex-col">
+          <p className="text-[#007cd2] font-[500]">{chatById[0]?.name}</p>
+          <p className="text-[#989898] text-[14px]">{chatById[0]?.role}</p>
+        </div>
       </div>
       <div className="settings flex items-center">
         <IconButton>

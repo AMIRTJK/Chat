@@ -20,9 +20,8 @@ import {
   getUserChats,
   putUserChatStatus,
   getVisaListTemp,
-  getUserMessage,
-  postUserMessage,
-  // clearUserMessage,
+  getShowUserChat,
+  postShowUserChat,
 } from "./actions/chatApi";
 import LoadingChat from "./components/LoadingChat";
 
@@ -51,7 +50,8 @@ function App() {
   const users = useSelector((store) => store.chat.users);
   const visaListTemp = useSelector((store) => store.chat.visaListTemp);
   const showDocPdf = useSelector((store) => store.chat.showDocPdf);
-  const userMessage = useSelector((store) => store.chat.userMessage);
+  const chatById = useSelector((store) => store.chat.chatById);
+  const showUserChat = useSelector((store) => store.chat.showUserChat);
 
   const handleClick = (state) => {
     Dispatch(setShowStructure(state));
@@ -85,8 +85,10 @@ function App() {
     Dispatch(getUserChats());
     Dispatch(getUsers());
     Dispatch(getVisaListTemp());
-    Dispatch(getUserMessage());
+    Dispatch(getShowUserChat());
   }, [Dispatch]);
+
+  console.log(showUserChat);
 
   return (
     <>
@@ -180,16 +182,13 @@ function App() {
             <Button
               onClick={() => {
                 Dispatch(setAsideMessage(true));
-                userChats.forEach((e) => {
-                  if (e.status === true) {
-                    Dispatch(
-                      postUserMessage({
-                        id: Date.now(),
-                        userChatId: e.id,
-                      })
-                    );
-                  }
-                });
+                if (userChats.length > 0) {
+                  Dispatch(
+                    postShowUserChat({
+                      userChatId: Date.now(),
+                    })
+                  );
+                }
               }}
               variant="contained"
               fullWidth
@@ -218,16 +217,12 @@ function App() {
             </div>
           )}
         </aside>
-        {userMessage.length > 0 && (
-          <aside className="right w-[80%]">
-            {userChats.length < 1 && <LoadingChat />}
-            {userMessage.length > 0 && (
-              <TitleChat userChats={userChats} userMessage={userMessage} />
-            )}
-            {userMessage.length > 0 && <BodyMessages />}
-            {userMessage.length > 0 && <WrapperInputMessage />}
-          </aside>
-        )}
+        <aside className="right w-[80%]">
+          {userChats.length < 1 && <LoadingChat />}
+          {showUserChat.length > 0 && <TitleChat />}
+          {showUserChat.length > 0 && <BodyMessages />}
+          {showUserChat.length > 0 && <WrapperInputMessage />}
+        </aside>
       </main>
     </>
   );
