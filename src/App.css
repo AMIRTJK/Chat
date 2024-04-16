@@ -1,10 +1,29 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap");
 
+@import url("https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap");
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   font-family: "Inter", sans-serif;
+}
+
+.mulish {
+  font-family: "Mulish", sans-serif;
+}
+
+.linear {
+  background-image: linear-gradient(
+    90deg,
+    rgb(243, 231, 233) 0%,
+    rgb(227, 238, 255) 99%,
+    rgb(227, 238, 255) 100%
+  );
+}
+
+body {
+  overflow: hidden;
 }
 
 .container {
@@ -15,7 +34,7 @@
 
 .wrapper-tab:hover > p,
 .wrapper-tab:hover > .colorIcon,
-.wrapper-chat:hover .user-info > p {
+.wrapper-chat:hover .user-info .text > p {
   color: #fff;
   transition: all 0.1s;
 }

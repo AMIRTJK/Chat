@@ -15,7 +15,7 @@ const BodyMessages = () => {
   }, [Dispatch]);
 
   return (
-    <div className="category-scrollbar h-[74%] overflow-auto">
+    <div className="category-scrollbar h-[72vh] overflow-auto">
       <ul>
         {Array.isArray(messageById) &&
           messageById.map((e) => {

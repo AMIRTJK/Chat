@@ -16,7 +16,7 @@ const WrapperInputMessage = () => {
   };
 
   return (
-    <div className="wrapper-input-message border-t-[1px] px-[30px] justify-center h-[16%] flex flex-col items-center gap-4">
+    <div className="wrapper-input-message border-t-[1px] px-[30px] justify-center h-[18%] flex flex-col items-center gap-4">
       <div className="panel-control flex items-center gap-5">
         <PanelTabVisa name="Упомянуть" handleShowMention={handleShowMention} />
         <PanelTabVisa name="Исполнитель" />

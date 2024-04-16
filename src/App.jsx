@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import "./App.css";
 
+import Authorization from "./components/Authorization";
+
 import TabVisa from "./components/TabVisa";
 import AttachedDocuments from "./components/AttachedDocuments";
 import StructureOrganizations from "./components/StructureOrganizations";
@@ -89,6 +91,7 @@ function App() {
 
   return (
     <>
+      <Authorization />
       <main className="flex overflow-hidden">
         <aside className="left category-scrollbar bg-[#f9f9f9] p-[20px] h-[100vh] flex flex-col justify-between w-[20%] overflow-auto">
           <div
@@ -103,7 +106,7 @@ function App() {
 
               <div className="text">
                 <p className="text-[#007cd2] font-bold">Каҳҳорзода Файзиддин</p>
-                <p className="text-[#c0c9cb] text-[14px]">Министр Финансов</p>
+                <p className="text-[#a9a9a9] text-[14px]">Министр Финансов</p>
               </div>
             </div>
             <div className="panel-control flex flex-col gap-5">

@@ -8,8 +8,6 @@ import { getChatById, getMessageById } from "../actions/chatApi";
 const ChatUser = ({ item, handlePutUserChatStatus }) => {
   const Dispatch = useDispatch();
 
-
-
   const { id, name, image, role, status } = item;
 
   const newObj = {
@@ -44,13 +42,22 @@ const ChatUser = ({ item, handlePutUserChatStatus }) => {
       <header className="flex justify-between items-center">
         <div className="user-info flex items-center gap-2">
           <Avatar src={image} sx={{ border: "1px solid #fff" }} />
-          <p
-            className={`${
-              item.status ? "text-[#f9f9f9]" : "text-[#007cd2]"
-            } font-[500]`}
-          >
-            {name}
-          </p>
+          <div className="text">
+            <p
+              className={`${
+                item.status ? "text-[#f9f9f9]" : "text-[#007cd2]"
+              } font-[500]`}
+            >
+              {name}
+            </p>
+            <p
+              className={`${
+                item.status ? "text-[#f9f9f9] text-[15px]" : "text-[#a9a9a9]"
+              } text-[15px]`}
+            >
+              {role}
+            </p>
+          </div>
         </div>
         <div className="panel-control relative">
           <IconButton onClick={() => handleShowMoreVert()}>
