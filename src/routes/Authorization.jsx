@@ -5,6 +5,7 @@ import { Button } from "@mui/material";
 import AuthForm from "../components/AuthForm";
 import { actions } from "../slices/chat-slice";
 import { useSelector, useDispatch } from "react-redux";
+import logo from "../assets/logo.svg";
 
 const Authorization = () => {
   const signLogin = useSelector((store) => store.chat.signLogin);
@@ -29,14 +30,17 @@ const Authorization = () => {
 
   const regLog = useSelector((store) => store.chat.regLog);
 
+  console.log(regLog);
+
   return (
     <section className="bg-[#fff] w-full h-full absolute z-10">
       <header className="bg-[#fff] flex justify-between items-center py-[24px] pl-[15px]">
         <div className="wrapper-logo flex items-center gap-5 cursor-pointer ml-[193px]">
           <img
-            src="https://i.ibb.co/xCjbnnw/emblem.png"
+            src={logo}
+            // src="https://i.ibb.co/xCjbnnw/emblem.png"
             alt=""
-            className="w-[4%]"
+            // className="w-[4%]"
           />
           <div className="text flex flex-col items-center">
             <p className="mulish text-[#607d8b]">Вазорати молияи</p>
@@ -62,7 +66,7 @@ const Authorization = () => {
             <button
               onClick={() => Dispatch(setRegLog(false))}
               className={`${
-                regLog === false ? "bg-[#3b4b55]" : ""
+                regLog === false ? "bg-[green]" : ""
               } mulish bg-[#607d8b] text-[#fff] min-w-[180px] py-[10px] px-[35px] rounded-[30px] font-normal`}
             >
               Регистрация
@@ -70,7 +74,7 @@ const Authorization = () => {
             <button
               onClick={() => Dispatch(setRegLog(true))}
               className={`${
-                regLog === true ? "bg-[#3f505a]" : ""
+                regLog === true ? "bg-[green]" : ""
               } mulish bg-[#607d8b] text-[#fff] min-w-[180px] py-[10px] px-[35px] rounded-[30px] font-normal`}
             >
               Войти

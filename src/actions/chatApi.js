@@ -359,6 +359,7 @@ export const postUserAuth = createAsyncThunk(
         body: JSON.stringify(newObj),
       });
       const data = await response.json();
+      localStorage.setItem("token", token);
       return data;
     } catch (error) {
       console.error(error);

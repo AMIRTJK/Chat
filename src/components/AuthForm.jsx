@@ -5,6 +5,7 @@ import { actions } from "../slices/chat-slice";
 import { useDispatch, useSelector } from "react-redux";
 import { postUserAuth } from "../actions/chatApi";
 import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 const AuthForm = ({ stateStore, actionStore }) => {
   const { signLogin, signPassword, signNumber } = stateStore || {};
@@ -14,7 +15,7 @@ const AuthForm = ({ stateStore, actionStore }) => {
   const regLog = useSelector((store) => store.chat.regLog);
 
   const stateObj = {
-    id: Date.now(),
+    id: Date.now().toString(),
     login: signLogin,
     password: signPassword,
     number: signNumber,
