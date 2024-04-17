@@ -66,7 +66,9 @@ const AuthForm = ({ stateStore, actionStore }) => {
         {/* <Link to="/"> */}
         <button
           onClick={(event) =>
-            regLog === false ? handleRegister(event) : navigate("/chat")
+            regLog === false
+              ? handleRegister(event)
+              : navigate("/Chat/messenger")
           }
           className="mulish absolute bg-[#607d8b] bottom-[-5%] left-[16%] text-[#fff] py-[10px] w-[70%] px-[35px] rounded-[30px] font-normal"
         >
