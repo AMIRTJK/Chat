@@ -13,7 +13,6 @@ const MessageText = ({ item }) => {
     setShowMoreVert(!showMoreVert);
   };
 
-
   return (
     <li className="border-b-[1px] p-[30px] flex items-center justify-between">
       <div className="wrapper-user flex items-center gap-2">

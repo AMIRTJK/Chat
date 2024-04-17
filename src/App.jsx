@@ -91,7 +91,7 @@ function App() {
 
   return (
     <>
-      <Authorization />
+      {/* <Authorization /> */}
       <main className="flex overflow-hidden">
         <aside className="left category-scrollbar bg-[#f9f9f9] p-[20px] h-[100vh] flex flex-col justify-between w-[20%] overflow-auto">
           <div

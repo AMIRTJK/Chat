@@ -20,7 +20,7 @@ const InputMessage = () => {
 
   const obj = {
     newObj: {
-      id: Date.now(),
+      id: Date.now().toString(),
       userChatId: chatById[0]?.id,
       text: showSend,
     },
