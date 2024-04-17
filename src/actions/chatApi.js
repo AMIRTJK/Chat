@@ -346,3 +346,23 @@ export const deleteMessageById = createAsyncThunk(
     }
   }
 );
+
+export const postUserAuth = createAsyncThunk(
+  "",
+  async (newObj, { rejectWithValue }) => {
+    try {
+      const response = await fetch(import.meta.env.VITE_API_USERS_AUTH, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newObj),
+      });
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);

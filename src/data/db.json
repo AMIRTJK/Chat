@@ -41,42 +41,163 @@
       "status": false
     }
   ],
-  "visaListTemp": [
-    {
-      "id": "4",
-      "name": "Барои барраси тибки тартиби мукарраргардида",
-      "status": true
-    }
-  ],
+  "visaListTemp": [],
   "users": [
     {
       "id": "1",
       "name": "Қаҳҳорзода Файзиддин",
       "role": "Министр Финансов",
       "image": "https://i.ibb.co/HqvF08R/image.jpg",
-      "status": false
+      "status": false,
+      "userAuthId": "1"
     },
     {
       "id": "2",
       "name": "Қурбониён Сарвар",
       "role": "Заминистр",
       "image": "https://i.ibb.co/zRQyxxP/image.jpg",
-      "status": false
+      "status": false,
+      "userAuthId": "2"
     },
     {
       "id": "3",
       "name": "Маҷиди Юсуф",
       "role": "Заминистр",
       "image": "https://i.ibb.co/fvwb1qX/image.jpg",
-      "status": false
+      "status": false,
+      "userAuthId": "3"
     }
   ],
-  "usersAuth": [],
+  "usersAuth": [
+    {
+      "id": "1",
+      "login": "k.fayziddin",
+      "password": "123"
+    },
+    {
+      "id": "2",
+      "login": "s.sobir",
+      "password": "123"
+    },
+    {
+      "id": "3",
+      "login": "m.yusuf",
+      "password": "123"
+    },
+    {
+      "id": "1713345445156",
+      "login": "321",
+      "password": "3213",
+      "number": "213213123"
+    },
+    {
+      "id": "1713345566237",
+      "login": "321",
+      "password": "3213",
+      "number": "213213123"
+    },
+    {
+      "id": "1713345662635",
+      "login": "",
+      "password": "",
+      "number": ""
+    },
+    {
+      "id": "1713345665062",
+      "login": "",
+      "password": "",
+      "number": ""
+    },
+    {
+      "id": "1713345702592",
+      "login": "Amir2",
+      "password": "123123",
+      "number": "880008671"
+    },
+    {
+      "id": "1713346737375",
+      "login": "",
+      "password": "",
+      "number": ""
+    },
+    {
+      "id": "1713346739311",
+      "login": "",
+      "password": "",
+      "number": ""
+    },
+    {
+      "id": "1713346744901",
+      "login": "",
+      "password": "",
+      "number": ""
+    },
+    {
+      "id": "1713346747141",
+      "login": "",
+      "password": "",
+      "number": ""
+    },
+    {
+      "id": "1713346843101",
+      "login": "123",
+      "password": "123",
+      "number": "123"
+    },
+    {
+      "id": "1713346892477",
+      "login": "v543v5",
+      "password": "v345",
+      "number": "v345"
+    },
+    {
+      "id": "1713346925021",
+      "login": "v543v5",
+      "password": "v345",
+      "number": "v345"
+    },
+    {
+      "id": "1713346951238",
+      "login": "v543v5",
+      "password": "v345",
+      "number": "v345"
+    },
+    {
+      "id": "1713346980510",
+      "login": "Amir",
+      "password": "123",
+      "number": "880008671"
+    },
+    {
+      "id": "1713347055085",
+      "login": "Amir",
+      "password": "123",
+      "number": "880008671"
+    },
+    {
+      "id": "1713347151356",
+      "login": "",
+      "password": "",
+      "number": ""
+    },
+    {
+      "id": "1713347220175",
+      "login": "123",
+      "password": "123",
+      "number": "123"
+    },
+    {
+      "id": "1713347809392",
+      "login": "4",
+      "password": "c23",
+      "number": "4c234"
+    }
+  ],
   "userStructure": [],
   "userChats": [],
   "showUserChat": [
     {
-      "id": "1713328684802"
+      "id": 1713348340799
     }
   ],
   "messages": []

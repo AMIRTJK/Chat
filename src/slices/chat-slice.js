@@ -12,6 +12,7 @@ import {
   getMessageById,
   getShowUserChat,
   postMessageById,
+  postUserAuth,
 } from "../actions/chatApi";
 
 const initialState = {
@@ -30,6 +31,11 @@ const initialState = {
   chatById: [],
   messageById: [],
   showUserChat: [],
+  signLogin: "",
+  signPassword: "",
+  signNumber: "",
+  usersAuth: [],
+  regLog: false,
 };
 
 const chatSlice = createSlice({
@@ -53,6 +59,18 @@ const chatSlice = createSlice({
     },
     setMoreVert: (state, action) => {
       state.moreVert = action.payload;
+    },
+    setSignLogin: (state, action) => {
+      state.signLogin = action.payload;
+    },
+    setSignPassword: (state, action) => {
+      state.signPassword = action.payload;
+    },
+    setSignNumber: (state, action) => {
+      state.signNumber = action.payload;
+    },
+    setRegLog: (state, action) => {
+      state.regLog = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -91,6 +109,9 @@ const chatSlice = createSlice({
     });
     builder.addCase(postMessageById.fulfilled, (state, action) => {
       state.messageById = action.payload;
+    });
+    builder.addCase(postUserAuth.fulfilled, (state, action) => {
+      state.usersAuth = action.payload;
     });
   },
 });
