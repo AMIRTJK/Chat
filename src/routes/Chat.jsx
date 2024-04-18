@@ -54,6 +54,11 @@ const Chat = () => {
   const showDocPdf = useSelector((store) => store.chat.showDocPdf);
   const showUserChat = useSelector((store) => store.chat.showUserChat);
 
+  const accessLogin = JSON.parse(localStorage.getItem("accessLogin"));
+
+  console.log(accessLogin);
+  console.log(users);
+
   const handleClick = (state) => {
     Dispatch(setShowStructure(state));
   };
@@ -96,18 +101,25 @@ const Chat = () => {
           <div
             className={`${showStructure ? "blur-[3px]" : "none"} wrapperNo1`}
           >
-            <div className="avatar flex items-center gap-5 mb-[30px]">
-              <IconButton sx={{ padding: "0px" }}>
-                <div className="wrapper-image w-[60px] h-[60px] rounded-[30px] overflow-hidden border-[1px] border-[#007cd2]">
-                  <img src={ministerImg} alt="" />
-                </div>
-              </IconButton>
+            {users.map((e) => {
+              if (e.userAuthId === accessLogin.id) {
+                return (
+                  <div className="avatar flex items-center gap-5 mb-[30px]">
+                    <IconButton sx={{ padding: "0px" }}>
+                      <div className="wrapper-image w-[60px] h-[60px] rounded-[30px] overflow-hidden border-[1px] border-[#007cd2]">
+                        <img src={e.image} alt="" />
+                      </div>
+                    </IconButton>
 
-              <div className="text">
-                <p className="text-[#007cd2] font-bold">Каҳҳорзода Файзиддин</p>
-                <p className="text-[#a9a9a9] text-[14px]">Министр Финансов</p>
-              </div>
-            </div>
+                    <div className="text">
+                      <p className="text-[#007cd2] font-bold">{e.name}</p>
+                      <p className="text-[#a9a9a9] text-[14px]">{e.role}</p>
+                    </div>
+                  </div>
+                );
+              }
+            })}
+
             <div className="panel-control flex flex-col gap-5">
               {visaListTemp.length > 0 && (
                 <MemoVisa

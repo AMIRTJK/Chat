@@ -1,11 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TextField } from "@mui/material";
-import { Link } from "react-router-dom";
 import { actions } from "../slices/chat-slice";
 import { useDispatch, useSelector } from "react-redux";
-import { postUserAuth } from "../actions/chatApi";
+import { postUserAuth, getUsersAuth, postUsers } from "../actions/chatApi";
 import { useNavigate } from "react-router-dom";
-import { jwtDecode } from "jwt-decode";
 
 const AuthForm = ({ stateStore, actionStore }) => {
   const { signLogin, signPassword, signNumber } = stateStore || {};
@@ -25,10 +23,35 @@ const AuthForm = ({ stateStore, actionStore }) => {
     event.preventDefault();
     Dispatch(postUserAuth(stateObj));
     Dispatch(setRegLog(true));
+    Dispatch(
+      postUsers({
+        id: Date.now().toString(),
+        name: "Имя",
+        role: "Роль",
+        image: "",
+        status: false,
+        userAuthId: stateObj.id,
+        login: stateObj.login,
+      })
+    );
   };
 
   const Dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const handleNavigate = () => {
+    usersAuth.forEach((e) => {
+      const newObj = { id: e.id, login: e.login };
+      if (e.login === signLogin && e.password === signPassword) {
+        localStorage.setItem("accessLogin", JSON.stringify(newObj));
+        navigate("/Chat/messenger");
+      }
+    });
+  };
+
+  useEffect(() => {
+    Dispatch(getUsersAuth());
+  }, [Dispatch]);
 
   return (
     <div className="bg-[#fff] p-[30px] rounded-[40px] min-w-[360px] shadow-md border-[1px] min-h-[481px] relative">
@@ -63,19 +86,14 @@ const AuthForm = ({ stateStore, actionStore }) => {
         ) : (
           <></>
         )}
-
-        {/* <Link to="/"> */}
         <button
           onClick={(event) =>
-            regLog === false
-              ? handleRegister(event)
-              : navigate("/Chat/messenger")
+            regLog === false ? handleRegister(event) : handleNavigate()
           }
           className="mulish absolute bg-[#607d8b] bottom-[-5%] left-[16%] text-[#fff] py-[10px] w-[70%] px-[35px] rounded-[30px] font-normal"
         >
           {regLog === false ? "Зарегистрироваться" : "Войти"}
         </button>
-        {/* </Link> */}
       </form>
     </div>
   );

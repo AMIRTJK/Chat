@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   getUsers,
   postUsers,
+  postUsersStructure,
   getUserStructure,
   postUserChat,
   getUserChats,
@@ -12,6 +13,7 @@ import {
   getMessageById,
   getShowUserChat,
   postMessageById,
+  getUsersAuth,
   postUserAuth,
 } from "../actions/chatApi";
 
@@ -77,10 +79,13 @@ const chatSlice = createSlice({
     builder.addCase(getUsers.fulfilled, (state, action) => {
       state.users = action.payload;
     });
+    builder.addCase(postUsers.fulfilled, (state, action) => {
+      state.users = action.payload;
+    });
     builder.addCase(getUserStructure.fulfilled, (state, action) => {
       state.userStructure = action.payload;
     });
-    builder.addCase(postUsers.fulfilled, (state, action) => {
+    builder.addCase(postUsersStructure.fulfilled, (state, action) => {
       state.userStructure = action.payload;
     });
     builder.addCase(postUserChat.fulfilled, (state, action) => {
@@ -109,6 +114,9 @@ const chatSlice = createSlice({
     });
     builder.addCase(postMessageById.fulfilled, (state, action) => {
       state.messageById = action.payload;
+    });
+    builder.addCase(getUsersAuth.fulfilled, (state, action) => {
+      state.usersAuth = action.payload;
     });
     builder.addCase(postUserAuth.fulfilled, (state, action) => {
       state.usersAuth = action.payload;

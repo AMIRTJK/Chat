@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { actions } from "../slices/chat-slice";
 import {
   getUsers,
-  postUsers,
+  postUsersStructure,
   getUserStructure,
   multiDeleteUsers,
   postUserChat,
@@ -31,7 +31,7 @@ const StructureOrganizations = () => {
   };
 
   const handlePostUser = (newObj) => {
-    Dispatch(postUsers(newObj));
+    Dispatch(postUsersStructure(newObj));
     Dispatch(postUserChat(newObj));
   };
 

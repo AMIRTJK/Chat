@@ -16,6 +16,27 @@ export const getUsers = createAsyncThunk(
   }
 );
 
+export const postUsers = createAsyncThunk(
+  "postUsers",
+  async (newObj, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await fetch(import.meta.env.VITE_API_USERS, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newObj),
+      });
+      const data = await response.json();
+      dispatch(getUsers());
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
 export const getUserStructure = createAsyncThunk(
   "getUserStructure",
   async (_, { rejectWithValue }) => {
@@ -30,8 +51,8 @@ export const getUserStructure = createAsyncThunk(
   }
 );
 
-export const postUsers = createAsyncThunk(
-  "postUsers",
+export const postUsersStructure = createAsyncThunk(
+  "postUsersStructure",
   async (newObj, { rejectWithValue, dispatch }) => {
     try {
       const response = await fetch(import.meta.env.VITE_API_USERS_STRUCTURE, {
@@ -347,8 +368,22 @@ export const deleteMessageById = createAsyncThunk(
   }
 );
 
+export const getUsersAuth = createAsyncThunk(
+  "getUsersAuth",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await fetch(import.meta.env.VITE_API_USERS_AUTH);
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
 export const postUserAuth = createAsyncThunk(
-  "",
+  "postUserAuth",
   async (newObj, { rejectWithValue }) => {
     try {
       const response = await fetch(import.meta.env.VITE_API_USERS_AUTH, {
@@ -359,7 +394,6 @@ export const postUserAuth = createAsyncThunk(
         body: JSON.stringify(newObj),
       });
       const data = await response.json();
-      localStorage.setItem("token", token);
       return data;
     } catch (error) {
       console.error(error);
