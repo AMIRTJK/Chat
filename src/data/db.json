@@ -41,7 +41,13 @@
       "status": false
     }
   ],
-  "visaListTemp": [],
+  "visaListTemp": [
+    {
+      "id": "5",
+      "name": "Барои хулоса",
+      "status": true
+    }
+  ],
   "users": [
     {
       "id": "1",
@@ -89,7 +95,34 @@
     }
   ],
   "userStructure": [],
-  "userChats": [],
-  "showUserChat": [],
-  "messages": []
+  "userChats": [
+    {
+      "id": "2",
+      "name": "Қурбониён Сарвар",
+      "image": "https://i.ibb.co/zRQyxxP/image.jpg",
+      "role": "Заминистр",
+      "status": true
+    },
+    {
+      "id": "3",
+      "name": "Маҷиди Юсуф",
+      "image": "https://i.ibb.co/fvwb1qX/image.jpg",
+      "role": "Заминистр",
+      "status": false
+    }
+  ],
+  "showUserChat": [
+    {
+      "id": "1713508565767"
+    }
+  ],
+  "messages": [
+    {
+      "id": "1713520141607",
+      "userChatId": "2",
+      "text": "Салом",
+      "userAuthId": "2",
+      "dateTime": "14:49"
+    }
+  ]
 }

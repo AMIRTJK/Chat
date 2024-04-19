@@ -19,37 +19,71 @@ const InputMessage = () => {
   const chatById = useSelector((store) => store.chat.chatById);
   const authedLogin = JSON.parse(localStorage.getItem("accessLogin"));
 
+  let date = new Date();
+  let hours = date.getHours().toString().padStart(2, "0");
+  let minutes = date.getMinutes().toString().padStart(2, "0");
+  let time = `${hours}:${minutes}`;
+
   let obj = {
     newObj: {
       id: Date.now().toString(),
       userChatId: chatById[0]?.id,
       text: showSend,
       userAuthId: authedLogin?.id,
+      dateTime: time,
     },
     id: chatById[0]?.id,
   };
 
   return (
-    <div className="input-message border-[2px] rounded-lg border-[#007fd2] p-[5px] w-full flex justify-between relative">
+    <div
+      className={`${
+        chatById[0]?.id !== authedLogin?.id &&
+        authedLogin.login !== "f.kahorzoda"
+          ? "bg-[#fafafa] cursor-not-allowed"
+          : ""
+      } input-message border-[2px] rounded-lg border-[#007fd2] p-[5px] w-full flex justify-between relative`}
+    >
       <input
+        disabled={
+          chatById[0]?.id !== authedLogin?.id &&
+          authedLogin.login !== "f.kahorzoda"
+        }
         onChange={(event) => Dispatch(setShowSend(event.target.value))}
         value={showSend}
         type="text"
         placeholder="Введите сообщение"
-        className="w-full h-[100%] p-[15px] outline-none placeholder:text-[#00558e] placeholder:font-medium"
+        className={`${
+          chatById[0]?.id !== authedLogin?.id &&
+          authedLogin.login !== "f.kahorzoda"
+            ? "cursor-not-allowed"
+            : ""
+        } w-full h-[100%] p-[15px] outline-none placeholder:text-[#00558e] placeholder:font-medium`}
       />
-      <div className="panel-submit flex items-center gap-2">
+      <div
+        className={`${
+          chatById[0]?.id !== authedLogin?.id &&
+          authedLogin.login !== "f.kahorzoda"
+            ? "cursor-not-allowed bg-[#fafafa]"
+            : ""
+        } panel-submit flex items-center gap-2`}
+      >
         <IconButton>
           <AddToDriveIcon />
         </IconButton>
         <IconButton
           onClick={() => {
-            Dispatch(postMessageById(obj));
-            Dispatch(setShowSend(""));
+            if (
+              chatById[0]?.id === authedLogin?.id ||
+              authedLogin.login === "f.kahorzoda"
+            ) {
+              Dispatch(postMessageById(obj));
+              Dispatch(setShowSend(""));
+            }
           }}
         >
           <SendIcon
-            className={`${showSend.length > 0 ? "text-[#007fd2]" : ""}`}
+            className={`${showSend.length > 0 ? "text-[#007fd2]" : ""} `}
           />
         </IconButton>
       </div>
