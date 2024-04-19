@@ -17,12 +17,14 @@ const InputMessage = () => {
   const arr = showSend.split("");
 
   const chatById = useSelector((store) => store.chat.chatById);
+  const authedLogin = JSON.parse(localStorage.getItem("accessLogin"));
 
   let obj = {
     newObj: {
       id: Date.now().toString(),
       userChatId: chatById[0]?.id,
       text: showSend,
+      userAuthId: authedLogin?.id,
     },
     id: chatById[0]?.id,
   };

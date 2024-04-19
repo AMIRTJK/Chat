@@ -106,8 +106,6 @@ const Chat = () => {
     renderRoleUsers();
   }, [Dispatch]);
 
-  console.log(renderOfRole);
-
   return (
     <>
       <main className="flex overflow-hidden">

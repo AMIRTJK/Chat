@@ -41,13 +41,7 @@
       "status": false
     }
   ],
-  "visaListTemp": [
-    {
-      "id": "4",
-      "name": "Барои барраси тибки тартиби мукарраргардида",
-      "status": true
-    }
-  ],
+  "visaListTemp": [],
   "users": [
     {
       "id": "1",
@@ -95,44 +89,7 @@
     }
   ],
   "userStructure": [],
-  "userChats": [
-    {
-      "id": "2",
-      "name": "Қурбониён Сарвар",
-      "image": "https://i.ibb.co/zRQyxxP/image.jpg",
-      "role": "Заминистр",
-      "status": true
-    },
-    {
-      "id": "3",
-      "name": "Маҷиди Юсуф",
-      "image": "https://i.ibb.co/fvwb1qX/image.jpg",
-      "role": "Заминистр",
-      "status": false
-    }
-  ],
-  "showUserChat": [
-    {
-      "id": 1713496314876
-    }
-  ],
-  "messages": [
-    {
-      "id": "1713435808423",
-      "userChatId": null,
-      "text": "Салом"
-    },
-    {
-      "id": "1713496448286",
-      "userChatId": "1",
-      "text": "Сообщение от Ф.Каххорзода к М.Юсуф",
-      "userAuthId": "1"
-    },
-    {
-      "id": "1713496465278",
-      "userChatId": "1",
-      "text": "Сообщение от Ф.Каххорзода к Курбониён Сарвар",
-      "userAuthId": "1"
-    }
-  ]
+  "userChats": [],
+  "showUserChat": [],
+  "messages": []
 }

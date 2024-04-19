@@ -8,7 +8,6 @@ import MessageText from "./MessageText";
 const BodyMessages = () => {
   const Dispatch = useDispatch();
   const messageById = useSelector((store) => store.chat.messageById);
-  const chatById = useSelector((store) => store.chat.chatById);
 
   useEffect(() => {
     getMessageById();
