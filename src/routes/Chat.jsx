@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "../App.css";
 
 import Authorization from "../routes/Authorization";
@@ -98,6 +98,26 @@ const Chat = () => {
     }
   };
 
+  const [date, setDate] = useState("");
+  const [isDateSelected, setIsDateSelected] = useState(false);
+
+  const handleChange = (event) => {
+    setDate(event.target.value);
+    setIsDateSelected(true);
+  };
+
+  const handleBlur = () => {
+    if (date === "") {
+      setIsDateSelected(false);
+    }
+  };
+
+  const handleClickDate = () => {
+    if (!isDateSelected) {
+      setIsDateSelected(true);
+    }
+  };
+
   useEffect(() => {
     Dispatch(getUserChats());
     Dispatch(getUsers());
@@ -125,7 +145,6 @@ const Chat = () => {
                         <img src={e.image} alt="" />
                       </div>
                     </IconButton>
-
                     <div className="text">
                       <p className="text-[#007cd2] font-bold">{e.name}</p>
                       <p className="text-[#a9a9a9] text-[14px]">{e.role}</p>
@@ -161,7 +180,11 @@ const Chat = () => {
             Icon={<ScheduleIcon className="colorIcon text-[#007cd2]" />}
           /> */}
                   <input
-                    type="date"
+                    type={isDateSelected ? "date" : "text"}
+                    value={isDateSelected ? date : "Срок"}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    onClick={handleClickDate}
                     className="border-[#007cd2] border-[2px] rounded-lg p-[10px] text-[#007cd2] font-medium cursor-pointer hover:bg-[#007cd2] hover:text-[#fff]"
                   />
                   <fieldset className="tab-visa-select border-[#007cd2] border-[2px] rounded-lg p-[10px] text-[#007cd2] font-medium cursor-pointer">

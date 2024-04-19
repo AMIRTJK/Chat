@@ -51,7 +51,7 @@
   "users": [
     {
       "id": "1",
-      "name": "Қаҳҳорзода Файзиддин",
+      "name": "Файзиддин Саттор",
       "role": "Министр Финансов",
       "image": "https://i.ibb.co/HqvF08R/image.jpg",
       "status": false,
@@ -60,7 +60,7 @@
     },
     {
       "id": "2",
-      "name": "Қурбониён Сарвар",
+      "name": "Сарвар Собирович",
       "role": "Заминистр",
       "image": "https://i.ibb.co/zRQyxxP/image.jpg",
       "status": false,
@@ -69,7 +69,7 @@
     },
     {
       "id": "3",
-      "name": "Маҷиди Юсуф",
+      "name": "Юсуф Хайрулло",
       "role": "Заминистр",
       "image": "https://i.ibb.co/fvwb1qX/image.jpg",
       "status": false,
@@ -85,12 +85,12 @@
     },
     {
       "id": "2",
-      "login": "s.sobir",
+      "login": "s.sobirovich",
       "password": "123"
     },
     {
       "id": "3",
-      "login": "m.yusuf",
+      "login": "y.khayrullo",
       "password": "123"
     }
   ],
@@ -98,14 +98,14 @@
   "userChats": [
     {
       "id": "2",
-      "name": "Қурбониён Сарвар",
+      "name": "Сарвар Собирович",
       "image": "https://i.ibb.co/zRQyxxP/image.jpg",
       "role": "Заминистр",
       "status": true
     },
     {
       "id": "3",
-      "name": "Маҷиди Юсуф",
+      "name": "Юсуф Хайрулло",
       "image": "https://i.ibb.co/fvwb1qX/image.jpg",
       "role": "Заминистр",
       "status": false
