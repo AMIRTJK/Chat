@@ -44,8 +44,13 @@ import BodyMessages from "../components/BodyMessages";
 const Chat = () => {
   const Dispatch = useDispatch();
 
-  const { setShowStructure, setShowVisa, setShowDocPdf, setAsideMessage } =
-    actions;
+  const {
+    setShowStructure,
+    setShowVisa,
+    setShowDocPdf,
+    setAsideMessage,
+    setRenderOfRole,
+  } = actions;
   const showStructure = useSelector((store) => store.chat.showStructure);
   const userChats = useSelector((store) => store.chat.userChats);
   const showVisa = useSelector((store) => store.chat.showVisa);
@@ -53,11 +58,9 @@ const Chat = () => {
   const visaListTemp = useSelector((store) => store.chat.visaListTemp);
   const showDocPdf = useSelector((store) => store.chat.showDocPdf);
   const showUserChat = useSelector((store) => store.chat.showUserChat);
+  const renderOfRole = useSelector((store) => store.chat.renderOfRole);
 
   const accessLogin = JSON.parse(localStorage.getItem("accessLogin"));
-
-  console.log(accessLogin);
-  console.log(users);
 
   const handleClick = (state) => {
     Dispatch(setShowStructure(state));
@@ -87,12 +90,23 @@ const Chat = () => {
   const ministerImg = "https://i.ibb.co/HqvF08R/image.jpg";
   const docNo1Img = "https://i.ibb.co/L1Bj3fb/Document-1.png";
 
+  const renderRoleUsers = () => {
+    if (accessLogin.login === "f.kahorzoda") {
+      Dispatch(setRenderOfRole(true));
+    } else {
+      Dispatch(setRenderOfRole(false));
+    }
+  };
+
   useEffect(() => {
     Dispatch(getUserChats());
     Dispatch(getUsers());
     Dispatch(getVisaListTemp());
     Dispatch(getShowUserChat());
+    renderRoleUsers();
   }, [Dispatch]);
+
+  console.log(renderOfRole);
 
   return (
     <>
@@ -104,7 +118,10 @@ const Chat = () => {
             {users.map((e) => {
               if (e.userAuthId === accessLogin.id) {
                 return (
-                  <div className="avatar flex items-center gap-5 mb-[30px]">
+                  <div
+                    key={e.id}
+                    className="avatar flex items-center gap-5 mb-[30px]"
+                  >
                     <IconButton sx={{ padding: "0px" }}>
                       <div className="wrapper-image w-[60px] h-[60px] rounded-[30px] overflow-hidden border-[1px] border-[#007cd2]">
                         <img src={e.image} alt="" />
@@ -119,8 +136,7 @@ const Chat = () => {
                 );
               }
             })}
-
-            <div className="panel-control flex flex-col gap-5">
+            <div className="panel-control flex flex-col gap-5 mb-[20px]">
               {visaListTemp.length > 0 && (
                 <MemoVisa
                   item={users}
@@ -128,90 +144,100 @@ const Chat = () => {
                   visaListTemp={visaListTemp}
                 />
               )}
-              <TabVisa
-                handleClick={handleClick}
-                text="Исполнитель"
-                Icon={<PersonIcon className="colorIcon text-[#007cd2]" />}
-              />
-              <TabVisa
-                text="Виза"
-                handleClick={handleShowVisa}
-                Icon={<AssignmentIcon className="colorIcon text-[#007cd2]" />}
-              />
-              {/* <TabVisa
+              {renderOfRole && (
+                <>
+                  <TabVisa
+                    handleClick={handleClick}
+                    text="Исполнитель"
+                    Icon={<PersonIcon className="colorIcon text-[#007cd2]" />}
+                  />
+                  <TabVisa
+                    text="Виза"
+                    handleClick={handleShowVisa}
+                    Icon={
+                      <AssignmentIcon className="colorIcon text-[#007cd2]" />
+                    }
+                  />
+                  {/* <TabVisa
             text="Срок"
             Icon={<ScheduleIcon className="colorIcon text-[#007cd2]" />}
           /> */}
-              <input
-                type="date"
-                className="border-[#007cd2] border-[2px] rounded-lg p-[10px] text-[#007cd2] font-medium cursor-pointer hover:bg-[#007cd2] hover:text-[#fff]"
-              />
-              <fieldset className="tab-visa-select border-[#007cd2] border-[2px] rounded-lg p-[10px] text-[#007cd2] font-medium cursor-pointer">
-                <select
-                  name=""
-                  id=""
-                  className="bg-transparent outline-none  w-full cursor-pointer"
-                >
-                  <option value="">Назоратӣ</option>
-                  <option value="">Фаврӣ</option>
-                </select>
-              </fieldset>
-              <div className="wrapper-documents flex flex-col gap-2">
-                <p className="text-[14px] text-[#007cd2] font-medium">
-                  Вложенные документы
-                </p>
-                <div className="wrapper-list flex gap-4">
-                  <AttachedDocuments
-                    handleShowDocPdf={handleShowDocPdf}
-                    document={docNo1Img}
+                  <input
+                    type="date"
+                    className="border-[#007cd2] border-[2px] rounded-lg p-[10px] text-[#007cd2] font-medium cursor-pointer hover:bg-[#007cd2] hover:text-[#fff]"
                   />
-                  <AttachedDocuments
-                    handleShowDocPdf={handleShowDocPdf}
-                    document={docNo1Img}
-                  />
-                </div>
-              </div>
-              <div className="wrapper-chats flex flex-col gap-5">
-                {userChats.length > 0 &&
-                  userChats.map((e) => {
-                    return (
-                      <ChatUser
-                        key={e.id}
-                        item={e}
-                        handlePutUserChatStatus={handlePutUserChatStatus}
-                      />
-                    );
-                  })}
+                  <fieldset className="tab-visa-select border-[#007cd2] border-[2px] rounded-lg p-[10px] text-[#007cd2] font-medium cursor-pointer">
+                    <select
+                      name=""
+                      id=""
+                      className="bg-transparent outline-none  w-full cursor-pointer"
+                    >
+                      <option value="">Назоратӣ</option>
+                      <option value="">Фаврӣ</option>
+                    </select>
+                  </fieldset>
+                </>
+              )}
+            </div>
+
+            <div className="wrapper-documents flex flex-col gap-2 mb-[20px]">
+              <p className="text-[14px] text-[#007cd2] font-medium">
+                Вложенные документы
+              </p>
+              <div className="wrapper-list flex gap-4">
+                <AttachedDocuments
+                  handleShowDocPdf={handleShowDocPdf}
+                  document={docNo1Img}
+                />
+                <AttachedDocuments
+                  handleShowDocPdf={handleShowDocPdf}
+                  document={docNo1Img}
+                />
               </div>
             </div>
-          </div>
-          <div
-            className={`${
-              showStructure ? "blur-[3px]" : "none"
-            } wrapperNo2 pt-[20px]`}
-          >
-            <Button
-              onClick={() => {
-                Dispatch(setAsideMessage(true));
-                if (userChats.length > 0) {
-                  Dispatch(
-                    postShowUserChat({
-                      id: Date.now(),
-                    })
+            <div className="wrapper-chats flex flex-col gap-5">
+              {userChats.length > 0 &&
+                userChats.map((e) => {
+                  return (
+                    <ChatUser
+                      key={e.id}
+                      item={e}
+                      handlePutUserChatStatus={handlePutUserChatStatus}
+                    />
                   );
-                }
-              }}
-              variant="contained"
-              fullWidth
-              sx={{
-                textTransform: "none",
-                fontWeight: "normal",
-                fontSize: "15px",
-              }}
-            >
-              Визировать
-            </Button>
+                })}
+            </div>
           </div>
+          {renderOfRole && (
+            <div
+              className={`${
+                showStructure ? "blur-[3px]" : "none"
+              } wrapperNo2 pt-[20px]`}
+            >
+              <Button
+                onClick={() => {
+                  Dispatch(setAsideMessage(true));
+                  if (userChats.length > 0) {
+                    Dispatch(
+                      postShowUserChat({
+                        id: Date.now(),
+                      })
+                    );
+                  }
+                }}
+                variant="contained"
+                fullWidth
+                sx={{
+                  textTransform: "none",
+                  fontWeight: "normal",
+                  fontSize: "15px",
+                }}
+              >
+                Визировать
+              </Button>
+            </div>
+          )}
+
           {showStructure && <StructureOrganizations />}
           {showVisa && <VisaModal handleShowVisa={handleShowVisa} />}
           {showDocPdf && (

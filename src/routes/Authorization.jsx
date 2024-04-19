@@ -30,8 +30,6 @@ const Authorization = () => {
 
   const regLog = useSelector((store) => store.chat.regLog);
 
-  console.log(regLog);
-
   return (
     <section className="bg-[#fff] w-full h-full absolute z-10">
       <header className="bg-[#fff] flex justify-between items-center py-[24px] pl-[15px]">

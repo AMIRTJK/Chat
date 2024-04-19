@@ -18,7 +18,7 @@ const InputMessage = () => {
 
   const chatById = useSelector((store) => store.chat.chatById);
 
-  const obj = {
+  let obj = {
     newObj: {
       id: Date.now().toString(),
       userChatId: chatById[0]?.id,

@@ -38,6 +38,7 @@ const initialState = {
   signNumber: "",
   usersAuth: [],
   regLog: false,
+  renderOfRole: false,
 };
 
 const chatSlice = createSlice({
@@ -73,6 +74,9 @@ const chatSlice = createSlice({
     },
     setRegLog: (state, action) => {
       state.regLog = action.payload;
+    },
+    setRenderOfRole: (state, action) => {
+      state.renderOfRole = action.payload;
     },
   },
   extraReducers: (builder) => {
