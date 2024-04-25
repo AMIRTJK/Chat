@@ -40,7 +40,6 @@ const StructureOrganizations = () => {
     Dispatch(getUserStructure());
   }, [Dispatch]);
 
-
   return (
     <div
       onClick={handleModal}
@@ -84,6 +83,8 @@ const StructureOrganizations = () => {
                     userPosition={e.role}
                     userStatus={e.status}
                     userId={e.id}
+                    userLogin={e.login}
+                    userAuthId={e.userAuthId}
                     handlePostUser={handlePostUser}
                   />
                 );

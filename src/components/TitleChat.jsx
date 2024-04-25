@@ -13,6 +13,7 @@ const TitleChat = () => {
     getChatById();
   }, [Dispatch]);
 
+
   return (
     <div className="wrapper-title p-[30px] h-[10%] border-b-[1px] flex justify-between items-center">
       <div className="wrapper-user flex items-center gap-2">

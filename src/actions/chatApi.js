@@ -219,6 +219,90 @@ export const getVisaListTemp = createAsyncThunk(
   }
 );
 
+export const getTermDate = createAsyncThunk(
+  "getTermDate",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await fetch(import.meta.env.VITE_API_TERM_DATE);
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const postTermDate = createAsyncThunk(
+  "postTermDate",
+  async (newObj, { dispatch, rejectWithValue }) => {
+    try {
+      const response = await fetch(import.meta.env.VITE_API_TERM_DATE, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newObj),
+      });
+      const data = await response.json();
+      dispatch(getTermDate());
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const getVisaStatus = createAsyncThunk(
+  "getVisaStatus",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await fetch(import.meta.env.VITE_API_VISA_STATUS);
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const getVisaStatusTemp = createAsyncThunk(
+  "getVisaStatusTemp",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await fetch(import.meta.env.VITE_API_VISA_STATUS_TEMP);
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const postVisaStatusTemp = createAsyncThunk(
+  "postVisaStatusTemp",
+  async (newObj, { dispatch, rejectWithValue }) => {
+    try {
+      const response = await fetch(import.meta.env.VITE_API_VISA_STATUS_TEMP, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newObj),
+      });
+      const data = await response.json();
+      dispatch(getVisaStatusTemp());
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
 export const postVisaListTemp = createAsyncThunk(
   "postVisaListTemp",
   async (newObj, { rejectWithValue, dispatch }) => {

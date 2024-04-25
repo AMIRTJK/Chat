@@ -22,6 +22,11 @@ import {
   getUserChats,
   putUserChatStatus,
   getVisaListTemp,
+  getTermDate,
+  postTermDate,
+  getVisaStatus,
+  getVisaStatusTemp,
+  postVisaStatusTemp,
   getShowUserChat,
   postShowUserChat,
 } from "../actions/chatApi";
@@ -51,11 +56,15 @@ const Chat = () => {
     setAsideMessage,
     setRenderOfRole,
   } = actions;
+
   const showStructure = useSelector((store) => store.chat.showStructure);
   const userChats = useSelector((store) => store.chat.userChats);
   const showVisa = useSelector((store) => store.chat.showVisa);
   const users = useSelector((store) => store.chat.users);
   const visaListTemp = useSelector((store) => store.chat.visaListTemp);
+  const termDate = useSelector((store) => store.chat.termDate);
+  const visaStatus = useSelector((store) => store.chat.visaStatus);
+  const visaStatusTemp = useSelector((store) => store.chat.visaStatusTemp);
   const showDocPdf = useSelector((store) => store.chat.showDocPdf);
   const showUserChat = useSelector((store) => store.chat.showUserChat);
   const renderOfRole = useSelector((store) => store.chat.renderOfRole);
@@ -87,7 +96,6 @@ const Chat = () => {
     event.stopPropagation();
   };
 
-  const ministerImg = "https://i.ibb.co/HqvF08R/image.jpg";
   const docNo1Img = "https://i.ibb.co/L1Bj3fb/Document-1.png";
 
   const renderRoleUsers = () => {
@@ -118,10 +126,29 @@ const Chat = () => {
     }
   };
 
+  const handlePostTermDate = (event) => {
+    const newObj = {
+      id: Date.now().toString(),
+      date: event.target.value,
+    };
+    Dispatch(postTermDate(newObj));
+  };
+
+  const handlePostVisaStatusTemp = (event) => {
+    const newObj = {
+      id: Date.now().toString(),
+      status: event.target.value,
+    };
+    Dispatch(postVisaStatusTemp(newObj));
+  };
+
   useEffect(() => {
     Dispatch(getUserChats());
     Dispatch(getUsers());
     Dispatch(getVisaListTemp());
+    Dispatch(getTermDate());
+    Dispatch(getVisaStatus());
+    Dispatch(getVisaStatusTemp());
     Dispatch(getShowUserChat());
     renderRoleUsers();
   }, [Dispatch]);
@@ -159,6 +186,8 @@ const Chat = () => {
                   item={users}
                   userChats={userChats}
                   visaListTemp={visaListTemp}
+                  termDate={termDate}
+                  visaStatusTemp={visaStatusTemp}
                 />
               )}
               {renderOfRole && (
@@ -175,26 +204,31 @@ const Chat = () => {
                       <AssignmentIcon className="colorIcon text-[#007cd2]" />
                     }
                   />
-                  {/* <TabVisa
-            text="Срок"
-            Icon={<ScheduleIcon className="colorIcon text-[#007cd2]" />}
-          /> */}
                   <input
                     type={isDateSelected ? "date" : "text"}
                     value={isDateSelected ? date : "Срок"}
-                    onChange={handleChange}
+                    onChange={(event) => {
+                      handleChange(event);
+                      handlePostTermDate(event);
+                    }}
                     onBlur={handleBlur}
                     onClick={handleClickDate}
                     className="border-[#007cd2] border-[2px] rounded-lg p-[10px] text-[#007cd2] font-medium cursor-pointer hover:bg-[#007cd2] hover:text-[#fff]"
                   />
                   <fieldset className="tab-visa-select border-[#007cd2] border-[2px] rounded-lg p-[10px] text-[#007cd2] font-medium cursor-pointer">
                     <select
+                      onChange={(event) => handlePostVisaStatusTemp(event)}
                       name=""
                       id=""
                       className="bg-transparent outline-none  w-full cursor-pointer"
                     >
-                      <option value="">Назоратӣ</option>
-                      <option value="">Фаврӣ</option>
+                      {visaStatus.map((e) => {
+                        return (
+                          <option key={e.id} value={e.status}>
+                            {e.status}
+                          </option>
+                        );
+                      })}
                     </select>
                   </fieldset>
                 </>

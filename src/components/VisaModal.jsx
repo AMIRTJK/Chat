@@ -23,7 +23,6 @@ const VisaModal = ({ handleShowVisa }) => {
     Dispatch(getVisaListTemp());
   }, []);
 
-
   let newObj = null;
 
   Array.isArray(visaListTemp) &&
@@ -35,7 +34,7 @@ const VisaModal = ({ handleShowVisa }) => {
     <div
       onClick={() => {
         handleShowVisa(false);
-        Dispatch(deleteVisaListTemp(newObj.id));
+        Dispatch(deleteVisaListTemp(newObj?.id));
       }}
       className="modal fixed w-full h-full bg-transparent"
     >

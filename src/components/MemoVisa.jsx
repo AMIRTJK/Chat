@@ -1,6 +1,12 @@
 import React from "react";
 
-const MemoVisa = ({ item, userChats, visaListTemp }) => {
+const MemoVisa = ({
+  item,
+  userChats,
+  visaListTemp,
+  termDate,
+  visaStatusTemp,
+}) => {
   const date = new Date();
   const day = date.getDate();
   const month = date.getMonth() + 1;
@@ -10,6 +16,9 @@ const MemoVisa = ({ item, userChats, visaListTemp }) => {
 
   const emblem = "https://i.ibb.co/xCjbnnw/emblem.png";
 
+  const termDateObj = termDate[termDate.length - 1];
+  const visaStatusTempObj = visaStatusTemp[visaStatusTemp.length - 1];
+
   return (
     <div className="wrapper w-full border-[2px] p-[15px] rounded-lg flex flex-col gap-4">
       <header className="flex flex-col items-center gap-2">
@@ -18,7 +27,7 @@ const MemoVisa = ({ item, userChats, visaListTemp }) => {
           Вазири молияи Чумхурии Точикистон
         </h1>
       </header>
-      <main className="flex flex-col items-center">
+      <main className="flex flex-col items-center gap-2">
         {Array.isArray(userChats) &&
           userChats.map((e) => {
             return (
@@ -34,6 +43,8 @@ const MemoVisa = ({ item, userChats, visaListTemp }) => {
             </p>
           );
         })}
+        {termDateObj && <p>До: {termDateObj?.date}</p>}
+        {visaStatusTempObj && <p>Статус: {visaStatusTempObj?.status}</p>}
       </main>
       <footer className="flex flex-col gap-2">
         <div className="wrapper-signature flex justify-end">

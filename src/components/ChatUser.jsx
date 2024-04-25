@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Avatar, IconButton } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import MoreVert from "./MoreVert";
@@ -29,6 +29,12 @@ const ChatUser = ({ item, handlePutUserChatStatus }) => {
     Dispatch(getChatById(newObj.id));
     Dispatch(getMessageById(newObj.id));
   };
+
+  useEffect(() => {
+    Dispatch(getChatById(newObj.id));
+    Dispatch(getMessageById(newObj.id));
+    handlePutUserChatStatus(newObj);
+  }, [Dispatch]);
 
   return (
     <div

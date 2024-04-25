@@ -62,7 +62,9 @@ const Authorization = () => {
         <div className="wrapper-form flex items-center justify-center gap-5 flex-col">
           <div className="auth-pop-up flex items-center gap-5">
             <button
-              onClick={() => Dispatch(setRegLog(false))}
+              onClick={() => {
+                Dispatch(setRegLog(false));
+              }}
               className={`${
                 regLog === false ? "bg-[green]" : ""
               } mulish bg-[#607d8b] text-[#fff] min-w-[180px] py-[10px] px-[35px] rounded-[30px] font-normal`}
@@ -70,7 +72,9 @@ const Authorization = () => {
               Регистрация
             </button>
             <button
-              onClick={() => Dispatch(setRegLog(true))}
+              onClick={() => {
+                Dispatch(setRegLog(true));
+              }}
               className={`${
                 regLog === true ? "bg-[green]" : ""
               } mulish bg-[#607d8b] text-[#fff] min-w-[180px] py-[10px] px-[35px] rounded-[30px] font-normal`}

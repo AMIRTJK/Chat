@@ -9,6 +9,11 @@ import {
   getVisaList,
   getVisaListTemp,
   postVisaListTemp,
+  getTermDate,
+  postTermDate,
+  getVisaStatus,
+  getVisaStatusTemp,
+  postVisaStatusTemp,
   getChatById,
   getMessageById,
   getShowUserChat,
@@ -26,6 +31,9 @@ const initialState = {
   showVisa: false,
   visaList: [],
   visaListTemp: [],
+  termDate: [],
+  visaStatus: [],
+  visaStatusTemp: [],
   showDocPdf: false,
   asideMessage: false,
   showSend: "",
@@ -124,6 +132,21 @@ const chatSlice = createSlice({
     });
     builder.addCase(postUserAuth.fulfilled, (state, action) => {
       state.usersAuth = action.payload;
+    });
+    builder.addCase(getTermDate.fulfilled, (state, action) => {
+      state.termDate = action.payload;
+    });
+    builder.addCase(postTermDate.fulfilled, (state, action) => {
+      state.termDate = action.payload;
+    });
+    builder.addCase(getVisaStatus.fulfilled, (state, action) => {
+      state.visaStatus = action.payload;
+    });
+    builder.addCase(getVisaStatusTemp.fulfilled, (state, action) => {
+      state.visaStatusTemp = action.payload;
+    });
+    builder.addCase(postVisaStatusTemp.fulfilled, (state, action) => {
+      state.visaStatusTemp = action.payload;
     });
   },
 });
