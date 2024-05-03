@@ -41,13 +41,7 @@
       "status": false
     }
   ],
-  "visaListTemp": [
-    {
-      "id": "2",
-      "name": "Барои барраси тибки тартиби мукарраргардида",
-      "status": true
-    }
-  ],
+  "visaListTemp": [],
   "termDate": [
     {
       "id": "1713773391011",
@@ -117,55 +111,7 @@
     }
   ],
   "userStructure": [],
-  "userChats": [
-    {
-      "id": "2",
-      "name": "Сарвар Собирович",
-      "image": "https://i.ibb.co/zRQyxxP/image.jpg",
-      "role": "Заминистр",
-      "status": false
-    },
-    {
-      "id": "3",
-      "name": "Юсуф Хайрулло",
-      "image": "https://i.ibb.co/fvwb1qX/image.jpg",
-      "role": "Заминистр",
-      "status": true
-    }
-  ],
-  "showUserChat": [
-    {
-      "id": "1713773397841"
-    }
-  ],
-  "messages": [
-    {
-      "id": "1713773445563",
-      "userChatId": "2",
-      "text": "Сарвар Собирович, корбари намоед!",
-      "userAuthId": "1",
-      "dateTime": "13:10"
-    },
-    {
-      "id": "1713773479403",
-      "userChatId": "3",
-      "text": "Юсуф Хайрулло, аналитика пешниход намоед!",
-      "userAuthId": "1",
-      "dateTime": "13:11"
-    },
-    {
-      "id": "1713773537323",
-      "userChatId": "2",
-      "text": "Корбари шуд, кабул намоед!",
-      "userAuthId": "2",
-      "dateTime": "13:12"
-    },
-    {
-      "id": "1713773578348",
-      "userChatId": "3",
-      "text": "Аналитика карда шуд, кабул намоед!",
-      "userAuthId": "3",
-      "dateTime": "13:12"
-    }
-  ]
+  "userChats": [],
+  "showUserChat": [],
+  "messages": []
 }

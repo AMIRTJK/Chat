@@ -47,6 +47,9 @@ const initialState = {
   usersAuth: [],
   regLog: false,
   renderOfRole: false,
+  showReply: false,
+  getReplyMessage: {},
+  showCertificate: {},
 };
 
 const chatSlice = createSlice({
@@ -85,6 +88,15 @@ const chatSlice = createSlice({
     },
     setRenderOfRole: (state, action) => {
       state.renderOfRole = action.payload;
+    },
+    setShowReply: (state, action) => {
+      state.showReply = action.payload;
+    },
+    setGetReplyMessage: (state, action) => {
+      state.getReplyMessage = action.payload;
+    },
+    setShowCertificate: (state, action) => {
+      state.showCertificate = action.payload;
     },
   },
   extraReducers: (builder) => {
