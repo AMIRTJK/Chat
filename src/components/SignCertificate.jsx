@@ -15,8 +15,8 @@ const SignCertificate = ({ showCertificate }) => {
     <main className="absolute bg-[#fff] border-[1px] border-[#0008] shadow-sm z-10 top-0 min-w-[280px] left-[100%] p-[10px]">
       <div className="wrapper-content flex items-center border-[2px] border-[blue] border-dashed p-[10px]">
         <div className="wrapper-text text-[9px] font-bold">
-          <p>Сертификат: {showCertificate.id}</p>
-          <p>ФИО: {showCertificate.name}</p>
+          <p>Сертификат: {showCertificate?.id}</p>
+          <p>ФИО: {showCertificate?.name}</p>
           <p>Действителен: {dateCertificate(1)}</p>
           <p>Дата подписи: {dateCertificate(0)}</p>
         </div>

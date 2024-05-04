@@ -14,8 +14,6 @@ const ReplyMessage = () => {
 
   const { setShowReply } = actions;
 
-  console.log(getReplyMessage);
-
   return (
     <main className="w-full py-[10px] flex justify-between items-start">
       <div className="wrapper-reply-message flex items-center gap-5">

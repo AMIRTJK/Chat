@@ -48,7 +48,7 @@ const initialState = {
   regLog: false,
   renderOfRole: false,
   showReply: false,
-  getReplyMessage: {},
+  getReplyMessage: null,
   showCertificate: {},
 };
 

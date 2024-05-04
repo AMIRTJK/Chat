@@ -11,13 +11,15 @@ import MentionUsersChat from "./MentionUsersChat";
 import { postMessageById } from "../actions/chatApi";
 
 const InputMessage = () => {
-  const { setShowSend } = actions;
+  const { setShowSend, setShowReply, setGetReplyMessage } = actions;
   const showSend = useSelector((store) => store.chat.showSend);
   const Dispatch = useDispatch();
   const arr = showSend.split("");
 
   const chatById = useSelector((store) => store.chat.chatById);
   const authedLogin = JSON.parse(localStorage.getItem("accessLogin"));
+
+  const getReplyMessage = useSelector((store) => store.chat.getReplyMessage);
 
   let date = new Date();
   let hours = date.getHours().toString().padStart(2, "0");
@@ -31,6 +33,11 @@ const InputMessage = () => {
       text: showSend,
       userAuthId: authedLogin?.id,
       dateTime: time,
+      replyMessage: {
+        id: getReplyMessage?.userAuthId,
+        name: getReplyMessage?.name,
+        text: getReplyMessage?.text,
+      },
     },
     id: chatById[0]?.id,
   };
@@ -79,6 +86,8 @@ const InputMessage = () => {
             ) {
               Dispatch(postMessageById(obj));
               Dispatch(setShowSend(""));
+              Dispatch(setShowReply(false));
+              Dispatch(setGetReplyMessage(null));
             }
           }}
         >

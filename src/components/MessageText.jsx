@@ -12,16 +12,20 @@ import ShortcutOutlinedIcon from "@mui/icons-material/ShortcutOutlined";
 import Tooltip from "@mui/material/Tooltip";
 import SignCertificate from "./SignCertificate";
 
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+import { ReplyUserMessage } from "./ReplyUserMessage";
 
 const MessageText = ({ item }) => {
   const users = useSelector((store) => store.chat.users);
   const showCertificate = useSelector((store) => store.chat.showCertificate);
 
   const [showMoreVert, setShowMoreVert] = useState(false); // Локальное состояние для каждого ChatUser
+  const [stateCertificate, setStateCertificate] = useState(false); // Локальное состояние для каждого ChatUser
 
-  const handleShowMoreVert = () => {
+  const handleShowMoreVert = (event) => {
+    event.stopPropagation();
     setShowMoreVert(!showMoreVert);
   };
 
@@ -67,26 +71,39 @@ const MessageText = ({ item }) => {
 
   const handleShowCertificate = (clickedItem) => {
     if (sender.userAuthId === clickedItem.userAuthId) {
+      setStateCertificate(!stateCertificate);
       Dispatch(setShowCertificate({ ...sender, ...clickedItem }));
     }
   };
 
   const handleCloseCertificate = () => {
     Dispatch(setShowCertificate(null));
+    setStateCertificate(false);
+  };
+
+  const handleCloseMoreVert = () => {
+    setShowMoreVert(false);
   };
 
   useEffect(() => {
     window.addEventListener("click", handleCloseCertificate);
+    window.addEventListener("click", handleCloseMoreVert);
 
     return () => {
       window.removeEventListener("click", handleCloseCertificate);
+      window.removeEventListener("click", handleCloseMoreVert);
     };
   }, [Dispatch]);
 
+  console.log(stateCertificate);
+
   return (
     <>
-      <li className="border-b-[1px] p-[30px] flex items-center justify-between">
+      <li className="border-b-[1px] p-[30px] flex items-start justify-between">
         <div className="wrapper">
+          {Object.keys(item.replyMessage).length > 0 ? (
+            <ReplyUserMessage item={item} />
+          ) : null}
           <div className="wrapper-user flex items-center gap-2 mb-[15px]">
             <IconButton sx={{ padding: "0px" }}>
               <Avatar src={sender.image} />
@@ -132,7 +149,7 @@ const MessageText = ({ item }) => {
               >
                 <CheckCircleOutlineOutlinedIcon fontSize="small" />
               </IconButton>
-              {showCertificate?.id === item.id && (
+              {stateCertificate && (
                 <SignCertificate showCertificate={showCertificate} />
               )}
             </div>
@@ -151,7 +168,7 @@ const MessageText = ({ item }) => {
         </div>
         {sender.userAuthId === accessLogin.id && (
           <div className="panel-control relative">
-            <IconButton onClick={() => handleShowMoreVert()}>
+            <IconButton onClick={(event) => handleShowMoreVert(event)}>
               <MoreVertIcon />
             </IconButton>
             {showMoreVert && <MoreVertMessage item={item} />}
