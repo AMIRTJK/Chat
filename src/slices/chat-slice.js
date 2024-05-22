@@ -26,7 +26,8 @@ import {
   postUserChatsExecutor,
   getVisaMessage,
   postVisaMessage,
-  putVisaMessage
+  getDefaultVisa,
+  getOwnVisa,
 } from "../actions/chatApi";
 
 const initialState = {
@@ -37,6 +38,7 @@ const initialState = {
   userChats: [],
   showVisa: false,
   visaList: [],
+
   visaListTemp: [],
   termDate: [],
   visaStatus: [],
@@ -57,7 +59,7 @@ const initialState = {
   showReply: false,
   getReplyMessage: null,
   showCertificate: {},
-  ownVisa: "",
+  ownVisaValue: "",
   visaUsers: [],
   showVisaPopUp: false,
   userStructureExecutor: [],
@@ -66,6 +68,8 @@ const initialState = {
   visaMessage: [],
   visaTemp: {},
   visaExecutors: [],
+  defaultVisa: [],
+  ownVisa: [],
 };
 
 const chatSlice = createSlice({
@@ -114,8 +118,8 @@ const chatSlice = createSlice({
     setShowCertificate: (state, action) => {
       state.showCertificate = action.payload;
     },
-    setOwnVisa: (state, action) => {
-      state.ownVisa = action.payload;
+    setOwnVisaValue: (state, action) => {
+      state.ownVisaValue = action.payload;
     },
     setShowVisaPopUp: (state, action) => {
       state.showVisaPopUp = action.payload;
@@ -146,6 +150,7 @@ const chatSlice = createSlice({
     builder.addCase(getUserChats.fulfilled, (state, action) => {
       state.userChats = action.payload;
     });
+
     builder.addCase(getVisaList.fulfilled, (state, action) => {
       state.visaList = action.payload;
     });
@@ -206,8 +211,12 @@ const chatSlice = createSlice({
     builder.addCase(postVisaMessage.fulfilled, (state, action) => {
       state.visaMessage = action.payload;
     });
-    builder.addCase(putVisaMessage.fulfilled, (state, action) => {
-      state.visaMessage = action.payload;
+
+    builder.addCase(getDefaultVisa.fulfilled, (state, action) => {
+      state.defaultVisa = action.payload;
+    });
+    builder.addCase(getOwnVisa.fulfilled, (state, action) => {
+      state.ownVisa = action.payload;
     });
   },
 });

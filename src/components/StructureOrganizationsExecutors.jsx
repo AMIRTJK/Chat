@@ -24,6 +24,8 @@ const StructureOrganizationsExecutors = ({ setExecutor, executor }) => {
   const users = useSelector((store) => store.chat.users);
   const userChats = useSelector((store) => store.chat.userChats);
   const chatById = useSelector((store) => store.chat.chatById);
+  const visaUsers = useSelector((store) => store.chat.visaUsers);
+  const subUserChats = useSelector((store) => store.chat.subUserChats);
   const userStructureExecutor = useSelector(
     (store) => store.chat.userStructureExecutor
   );
@@ -32,24 +34,33 @@ const StructureOrganizationsExecutors = ({ setExecutor, executor }) => {
 
   const handlePostUser = (newObj) => {
     Dispatch(postUsersStructureExecutor(newObj));
-    Dispatch(
-      postUserChatsExecutor({
-        ...newObj,
-        userChatId: chatById[0].id,
-      })
-    );
 
-    Dispatch(
-      postVisaUsers({
-        id: chatById[0].id,
-        userAuthId: accessLogin.id,
-        login: accessLogin.login,
-        term: "",
-        status: "",
-        eds: "",
-        createdAt: formattedDate,
-      })
-    );
+    // Алгоритм для добавление только уникальных id в массив subUserChats
+    if (!subUserChats.some((e) => e.id === newObj.id)) {
+      Dispatch(
+        postUserChatsExecutor({
+          ...newObj,
+          userChatId: chatById[0].id,
+        })
+      );
+    }
+
+    // Алгоритм для добавление только уникальных id в массив visaUsers
+    visaUsers.forEach((e) => {
+      if (e.id !== chatById[0].id) {
+        Dispatch(
+          postVisaUsers({
+            id: chatById[0].id,
+            userAuthId: accessLogin.id,
+            login: accessLogin.login,
+            term: "",
+            status: "",
+            eds: "",
+            createdAt: formattedDate,
+          })
+        );
+      }
+    });
   };
 
   const handleModal = () => {

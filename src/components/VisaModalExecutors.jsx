@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import VisaListExecutors from "./VisaListExecutors";
 import { Button } from "@mui/material";
-import { getVisaList, getVisaListTemp } from "../actions/chatApi";
+import { getDefaultVisa, getOwnVisa } from "../actions/chatApi";
 import { useSelector, useDispatch } from "react-redux";
 
 import { TextField } from "@mui/material";
@@ -10,22 +10,18 @@ import { actions } from "../slices/chat-slice";
 const VisaModalExecutors = ({ handleShowVisa }) => {
   const Dispatch = useDispatch();
 
-  const visaList = useSelector((store) => store.chat.visaList);
-  const visaListTemp = useSelector((store) => store.chat.visaListTemp);
+  const defaultVisa = useSelector((store) => store.chat.defaultVisa);
   const ownVisa = useSelector((store) => store.chat.ownVisa);
+  const ownVisaValue = useSelector((store) => store.chat.ownVisaValue);
+  const visaListTemp = useSelector((store) => store.chat.visaListTemp);
 
-  const visaUsers = useSelector((store) => store.chat.visaUsers);
+  const visaMessage = useSelector((store) => store.chat.visaMessage);
 
-  const { setOwnVisa, setExecutorVisa } = actions;
+  const { setOwnVisaValue, setExecutorVisa } = actions;
 
   const handlePropagation = (event) => {
     event.stopPropagation();
   };
-
-  useEffect(() => {
-    Dispatch(getVisaList());
-    Dispatch(getVisaListTemp());
-  }, []);
 
   const [stateVisa, setStateVisa] = useState(false);
   const [ownVisaInput, setOwnVisaInput] = useState(false);
@@ -35,6 +31,11 @@ const VisaModalExecutors = ({ handleShowVisa }) => {
       handleShowVisa(false);
     }
   };
+
+  useEffect(() => {
+    Dispatch(getDefaultVisa());
+    Dispatch(getOwnVisa());
+  }, []);
 
   return (
     <div
@@ -74,13 +75,13 @@ const VisaModalExecutors = ({ handleShowVisa }) => {
         </header>
         <main className="bg-[#f9f9f9] overflow-auto h-[30vh]">
           {stateVisa === false
-            ? Array.isArray(visaList[0]?.defaultVisa) &&
-              visaList[0]?.defaultVisa.map((e) => {
+            ? Array.isArray(defaultVisa) &&
+              defaultVisa.map((e) => {
                 return <VisaListExecutors key={e.id} name={e.name} item={e} />;
               })
-            : Array.isArray(visaList[0]?.ownVisa) &&
-              visaList[0]?.ownVisa.map((e) => {
-                return <VisaListExecutors key={e.id} name={e.name} item={e} />;
+            : Array.isArray(ownVisa) &&
+              ownVisa.map((e) => {
+                return <VisaListExecutors key={e.id} item={e} />;
               })}
         </main>
         <footer className="bg-[#007cd2] flex justify-end gap-5 items-center p-[10px]">
@@ -102,8 +103,10 @@ const VisaModalExecutors = ({ handleShowVisa }) => {
             </Button>
           ) : (
             <input
-              onChange={(event) => Dispatch(setOwnVisa(event.target.value))}
-              value={ownVisa}
+              onChange={(event) =>
+                Dispatch(setOwnVisaValue(event.target.value))
+              }
+              value={ownVisaValue}
               type="text"
               placeholder="Собственная виза"
               className="bg-[transparent] text-[#fff] border-[1px] border-[#fff] outline-none p-[5.7px] w-full rounded-[5px] placeholder:text-[#fff] placeholder:font-light"

@@ -37,6 +37,12 @@ const TitleChat = () => {
     };
   }, []);
 
+  const isActive = visaUsers.some(
+    (e) => e.id === chatById[0]?.id && visaUsers.length > 0
+  );
+
+  console.log(isActive);
+
   return (
     <div className="wrapper-title p-[30px] h-[13%] border-b-[1px] flex gap-5 w-full justify-between items-center">
       <div className="wrapper-user flex items-center gap-2">
@@ -49,27 +55,18 @@ const TitleChat = () => {
         </div>
       </div>
       {/* <div className="user-id-visa flex items-center gap-5"> */}
-
-      {visaUsers.map((e) => {
-        if (e.id === chatById[0]?.id && visaUsers.length > 0) {
-          return (
-            <div
-              key={e.id}
-              className="title text-center flex flex-col justify-center items-center w-[15%]"
-            >
-              <img src="src/assets/emblem.png" alt="" className="w-[20%]" />
-              <p className="text-[14px]">Муовини вазири Чумхурии Точикистон</p>
-              <p
-                onClick={(event) => handleShow(event, showVisaPopUp)}
-                className="text-[14px] text-[#007cd2] font-medium cursor-pointer"
-              >
-                Посмотреть визу
-              </p>
-            </div>
-          );
-        }
-      })}
-
+      {isActive && (
+        <div className="title text-center flex flex-col justify-center items-center w-[15%]">
+          <img src="src/assets/emblem.png" alt="" className="w-[20%]" />
+          <p className="text-[14px]">Муовини вазири Чумхурии Точикистон</p>
+          <p
+            onClick={(event) => handleShow(event, showVisaPopUp)}
+            className="text-[14px] text-[#007cd2] font-medium cursor-pointer"
+          >
+            Посмотреть визу
+          </p>
+        </div>
+      )}
       {/* <div className="performers flex flex-wrap w-[15%] ">
           <p className="text-[15px]">Юсуф Хайрулло &nbsp;</p>
           <p className="text-[15px]">Юсуф Хайрулло &nbsp;</p>

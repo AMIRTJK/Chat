@@ -654,31 +654,9 @@ export const getVisaMessage = createAsyncThunk(
   }
 );
 
-export const putVisaMessage = createAsyncThunk(
-  "putVisaMessage",
-  async (newObj, { rejectWithValue }) => {
-    try {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_VISA_MESSAGE}/${newObj.id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(newObj),
-        }
-      );
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      return rejectWithValue(error);
-    }
-  }
-);
-
 export const postVisaMessage = createAsyncThunk(
   "postVisaMessage",
-  async (newObj, { rejectWithValue }) => {
+  async (newObj, { rejectWithValue, dispatch }) => {
     try {
       const response = await fetch(import.meta.env.VITE_API_VISA_MESSAGE, {
         method: "POST",
@@ -688,8 +666,37 @@ export const postVisaMessage = createAsyncThunk(
         body: JSON.stringify(newObj),
       });
       const data = await response.json();
+      dispatch(getVisaMessage());
       return data;
     } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const getDefaultVisa = createAsyncThunk(
+  "getDefaultVisa",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await fetch(import.meta.env.VITE_API_VISA_DEFAULT_VISA);
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const getOwnVisa = createAsyncThunk(
+  "getOwnVisa",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await fetch(import.meta.env.VITE_API_VISA_OWN_VISA);
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error(error);
       return rejectWithValue(error);
     }
   }

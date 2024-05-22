@@ -25,11 +25,6 @@ const VisaModal = ({ handleShowVisa }) => {
     event.stopPropagation();
   };
 
-  useEffect(() => {
-    Dispatch(getVisaList());
-    Dispatch(getVisaListTemp());
-  }, []);
-
   let newObj = null;
 
   Array.isArray(visaListTemp) &&
@@ -57,6 +52,11 @@ const VisaModal = ({ handleShowVisa }) => {
       Dispatch(setOwnVisa(""));
     }
   };
+
+  useEffect(() => {
+    Dispatch(getVisaList());
+    Dispatch(getVisaListTemp());
+  }, []);
 
   return (
     <div

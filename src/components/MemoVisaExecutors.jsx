@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 const MemoVisaExecutors = () => {
   const visaUsers = useSelector((store) => store.chat.visaUsers);
   const chatById = useSelector((store) => store.chat.chatById);
+  const subUserChats = useSelector((store) => store.chat.subUserChats);
 
   // const date = new Date();
   // const day = date.getDate();
@@ -29,6 +30,8 @@ const MemoVisaExecutors = () => {
 
   const date = visaUser?.createdAt?.split("-");
 
+  console.log(subUserChats);
+
   return (
     <div
       onClick={(event) => event.stopPropagation()}
@@ -44,10 +47,14 @@ const MemoVisaExecutors = () => {
         {/* {Array.isArray(userChats) &&
           userChats.map((e) => {
             return ( */}
-        <p className="font-semibold">
-          {/* {e.name}, */}
-          Исполнитель 1
-        </p>
+        {subUserChats.map((e) => {
+          return (
+            <p key={e.id} className="font-semibold">
+              {e.name}
+            </p>
+          );
+        })}
+
         {/* //   );
           // })} */}
         {/* {visaListTemp.map((e) => { */}

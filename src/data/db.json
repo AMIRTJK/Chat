@@ -228,6 +228,70 @@
       }
     }
   ],
+  "defaultVisa": [
+    {
+      "id": "1",
+      "name": "Барои барраси ва пешниходи маълумоти мавриди назар",
+      "status": false,
+      "visaUserId": "3"
+    },
+    {
+      "id": "2",
+      "name": "Барои барраси тибки тартиби мукарраргардида",
+      "status": false,
+      "visaUserId": "3"
+    },
+    {
+      "id": "3",
+      "name": "Барои корбари",
+      "status": false,
+      "visaUserId": "3"
+    },
+    {
+      "id": "4",
+      "name": "Барои пешбари",
+      "status": false,
+      "visaUserId": "3"
+    },
+    {
+      "id": "5",
+      "name": "Барои хулоса",
+      "status": false,
+      "visaUserId": "3"
+    },
+    {
+      "id": "6",
+      "name": "Барои мувофика",
+      "status": false,
+      "visaUserId": "3"
+    },
+    {
+      "id": "7",
+      "name": "Барои тафтиш",
+      "status": false,
+      "visaUserId": "3"
+    },
+    {
+      "id": "8",
+      "name": "Барои омузиш",
+      "status": false,
+      "visaUserId": "3"
+    }
+  ],
+  "ownVisa": [
+    {
+      "id": "1",
+      "name": "Барои омузиш ва тафтиш",
+      "status": false,
+      "visaUserId": "3"
+    },
+    {
+      "id": "2",
+      "name": "Барои тафтиш ва мувофика",
+      "status": false,
+      "visaUserId": "3"
+    }
+  ],
   "userStructureExecutor": [],
   "subUserChats": [
     {
@@ -250,13 +314,6 @@
       "status": "",
       "eds": "",
       "createdAt": "22-05-2024"
-    }
-  ],
-  "visaExecutors": [
-    {
-      "id": "4",
-      "name": "Акрамшох Рамазонович",
-      "visaUserId": "3"
     }
   ],
   "visaMessage": []
