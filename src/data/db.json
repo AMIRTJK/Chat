@@ -2,43 +2,61 @@
   "visaList": [
     {
       "id": "1",
-      "name": "Барои барраси ва пешниходи маълумоти мавриди назар",
-      "status": false
-    },
-    {
-      "id": "2",
-      "name": "Барои барраси тибки тартиби мукарраргардида",
-      "status": false
-    },
-    {
-      "id": "3",
-      "name": "Барои корбари",
-      "status": false
-    },
-    {
-      "id": "4",
-      "name": "Барои пешбари",
-      "status": false
-    },
-    {
-      "id": "5",
-      "name": "Барои хулоса",
-      "status": false
-    },
-    {
-      "id": "6",
-      "name": "Барои мувофика",
-      "status": false
-    },
-    {
-      "id": "7",
-      "name": "Барои тафтиш",
-      "status": false
-    },
-    {
-      "id": "8",
-      "name": "Барои омузиш",
-      "status": false
+      "userAuthId": "1",
+      "defaultVisa": [
+        {
+          "id": "1",
+          "name": "Барои барраси ва пешниходи маълумоти мавриди назар",
+          "status": false
+        },
+        {
+          "id": "2",
+          "name": "Барои барраси тибки тартиби мукарраргардида",
+          "status": false
+        },
+        {
+          "id": "3",
+          "name": "Барои корбари",
+          "status": false
+        },
+        {
+          "id": "4",
+          "name": "Барои пешбари",
+          "status": false
+        },
+        {
+          "id": "5",
+          "name": "Барои хулоса",
+          "status": false
+        },
+        {
+          "id": "6",
+          "name": "Барои мувофика",
+          "status": false
+        },
+        {
+          "id": "7",
+          "name": "Барои тафтиш",
+          "status": false
+        },
+        {
+          "id": "8",
+          "name": "Барои омузиш",
+          "status": false
+        }
+      ],
+      "ownVisa": [
+        {
+          "id": "1",
+          "name": "Барои омузиш ва тафтиш",
+          "status": false
+        },
+        {
+          "id": "2",
+          "name": "Барои тафтиш ва мувофика",
+          "status": false
+        }
+      ]
     }
   ],
   "visaListTemp": [
@@ -90,7 +108,7 @@
       "image": "https://i.ibb.co/HqvF08R/image.jpg",
       "status": false,
       "userAuthId": "1",
-      "login": "k.fayziddin"
+      "login": "f.kahhorzoda"
     },
     {
       "id": "2",
@@ -99,7 +117,7 @@
       "image": "https://i.ibb.co/zRQyxxP/image.jpg",
       "status": false,
       "userAuthId": "2",
-      "login": "s.sobir"
+      "login": "s.sobirovich"
     },
     {
       "id": "3",
@@ -108,13 +126,22 @@
       "image": "https://i.ibb.co/fvwb1qX/image.jpg",
       "status": false,
       "userAuthId": "3",
-      "login": "m.yusuf"
+      "login": "y.khayrullo"
+    },
+    {
+      "id": "4",
+      "name": "Акрамшох Рамазонович",
+      "role": "Директор",
+      "image": "http://10.10.80.184:89/FileStorage/UserPicture/216/583_IMG_6443_47034.jpg?SignKey=haXzk68YbLYm6zIpsZZyH8m/h1/oJNK8fkR37TQjEI2HcD0VSc9U3/RY8R5Wp+wW&expiredTime=2024-05-21%2005:44:43&fileName=583_IMG_6443_47034.jpg",
+      "status": false,
+      "userAuthId": "4",
+      "login": "a.ramazonovich"
     }
   ],
   "usersAuth": [
     {
       "id": "1",
-      "login": "f.kahorzoda",
+      "login": "f.kahhorzoda",
       "password": "123"
     },
     {
@@ -125,6 +152,11 @@
     {
       "id": "3",
       "login": "y.khayrullo",
+      "password": "123"
+    },
+    {
+      "id": "4",
+      "login": "a.ramazonovich",
       "password": "123"
     }
   ],
@@ -195,5 +227,37 @@
         "text": "Решите этот вопрос и предоставьте свой ответ!"
       }
     }
-  ]
+  ],
+  "userStructureExecutor": [],
+  "subUserChats": [
+    {
+      "id": "4",
+      "name": "Акрамшох Рамазонович",
+      "role": "Директор",
+      "image": "http://10.10.80.184:89/FileStorage/UserPicture/216/583_IMG_6443_47034.jpg?SignKey=haXzk68YbLYm6zIpsZZyH8m/h1/oJNK8fkR37TQjEI2HcD0VSc9U3/RY8R5Wp+wW&expiredTime=2024-05-21%2005:44:43&fileName=583_IMG_6443_47034.jpg",
+      "status": false,
+      "login": "a.ramazonovich",
+      "userAuthId": "4",
+      "userChatId": "3"
+    }
+  ],
+  "visaUsers": [
+    {
+      "id": "3",
+      "userAuthId": "3",
+      "login": "y.khayrullo",
+      "term": "",
+      "status": "",
+      "eds": "",
+      "createdAt": "22-05-2024"
+    }
+  ],
+  "visaExecutors": [
+    {
+      "id": "4",
+      "name": "Акрамшох Рамазонович",
+      "visaUserId": "3"
+    }
+  ],
+  "visaMessage": []
 }

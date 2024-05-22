@@ -32,7 +32,7 @@ const MemoVisa = ({
           userChats.map((e) => {
             return (
               <p key={e.id} className="font-semibold">
-                {e.name},
+                {e.name}
               </p>
             );
           })}

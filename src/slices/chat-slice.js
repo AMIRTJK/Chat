@@ -20,6 +20,13 @@ import {
   postMessageById,
   getUsersAuth,
   postUserAuth,
+  getVisaUsers,
+  getUserStructureExecutor,
+  getUserChatsExecutor,
+  postUserChatsExecutor,
+  getVisaMessage,
+  postVisaMessage,
+  putVisaMessage
 } from "../actions/chatApi";
 
 const initialState = {
@@ -50,6 +57,15 @@ const initialState = {
   showReply: false,
   getReplyMessage: null,
   showCertificate: {},
+  ownVisa: "",
+  visaUsers: [],
+  showVisaPopUp: false,
+  userStructureExecutor: [],
+  subUserChats: [],
+  executorVisa: false,
+  visaMessage: [],
+  visaTemp: {},
+  visaExecutors: [],
 };
 
 const chatSlice = createSlice({
@@ -97,6 +113,18 @@ const chatSlice = createSlice({
     },
     setShowCertificate: (state, action) => {
       state.showCertificate = action.payload;
+    },
+    setOwnVisa: (state, action) => {
+      state.ownVisa = action.payload;
+    },
+    setShowVisaPopUp: (state, action) => {
+      state.showVisaPopUp = action.payload;
+    },
+    setExecutorVisa: (state, action) => {
+      state.executorVisa = action.payload;
+    },
+    setVisaTemp: (state, action) => {
+      state.visaTemp = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -159,6 +187,27 @@ const chatSlice = createSlice({
     });
     builder.addCase(postVisaStatusTemp.fulfilled, (state, action) => {
       state.visaStatusTemp = action.payload;
+    });
+    builder.addCase(getVisaUsers.fulfilled, (state, action) => {
+      state.visaUsers = action.payload;
+    });
+    builder.addCase(getUserStructureExecutor.fulfilled, (state, action) => {
+      state.userStructureExecutor = action.payload;
+    });
+    builder.addCase(getUserChatsExecutor.fulfilled, (state, action) => {
+      state.subUserChats = action.payload;
+    });
+    builder.addCase(postUserChatsExecutor.fulfilled, (state, action) => {
+      state.subUserChats = action.payload;
+    });
+    builder.addCase(getVisaMessage.fulfilled, (state, action) => {
+      state.visaMessage = action.payload;
+    });
+    builder.addCase(postVisaMessage.fulfilled, (state, action) => {
+      state.visaMessage = action.payload;
+    });
+    builder.addCase(putVisaMessage.fulfilled, (state, action) => {
+      state.visaMessage = action.payload;
     });
   },
 });

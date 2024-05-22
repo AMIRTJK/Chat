@@ -1,10 +1,10 @@
 import React from "react";
 import { Button } from "@mui/material";
 
-const PanelTabVisa = ({ name, handleShowMention }) => {
+const PanelTabVisa = ({ name, handleShowTab }) => {
   return (
     <Button
-      onClick={() => handleShowMention("@")}
+      onClick={() => handleShowTab(true)}
       variant="contained"
       sx={{
         padding: "5px 15px",

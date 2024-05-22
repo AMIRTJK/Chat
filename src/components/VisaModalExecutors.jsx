@@ -1,25 +1,22 @@
 import React, { useState, useEffect } from "react";
-import VisaList from "./VisaList";
+import VisaListExecutors from "./VisaListExecutors";
 import { Button } from "@mui/material";
-import {
-  getVisaList,
-  getVisaListTemp,
-  deleteVisaListTemp,
-  postVisaListTemp,
-} from "../actions/chatApi";
+import { getVisaList, getVisaListTemp } from "../actions/chatApi";
 import { useSelector, useDispatch } from "react-redux";
 
 import { TextField } from "@mui/material";
 import { actions } from "../slices/chat-slice";
 
-const VisaModal = ({ handleShowVisa }) => {
+const VisaModalExecutors = ({ handleShowVisa }) => {
   const Dispatch = useDispatch();
 
   const visaList = useSelector((store) => store.chat.visaList);
   const visaListTemp = useSelector((store) => store.chat.visaListTemp);
   const ownVisa = useSelector((store) => store.chat.ownVisa);
 
-  const { setOwnVisa } = actions;
+  const visaUsers = useSelector((store) => store.chat.visaUsers);
+
+  const { setOwnVisa, setExecutorVisa } = actions;
 
   const handlePropagation = (event) => {
     event.stopPropagation();
@@ -30,41 +27,21 @@ const VisaModal = ({ handleShowVisa }) => {
     Dispatch(getVisaListTemp());
   }, []);
 
-  let newObj = null;
-
-  Array.isArray(visaListTemp) &&
-    visaListTemp.map((e) => {
-      return (newObj = e);
-    });
-
-  console.log(visaList[0]?.ownVisa);
-
   const [stateVisa, setStateVisa] = useState(false);
   const [ownVisaInput, setOwnVisaInput] = useState(false);
-
-  const newOwnVisa = {
-    id: Date.now().toString(),
-    name: ownVisa,
-    status: true,
-  };
 
   const handleShowOwnVisa = () => {
     if (visaListTemp.length > 0) {
       handleShowVisa(false);
-    }
-    if (ownVisa.length > 0) {
-      Dispatch(postVisaListTemp(newOwnVisa));
-      Dispatch(setOwnVisa(""));
     }
   };
 
   return (
     <div
       onClick={() => {
-        handleShowVisa(false);
-        Dispatch(deleteVisaListTemp(newObj?.id));
+        Dispatch(setExecutorVisa(false));
       }}
-      className="modal fixed w-full h-full bg-transparent z-10"
+      className="modal relative h-full bg-transparent z-10"
     >
       <div
         onClick={(event) => handlePropagation(event)}
@@ -99,25 +76,11 @@ const VisaModal = ({ handleShowVisa }) => {
           {stateVisa === false
             ? Array.isArray(visaList[0]?.defaultVisa) &&
               visaList[0]?.defaultVisa.map((e) => {
-                return (
-                  <VisaList
-                    key={e.id}
-                    name={e.name}
-                    item={e}
-                    deleteItem={newObj}
-                  />
-                );
+                return <VisaListExecutors key={e.id} name={e.name} item={e} />;
               })
             : Array.isArray(visaList[0]?.ownVisa) &&
               visaList[0]?.ownVisa.map((e) => {
-                return (
-                  <VisaList
-                    key={e.id}
-                    name={e.name}
-                    item={e}
-                    deleteItem={newObj}
-                  />
-                );
+                return <VisaListExecutors key={e.id} name={e.name} item={e} />;
               })}
         </main>
         <footer className="bg-[#007cd2] flex justify-end gap-5 items-center p-[10px]">
@@ -169,4 +132,4 @@ const VisaModal = ({ handleShowVisa }) => {
   );
 };
 
-export default VisaModal;
+export default VisaModalExecutors;

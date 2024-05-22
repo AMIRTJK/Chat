@@ -46,7 +46,7 @@ const InputMessage = () => {
     <div
       className={`${
         chatById[0]?.id !== authedLogin?.id &&
-        authedLogin.login !== "f.kahorzoda"
+        authedLogin.login !== "f.kahhorzoda"
           ? "bg-[#fafafa] cursor-not-allowed"
           : ""
       } input-message border-[2px] rounded-lg border-[#007fd2] p-[5px] w-full flex justify-between relative`}
@@ -54,7 +54,7 @@ const InputMessage = () => {
       <input
         disabled={
           chatById[0]?.id !== authedLogin?.id &&
-          authedLogin.login !== "f.kahorzoda"
+          authedLogin.login !== "f.kahhorzoda"
         }
         onChange={(event) => Dispatch(setShowSend(event.target.value))}
         value={showSend}
@@ -62,7 +62,7 @@ const InputMessage = () => {
         placeholder="Введите сообщение"
         className={`${
           chatById[0]?.id !== authedLogin?.id &&
-          authedLogin.login !== "f.kahorzoda"
+          authedLogin.login !== "f.kahhorzoda"
             ? "cursor-not-allowed"
             : ""
         } w-full h-[100%] p-[15px] outline-none placeholder:text-[#00558e] placeholder:font-medium`}
@@ -70,7 +70,7 @@ const InputMessage = () => {
       <div
         className={`${
           chatById[0]?.id !== authedLogin?.id &&
-          authedLogin.login !== "f.kahorzoda"
+          authedLogin.login !== "f.kahhorzoda"
             ? "cursor-not-allowed bg-[#fafafa]"
             : ""
         } panel-submit flex items-center gap-2`}
@@ -82,7 +82,7 @@ const InputMessage = () => {
           onClick={() => {
             if (
               chatById[0]?.id === authedLogin?.id ||
-              authedLogin.login === "f.kahorzoda"
+              authedLogin.login === "f.kahhorzoda"
             ) {
               Dispatch(postMessageById(obj));
               Dispatch(setShowSend(""));

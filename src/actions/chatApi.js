@@ -485,3 +485,212 @@ export const postUserAuth = createAsyncThunk(
     }
   }
 );
+
+export const getUserStructureExecutor = createAsyncThunk(
+  "getUserStructureExecutor",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await fetch(
+        import.meta.env.VITE_API_USERS_STRUCTURE_EXECUTOR
+      );
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const deleteUsersExecutor = createAsyncThunk(
+  "deleteUsersExecutor",
+  async (id, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_USERS_STRUCTURE_EXECUTOR}/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+      const data = await response.json();
+      dispatch(getUserStructureExecutor());
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const multiDeleteUsersExecutor = createAsyncThunk(
+  "multiDeleteUsersExecutor",
+  async (id, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_USERS_STRUCTURE_EXECUTOR}/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+      const data = await response.json();
+      dispatch(getUserStructureExecutor());
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const postUsersStructureExecutor = createAsyncThunk(
+  "postUsersStructureExecutor",
+  async (newObj, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await fetch(
+        import.meta.env.VITE_API_USERS_STRUCTURE_EXECUTOR,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newObj),
+        }
+      );
+      const data = await response.json();
+      dispatch(getUserStructureExecutor());
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const getUserChatsExecutor = createAsyncThunk(
+  "getUserChatsExecutor",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await fetch(
+        import.meta.env.VITE_API_USERS_CHAT_EXECUTOR
+      );
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const postUserChatsExecutor = createAsyncThunk(
+  "postUserChatsExecutor",
+  async (newObj, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await fetch(
+        import.meta.env.VITE_API_USERS_CHAT_EXECUTOR,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newObj),
+        }
+      );
+      const data = response.json();
+      dispatch(getUserChatsExecutor());
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const getVisaUsers = createAsyncThunk(
+  "getVisaUsers",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await fetch(import.meta.env.VITE_API_VISA_USERS);
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const postVisaUsers = createAsyncThunk(
+  "postVisaUsers",
+  async (newObj, { rejectWithValue }) => {
+    try {
+      const response = await fetch(import.meta.env.VITE_API_VISA_USERS, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newObj),
+      });
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const getVisaMessage = createAsyncThunk(
+  "getVisaMessage",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await fetch(import.meta.env.VITE_API_VISA_MESSAGE);
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const putVisaMessage = createAsyncThunk(
+  "putVisaMessage",
+  async (newObj, { rejectWithValue }) => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_VISA_MESSAGE}/${newObj.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newObj),
+        }
+      );
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const postVisaMessage = createAsyncThunk(
+  "postVisaMessage",
+  async (newObj, { rejectWithValue }) => {
+    try {
+      const response = await fetch(import.meta.env.VITE_API_VISA_MESSAGE, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newObj),
+      });
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);

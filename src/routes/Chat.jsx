@@ -99,7 +99,7 @@ const Chat = () => {
   const docNo1Img = "https://i.ibb.co/L1Bj3fb/Document-1.png";
 
   const renderRoleUsers = () => {
-    if (accessLogin.login === "f.kahorzoda") {
+    if (accessLogin.login === "f.kahhorzoda") {
       Dispatch(setRenderOfRole(true));
     } else {
       Dispatch(setRenderOfRole(false));
@@ -161,7 +161,7 @@ const Chat = () => {
             className={`${showStructure ? "blur-[3px]" : "none"} wrapperNo1`}
           >
             {users.map((e) => {
-              if (e.userAuthId === accessLogin.id) {
+              if (e.login === "f.kahhorzoda") {
                 return (
                   <div
                     key={e.id}

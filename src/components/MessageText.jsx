@@ -95,8 +95,6 @@ const MessageText = ({ item }) => {
     };
   }, [Dispatch]);
 
-  console.log(stateCertificate);
-
   return (
     <>
       <li className="border-b-[1px] p-[30px] flex items-start justify-between">
