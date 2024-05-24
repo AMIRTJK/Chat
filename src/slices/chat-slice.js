@@ -38,7 +38,7 @@ const initialState = {
   userChats: [],
   showVisa: false,
   visaList: [],
-
+  
   visaListTemp: [],
   termDate: [],
   visaStatus: [],

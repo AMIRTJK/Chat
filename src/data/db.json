@@ -167,14 +167,14 @@
       "name": "Сарвар Собирович",
       "image": "https://i.ibb.co/zRQyxxP/image.jpg",
       "role": "Заминистр",
-      "status": false
+      "status": true
     },
     {
       "id": "3",
       "name": "Юсуф Хайрулло",
       "image": "https://i.ibb.co/fvwb1qX/image.jpg",
       "role": "Заминистр",
-      "status": true
+      "status": false
     }
   ],
   "showUserChat": [

@@ -18,8 +18,9 @@ const VisaModal = ({ handleShowVisa }) => {
   const visaList = useSelector((store) => store.chat.visaList);
   const visaListTemp = useSelector((store) => store.chat.visaListTemp);
   const ownVisa = useSelector((store) => store.chat.ownVisa);
+  const ownVisaValue = useSelector((store) => store.chat.ownVisaValue);
 
-  const { setOwnVisa } = actions;
+  const { setOwnVisaValue } = actions;
 
   const handlePropagation = (event) => {
     event.stopPropagation();
@@ -39,17 +40,19 @@ const VisaModal = ({ handleShowVisa }) => {
 
   const newOwnVisa = {
     id: Date.now().toString(),
-    name: ownVisa,
+    name: ownVisaValue,
     status: true,
   };
+
+  console.log(newOwnVisa);
 
   const handleShowOwnVisa = () => {
     if (visaListTemp.length > 0) {
       handleShowVisa(false);
     }
-    if (ownVisa.length > 0) {
+    if (ownVisaValue.length > 0) {
       Dispatch(postVisaListTemp(newOwnVisa));
-      Dispatch(setOwnVisa(""));
+      Dispatch(setOwnVisaValue(""));
     }
   };
 
@@ -139,8 +142,10 @@ const VisaModal = ({ handleShowVisa }) => {
             </Button>
           ) : (
             <input
-              onChange={(event) => Dispatch(setOwnVisa(event.target.value))}
-              value={ownVisa}
+              onChange={(event) =>
+                Dispatch(setOwnVisaValue(event.target.value))
+              }
+              value={ownVisaValue}
               type="text"
               placeholder="Собственная виза"
               className="bg-[transparent] text-[#fff] border-[1px] border-[#fff] outline-none p-[5.7px] w-full rounded-[5px] placeholder:text-[#fff] placeholder:font-light"

@@ -104,7 +104,7 @@ const MessageText = ({ item }) => {
           ) : null}
           <div className="wrapper-user flex items-center gap-2 mb-[15px]">
             <IconButton sx={{ padding: "0px" }}>
-              <Avatar src={sender.image} />
+              <Avatar src={sender?.image} />
             </IconButton>
             <div className="wrapper-text">
               <div className="name-time flex items-center gap-2">
