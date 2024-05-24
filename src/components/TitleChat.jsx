@@ -48,6 +48,8 @@ const TitleChat = () => {
     setState(open);
   };
 
+  const emblem = "https://i.ibb.co/xCjbnnw/emblem.png";
+
   return (
     <>
       <div className="wrapper-title p-[30px] h-[13%] border-b-[1px] flex gap-5 w-full justify-between items-center">
@@ -62,7 +64,7 @@ const TitleChat = () => {
         </div>
         {isActive && (
           <div className="title text-center flex flex-col justify-center items-center w-[15%]">
-            <img src="src/assets/emblem.png" alt="" className="w-[20%]" />
+            <img src={emblem} alt="" className="w-[20%]" />
             <p className="text-[14px]">Муовини вазири Чумхурии Точикистон</p>
             <p
               onClick={(event) => handleShow(event, showVisaPopUp)}
