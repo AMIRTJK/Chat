@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import { Avatar, Button, IconButton } from "@mui/material";
 import UserStructureExecutor from "./UserStructureExecutor";
@@ -14,6 +14,7 @@ import {
   getUserStructureExecutor,
   deleteUsersExecutor,
   postVisaUsers,
+  getVisaUsers,
 } from "../actions/chatApi";
 
 const StructureOrganizationsExecutors = ({ setExecutor, executor }) => {
@@ -32,37 +33,6 @@ const StructureOrganizationsExecutors = ({ setExecutor, executor }) => {
 
   const accessLogin = JSON.parse(localStorage.getItem("accessLogin"));
 
-  const handlePostUser = (newObj) => {
-    Dispatch(postUsersStructureExecutor(newObj));
-
-    // Алгоритм для добавление только уникальных id в массив subUserChats
-    if (!subUserChats.some((e) => e.id === newObj.id)) {
-      Dispatch(
-        postUserChatsExecutor({
-          ...newObj,
-          userChatId: chatById[0].id,
-        })
-      );
-    }
-
-    // Алгоритм для добавление только уникальных id в массив visaUsers
-    visaUsers.forEach((e) => {
-      if (e.id !== chatById[0].id) {
-        Dispatch(
-          postVisaUsers({
-            id: chatById[0].id,
-            userAuthId: accessLogin.id,
-            login: accessLogin.login,
-            term: "",
-            status: "",
-            eds: "",
-            createdAt: formattedDate,
-          })
-        );
-      }
-    });
-  };
-
   const handleModal = () => {
     setExecutor(false);
   };
@@ -74,7 +44,42 @@ const StructureOrganizationsExecutors = ({ setExecutor, executor }) => {
   useEffect(() => {
     Dispatch(getUsers());
     Dispatch(getUserStructureExecutor());
+    Dispatch(getVisaUsers());
   }, [Dispatch]);
+
+  console.log(visaUsers);
+
+  const handlePostUser = (newObj) => {
+    Dispatch(postUsersStructureExecutor(newObj));
+
+    // Алгоритм для добавление только уникальных id в массив subUserChats
+    if (
+      !subUserChats.some(
+        (e) => e.userChatId === chatById[0].id && e.id === newObj.id
+      )
+    ) {
+      Dispatch(
+        postUserChatsExecutor({
+          ...newObj,
+          userChatId: chatById[0].id,
+        })
+      );
+    }
+
+    // Алгоритм для добавление только уникальных id в массив visaUsers
+
+    Dispatch(
+      postVisaUsers({
+        id: chatById[0].id,
+        userAuthId: accessLogin.id,
+        login: accessLogin.login,
+        term: "",
+        status: "",
+        eds: "",
+        createdAt: formattedDate,
+      })
+    );
+  };
 
   return (
     <div

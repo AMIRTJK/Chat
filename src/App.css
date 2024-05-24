@@ -91,3 +91,52 @@ body {
 .category-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #abaeb2;
 }
+
+.sub-chat {
+  animation-name: subChatMove;
+  animation-duration: 300ms;
+  animation-fill-mode: forwards;
+}
+
+.sub-chat-reverse {
+  animation-name: subChatMoveReverse;
+  animation-duration: 300ms;
+  animation-fill-mode: forwards;
+}
+
+.close-sub-chat {
+  opacity: 0;
+  animation-name: subChatClose;
+  animation-duration: 500ms;
+  animation-delay: 300ms;
+  animation-fill-mode: forwards;
+}
+
+@keyframes subChatMove {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 80%;
+  }
+}
+
+@keyframes subChatClose {
+  from {
+    opacity: 0;
+    width: 0%;
+  }
+  to {
+    opacity: 1;
+    width: 100%;
+  }
+}
+
+@keyframes subChatMoveReverse {
+  from {
+    width: 80%;
+  }
+  to {
+    width: 0%;
+  }
+}

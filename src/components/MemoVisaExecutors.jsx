@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { getVisaMessage } from "../actions/chatApi";
 
 const MemoVisaExecutors = () => {
   const visaUsers = useSelector((store) => store.chat.visaUsers);
   const chatById = useSelector((store) => store.chat.chatById);
   const subUserChats = useSelector((store) => store.chat.subUserChats);
+  const visaMessage = useSelector((store) => store.chat.visaMessage);
+
+  const Dispatch = useDispatch();
 
   // const date = new Date();
   // const day = date.getDate();
@@ -20,17 +24,20 @@ const MemoVisaExecutors = () => {
 
   const [visaUser, setVisaUser] = useState({});
 
-  useEffect(() => {
+  const tempVisaUser = () => {
     visaUsers.forEach((e) => {
       if (e.id === chatById[0].id) {
         setVisaUser(e);
       }
     });
-  }, []);
+  };
+
+  useEffect(() => {
+    tempVisaUser();
+    Dispatch(getVisaMessage());
+  }, [Dispatch]);
 
   const date = visaUser?.createdAt?.split("-");
-
-  console.log(subUserChats);
 
   return (
     <div
@@ -44,27 +51,25 @@ const MemoVisaExecutors = () => {
         </h1>
       </header>
       <main className="flex flex-col items-center gap-2">
-        {/* {Array.isArray(userChats) &&
-          userChats.map((e) => {
-            return ( */}
         {subUserChats.map((e) => {
-          return (
-            <p key={e.id} className="font-semibold">
-              {e.name}
-            </p>
-          );
+          if (e.userChatId === chatById[0]?.id) {
+            return (
+              <p key={e.id} className="font-semibold">
+                {e.name}
+              </p>
+            );
+          }
+        })}
+        {visaMessage.map((e) => {
+          if (e.visaUserId === chatById[0]?.id) {
+            return (
+              <p key={e.id} className="text-center">
+                {e.name}
+              </p>
+            );
+          }
         })}
 
-        {/* //   );
-          // })} */}
-        {/* {visaListTemp.map((e) => { */}
-        {/* return ( */}
-        <p className="text-center">
-          {/* {e.name} */}
-          Барои тафтиш ва мувофика
-        </p>
-        {/* );
-        })} */}
         <p>До: {visaUser.term}</p>
         <p>Статус: {visaUser.status}</p>
       </main>

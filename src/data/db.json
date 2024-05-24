@@ -226,6 +226,14 @@
         "name": "Файзиддин Саттор",
         "text": "Решите этот вопрос и предоставьте свой ответ!"
       }
+    },
+    {
+      "id": "1716454578715",
+      "userChatId": "3",
+      "text": "1",
+      "userAuthId": "3",
+      "dateTime": "13:56",
+      "replyMessage": {}
     }
   ],
   "defaultVisa": [
@@ -302,10 +310,29 @@
       "status": false,
       "login": "a.ramazonovich",
       "userAuthId": "4",
+      "userChatId": "2"
+    },
+    {
+      "id": "4",
+      "name": "Акрамшох Рамазонович",
+      "role": "Директор",
+      "image": "http://10.10.80.184:89/FileStorage/UserPicture/216/583_IMG_6443_47034.jpg?SignKey=haXzk68YbLYm6zIpsZZyH8m/h1/oJNK8fkR37TQjEI2HcD0VSc9U3/RY8R5Wp+wW&expiredTime=2024-05-21%2005:44:43&fileName=583_IMG_6443_47034.jpg",
+      "status": false,
+      "login": "a.ramazonovich",
+      "userAuthId": "4",
       "userChatId": "3"
     }
   ],
   "visaUsers": [
+    {
+      "id": "2",
+      "userAuthId": "2",
+      "login": "s.sobirovich",
+      "term": "",
+      "status": "",
+      "eds": "",
+      "createdAt": "23-05-2024"
+    },
     {
       "id": "3",
       "userAuthId": "3",
@@ -313,8 +340,21 @@
       "term": "",
       "status": "",
       "eds": "",
-      "createdAt": "22-05-2024"
+      "createdAt": "23-05-2024"
     }
   ],
-  "visaMessage": []
+  "visaMessage": [
+    {
+      "id": "6",
+      "name": "Барои мувофика",
+      "status": true,
+      "visaUserId": "2"
+    },
+    {
+      "id": "8",
+      "name": "Барои омузиш",
+      "status": true,
+      "visaUserId": "3"
+    }
+  ]
 }

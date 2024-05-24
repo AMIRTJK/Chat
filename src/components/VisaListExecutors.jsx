@@ -33,7 +33,12 @@ const VisaListExecutors = ({ item }) => {
 
   const isActive =
     Array.isArray(visaMessage) &&
-    visaMessage.some((e) => e.id === item.id && e.status === true);
+    visaMessage.some(
+      (e) =>
+        e.id === item.id &&
+        e.status === true &&
+        e.visaUserId === chatById[0]?.id
+    );
 
   return (
     <div

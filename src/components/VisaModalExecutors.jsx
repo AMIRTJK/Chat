@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { TextField } from "@mui/material";
 import { actions } from "../slices/chat-slice";
 
-const VisaModalExecutors = ({ handleShowVisa }) => {
+const VisaModalExecutors = () => {
   const Dispatch = useDispatch();
 
   const defaultVisa = useSelector((store) => store.chat.defaultVisa);
@@ -27,8 +27,8 @@ const VisaModalExecutors = ({ handleShowVisa }) => {
   const [ownVisaInput, setOwnVisaInput] = useState(false);
 
   const handleShowOwnVisa = () => {
-    if (visaListTemp.length > 0) {
-      handleShowVisa(false);
+    if (visaMessage.length > 0) {
+      Dispatch(setExecutorVisa(false));
     }
   };
 
@@ -42,7 +42,7 @@ const VisaModalExecutors = ({ handleShowVisa }) => {
       onClick={() => {
         Dispatch(setExecutorVisa(false));
       }}
-      className="modal relative h-full bg-transparent z-10"
+      className="modal fixed bg-[transparent] h-[100vh] top-0 left-0 w-full z-10"
     >
       <div
         onClick={(event) => handlePropagation(event)}
