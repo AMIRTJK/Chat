@@ -6,7 +6,7 @@ import VolumeUpOutlinedIcon from "@mui/icons-material/VolumeUpOutlined";
 import CheckCircleOutlineOutlinedIcon from "@mui/icons-material/CheckCircleOutlineOutlined";
 
 const SubMessageText = ({ item }) => {
-  console.log(item);
+
 
   return (
     <li className="border-b-[1px] p-[30px] flex items-start justify-between">
@@ -17,8 +17,8 @@ const SubMessageText = ({ item }) => {
           </IconButton>
           <div className="wrapper-text">
             <div className="name-time flex items-center gap-2">
-              <p className="cursor-pointer font-[500]">{item.text}</p>
-              <p className="text-[14px] text-[#7b7b7b]">27.05.2024</p>
+              <p className="cursor-pointer font-[500]">{item.name}</p>
+              <p className="text-[14px] text-[#7b7b7b]">{item.dateTime}</p>
             </div>
             <p>{item.text}</p>
           </div>

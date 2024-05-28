@@ -195,14 +195,14 @@
       "name": "Сарвар Собирович",
       "image": "https://i.ibb.co/zRQyxxP/image.jpg",
       "role": "Заминистр",
-      "status": false
+      "status": true
     },
     {
       "id": "3",
       "name": "Юсуф Хайрулло",
       "image": "https://i.ibb.co/fvwb1qX/image.jpg",
       "role": "Заминистр",
-      "status": true
+      "status": false
     }
   ],
   "showUserChat": [
@@ -341,16 +341,6 @@
       "userChatId": "2"
     },
     {
-      "id": "1716812313780",
-      "name": "Заъфар Исмоил",
-      "role": "Начальник гл.управление",
-      "image": "https://i.ibb.co/3Mctzwb/image.png",
-      "status": false,
-      "login": "z.ismoil",
-      "userAuthId": "5",
-      "userChatId": "2"
-    },
-    {
       "id": "1716813498065",
       "name": "Акрамшох Рамазонович",
       "role": "Директор",
@@ -361,13 +351,23 @@
       "userChatId": "3"
     },
     {
-      "id": "1716866805362",
-      "name": "Бехруз Рамазонович",
-      "role": "Начальник отдела",
-      "image": "src/assets/Бехруз Рамазонович.jpg",
+      "id": "1716812313780",
+      "name": "Заъфар Исмоил",
+      "role": "Начальник гл.управление",
+      "image": "https://i.ibb.co/3Mctzwb/image.png",
       "status": false,
-      "login": "b.ramazonovich",
-      "userAuthId": "6",
+      "login": "z.ismoil",
+      "userAuthId": "5",
+      "userChatId": "2"
+    },
+    {
+      "id": "1716812313781",
+      "name": "Заъфар Исмоил",
+      "role": "Начальник гл.управление",
+      "image": "https://i.ibb.co/3Mctzwb/image.png",
+      "status": false,
+      "login": "z.ismoil",
+      "userAuthId": "5",
       "userChatId": "3"
     }
   ],
@@ -458,30 +458,100 @@
   ],
   "subMessages": [
     {
-      "id": "1432423423",
+      "id": "1432423421",
       "subUserChatId": "4",
       "name": "Акрамшох Рамазонович",
       "role": "Директор",
       "image": "https://i.ibb.co/Kb1V9nM/583-IMG-6443-47034.png",
       "text": "Бехруз Рамазонович, оиди мактуби зерин чавоби мухтасар пешниход намоед!",
       "userAuthId": "4",
+      "userChatId": "3",
       "dateTime": "09:45",
       "replyMessage": {}
     },
     {
-      "id": "423423423",
+      "id": "1423423422",
       "subUserChatId": "4",
       "name": "Бехруз Рамазонович",
       "role": "Начальник отдела",
-      "image": "Бехруз Рамазонович.jpg",
-      "text": "Уважаемый Акрамшох Рамазонович, в предоставленном письме просят об модернезации система **** в рамках проекта **** в ближайщие два года.",
+      "image": "src/assets/Бехруз Рамазонович.jpg",
+      "text": "Уважаемый Акрамшох Рамазонович, в предоставленном письме просят об модернезации системы **** в рамках проекта **** в ближайщие два года.",
       "userAuthId": "6",
+      "userChatId": "3",
       "dateTime": "09:46",
-      "replyMessage": {
-        "id": "1432423423",
-        "name": "Акрамшох Рамазонович",
-        "text": "Бехруз Рамазонович, оиди мактуби зерин чавоби мухтасар пешниход намоед!"
-      }
+      "replyMessage": {}
+    },
+    {
+      "id": "1432423423",
+      "subUserChatId": "4",
+      "name": "Акрамшох Рамазонович",
+      "role": "Директор",
+      "image": "https://i.ibb.co/Kb1V9nM/583-IMG-6443-47034.png",
+      "text": "Махмуд Абдурахмонович, оиди мактуби пешниходшуда тибки тартиби мукарраргардида маълумоти пурра пешниход намоед!",
+      "userAuthId": "4",
+      "userChatId": "2",
+      "dateTime": "09:47",
+      "replyMessage": {}
+    },
+    {
+      "id": "1432423424",
+      "subUserChatId": "4",
+      "name": "Махмуд Абдурахмонович",
+      "role": "Начальник отдела",
+      "image": "src/assets/Махмуд Абдурахмонович.jpg",
+      "text": "Мухтарам Акрамшох Рамазонович, маълумот пешниход шуд, лутфан мувофика карда шавад.",
+      "userAuthId": "7",
+      "userChatId": "2",
+      "dateTime": "09:48",
+      "replyMessage": {}
+    },
+    {
+      "id": "1432423464",
+      "subUserChatId": "5",
+      "name": "Заъфар Исмоил",
+      "role": "Начальник гл.управление",
+      "image": "https://i.ibb.co/3Mctzwb/image.png",
+      "text": "Шарифов Хисрав, оиди мактуби зерин маълумот пешниход намоед!",
+      "userAuthId": "5",
+      "userChatId": "2",
+      "dateTime": "09:49",
+      "replyMessage": {}
+    },
+    {
+      "id": "1432423465",
+      "subUserChatId": "5",
+      "name": "Шарифов Хисрав",
+      "role": "Начальник отдела",
+      "image": "",
+      "text": "Мухтарам Заъфар Исмоил, мактуби зикргардида азхуд карда шуд, маълумоти пурра чун документи word замима мегардад.",
+      "userAuthId": "8",
+      "userChatId": "2",
+      "dateTime": "09:50",
+      "replyMessage": {}
+    },
+    {
+      "id": "1432423466",
+      "subUserChatId": "5",
+      "name": "Заъфар Исмоил",
+      "role": "Начальник гл.управление",
+      "image": "https://i.ibb.co/3Mctzwb/image.png",
+      "text": "Абдуҷаббори Зарифӣ, бинобар сабаби ба кор хозир нашудани сардори шуъба, барои пешниходи маълумот ва корбари дархости зеринро ирсол менамоям!",
+      "userAuthId": "5",
+      "userChatId": "3",
+      "dateTime": "09:51",
+      "replyMessage": {}
+    },
+    {
+      "id": "1432423467",
+      "subUserChatId": "5",
+      "name": "Абдуҷаббори Зарифӣ",
+      "role": "Главный специалист",
+      "image": "",
+      "text": "Мухтарам Заъфар Исмоил, дархости зерин ичро карда шуд, лутфан кабул намоед.",
+      "userAuthId": "9",
+      "userChatId": "3",
+      "dateTime": "09:52",
+      "replyMessage": {}
     }
   ]
 }

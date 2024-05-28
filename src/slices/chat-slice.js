@@ -31,6 +31,7 @@ import {
   putUserChatsExecutor,
   getSubChatById,
   getSubMessages,
+  postSubMessage,
 } from "../actions/chatApi";
 
 const initialState = {
@@ -41,7 +42,6 @@ const initialState = {
   userChats: [],
   showVisa: false,
   visaList: [],
-
   visaListTemp: [],
   termDate: [],
   visaStatus: [],
@@ -230,6 +230,9 @@ const chatSlice = createSlice({
       state.subChatById = action.payload;
     });
     builder.addCase(getSubMessages.fulfilled, (state, action) => {
+      state.subMessages = action.payload;
+    });
+    builder.addCase(postSubMessage.fulfilled, (state, action) => {
       state.subMessages = action.payload;
     });
   },

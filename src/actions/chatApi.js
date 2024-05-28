@@ -752,3 +752,24 @@ export const getSubMessages = createAsyncThunk("getSubMessages", async () => {
     return rejectWithValue(error);
   }
 });
+
+export const postSubMessage = createAsyncThunk(
+  "postSubMessage",
+  async (newObj, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await fetch(import.meta.env.VITE_API_SUB_MESSAGES, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newObj),
+      });
+      const data = await response.json();
+      dispatch(getSubMessages());
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);

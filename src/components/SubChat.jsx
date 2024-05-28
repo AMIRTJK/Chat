@@ -6,7 +6,7 @@ import SubWrapperInputMessage from "./SubWrapperInputMessage";
 const SubChat = () => {
   return (
     <main className="min-w-[1535px] flex flex-col justify-between h-full">
-      <SubTitleChat />
+      <SubTitleChat  />
       <SubBodyMessages />
       <SubWrapperInputMessage />
     </main>

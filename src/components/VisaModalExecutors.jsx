@@ -61,7 +61,7 @@ const VisaModalExecutors = () => {
                 stateVisa === false ? "bg-[#007bd248]" : ""
               } border-r-[1px] border-[#00000058] w-[50%] p-[10px] bg-[#007bd22a] hover:bg-[#007bd248] transition-all duration-100`}
             >
-              Дефолтные визы
+              Шаблонные
             </button>
             <button
               onClick={() => setStateVisa(true)}
@@ -69,7 +69,7 @@ const VisaModalExecutors = () => {
                 stateVisa === true ? "bg-[#007bd248]" : ""
               } border-r-[1px] border-[#00000058] w-[50%] p-[10px] bg-[#007bd22a] hover:bg-[#007bd248] transition-all duration-100`}
             >
-              Собственные визы
+              Личные
             </button>
           </div>
         </header>
@@ -99,7 +99,7 @@ const VisaModalExecutors = () => {
                 },
               }}
             >
-              Своя виза
+              Создать
             </Button>
           ) : (
             <input
