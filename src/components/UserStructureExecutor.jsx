@@ -18,7 +18,7 @@ const UserStructureExecutor = ({
       <IconButton
         onClick={() =>
           handlePostUser({
-            id: userId,
+            id: Date.now().toString(),
             name: userName,
             role: userPosition,
             image: userImage,

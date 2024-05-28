@@ -42,7 +42,7 @@ const MemoVisaExecutors = () => {
   return (
     <div
       onClick={(event) => event.stopPropagation()}
-      className="wrapper w-[25%] absolute bg-[#fff] z-10 shadow-lg left-[36%]  border-[2px] p-[15px] rounded-lg flex flex-col gap-4"
+      className="wrapper w-[25%] fixed bg-[#fff] z-10 shadow-lg left-[36%]  border-[2px] p-[15px] rounded-lg flex flex-col gap-4"
     >
       <header className="flex flex-col items-center gap-2">
         <img src={emblem} alt="" className="w-[33%]" />

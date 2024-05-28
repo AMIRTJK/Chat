@@ -18,7 +18,7 @@ const ChatUser = ({ item, handlePutUserChatStatus }) => {
     status: true,
   };
 
-  const [showMoreVert, setShowMoreVert] = useState(false); // Локальное состояние для каждого ChatUser
+  const [showMoreVert, setShowMoreVert] = useState(false);
   const renderOfRole = useSelector((store) => store.chat.renderOfRole);
 
   const handleShowMoreVert = () => {
@@ -33,7 +33,8 @@ const ChatUser = ({ item, handlePutUserChatStatus }) => {
   useEffect(() => {
     Dispatch(getChatById(newObj.id));
     Dispatch(getMessageById(newObj.id));
-    handlePutUserChatStatus(newObj);
+    // Закоментирован, если приложение сломается значит проблема в нём
+    // handlePutUserChatStatus(newObj);
   }, [Dispatch]);
 
   return (

@@ -28,6 +28,9 @@ import {
   postVisaMessage,
   getDefaultVisa,
   getOwnVisa,
+  putUserChatsExecutor,
+  getSubChatById,
+  getSubMessages,
 } from "../actions/chatApi";
 
 const initialState = {
@@ -38,7 +41,7 @@ const initialState = {
   userChats: [],
   showVisa: false,
   visaList: [],
-  
+
   visaListTemp: [],
   termDate: [],
   visaStatus: [],
@@ -70,6 +73,8 @@ const initialState = {
   visaExecutors: [],
   defaultVisa: [],
   ownVisa: [],
+  subChatById: [],
+  subMessages: [],
 };
 
 const chatSlice = createSlice({
@@ -217,6 +222,15 @@ const chatSlice = createSlice({
     });
     builder.addCase(getOwnVisa.fulfilled, (state, action) => {
       state.ownVisa = action.payload;
+    });
+    builder.addCase(putUserChatsExecutor.fulfilled, (state, action) => {
+      state.subUserChats = action.payload;
+    });
+    builder.addCase(getSubChatById.fulfilled, (state, action) => {
+      state.subChatById = action.payload;
+    });
+    builder.addCase(getSubMessages.fulfilled, (state, action) => {
+      state.subMessages = action.payload;
     });
   },
 });

@@ -701,3 +701,54 @@ export const getOwnVisa = createAsyncThunk(
     }
   }
 );
+
+export const putUserChatsExecutor = createAsyncThunk(
+  "putUserChatsExecutor",
+  async (newObj, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_USERS_CHAT_EXECUTOR}/${newObj.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application-json",
+          },
+          body: JSON.stringify(newObj),
+        }
+      );
+      const data = await response.json();
+      dispatch(getUserChatsExecutor());
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const getSubChatById = createAsyncThunk(
+  "getSubChatById",
+  async (id, { rejectWithValue }) => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_USERS_CHAT_EXECUTOR}?id=${id}`
+      );
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const getSubMessages = createAsyncThunk("getSubMessages", async () => {
+  try {
+    const response = await fetch(import.meta.env.VITE_API_SUB_MESSAGES);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+    return rejectWithValue(error);
+  }
+});

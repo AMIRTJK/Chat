@@ -65,7 +65,7 @@ const StructureOrganizations = () => {
             />
           </IconButton>
         </header>
-        <main className="h-[100%] flex flex-col items-center px-[20px]">
+        <main className="category-scrollbar h-[100%] flex flex-col items-center px-[20px] overflow-auto pb-[60px]">
           <UserStructure
             key={users[0]?.id}
             userImage={users[0]?.image}

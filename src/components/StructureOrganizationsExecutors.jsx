@@ -55,7 +55,8 @@ const StructureOrganizationsExecutors = ({ setExecutor, executor }) => {
     // Алгоритм для добавление только уникальных id в массив subUserChats
     if (
       !subUserChats.some(
-        (e) => e.userChatId === chatById[0].id && e.id === newObj.id
+        (e) =>
+          e.userChatId === chatById[0].id && e.userAuthId === newObj.userAuthId
       )
     ) {
       Dispatch(
@@ -106,7 +107,7 @@ const StructureOrganizationsExecutors = ({ setExecutor, executor }) => {
             />
           </IconButton>
         </header>
-        <main className="h-[100%] flex flex-col items-center px-[20px]">
+        <main className="category-scrollbar h-[100%] flex flex-col items-center px-[20px] overflow-auto pb-[60px]">
           <UserStructureExecutor
             key={users[0]?.id}
             userImage={users[0]?.image}
