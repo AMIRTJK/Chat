@@ -32,6 +32,7 @@ import {
   getSubChatById,
   getSubMessages,
   postSubMessage,
+  deleteSubMessage,
 } from "../actions/chatApi";
 
 const initialState = {
@@ -233,6 +234,9 @@ const chatSlice = createSlice({
       state.subMessages = action.payload;
     });
     builder.addCase(postSubMessage.fulfilled, (state, action) => {
+      state.subMessages = action.payload;
+    });
+    builder.addCase(deleteSubMessage.fulfilled, (state, action) => {
       state.subMessages = action.payload;
     });
   },

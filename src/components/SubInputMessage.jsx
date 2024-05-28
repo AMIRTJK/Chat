@@ -19,6 +19,7 @@ const SubInputMessage = () => {
 
   const subUserChats = useSelector((store) => store.chat.subUserChats);
   const subChatById = useSelector((store) => store.chat.subChatById);
+  const chatById = useSelector((store) => store.chat.chatById);
 
   const authedLogin = JSON.parse(localStorage.getItem("accessLogin"));
 
@@ -44,7 +45,7 @@ const SubInputMessage = () => {
     image: newObj.image,
     text: showSend,
     userAuthId: authedLogin.id,
-    userChatId: newObj.userChatId,
+    userChatId: chatById[0]?.id,
     dateTime: time,
     replyMessage: {},
   };

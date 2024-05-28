@@ -1,12 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { IconButton, Avatar } from "@mui/material";
+
+import { useDispatch } from "react-redux";
 
 import SaveAltIcon from "@mui/icons-material/SaveAlt";
 import VolumeUpOutlinedIcon from "@mui/icons-material/VolumeUpOutlined";
 import CheckCircleOutlineOutlinedIcon from "@mui/icons-material/CheckCircleOutlineOutlined";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+
+import MoreVertSubMessage from "./MoreVertSubMessage";
 
 const SubMessageText = ({ item }) => {
+  const Dispatch = useDispatch();
 
+  const [showMoreVert, setShowMoreVert] = useState(false);
+
+  const handleShowMoreVert = (event) => {
+    event.stopPropagation();
+    setShowMoreVert(!showMoreVert);
+  };
+
+  const handleCloseMoreVert = () => {
+    setShowMoreVert(false);
+  };
+
+  useEffect(() => {
+    window.addEventListener("click", handleCloseMoreVert);
+
+    return () => {
+      window.removeEventListener("click", handleCloseMoreVert);
+    };
+  }, [Dispatch]);
+
+  const accessLogin = JSON.parse(localStorage.getItem("accessLogin"));
 
   return (
     <li className="border-b-[1px] p-[30px] flex items-start justify-between">
@@ -45,7 +71,14 @@ const SubMessageText = ({ item }) => {
           </div>
         </div>
       </div>
-      <div className="panel-control relative"></div>
+      {item?.userAuthId === accessLogin.id && (
+        <div className="panel-control relative">
+          <IconButton onClick={(event) => handleShowMoreVert(event)}>
+            <MoreVertIcon />
+          </IconButton>
+          {showMoreVert && <MoreVertSubMessage item={item} />}
+        </div>
+      )}
     </li>
   );
 };

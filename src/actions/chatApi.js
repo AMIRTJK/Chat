@@ -773,3 +773,26 @@ export const postSubMessage = createAsyncThunk(
     }
   }
 );
+
+export const deleteSubMessage = createAsyncThunk(
+  "deleteSubMessage",
+  async (id, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_SUB_MESSAGES}/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = await response.json();
+      dispatch(getSubMessages());
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);

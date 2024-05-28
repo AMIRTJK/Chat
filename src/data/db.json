@@ -335,7 +335,7 @@
       "name": "Акрамшох Рамазонович",
       "role": "Директор",
       "image": "https://i.ibb.co/Kb1V9nM/583-IMG-6443-47034.png",
-      "status": false,
+      "status": true,
       "login": "a.ramazonovich",
       "userAuthId": "4",
       "userChatId": "2"
@@ -345,7 +345,7 @@
       "name": "Акрамшох Рамазонович",
       "role": "Директор",
       "image": "https://i.ibb.co/Kb1V9nM/583-IMG-6443-47034.png",
-      "status": true,
+      "status": false,
       "login": "a.ramazonovich",
       "userAuthId": "4",
       "userChatId": "3"
