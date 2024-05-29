@@ -16,8 +16,6 @@ const SubBodyMessages = () => {
     Dispatch(getSubMessages());
   }, []);
 
-  console.log(subChatById[0]);
-
   return (
     <main className="category-scrollbar h-[69vh] overflow-auto relative">
       <ul>

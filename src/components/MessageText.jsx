@@ -108,9 +108,9 @@ const MessageText = ({ item }) => {
             </IconButton>
             <div className="wrapper-text">
               <div className="name-time flex items-center gap-2">
-                <p className="cursor-pointer font-[500]">{sender.name}</p>
+                <p className="cursor-pointer font-[500]">{sender?.name}</p>
                 <p className="text-[14px] text-[#7b7b7b]">
-                  {item.userAuthId === sender.userAuthId ? item.dateTime : ""}
+                  {item?.userAuthId === sender?.userAuthId ? item.dateTime : ""}
                 </p>
               </div>
               <p>{item?.text}</p>
@@ -164,7 +164,7 @@ const MessageText = ({ item }) => {
             </IconButton>
           </div>
         </div>
-        {sender.userAuthId === accessLogin.id && (
+        {sender?.userAuthId === accessLogin.id && (
           <div className="panel-control relative">
             <IconButton onClick={(event) => handleShowMoreVert(event)}>
               <MoreVertIcon />

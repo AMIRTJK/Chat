@@ -2,13 +2,18 @@ import React, { useEffect, useState } from "react";
 import { Button, Avatar, IconButton } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 
-import { putUserChatsExecutor, getSubChatById } from "../actions/chatApi";
+import {
+  putUserChatsExecutor,
+  getSubChatById,
+  getInviteToSubChat,
+} from "../actions/chatApi";
 
 const SubTitleChat = () => {
   const accessLogin = JSON.parse(localStorage.getItem("accessLogin"));
   const subUserChats = useSelector((store) => store.chat.subUserChats);
   const chatById = useSelector((store) => store.chat.chatById);
   const subChatById = useSelector((store) => store.chat.subChatById);
+  const inviteToSubChat = useSelector((store) => store.chat.inviteToSubChat);
 
   const Dispatch = useDispatch();
 
@@ -22,6 +27,18 @@ const SubTitleChat = () => {
       });
   };
 
+  // const isActive =
+  //   Array.isArray(inviteToSubChat) &&
+  //   inviteToSubChat.some((e) => {
+  //     if (
+  //       (chatById[0]?.id === e.userChatId &&
+  //         accessLogin?.id === e.subUserChatId) ||
+  //       (chatById[0]?.id === e.userChatId && accessLogin?.id === e.userAuthId)
+  //     ) {
+  //       return e;
+  //     }
+  //   });
+
   useEffect(() => {
     Array.isArray(subUserChats) &&
       subUserChats.map((e) => {
@@ -29,6 +46,7 @@ const SubTitleChat = () => {
           Dispatch(getSubChatById(e.id));
         }
       });
+    Dispatch(getInviteToSubChat());
   }, [Dispatch, subUserChats]);
 
   return (
@@ -52,9 +70,12 @@ const SubTitleChat = () => {
                 </Button>
               );
             } else if (
-              chatById[0]?.id === e.userChatId &&
-              accessLogin?.id === e.userAuthId
-              // accessLogin?.id === "6" нужно доработать логику, чтобы тот кого выбрал визирующий (внутренного чата) тоже видел вкладки, к примеру Юсуф Хайрулло выбрал Акрамшох Рамазоновича, а он в свою очередь Бехруз Рамазоновича и чтобы Бехруз Рамазонович видел вкладки
+              (chatById[0]?.id === e.userChatId &&
+                accessLogin?.id === e.userAuthId) ||
+              (inviteToSubChat[0]?.userAuthId === accessLogin.id &&
+                chatById[0]?.id === e.userChatId &&
+                inviteToSubChat[0]?.subUserChatId === e.userAuthId)
+              // accessLogin?.id === "6" нужно доработать логику, хоть и исполнители визирующего (Акрамшох Рамазонович) и видят вкладки относящиеся к ним, они также видят вкладки других визирующих + нужно добавить цикл для InviteToSubChat сейчас для теста просто указан первый элемент массива, но данная логика не будет работать если в массиве больше 1 значение
             ) {
               return (
                 <Button
@@ -74,12 +95,24 @@ const SubTitleChat = () => {
         <IconButton sx={{ padding: "0px" }}>
           <Avatar src={subChatById[0]?.image} />
         </IconButton>
-        <IconButton sx={{ padding: "0px" }}>
-          <Avatar src="" sx={{ width: "24px", height: "24px" }} />
-        </IconButton>
-        <IconButton sx={{ padding: "0px" }}>
-          <Avatar src="" sx={{ width: "24px", height: "24px" }} />
-        </IconButton>
+        {Array.isArray(inviteToSubChat) &&
+          inviteToSubChat.map((e) => {
+            if (
+              (chatById[0]?.id === e.userChatId &&
+                accessLogin?.id === e.subUserChatId) ||
+              (accessLogin?.id === e.userChatId &&
+                chatById[0]?.id === e.userChatId)
+            ) {
+              return (
+                <IconButton key={e.id} sx={{ padding: "0px" }}>
+                  <Avatar
+                    src={e.image}
+                    sx={{ width: "24px", height: "24px" }}
+                  />
+                </IconButton>
+              );
+            }
+          })}
       </div>
     </header>
   );

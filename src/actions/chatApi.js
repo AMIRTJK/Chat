@@ -7,6 +7,7 @@ export const getUsers = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await fetch(import.meta.env.VITE_API_USERS);
+
       const data = await response.json();
       return data;
     } catch (error) {
@@ -789,6 +790,44 @@ export const deleteSubMessage = createAsyncThunk(
       );
       const data = await response.json();
       dispatch(getSubMessages());
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const getInviteToSubChat = createAsyncThunk(
+  "getInviteToSubChat",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await fetch(import.meta.env.VITE_API_INVITE_TO_SUB_CHAT);
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const postInviteToSubChat = createAsyncThunk(
+  "postInviteToSubChat",
+  async (newObj, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await fetch(
+        import.meta.env.VITE_API_INVITE_TO_SUB_CHAT,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newObj),
+        }
+      );
+      const data = await response.json();
+      dispatch(getInviteToSubChat());
       return data;
     } catch (error) {
       console.error(error);
