@@ -35,6 +35,7 @@ import {
   deleteSubMessage,
   getInviteToSubChat,
   postInviteToSubChat,
+  deleteInviteToSubChat
 } from "../actions/chatApi";
 
 const initialState = {
@@ -246,6 +247,9 @@ const chatSlice = createSlice({
       state.inviteToSubChat = action.payload;
     });
     builder.addCase(postInviteToSubChat.fulfilled, (state, action) => {
+      state.inviteToSubChat = action.payload;
+    });
+    builder.addCase(deleteInviteToSubChat.fulfilled, (state, action) => {
       state.inviteToSubChat = action.payload;
     });
   },

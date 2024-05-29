@@ -10,6 +10,17 @@ const SubBodyMessages = () => {
 
   const accessLogin = JSON.parse(localStorage.getItem("accessLogin"));
 
+  const inviteToSubChat = useSelector((store) => store.chat.inviteToSubChat);
+
+  const isActive =
+    Array.isArray(inviteToSubChat) &&
+    inviteToSubChat.some(
+      (e) =>
+        e.subUserChatId === accessLogin.id && e.userChatId === chatById[0]?.id
+    );
+
+  // console.log(isActive);
+
   const Dispatch = useDispatch();
 
   useEffect(() => {
@@ -24,7 +35,7 @@ const SubBodyMessages = () => {
             // Алгоритм для того что только исполнитель видел свои сообщения в том чате в котором приглашен
             if (
               subChatById[0]?.userAuthId === e.subUserChatId &&
-              chatById[0]?.id === e.userChatId
+              chatById[0]?.id === e.userChatId && isActive  
             ) {
               return <SubMessageText key={e.id} item={e} />;
             }

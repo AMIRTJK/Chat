@@ -27,18 +27,6 @@ const SubTitleChat = () => {
       });
   };
 
-  // const isActive =
-  //   Array.isArray(inviteToSubChat) &&
-  //   inviteToSubChat.some((e) => {
-  //     if (
-  //       (chatById[0]?.id === e.userChatId &&
-  //         accessLogin?.id === e.subUserChatId) ||
-  //       (chatById[0]?.id === e.userChatId && accessLogin?.id === e.userAuthId)
-  //     ) {
-  //       return e;
-  //     }
-  //   });
-
   useEffect(() => {
     Array.isArray(subUserChats) &&
       subUserChats.map((e) => {
@@ -49,11 +37,14 @@ const SubTitleChat = () => {
     Dispatch(getInviteToSubChat());
   }, [Dispatch, subUserChats]);
 
+  console.log(subChatById);
+
   return (
     <header className="bg-[#f5f5f5]  p-[30px] flex justify-between items-center">
       <div className="wrapper-tabs flex gap-5">
         {Array.isArray(subUserChats) &&
           subUserChats.map((e) => {
+            // Алгоритм для создателей родительского чата
             if (
               accessLogin?.id === e.userChatId &&
               chatById[0]?.id === e.userChatId
@@ -69,13 +60,18 @@ const SubTitleChat = () => {
                   {e.name}
                 </Button>
               );
-            } else if (
+            }
+            // Алгоритм для создателей дочернего чата
+            else if (
               (chatById[0]?.id === e.userChatId &&
                 accessLogin?.id === e.userAuthId) ||
-              (inviteToSubChat[0]?.userAuthId === accessLogin.id &&
-                chatById[0]?.id === e.userChatId &&
-                inviteToSubChat[0]?.subUserChatId === e.userAuthId)
-              // accessLogin?.id === "6" нужно доработать логику, хоть и исполнители визирующего (Акрамшох Рамазонович) и видят вкладки относящиеся к ним, они также видят вкладки других визирующих + нужно добавить цикл для InviteToSubChat сейчас для теста просто указан первый элемент массива, но данная логика не будет работать если в массиве больше 1 значение
+              // Алгоритм для участников дочернего чата - неккоректно работает, пока что у меня недостаточно знаний чтобы написать этот алгоритм. Нужно доработать логику, хоть и исполнители визирующего (Акрамшох Рамазонович) и видят вкладки относящиеся к ним, они также видят вкладки других визирующих
+              inviteToSubChat.some(
+                (invite) =>
+                  invite.userAuthId === accessLogin.id &&
+                  chatById[0]?.id === e.userChatId &&
+                  invite.subUserChatId === e.userAuthId
+              )
             ) {
               return (
                 <Button
@@ -99,9 +95,11 @@ const SubTitleChat = () => {
           inviteToSubChat.map((e) => {
             if (
               (chatById[0]?.id === e.userChatId &&
-                accessLogin?.id === e.subUserChatId) ||
-              (accessLogin?.id === e.userChatId &&
-                chatById[0]?.id === e.userChatId)
+                subChatById[0]?.userAuthId === e.subUserChatId) ||
+              //Условие ниже не совсем точно работает
+              (accessLogin?.id === e.userAuthId &&
+                accessLogin?.id !== e.userChatId &&
+                accessLogin?.id !== e.subUserChatId)
             ) {
               return (
                 <IconButton key={e.id} sx={{ padding: "0px" }}>

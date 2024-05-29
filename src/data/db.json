@@ -237,14 +237,14 @@
       "name": "Сарвар Собирович",
       "image": "https://i.ibb.co/zRQyxxP/image.jpg",
       "role": "Заминистр",
-      "status": false
+      "status": true
     },
     {
       "id": "3",
       "name": "Юсуф Хайрулло",
       "image": "https://i.ibb.co/fvwb1qX/image.jpg",
       "role": "Заминистр",
-      "status": true
+      "status": false
     }
   ],
   "showUserChat": [
@@ -387,7 +387,7 @@
       "name": "Акрамшох Рамазонович",
       "role": "Директор",
       "image": "https://i.ibb.co/Kb1V9nM/583-IMG-6443-47034.png",
-      "status": true,
+      "status": false,
       "login": "a.ramazonovich",
       "userAuthId": "4",
       "userChatId": "3"
@@ -397,7 +397,7 @@
       "name": "Заъфар Исмоил",
       "role": "Начальник гл.управление",
       "image": "https://i.ibb.co/3Mctzwb/image.png",
-      "status": false,
+      "status": true,
       "login": "z.ismoil",
       "userAuthId": "5",
       "userChatId": "2"
@@ -598,7 +598,7 @@
   ],
   "intiveToSubChat": [
     {
-      "id": "1716894176169",
+      "id": "1716954071314",
       "subUserChatId": "4",
       "name": "Бехруз Рамазонович",
       "role": "Начальник отдела",
@@ -609,18 +609,7 @@
       "userChatId": "3"
     },
     {
-      "id": "1716897695458",
-      "subUserChatId": "4",
-      "name": "Махмуд Абдурахмонович",
-      "role": "Начальник отдела",
-      "image": "src/assets/Махмуд Абдурахмонович.jpg",
-      "status": true,
-      "login": "m.abdurahmonovich",
-      "userAuthId": "7",
-      "userChatId": "2"
-    },
-    {
-      "id": "1716898275249",
+      "id": "1716954105538",
       "subUserChatId": "5",
       "name": "Шарифов Хисрав",
       "role": "Начальник отдела",
@@ -631,7 +620,7 @@
       "userChatId": "2"
     },
     {
-      "id": "1716898289529",
+      "id": "1716954113298",
       "subUserChatId": "5",
       "name": "Абдуҷаббори Зарифӣ",
       "role": "Главный специалист",
@@ -640,6 +629,17 @@
       "login": "a.zarifi",
       "userAuthId": "9",
       "userChatId": "3"
+    },
+    {
+      "id": "1716961563813",
+      "subUserChatId": "4",
+      "name": "Махмуд Абдурахмонович",
+      "role": "Начальник отдела",
+      "image": "src/assets/Махмуд Абдурахмонович.jpg",
+      "status": true,
+      "login": "m.abdurahmonovich",
+      "userAuthId": "7",
+      "userChatId": "2"
     }
   ]
 }

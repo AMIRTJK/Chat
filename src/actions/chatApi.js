@@ -835,3 +835,23 @@ export const postInviteToSubChat = createAsyncThunk(
     }
   }
 );
+
+export const deleteInviteToSubChat = createAsyncThunk(
+  "deleteInviteToSubChat",
+  async (id, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_INVITE_TO_SUB_CHAT}/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+      const data = await response.json();
+      dispatch(getInviteToSubChat());
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
