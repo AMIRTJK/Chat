@@ -20,6 +20,7 @@ const SubInputMessage = () => {
   const subUserChats = useSelector((store) => store.chat.subUserChats);
   const subChatById = useSelector((store) => store.chat.subChatById);
   const chatById = useSelector((store) => store.chat.chatById);
+  const inviteToSubChat = useSelector((store) => store.chat.inviteToSubChat);
 
   const authedLogin = JSON.parse(localStorage.getItem("accessLogin"));
 
@@ -30,16 +31,30 @@ const SubInputMessage = () => {
 
   let newObj = {};
 
+  const subChatUser = inviteToSubChat.some((e) => {
+    if (e.userChatId === chatById[0]?.id && authedLogin.id === e.userAuthId) {
+      return e;
+    }
+  });
+
   Array.isArray(subUserChats) &&
     subUserChats.forEach((e) => {
-      if (e.userAuthId === authedLogin.id) {
-        newObj = { ...e };
-      }
+      inviteToSubChat.forEach((invite) => {
+        if (e.userAuthId === authedLogin.id) {
+          // это условие работает, создатели subChat могут отправлять сообщение
+          newObj = { ...e };
+        } else if (
+          invite.userChatId === chatById[0]?.id &&
+          authedLogin.id === invite.userAuthId
+        ) {
+          newObj = { ...invite };
+        }
+      });
     });
 
   let message = {
     id: Date.now().toString(),
-    subUserChatId: newObj.userAuthId,
+    subUserChatId: subChatById[0]?.userAuthId,
     name: newObj.name,
     role: newObj.role,
     image: newObj.image,
@@ -70,10 +85,7 @@ const SubInputMessage = () => {
         </IconButton>
         <IconButton
           onClick={() => {
-            if (
-              subChatById[0]?.userAuthId === authedLogin.id
-              // нужно дополнить условие для исполнителей Акрамшох Рамазоновича, к примеру для Бехруз Рамазоновича
-            ) {
+            if (subChatById[0]?.userAuthId === authedLogin.id || subChatUser) {
               handlePostSubMessage();
             }
           }}
