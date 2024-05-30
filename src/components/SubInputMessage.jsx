@@ -31,25 +31,28 @@ const SubInputMessage = () => {
 
   let newObj = {};
 
-  const subChatUser = inviteToSubChat.some((e) => {
-    if (e.userChatId === chatById[0]?.id && authedLogin.id === e.userAuthId) {
-      return e;
-    }
-  });
+  const subChatUser =
+    Array.isArray(inviteToSubChat) &&
+    inviteToSubChat.some((e) => {
+      if (e.userChatId === chatById[0]?.id && authedLogin.id === e.userAuthId) {
+        return e;
+      }
+    });
 
   Array.isArray(subUserChats) &&
     subUserChats.forEach((e) => {
-      inviteToSubChat.forEach((invite) => {
-        if (e.userAuthId === authedLogin.id) {
-          // это условие работает, создатели subChat могут отправлять сообщение
-          newObj = { ...e };
-        } else if (
-          invite.userChatId === chatById[0]?.id &&
-          authedLogin.id === invite.userAuthId
-        ) {
-          newObj = { ...invite };
-        }
-      });
+      Array.isArray(inviteToSubChat) &&
+        inviteToSubChat.forEach((invite) => {
+          if (e.userAuthId === authedLogin.id) {
+            // это условие работает, создатели subChat могут отправлять сообщение
+            newObj = { ...e };
+          } else if (
+            invite.userChatId === chatById[0]?.id &&
+            authedLogin.id === invite.userAuthId
+          ) {
+            newObj = { ...invite };
+          }
+        });
     });
 
   let message = {

@@ -66,12 +66,13 @@ const SubTitleChat = () => {
               (chatById[0]?.id === e.userChatId &&
                 accessLogin?.id === e.userAuthId) ||
               // Алгоритм для участников дочернего чата - неккоректно работает, пока что у меня недостаточно знаний чтобы написать этот алгоритм. Нужно доработать логику, хоть и исполнители визирующего (Акрамшох Рамазонович) и видят вкладки относящиеся к ним, они также видят вкладки других визирующих
-              inviteToSubChat.some(
-                (invite) =>
-                  invite.userAuthId === accessLogin.id &&
-                  chatById[0]?.id === e.userChatId &&
-                  invite.subUserChatId === e.userAuthId
-              )
+              (Array.isArray(inviteToSubChat) &&
+                inviteToSubChat.some(
+                  (invite) =>
+                    invite.userAuthId === accessLogin.id &&
+                    chatById[0]?.id === e.userChatId &&
+                    invite.subUserChatId === e.userAuthId
+                ))
             ) {
               return (
                 <Button
