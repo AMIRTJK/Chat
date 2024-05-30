@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { actions } from "../slices/chat-slice";
 import SubChat from "./SubChat";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
+import MemoVisaExecutors from "./MemoVisaExecutors";
 
 const TitleChat = () => {
   const dispatch = useDispatch();
@@ -62,19 +63,7 @@ const TitleChat = () => {
             <p className="text-[#989898] text-[14px]">{chatById[0]?.role}</p>
           </div>
         </div>
-        {isActive && (
-          <div className="title text-center flex flex-col justify-center items-center w-[15%]">
-            <img src={emblem} alt="" className="w-[20%]" />
-            <p className="text-[14px]">Муовини вазири Чумхурии Точикистон</p>
-            <p
-              onClick={(event) => handleShow(event, showVisaPopUp)}
-              className="text-[14px] text-[#007cd2] font-medium cursor-pointer"
-            >
-              Посмотреть визу
-            </p>
-          </div>
-        )}
-
+        {isActive && <MemoVisaExecutors />}
         <div className="panel-monitoring flex items-center gap-5">
           <div className="visa-users flex gap-2 items-center">
             {subUserChats.length > 0 &&

@@ -3,7 +3,11 @@ import AssignmentIcon from "@mui/icons-material/Assignment";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { IconButton } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { getVisaMessage, postVisaMessage } from "../actions/chatApi";
+import {
+  getVisaMessage,
+  postVisaMessage,
+  deleteVisaMessage,
+} from "../actions/chatApi";
 
 const VisaListExecutors = ({ item }) => {
   const Dispatch = useDispatch();
@@ -40,6 +44,11 @@ const VisaListExecutors = ({ item }) => {
         e.visaUserId === chatById[0]?.id
     );
 
+  const handleDeleteVisaMessage = (event) => {
+    event.stopPropagation();
+    Dispatch(deleteVisaMessage(item.id));
+  };
+
   return (
     <div
       onClick={() => {
@@ -54,7 +63,7 @@ const VisaListExecutors = ({ item }) => {
         <p>{item.name}</p>
       </div>
       <div className="panel-control">
-        <IconButton>
+        <IconButton onClick={(event) => handleDeleteVisaMessage(event)}>
           <DeleteIcon
             sx={{
               ":hover": {

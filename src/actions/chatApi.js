@@ -675,6 +675,26 @@ export const postVisaMessage = createAsyncThunk(
   }
 );
 
+export const deleteVisaMessage = createAsyncThunk(
+  "deleteVisaMessage",
+  async (id, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_VISA_MESSAGE}/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+      const data = await response.json();
+      dispatch(getVisaMessage());
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
 export const getDefaultVisa = createAsyncThunk(
   "getDefaultVisa",
   async (_, { rejectWithValue }) => {

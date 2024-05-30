@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import VisaListExecutors from "./VisaListExecutors";
 import { Button } from "@mui/material";
-import { getDefaultVisa, getOwnVisa } from "../actions/chatApi";
+import {
+  getDefaultVisa,
+  getOwnVisa,
+  postVisaMessage,
+} from "../actions/chatApi";
 import { useSelector, useDispatch } from "react-redux";
 
 import { TextField } from "@mui/material";
@@ -14,6 +18,7 @@ const VisaModalExecutors = () => {
   const ownVisa = useSelector((store) => store.chat.ownVisa);
   const ownVisaValue = useSelector((store) => store.chat.ownVisaValue);
   const visaListTemp = useSelector((store) => store.chat.visaListTemp);
+  const chatById = useSelector((store) => store.chat.chatById);
 
   const visaMessage = useSelector((store) => store.chat.visaMessage);
 
@@ -30,12 +35,24 @@ const VisaModalExecutors = () => {
     if (visaMessage.length > 0) {
       Dispatch(setExecutorVisa(false));
     }
+    if (ownVisaValue.length > 0) {
+      const newObj = {
+        id: Date.now().toString(),
+        name: ownVisaValue,
+        status: true,
+        visaUserId: chatById[0].id,
+      };
+      Dispatch(postVisaMessage(newObj));
+      Dispatch(setOwnVisaValue(""));
+    }
   };
 
   useEffect(() => {
     Dispatch(getDefaultVisa());
     Dispatch(getOwnVisa());
   }, []);
+
+  console.log(ownVisaValue);
 
   return (
     <div

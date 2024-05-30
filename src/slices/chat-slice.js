@@ -26,6 +26,7 @@ import {
   postUserChatsExecutor,
   getVisaMessage,
   postVisaMessage,
+  deleteVisaMessage,
   getDefaultVisa,
   getOwnVisa,
   putUserChatsExecutor,
@@ -35,7 +36,7 @@ import {
   deleteSubMessage,
   getInviteToSubChat,
   postInviteToSubChat,
-  deleteInviteToSubChat
+  deleteInviteToSubChat,
 } from "../actions/chatApi";
 
 const initialState = {
@@ -221,7 +222,9 @@ const chatSlice = createSlice({
     builder.addCase(postVisaMessage.fulfilled, (state, action) => {
       state.visaMessage = action.payload;
     });
-
+    builder.addCase(deleteVisaMessage.fulfilled, (state, action) => {
+      state.visaMessage = action.payload;
+    });
     builder.addCase(getDefaultVisa.fulfilled, (state, action) => {
       state.defaultVisa = action.payload;
     });

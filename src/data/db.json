@@ -122,7 +122,7 @@
     {
       "id": "3",
       "name": "Юсуф Хайрулло",
-      "role": "Заминистр",
+      "role": "Первый Заминистр",
       "image": "https://i.ibb.co/fvwb1qX/image.jpg",
       "status": false,
       "userAuthId": "3",
@@ -243,7 +243,7 @@
       "id": "3",
       "name": "Юсуф Хайрулло",
       "image": "https://i.ibb.co/fvwb1qX/image.jpg",
-      "role": "Заминистр",
+      "role": "Первый Заминистр",
       "status": false
     }
   ],
@@ -298,11 +298,19 @@
       }
     },
     {
-      "id": "1716454578715",
+      "id": "1717060054421",
       "userChatId": "3",
-      "text": "1",
+      "text": "Барои корбари ва пешниходи хулоса!",
+      "userAuthId": "1",
+      "dateTime": "14:07",
+      "replyMessage": {}
+    },
+    {
+      "id": "1717060231879",
+      "userChatId": "3",
+      "text": "Корбари шуд, мактуби нихои ирсол карда шуд. ",
       "userAuthId": "3",
-      "dateTime": "13:56",
+      "dateTime": "14:10",
       "replyMessage": {}
     }
   ],
@@ -480,12 +488,6 @@
   ],
   "visaMessage": [
     {
-      "id": "6",
-      "name": "Барои мувофика",
-      "status": true,
-      "visaUserId": "2"
-    },
-    {
       "id": "8",
       "name": "Барои омузиш",
       "status": true,
@@ -593,66 +595,6 @@
       "userAuthId": "9",
       "userChatId": "3",
       "dateTime": "09:52",
-      "replyMessage": {}
-    },
-    {
-      "id": "1716989046962",
-      "subUserChatId": "4",
-      "name": "Махмуд Абдурахмонович",
-      "role": "Начальник отдела",
-      "image": "src/assets/Махмуд Абдурахмонович.jpg",
-      "text": "123",
-      "userAuthId": "6",
-      "userChatId": "2",
-      "dateTime": "18:24",
-      "replyMessage": {}
-    },
-    {
-      "id": "1716989199747",
-      "subUserChatId": "4",
-      "name": "Махмуд Абдурахмонович",
-      "role": "Начальник отдела",
-      "image": "src/assets/Махмуд Абдурахмонович.jpg",
-      "text": "123",
-      "userAuthId": "6",
-      "userChatId": "2",
-      "dateTime": "18:26",
-      "replyMessage": {}
-    },
-    {
-      "id": "1716990525903",
-      "subUserChatId": "4",
-      "name": "Бехруз Рамазонович",
-      "role": "Начальник отдела",
-      "image": "src/assets/Бехруз Рамазонович.jpg",
-      "text": "123",
-      "userAuthId": "6",
-      "userChatId": "3",
-      "dateTime": "18:48",
-      "replyMessage": {}
-    },
-    {
-      "id": "1716990740562",
-      "subUserChatId": "4",
-      "name": "Бехруз Рамазонович",
-      "role": "Начальник отдела",
-      "image": "src/assets/Бехруз Рамазонович.jpg",
-      "text": "1234",
-      "userAuthId": "6",
-      "userChatId": "3",
-      "dateTime": "18:52",
-      "replyMessage": {}
-    },
-    {
-      "id": "1717040154492",
-      "subUserChatId": "4",
-      "name": "Бехруз Рамазонович",
-      "role": "Начальник отдела",
-      "image": "src/assets/Бехруз Рамазонович.jpg",
-      "text": "Салом",
-      "userAuthId": "6",
-      "userChatId": "3",
-      "dateTime": "08:35",
       "replyMessage": {}
     },
     {

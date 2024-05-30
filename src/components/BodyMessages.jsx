@@ -7,7 +7,6 @@ import MessageText from "./MessageText";
 
 import { ToastContainer } from "react-toastify";
 
-import MemoVisaExecutors from "./MemoVisaExecutors";
 
 import VisaModalExecutors from "./VisaModalExecutors";
 
@@ -16,7 +15,6 @@ const BodyMessages = () => {
   const messageById = useSelector((store) => store.chat.messageById);
   const visaUsers = useSelector((store) => store.chat.visaUsers);
 
-  const showVisaPopUp = useSelector((store) => store.chat.showVisaPopUp);
   const executorVisa = useSelector((store) => store.chat.executorVisa);
 
   useEffect(() => {
@@ -28,7 +26,7 @@ const BodyMessages = () => {
 
   return (
     <div className="category-scrollbar h-[69vh] overflow-auto relative">
-      {showVisaPopUp && <MemoVisaExecutors />}
+   
       <ToastContainer />
       <ul>
         {Array.isArray(messageById) &&
