@@ -46,11 +46,15 @@ const SubTitleChat = () => {
 
   const handlePostSubUserChatsTab = () => {
     let cnt = 1;
-    subUserChatsTabs.forEach((e) => {
-      if (e.userAuthId === accessLogin.id && chatById[0]?.id === e.userChatId) {
-        cnt++;
-      }
-    });
+    Array.isArray(subUserChatsTabs) &&
+      subUserChatsTabs.forEach((e) => {
+        if (
+          e.userAuthId === accessLogin.id &&
+          chatById[0]?.id === e.userChatId
+        ) {
+          cnt++;
+        }
+      });
 
     let newObj = {};
     Array.isArray(subUserChats) &&
@@ -71,6 +75,10 @@ const SubTitleChat = () => {
       });
     Dispatch(postUserChatsExecutorTabs(newObj));
   };
+
+  const isActiveAddTab =
+    Array.isArray(subUserChats) &&
+    subUserChats.some((e) => e.userAuthId === accessLogin.id);
 
   return (
     <header className="bg-[#f5f5f5]  p-[30px] flex justify-between items-center flex-wrap">
@@ -165,16 +173,18 @@ const SubTitleChat = () => {
               }
             })}
         </div>
-        <IconButton
-          onClick={() => handlePostSubUserChatsTab()}
-          sx={{
-            "&:hover": {
-              backgroundColor: "#007bd220",
-            },
-          }}
-        >
-          <AddIcon />
-        </IconButton>
+        {isActiveAddTab && (
+          <IconButton
+            onClick={() => handlePostSubUserChatsTab()}
+            sx={{
+              "&:hover": {
+                backgroundColor: "#007bd220",
+              },
+            }}
+          >
+            <AddIcon />
+          </IconButton>
+        )}
       </div>
       <div className="panel-user flex items-end gap-2">
         <IconButton sx={{ padding: "0px" }}>

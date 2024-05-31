@@ -237,14 +237,14 @@
       "name": "Сарвар Собирович",
       "image": "https://i.ibb.co/zRQyxxP/image.jpg",
       "role": "Заминистр",
-      "status": true
+      "status": false
     },
     {
       "id": "3",
       "name": "Юсуф Хайрулло",
       "image": "https://i.ibb.co/fvwb1qX/image.jpg",
       "role": "Первый Заминистр",
-      "status": false
+      "status": true
     }
   ],
   "showUserChat": [
@@ -379,9 +379,68 @@
     }
   ],
   "userStructureExecutor": [],
-  "subUserChats": [],
+  "subUserChats": [
+    {
+      "id": "1717150676925",
+      "name": "Акрамшох Рамазонович",
+      "role": "Директор",
+      "image": "https://i.ibb.co/Kb1V9nM/583-IMG-6443-47034.png",
+      "status": false,
+      "login": "a.ramazonovich",
+      "userAuthId": "4",
+      "userChatId": "2"
+    },
+    {
+      "id": "1717150751845",
+      "name": "Заъфар Исмоил",
+      "role": "Начальник гл.управление",
+      "image": "https://i.ibb.co/3Mctzwb/image.png",
+      "status": true,
+      "login": "z.ismoil",
+      "userAuthId": "5",
+      "userChatId": "2"
+    },
+    {
+      "id": "1717150769349",
+      "name": "Заъфар Исмоил",
+      "role": "Начальник гл.управление",
+      "image": "https://i.ibb.co/3Mctzwb/image.png",
+      "status": false,
+      "login": "z.ismoil",
+      "userAuthId": "5",
+      "userChatId": "3"
+    }
+  ],
   "subUserChatsTabs": [],
-  "visaUsers": [],
+  "visaUsers": [
+    {
+      "id": "2",
+      "userAuthId": "2",
+      "login": "s.sobirovich",
+      "term": "",
+      "status": "",
+      "eds": "",
+      "createdAt": "31-05-2024"
+    },
+    {
+      "id": "2",
+      "userAuthId": "2",
+      "login": "s.sobirovich",
+      "term": "",
+      "status": "",
+      "eds": "",
+      "createdAt": "31-05-2024"
+    },
+    {
+      "id": "3",
+      "userAuthId": "3",
+      "login": "y.khayrullo",
+      "term": "",
+      "status": "",
+      "eds": "",
+      "createdAt": "31-05-2024"
+    }
+  ],
   "visaMessage": [],
   "subMessages": [],
   "inviteToSubChat": []
