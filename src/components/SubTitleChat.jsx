@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Button, Avatar, IconButton } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
+import AddIcon from "@mui/icons-material/Add";
+import CloseIcon from "@mui/icons-material/Close";
 
 import {
   putUserChatsExecutor,
   getSubChatById,
   getInviteToSubChat,
+  getUserChatsExecutorTabs,
+  postUserChatsExecutorTabs,
+  deleteUserChatsExecutorTabs,
 } from "../actions/chatApi";
 
 const SubTitleChat = () => {
@@ -14,6 +19,7 @@ const SubTitleChat = () => {
   const chatById = useSelector((store) => store.chat.chatById);
   const subChatById = useSelector((store) => store.chat.subChatById);
   const inviteToSubChat = useSelector((store) => store.chat.inviteToSubChat);
+  const subUserChatsTabs = useSelector((store) => store.chat.subUserChatsTabs);
 
   const Dispatch = useDispatch();
 
@@ -35,13 +41,40 @@ const SubTitleChat = () => {
         }
       });
     Dispatch(getInviteToSubChat());
+    Dispatch(getUserChatsExecutorTabs());
   }, [Dispatch, subUserChats]);
 
-  // console.log(subChatById);
+  const handlePostSubUserChatsTab = () => {
+    let cnt = 1;
+    subUserChatsTabs.forEach((e) => {
+      if (e.userAuthId === accessLogin.id && chatById[0]?.id === e.userChatId) {
+        cnt++;
+      }
+    });
+
+    let newObj = {};
+    Array.isArray(subUserChats) &&
+      subUserChats.forEach((e) => {
+        if (
+          chatById[0]?.id === e.userChatId &&
+          accessLogin.id === e.userAuthId
+        ) {
+          newObj = {
+            id: Date.now().toString(),
+            subUserChat: e.id,
+            userAuthId: e.userAuthId,
+            userChatId: e.userChatId,
+            name: `Вкладка №${cnt}`,
+            status: true,
+          };
+        }
+      });
+    Dispatch(postUserChatsExecutorTabs(newObj));
+  };
 
   return (
-    <header className="bg-[#f5f5f5]  p-[30px] flex justify-between items-center">
-      <div className="wrapper-tabs flex gap-5">
+    <header className="bg-[#f5f5f5]  p-[30px] flex justify-between items-center flex-wrap">
+      <div className="wrapper-tabs flex items-end gap-5">
         {Array.isArray(subUserChats) &&
           subUserChats.map((e) => {
             // Алгоритм для создателей родительского чата
@@ -87,6 +120,61 @@ const SubTitleChat = () => {
               );
             }
           })}
+        <div className="wrapper-sub-tabs flex gap-5">
+          {Array.isArray(subUserChatsTabs) &&
+            subUserChatsTabs.map((e) => {
+              if (
+                e.userAuthId === accessLogin.id &&
+                chatById[0]?.id === e.userChatId
+              ) {
+                return (
+                  <Button
+                    key={e.id}
+                    variant="outlined"
+                    sx={{
+                      fontSize: "13px",
+                      color: "green",
+                      height: "30px",
+                      width: "160px",
+                      position: "relative",
+                      borderColor: "green",
+                      "&:hover": {
+                        borderColor: "green",
+                      },
+                    }}
+                  >
+                    {e.name}
+                    <CloseIcon
+                      onClick={() =>
+                        Dispatch(deleteUserChatsExecutorTabs(e.id))
+                      }
+                      sx={{
+                        fontSize: "17px",
+                        color: "#000000af",
+                        position: "absolute",
+                        bottom: "10px",
+                        left: "140px",
+                        padding: "2px",
+                        "&:hover": {
+                          color: "#000000",
+                        },
+                      }}
+                    />
+                  </Button>
+                );
+              }
+            })}
+        </div>
+        <IconButton
+          onClick={() => handlePostSubUserChatsTab()}
+          sx={{
+            "&:hover": {
+              backgroundColor: "#007bd220",
+            },
+          }}
+        >
+          <AddIcon />
+        </IconButton>
       </div>
       <div className="panel-user flex items-end gap-2">
         <IconButton sx={{ padding: "0px" }}>

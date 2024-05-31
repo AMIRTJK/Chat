@@ -24,6 +24,9 @@ import {
   getUserStructureExecutor,
   getUserChatsExecutor,
   postUserChatsExecutor,
+  getUserChatsExecutorTabs,
+  postUserChatsExecutorTabs,
+  deleteUserChatsExecutorTabs,
   getVisaMessage,
   postVisaMessage,
   deleteVisaMessage,
@@ -72,6 +75,7 @@ const initialState = {
   showVisaPopUp: false,
   userStructureExecutor: [],
   subUserChats: [],
+  subUserChatsTabs: [],
   executorVisa: false,
   visaMessage: [],
   visaTemp: {},
@@ -215,6 +219,15 @@ const chatSlice = createSlice({
     });
     builder.addCase(postUserChatsExecutor.fulfilled, (state, action) => {
       state.subUserChats = action.payload;
+    });
+    builder.addCase(getUserChatsExecutorTabs.fulfilled, (state, action) => {
+      state.subUserChatsTabs = action.payload;
+    });
+    builder.addCase(postUserChatsExecutorTabs.fulfilled, (state, action) => {
+      state.subUserChatsTabs = action.payload;
+    });
+    builder.addCase(deleteUserChatsExecutorTabs.fulfilled, (state, action) => {
+      state.subUserChatsTabs = action.payload;
     });
     builder.addCase(getVisaMessage.fulfilled, (state, action) => {
       state.visaMessage = action.payload;

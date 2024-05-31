@@ -607,6 +607,66 @@ export const postUserChatsExecutor = createAsyncThunk(
   }
 );
 
+export const getUserChatsExecutorTabs = createAsyncThunk(
+  "",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await fetch(
+        import.meta.env.VITE_API_USERS_CHAT_EXECUTOR_TABS
+      );
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const postUserChatsExecutorTabs = createAsyncThunk(
+  "postUserChatsExecutorTabs",
+  async (newObj, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await fetch(
+        import.meta.env.VITE_API_USERS_CHAT_EXECUTOR_TABS,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newObj),
+        }
+      );
+      const data = await response.json();
+      dispatch(getUserChatsExecutorTabs());
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const deleteUserChatsExecutorTabs = createAsyncThunk(
+  "deleteUserChatsExecutorTabs",
+  async (id, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_USERS_CHAT_EXECUTOR_TABS}/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+      const data = await response.json();
+      dispatch(getUserChatsExecutorTabs());
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
 export const getVisaUsers = createAsyncThunk(
   "getVisaUsers",
   async (_, { rejectWithValue }) => {

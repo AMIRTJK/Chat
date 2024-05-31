@@ -90,6 +90,7 @@ body {
 
 .category-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #abaeb2;
+  color: #000000;
 }
 
 .sub-chat {
