@@ -8,12 +8,17 @@ import SubChat from "./SubChat";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import MemoVisaExecutors from "./MemoVisaExecutors";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const TitleChat = () => {
   const dispatch = useDispatch();
   const chatById = useSelector((store) => store.chat.chatById);
   const showVisaPopUp = useSelector((store) => store.chat.showVisaPopUp);
   const subUserChats = useSelector((store) => store.chat.subUserChats);
   const visaUsers = useSelector((store) => store.chat.visaUsers);
+
+  const accessLogin = JSON.parse(localStorage.getItem("accessLogin"));
 
   const { setShowVisaPopUp } = actions;
 
@@ -45,8 +50,25 @@ const TitleChat = () => {
 
   const [state, setState] = useState(false);
 
+  const notify = () => {
+    toast.info("Вы не являетесь участником этого чата!", {
+      position: "top-right",
+    });
+  };
+
   const toggleDrawer = (open) => () => {
-    setState(open);
+    // Алгоритм для того чтобы тот кто создал подчат и пользователи подчата моги открыть этот чат
+    const isActiveToCreatorsSubChat = subUserChats.some(
+      (e) =>
+        (e.userAuthId === accessLogin.id && e.userChatId === chatById[0]?.id) ||
+        (e.userChatId === accessLogin.id && e.userChatId === chatById[0]?.id)
+    );
+
+    if (isActiveToCreatorsSubChat) {
+      setState(open);
+    } else {
+      notify();
+    }
   };
 
   const emblem = "https://i.ibb.co/xCjbnnw/emblem.png";
