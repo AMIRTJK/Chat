@@ -26,6 +26,7 @@ import {
   postUserChatsExecutor,
   getUserChatsExecutorTabs,
   postUserChatsExecutorTabs,
+  putUserChatsExecutorTabs,
   deleteUserChatsExecutorTabs,
   getVisaMessage,
   postVisaMessage,
@@ -224,6 +225,9 @@ const chatSlice = createSlice({
       state.subUserChatsTabs = action.payload;
     });
     builder.addCase(postUserChatsExecutorTabs.fulfilled, (state, action) => {
+      state.subUserChatsTabs = action.payload;
+    });
+    builder.addCase(putUserChatsExecutorTabs.fulfilled, (state, action) => {
       state.subUserChatsTabs = action.payload;
     });
     builder.addCase(deleteUserChatsExecutorTabs.fulfilled, (state, action) => {

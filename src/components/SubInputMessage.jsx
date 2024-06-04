@@ -21,6 +21,7 @@ const SubInputMessage = () => {
   const subChatById = useSelector((store) => store.chat.subChatById);
   const chatById = useSelector((store) => store.chat.chatById);
   const inviteToSubChat = useSelector((store) => store.chat.inviteToSubChat);
+  const subUserChatsTabs = useSelector((store) => store.chat.subUserChatsTabs);
 
   const authedLogin = JSON.parse(localStorage.getItem("accessLogin"));
 
@@ -31,39 +32,40 @@ const SubInputMessage = () => {
 
   let newObj = {};
 
-  const subChatUser =
-    Array.isArray(inviteToSubChat) &&
-    inviteToSubChat.some((e) => {
-      if (e.userChatId === chatById[0]?.id && authedLogin.id === e.userAuthId) {
-        return e;
-      }
-    });
+  // const subChatUser =
+  //   Array.isArray(inviteToSubChat) &&
+  //   inviteToSubChat.some((e) => {
+  //     if (e.userChatId === chatById[0]?.id && authedLogin.id === e.userAuthId) {
+  //       return e;
+  //     }
+  //   });
 
   Array.isArray(subUserChats) &&
     subUserChats.forEach((e) => {
-      Array.isArray(inviteToSubChat) &&
-        inviteToSubChat.forEach((invite) => {
-          if (e.userAuthId === authedLogin.id) {
-            // это условие работает, создатели subChat могут отправлять сообщение
-            newObj = { ...e };
-          } else if (
-            invite.userChatId === chatById[0]?.id &&
-            authedLogin.id === invite.userAuthId
-          ) {
-            newObj = { ...invite };
-          }
-        });
+      if (e.userAuthId === authedLogin.id) {
+        // это условие работает, создатели subChat могут отправлять сообщение
+        newObj = { ...e };
+      }
     });
+
+  const activeTab =
+    Array.isArray(subUserChatsTabs) &&
+    subUserChatsTabs.find((e) => e.status === true);
+
+  const activeUserChat =
+    Array.isArray(subUserChats) &&
+    subUserChats.find((e) => e.userAuthId === authedLogin.id);
 
   let message = {
     id: Date.now().toString(),
-    subUserChatId: subChatById[0]?.userAuthId,
+    subUserChatId: activeUserChat?.userAuthId,
     name: newObj.name,
     role: newObj.role,
     image: newObj.image,
     text: showSend,
     userAuthId: authedLogin.id,
     userChatId: chatById[0]?.id,
+    subUserTabId: activeTab ? activeTab?.id : null,
     dateTime: time,
     replyMessage: {},
   };
@@ -72,6 +74,10 @@ const SubInputMessage = () => {
     Dispatch(postSubMessage(message));
     setShowSend("");
   };
+
+  const isActivePostSubMessage =
+    Array.isArray(subUserChats) &&
+    subUserChats.some((e) => e.userAuthId === authedLogin.id && chatById[0]?.id === e.userChatId);
 
   return (
     <div className="input-message border-[2px] rounded-lg border-[#007fd2] p-[5px] w-full flex justify-between relative">
@@ -88,7 +94,7 @@ const SubInputMessage = () => {
         </IconButton>
         <IconButton
           onClick={() => {
-            if (subChatById[0]?.userAuthId === authedLogin.id || subChatUser) {
+            if (isActivePostSubMessage) {
               handlePostSubMessage();
             }
           }}

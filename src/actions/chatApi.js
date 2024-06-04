@@ -647,6 +647,30 @@ export const postUserChatsExecutorTabs = createAsyncThunk(
   }
 );
 
+export const putUserChatsExecutorTabs = createAsyncThunk(
+  "putUserChatsExecutorTabs",
+  async (newObj, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await fetch(
+       `${ import.meta.env.VITE_API_USERS_CHAT_EXECUTOR_TABS}/${newObj.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newObj),
+        }
+      );
+      const data = await response.json();
+      dispatch(getUserChatsExecutorTabs());
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
 export const deleteUserChatsExecutorTabs = createAsyncThunk(
   "deleteUserChatsExecutorTabs",
   async (id, { rejectWithValue, dispatch }) => {
@@ -896,6 +920,7 @@ export const postInviteToSubChat = createAsyncThunk(
   "postInviteToSubChat",
   async (newObj, { rejectWithValue, dispatch }) => {
     try {
+      console.log(newObj);
       const response = await fetch(
         import.meta.env.VITE_API_INVITE_TO_SUB_CHAT,
         {

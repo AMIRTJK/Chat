@@ -29,6 +29,7 @@ const InviteToSubChat = ({ handleModal }) => {
       userAuthId: item.userAuthId,
       userChatId: subChatById[0].userChatId,
     };
+
     if (subChatById[0].userAuthId === accessLogin.id) {
       Dispatch(postInviteToSubChat(newObj));
     }
@@ -47,10 +48,11 @@ const InviteToSubChat = ({ handleModal }) => {
     Dispatch(getUsers());
   }, [Dispatch]);
 
+
   return (
     <div
       onClick={() => handleModal(false)}
-      className="modal bg-[#00000030] w-full h-[100vh] fixed"
+      className="modal bg-[#00000030] w-full h-[100vh] fixed z-10"
     >
       <div
         onClick={(event) => event.stopPropagation()}
