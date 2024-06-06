@@ -3,11 +3,18 @@ import SubInputMessage from "./SubInputMessage";
 import InviteToSubChat from "./InviteToSubChat";
 import { Button } from "@mui/material";
 
+import { useSelector, useDispatch } from "react-redux";
+import { actions } from "../slices/chat-slice";
+
 const SubWrapperInputMessage = () => {
-  const [invite, setInvite] = useState(false);
+  const Dispatch = useDispatch();
+
+  const invite = useSelector((store) => store.chat.invite);
+
+  const { setInvite } = actions;
 
   const handleModal = (state) => {
-    setInvite(state);
+    Dispatch(setInvite(state));
   };
 
   return (

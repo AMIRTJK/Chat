@@ -3,8 +3,8 @@ import { Button, Avatar, IconButton } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import {
   getUsers,
-  postInviteToSubChat,
-  deleteInviteToSubChat,
+  postInvitedToSubChatTabs,
+  getSubUserChatTabsById,
 } from "../actions/chatApi";
 import DeleteIcon from "@mui/icons-material/Delete";
 
@@ -13,41 +13,39 @@ const InviteToSubChat = ({ handleModal }) => {
 
   const users = useSelector((store) => store.chat.users);
   const subChatById = useSelector((store) => store.chat.subChatById);
-  const inviteToSubChat = useSelector((store) => store.chat.inviteToSubChat);
+  const chatById = useSelector((store) => store.chat.chatById);
+
+  const subUserChatTabsById = useSelector(
+    (store) => store.chat.subUserChatTabsById
+  );
+  const subUserChatTabs = useSelector((store) => store.chat.subUserChatTabs);
 
   const accessLogin = JSON.parse(localStorage.getItem("accessLogin"));
 
-  const handlePostInviteToSubChat = (item) => {
+  const handlePostInvitedToSubChatTabs = (item) => {
     const newObj = {
       id: Date.now().toString(),
-      subUserChatId: subChatById[0].userAuthId,
+      subUserChatTabId: subUserChatTabsById[0]?.id,
       name: item.name,
       role: item.role,
       image: item.image,
       status: true,
       login: item.login,
       userAuthId: item.userAuthId,
-      userChatId: subChatById[0].userChatId,
+      userChatId: chatById[0]?.id,
     };
 
-    if (subChatById[0].userAuthId === accessLogin.id) {
-      Dispatch(postInviteToSubChat(newObj));
+    if (
+      subUserChatTabsById[0]?.userAuthId === accessLogin.id &&
+      chatById[0]?.id === subUserChatTabsById[0]?.userChatId
+    ) {
+      Dispatch(postInvitedToSubChatTabs(newObj));
     }
-  };
-
-  const handleDelete = (userAuthId, event) => {
-    event.stopPropagation();
-    inviteToSubChat.forEach((e) => {
-      if (userAuthId === e.userAuthId) {
-        Dispatch(deleteInviteToSubChat(e.id));
-      }
-    });
   };
 
   useEffect(() => {
     Dispatch(getUsers());
   }, [Dispatch]);
-
 
   return (
     <div
@@ -71,7 +69,7 @@ const InviteToSubChat = ({ handleModal }) => {
             {users.map((e) => {
               return (
                 <li
-                  onClick={() => handlePostInviteToSubChat(e)}
+                  onClick={() => handlePostInvitedToSubChatTabs(e)}
                   key={e.id}
                   className="flex justify-between items-center p-[10px] border-b-[1px] hover:bg-[#00000010] cursor-pointer transition-all duration-100"
                 >
@@ -82,9 +80,7 @@ const InviteToSubChat = ({ handleModal }) => {
                       <p className="font-medium text-[#00000095]">{e.role}</p>
                     </div>
                   </div>
-                  <IconButton
-                    onClick={(event) => handleDelete(e.userAuthId, event)}
-                  >
+                  <IconButton>
                     <DeleteIcon
                       sx={{
                         transition: "all .2s",

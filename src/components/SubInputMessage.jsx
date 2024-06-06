@@ -2,7 +2,8 @@ import React, { useState } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 
-import { postSubMessage } from "../actions/chatApi";
+import { postSubMessage, postSubTabMessages } from "../actions/chatApi";
+// Нужно реализовать postSubTabMessages
 
 import { IconButton } from "@mui/material";
 
@@ -20,8 +21,16 @@ const SubInputMessage = () => {
   const subUserChats = useSelector((store) => store.chat.subUserChats);
   const subChatById = useSelector((store) => store.chat.subChatById);
   const chatById = useSelector((store) => store.chat.chatById);
-  const inviteToSubChat = useSelector((store) => store.chat.inviteToSubChat);
-  const subUserChatsTabs = useSelector((store) => store.chat.subUserChatsTabs);
+  const invitedToSubChatTabs = useSelector(
+    (store) => store.chat.invitedToSubChatTabs
+  );
+  const subUserChatTabs = useSelector((store) => store.chat.subUserChatTabs);
+  const subTabMessages = useSelector((store) => store.chat.subTabMessages);
+  const subUserChatTabsById = useSelector(
+    (store) => store.chat.subUserChatTabsById
+  );
+
+  const idxSubTab = useSelector((store) => store.chat.idxSubTab);
 
   const authedLogin = JSON.parse(localStorage.getItem("accessLogin"));
 
@@ -32,52 +41,89 @@ const SubInputMessage = () => {
 
   let newObj = {};
 
-  // const subChatUser =
-  //   Array.isArray(inviteToSubChat) &&
-  //   inviteToSubChat.some((e) => {
-  //     if (e.userChatId === chatById[0]?.id && authedLogin.id === e.userAuthId) {
-  //       return e;
-  //     }
-  //   });
-
   Array.isArray(subUserChats) &&
-    subUserChats.forEach((e) => {
-      if (e.userAuthId === authedLogin.id) {
-        // это условие работает, создатели subChat могут отправлять сообщение
-        newObj = { ...e };
-      }
+    subUserChats.forEach((subChat) => {
+      invitedToSubChatTabs.forEach((invited) => {
+        if (subChat.userAuthId === authedLogin.id) {
+          // это условие работает, создатели subChat могут отправлять сообщение
+          newObj = { ...subChat };
+        } else if (invited.userAuthId === authedLogin.id) {
+          newObj = { ...invited };
+        }
+      });
     });
 
-  const activeTab =
-    Array.isArray(subUserChatsTabs) &&
-    subUserChatsTabs.find((e) => e.status === true);
+  const activeTab = subUserChatTabsById[0]?.status
+    ? subUserChatTabsById[0]?.id
+    : false;
 
-  const activeUserChat =
-    Array.isArray(subUserChats) &&
-    subUserChats.find((e) => e.userAuthId === authedLogin.id);
+  const activeSubUser =
+    Array.isArray(subUserChatTabs) &&
+    subUserChatTabs.find(
+      (e) => e.userAuthId === authedLogin.id && e.status === false
+    );
+  // Исправить
+  const activeSubInvitorUser =
+    Array.isArray(subUserChatTabs) &&
+    subUserChatTabs.find((e) => e.status === true);
 
-  let message = {
+  const activeSubInvitedUser =
+    Array.isArray(invitedToSubChatTabs) &&
+    invitedToSubChatTabs.find(
+      (e) => e.userAuthId === authedLogin.id && e.status === true
+    );
+
+  let messageSubUser = {
     id: Date.now().toString(),
-    subUserChatId: activeUserChat?.userAuthId,
+    subUserChatId: activeSubUser?.userAuthId,
     name: newObj.name,
     role: newObj.role,
     image: newObj.image,
     text: showSend,
     userAuthId: authedLogin.id,
     userChatId: chatById[0]?.id,
-    subUserTabId: activeTab ? activeTab?.id : null,
+    subUserTabId: activeTab,
     dateTime: time,
     replyMessage: {},
   };
 
+  let messageSubTabUser = {
+    id: Date.now().toString(),
+    subUserChatId: activeSubInvitorUser?.subUserChatId,
+    name: newObj.name,
+    role: newObj.role,
+    image: newObj.image,
+    text: showSend,
+    userAuthId: authedLogin.id,
+    userChatId: chatById[0]?.id,
+    subUserTabId: activeTab,
+    dateTime: time,
+    replyMessage: {},
+  };
+
+
+
+  const isActivePostSubMessage =
+    Array.isArray(subUserChatTabs) &&
+    subUserChatTabs.every((e) => e.status === false && e.userAuthId === authedLogin.id);
+
+  const isActivePostSubTabMessages =
+    Array.isArray(subUserChatTabs) &&
+    subUserChatTabs.some((e) => e.status === true);
+
   const handlePostSubMessage = () => {
-    Dispatch(postSubMessage(message));
+    if (isActivePostSubMessage) {
+      Dispatch(postSubMessage(messageSubUser));
+    }
     setShowSend("");
   };
 
-  const isActivePostSubMessage =
-    Array.isArray(subUserChats) &&
-    subUserChats.some((e) => e.userAuthId === authedLogin.id && chatById[0]?.id === e.userChatId);
+  const handlePostSubTabMessage = () => {
+    if (isActivePostSubTabMessages) {
+      Dispatch(postSubTabMessages(messageSubTabUser));
+    }
+    setShowSend("");
+  };
 
   return (
     <div className="input-message border-[2px] rounded-lg border-[#007fd2] p-[5px] w-full flex justify-between relative">
@@ -94,9 +140,8 @@ const SubInputMessage = () => {
         </IconButton>
         <IconButton
           onClick={() => {
-            if (isActivePostSubMessage) {
-              handlePostSubMessage();
-            }
+            handlePostSubMessage();
+            handlePostSubTabMessage();
           }}
         >
           <SendIcon

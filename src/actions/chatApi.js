@@ -607,90 +607,6 @@ export const postUserChatsExecutor = createAsyncThunk(
   }
 );
 
-export const getUserChatsExecutorTabs = createAsyncThunk(
-  "",
-  async (_, { rejectWithValue }) => {
-    try {
-      const response = await fetch(
-        import.meta.env.VITE_API_USERS_CHAT_EXECUTOR_TABS
-      );
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.log(error);
-      return rejectWithValue(error);
-    }
-  }
-);
-
-export const postUserChatsExecutorTabs = createAsyncThunk(
-  "postUserChatsExecutorTabs",
-  async (newObj, { rejectWithValue, dispatch }) => {
-    try {
-      const response = await fetch(
-        import.meta.env.VITE_API_USERS_CHAT_EXECUTOR_TABS,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(newObj),
-        }
-      );
-      const data = await response.json();
-      dispatch(getUserChatsExecutorTabs());
-      return data;
-    } catch (error) {
-      console.error(error);
-      return rejectWithValue(error);
-    }
-  }
-);
-
-export const putUserChatsExecutorTabs = createAsyncThunk(
-  "putUserChatsExecutorTabs",
-  async (newObj, { rejectWithValue, dispatch }) => {
-    try {
-      const response = await fetch(
-       `${ import.meta.env.VITE_API_USERS_CHAT_EXECUTOR_TABS}/${newObj.id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(newObj),
-        }
-      );
-      const data = await response.json();
-      dispatch(getUserChatsExecutorTabs());
-      return data;
-    } catch (error) {
-      console.error(error);
-      return rejectWithValue(error);
-    }
-  }
-);
-
-export const deleteUserChatsExecutorTabs = createAsyncThunk(
-  "deleteUserChatsExecutorTabs",
-  async (id, { rejectWithValue, dispatch }) => {
-    try {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_USERS_CHAT_EXECUTOR_TABS}/${id}`,
-        {
-          method: "DELETE",
-        }
-      );
-      const data = await response.json();
-      dispatch(getUserChatsExecutorTabs());
-      return data;
-    } catch (error) {
-      console.error(error);
-      return rejectWithValue(error);
-    }
-  }
-);
-
 export const getVisaUsers = createAsyncThunk(
   "getVisaUsers",
   async (_, { rejectWithValue }) => {
@@ -831,22 +747,6 @@ export const putUserChatsExecutor = createAsyncThunk(
   }
 );
 
-export const getSubChatById = createAsyncThunk(
-  "getSubChatById",
-  async (id, { rejectWithValue }) => {
-    try {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_USERS_CHAT_EXECUTOR}?id=${id}`
-      );
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error(error);
-      return rejectWithValue(error);
-    }
-  }
-);
-
 export const getSubMessages = createAsyncThunk("getSubMessages", async () => {
   try {
     const response = await fetch(import.meta.env.VITE_API_SUB_MESSAGES);
@@ -860,7 +760,7 @@ export const getSubMessages = createAsyncThunk("getSubMessages", async () => {
 
 export const postSubMessage = createAsyncThunk(
   "postSubMessage",
-  async (newObj, { rejectWithValue, dispatch }) => {
+  async (newObj, { rejectWithValue, dispatch, getState }) => {
     try {
       const response = await fetch(import.meta.env.VITE_API_SUB_MESSAGES, {
         method: "POST",
@@ -871,6 +771,8 @@ export const postSubMessage = createAsyncThunk(
       });
       const data = await response.json();
       dispatch(getSubMessages());
+      // dispatch(getSubUserChatTabsById(getState().chat.idxSubTab));
+      // console.log(getState().chat.idxSubTab);
       return data;
     } catch (error) {
       console.error(error);
@@ -902,12 +804,22 @@ export const deleteSubMessage = createAsyncThunk(
   }
 );
 
-export const getInviteToSubChat = createAsyncThunk(
-  "getInviteToSubChat",
-  async (_, { rejectWithValue }) => {
+export const putSubMessages = createAsyncThunk(
+  "putSubMessages",
+  async (newObj, { rejectWithValue, dispatch }) => {
     try {
-      const response = await fetch(import.meta.env.VITE_API_INVITE_TO_SUB_CHAT);
+      const response = await fetch(
+        `${import.meta.env.VITE_API_SUB_MESSAGES}/${newObj.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application-json",
+          },
+          body: JSON.stringify(newObj),
+        }
+      );
       const data = await response.json();
+      dispatch(getSubMessages());
       return data;
     } catch (error) {
       console.error(error);
@@ -916,13 +828,26 @@ export const getInviteToSubChat = createAsyncThunk(
   }
 );
 
-export const postInviteToSubChat = createAsyncThunk(
-  "postInviteToSubChat",
+export const getSubUserChatTabs = createAsyncThunk(
+  "getSubUserChatTabs",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await fetch(import.meta.env.VITE_API_SUB_USER_CHAT_TABS);
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const postSubUserChatTabs = createAsyncThunk(
+  "postSubUserChatTabs",
   async (newObj, { rejectWithValue, dispatch }) => {
     try {
-      console.log(newObj);
       const response = await fetch(
-        import.meta.env.VITE_API_INVITE_TO_SUB_CHAT,
+        import.meta.env.VITE_API_SUB_USER_CHAT_TABS,
         {
           method: "POST",
           headers: {
@@ -932,7 +857,7 @@ export const postInviteToSubChat = createAsyncThunk(
         }
       );
       const data = await response.json();
-      dispatch(getInviteToSubChat());
+      dispatch(getSubUserChatTabs());
       return data;
     } catch (error) {
       console.error(error);
@@ -941,18 +866,135 @@ export const postInviteToSubChat = createAsyncThunk(
   }
 );
 
-export const deleteInviteToSubChat = createAsyncThunk(
-  "deleteInviteToSubChat",
+export const deleteSubUserChatTabs = createAsyncThunk(
+  "deleteSubUserChatTabs",
   async (id, { rejectWithValue, dispatch }) => {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_INVITE_TO_SUB_CHAT}/${id}`,
+        `${import.meta.env.VITE_API_SUB_USER_CHAT_TABS}/${id}`,
         {
           method: "DELETE",
         }
       );
       const data = await response.json();
-      dispatch(getInviteToSubChat());
+      dispatch(getSubUserChatTabs());
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const getSubTabMessages = createAsyncThunk(
+  "getSubTabMessages",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await fetch(import.meta.env.VITE_API_SUB_TAB_MESSAGES);
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+// Данный запрос еще не используется
+export const postSubTabMessages = createAsyncThunk(
+  "postSubTabMessages",
+  async (newObj, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await fetch(import.meta.env.VITE_API_SUB_TAB_MESSAGES, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newObj),
+      });
+      const data = await response.json();
+      dispatch(getSubTabMessages());
+      return data;
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const putSubUserChatTabsById = createAsyncThunk(
+  "putSubUserChatTabsById",
+  async (newObj, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_SUB_USER_CHAT_TABS}/${newObj.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newObj),
+        }
+      );
+      dispatch(getSubUserChatTabs());
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const getSubUserChatTabsById = createAsyncThunk(
+  "getSubUserChatTabsById",
+  async (id, { rejectWithValue }) => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_SUB_USER_CHAT_TABS}?id=${id}`
+      );
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const getInvitedToSubChatTabs = createAsyncThunk(
+  "getInvitedToSubChatTabs",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await fetch(
+        import.meta.env.VITE_API_INVITED_TO_SUB_CHAT_TABS
+      );
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const postInvitedToSubChatTabs = createAsyncThunk(
+  "postInvitedToSubChatTabs",
+  async (newObj, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await fetch(
+        import.meta.env.VITE_API_INVITED_TO_SUB_CHAT_TABS,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newObj),
+        }
+      );
+      const data = await response.json();
+      console.log(data);
+      dispatch(getInvitedToSubChatTabs());
       return data;
     } catch (error) {
       console.error(error);

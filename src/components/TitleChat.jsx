@@ -50,25 +50,25 @@ const TitleChat = () => {
 
   const [state, setState] = useState(false);
 
-  const notify = () => {
-    toast.info("Вы не являетесь участником этого чата!", {
-      position: "top-right",
-    });
-  };
+  // const notify = () => {
+  //   toast.info("Вы не являетесь участником этого чата!", {
+  //     position: "top-right",
+  //   });
+  // };
 
   const toggleDrawer = (open) => () => {
     // Алгоритм для того чтобы тот кто создал подчат и пользователи подчата моги открыть этот чат
-    const isActiveToCreatorsSubChat = subUserChats.some(
-      (e) =>
-        (e.userAuthId === accessLogin.id && e.userChatId === chatById[0]?.id) ||
-        (e.userChatId === accessLogin.id && e.userChatId === chatById[0]?.id)
-    );
+    // const isActiveToCreatorsSubChat = subUserChats.some(
+    //   (e) =>
+    //     (e.userAuthId === accessLogin.id && e.userChatId === chatById[0]?.id) ||
+    //     (e.userChatId === accessLogin.id && e.userChatId === chatById[0]?.id)
+    // );
 
-    if (isActiveToCreatorsSubChat) {
-      setState(open);
-    } else {
-      notify();
-    }
+    setState(open);
+    // if (isActiveToCreatorsSubChat) {
+    // } else {
+    //   notify();
+    // }
   };
 
   const emblem = "https://i.ibb.co/xCjbnnw/emblem.png";

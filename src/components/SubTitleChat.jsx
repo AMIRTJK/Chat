@@ -3,201 +3,157 @@ import { Button, Avatar, IconButton } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import AddIcon from "@mui/icons-material/Add";
 import CloseIcon from "@mui/icons-material/Close";
-
-import InviteToSubChat from "./InviteToSubChat";
-
 import {
-  putUserChatsExecutor,
-  getSubChatById,
-  getInviteToSubChat,
-  getUserChatsExecutorTabs,
-  postUserChatsExecutorTabs,
-  putUserChatsExecutorTabs,
-  deleteUserChatsExecutorTabs,
+  getSubUserChatTabs,
+  postSubUserChatTabs,
+  deleteSubUserChatTabs,
+  getSubUserChatTabsById,
+  putSubUserChatTabsById,
+  putSubMessages,
+  getInvitedToSubChatTabs,
+  postSubTabMessages,
 } from "../actions/chatApi";
+
+import InputTabName from "./InputTabName";
+
+import { actions } from "../slices/chat-slice";
 
 const SubTitleChat = () => {
   const accessLogin = JSON.parse(localStorage.getItem("accessLogin"));
   const subUserChats = useSelector((store) => store.chat.subUserChats);
   const chatById = useSelector((store) => store.chat.chatById);
   const subChatById = useSelector((store) => store.chat.subChatById);
-  const inviteToSubChat = useSelector((store) => store.chat.inviteToSubChat);
-  const subUserChatsTabs = useSelector((store) => store.chat.subUserChatsTabs);
+  const subMessages = useSelector((store) => store.chat.subMessages);
+  const subUserChatTabs = useSelector((store) => store.chat.subUserChatTabs);
+  const idxSubTab = useSelector((store) => store.chat.idxSubTab);
+  const invitedToSubChatTabs = useSelector(
+    (store) => store.chat.invitedToSubChatTabs
+  );
+  const subUserChatTabsById = useSelector(
+    (store) => store.chat.subUserChatTabsById
+  );
+
+  const tabNameValue = useSelector((store) => store.chat.tabNameValue);
+
+  const { setIdxSubTab, setTabNameValue } = actions;
+
+  const [tabName, setTabName] = useState(false);
 
   const Dispatch = useDispatch();
 
-  // const handlePutSubUserChatStatus = (item) => {
-  //   Dispatch(putUserChatsExecutor({ ...item, status: true }));
-  //   Array.isArray(subUserChats) &&
-  //     subUserChats.forEach((e) => {
-  //       if (e.status === true) {
-  //         Dispatch(putUserChatsExecutor({ ...e, status: false }));
-  //       }
-  //     });
-  // };
+  console.log();
 
-  useEffect(() => {
-    Dispatch(getInviteToSubChat());
-    Dispatch(getUserChatsExecutorTabs());
-  }, [Dispatch, subUserChats]);
+  const handleSubTabMessagesById = async (item) => {
+    // Отключаем все вкладки
+    for (const e of Array.isArray(subUserChatTabs) && subUserChatTabs) {
+      if (e.status === true) {
+        await Dispatch(putSubUserChatTabsById({ ...e, status: false }));
+      }
+    }
 
-  const handlePostSubUserChatsTab = () => {
-    let cnt = 1;
-    Array.isArray(subUserChatsTabs) &&
-      subUserChatsTabs.forEach((e) => {
-        if (
-          e.userAuthId === accessLogin.id &&
-          chatById[0]?.id === e.userChatId
-        ) {
-          cnt++;
-        }
-      });
+    // Включаем выбранную вкладку
+    await Dispatch(putSubUserChatTabsById({ ...item, status: true }));
 
-    let newObj = {};
-    Array.isArray(subUserChats) &&
-      subUserChats.forEach((e) => {
-        if (
-          chatById[0]?.id === e.userChatId &&
-          accessLogin.id === e.userAuthId
-        ) {
-          newObj = {
-            id: Date.now().toString(),
-            subUserChat: e.id,
-            userAuthId: e.userAuthId,
-            userChatId: e.userChatId,
-            name: `Вкладка №${cnt}`,
-            status: subUserChatsTabs.length === 0 ? true : false,
-          };
-        }
-      });
-    Dispatch(postUserChatsExecutorTabs(newObj));
+    for (const subMessage of Array.isArray(subMessages) && subMessages) {
+      if (subMessage.subUserTabId === false) {
+        await Dispatch(putSubMessages({ ...subMessage, subUserTabId: true }));
+      }
+    }
+
+    // Получаем данные для выбранной вкладки
+    Dispatch(getSubUserChatTabsById(item.id));
+    Dispatch(setIdxSubTab(item.id));
   };
 
-  const isActiveAddTab =
-    Array.isArray(subUserChats) &&
-    subUserChats.some((e) => e.userAuthId === accessLogin.id);
-
-  const isActiveSubUserChat =
-    Array.isArray(subUserChats) &&
-    subUserChats.some(
-      (e) =>
-        (chatById[0]?.id === e.userChatId &&
-          accessLogin?.id === e.userAuthId) ||
-        (accessLogin?.id === e.userChatId && chatById[0]?.id === e.userChatId)
-    );
-
-  const [showInviteModal, setShowInviteModal] = useState(false);
-
-  const handleIntiveToSubChat = (state) => {
-    setShowInviteModal(state);
-    if (subUserChatsTabs[0]?.status === true) {
-      Array.isArray(subUserChats) &&
-        subUserChats.map((e) => {
-          Dispatch(putUserChatsExecutor({ ...e, status: false }));
-        });
+  const handleSetStatusSubChat = async () => {
+    // Отключаем все вкладки
+    for (const subTab of Array.isArray(subUserChatTabs) && subUserChatTabs) {
+      if (subTab.status === true) {
+        for (const subMessage of Array.isArray(subMessages) && subMessages) {
+          await Dispatch(
+            putSubMessages({ ...subMessage, subUserTabId: false })
+          );
+        }
+        await Dispatch(putSubUserChatTabsById({ ...subTab, status: false }));
+      }
     }
   };
 
-  const isActiveUserFromTab =
-    Array.isArray(subUserChatsTabs) &&
-    subUserChatsTabs.some((subUserTab) => {
-      return (
-        Array.isArray(subUserChats) &&
-        subUserChats.some(
-          (subUser) =>
-            subUserTab.userAuthId === subUser.userAuthId &&
-            subUserTab.status === true
-        )
-      );
+  const handleShowTabName = (state) => {
+    setTabName(state);
+  };
+
+  const handlePostSubTabMessages = () => {
+    let newObj = {};
+
+    subUserChats.forEach((e) => {
+      if (
+        (accessLogin.id === e.userAuthId && chatById[0].id === e.userChatId) ||
+        (accessLogin.id === e.userChatId && chatById[0].id === e.userChatId)
+      ) {
+        newObj = {
+          id: Date.now().toString(),
+          subUserChatId: e.id,
+          userAuthId: e.userAuthId,
+          userChatId: e.userChatId,
+          name: tabNameValue,
+          status: subUserChatTabs.length === 0 ? true : false,
+        };
+      }
     });
 
-  const handleSetStateSubChatId = async () => {
-    if (Array.isArray(subUserChatsTabs)) {
-      for (const e of subUserChatsTabs) {
-        if (e.status === true) {
-          Dispatch(putUserChatsExecutorTabs({ ...e, status: false }));
-        }
-      }
-    }
-    if (Array.isArray(subUserChats)) {
-      for (const e of subUserChats) {
-        Dispatch(putUserChatsExecutor({ ...e, status: true }));
-        // После успешного обновления, получаем данные
-        Dispatch(getSubChatById(e.id));
-      }
-    }
+    console.log(newObj);
+
+    Dispatch(postSubUserChatTabs(newObj));
+    handleShowTabName(false);
+    Dispatch(setTabNameValue(""));
   };
 
-  const handleSetStateChatTabs = async (item) => {
-    Dispatch(putUserChatsExecutorTabs({ ...item, status: true }));
-    Array.isArray(subUserChatsTabs) &&
-      subUserChatsTabs.forEach((e) => {
-        if (e.status === true) {
-          Dispatch(putUserChatsExecutorTabs({ ...e, status: false }));
-        }
-      });
+  const handleDeleteSubUserChatTabs = (id) => {
+    Dispatch(deleteSubUserChatTabs(id));
   };
 
-  //   Array.isArray(subUserChats) &&
-  //     subUserChats.forEach((e) => {
-  //       if (e.status === true) {
-  //         Dispatch(putUserChatsExecutor({ ...e, status: false }));
-  //       }
-  //     });
-
-  const isActiveTabs =
-    Array.isArray(subUserChatsTabs) &&
-    subUserChatsTabs.some((e) => e.status === true);
+  useEffect(() => {
+    Dispatch(getSubUserChatTabs());
+    Dispatch(getInvitedToSubChatTabs());
+  }, [Dispatch, subMessages]);
 
   return (
     <>
       <header className="bg-[#f5f5f5]  p-[30px] flex justify-between items-center flex-wrap">
         <div className="wrapper-tabs flex items-end gap-3">
-          {isActiveSubUserChat && (
-            <Button
-              // onClick={() => {
-              //   handlePutSubUserChatStatus();
-              // }}
-              // variant={e.status ? "contained" : "outlined"}
-              onClick={() => handleSetStateSubChatId()}
-              variant="contained"
-            >
-              Исполнители
-            </Button>
-          )}
+          <Button
+            onClick={() => handleSetStatusSubChat()}
+            variant={subMessages[0]?.subUserTabId ? "outlined" : "contained"}
+          >
+            Исполнители
+          </Button>
+
           <div className="wrapper-sub-tabs flex gap-5">
-            {Array.isArray(subUserChatsTabs) &&
-              subUserChatsTabs.map((e) => {
+            {Array.isArray(subUserChatTabs) &&
+              subUserChatTabs.map((e) => {
                 if (
-                  (e.userAuthId === accessLogin.id &&
+                  (accessLogin.id === e.userAuthId &&
                     chatById[0]?.id === e.userChatId) ||
-                  (e.userChatId === accessLogin.id &&
+                  // нижнее второе условие конфликтует с вышестояшим, то есть Зафар Азими видит лишние вкладки
+                  (invitedToSubChatTabs[0]?.subUserChatTabId === e.id &&
                     chatById[0]?.id === e.userChatId)
-                ) {
+                )
                   return (
                     <Button
-                      onClick={() => handleSetStateChatTabs(e)}
+                      onClick={() => handleSubTabMessagesById(e)}
                       key={e.id}
-                      variant="outlined"
+                      variant={e.status ? "contained" : "outlined"}
                       sx={{
                         fontSize: "13px",
-                        color: e.status ? "white" : "green",
                         height: "30px",
                         width: "160px",
                         position: "relative",
-                        borderColor: "green",
-                        backgroundColor: e.status ? "green" : "transparent",
-                        "&:hover": {
-                          borderColor: "green",
-                          backgroundColor: e.status ? "green" : "transparent",
-                        },
                       }}
                     >
                       {e.name}
                       <CloseIcon
-                        onClick={() =>
-                          Dispatch(deleteUserChatsExecutorTabs(e.id))
-                        }
+                        onClick={() => handleDeleteSubUserChatTabs(e.id)}
                         sx={{
                           fontSize: "17px",
                           color: e.status ? "white" : "000000af",
@@ -212,74 +168,58 @@ const SubTitleChat = () => {
                       />
                     </Button>
                   );
-                }
               })}
           </div>
-          {isActiveAddTab && (
-            <IconButton
-              onClick={() => {
-                handlePostSubUserChatsTab();
-                handleIntiveToSubChat(true);
-              }}
-              sx={{
-                "&:hover": {
-                  backgroundColor: "#007bd220",
-                },
-              }}
-            >
-              <AddIcon />
-            </IconButton>
+          <IconButton
+            onClick={() => {
+              handleShowTabName(true);
+            }}
+            sx={{
+              "&:hover": {
+                backgroundColor: "#007bd220",
+              },
+            }}
+          >
+            <AddIcon />
+          </IconButton>
+          {tabName && (
+            <InputTabName
+              handleShowTabName={handleShowTabName}
+              handlePostSubTabMessages={handlePostSubTabMessages}
+            />
           )}
         </div>
         <div className="panel-user flex items-end gap-3">
-          {/* Показать чат Avatar исполнителей */}
-          {Array.isArray(subUserChats) &&
-            !isActiveTabs &&
-            subUserChats.map((e) => {
+          {subUserChats?.map((e) => {
+            if (
+              e.userChatId === chatById[0]?.id &&
+              e.userAuthId === subUserChatTabsById[0]?.userAuthId
+              // Нужно добавить условие либо еще один map для того чтобы вывести Avatar пользователей подчата, на данный момент выводятся только пользователи вкладок подчата
+            )
               return (
-                <IconButton key={e.id} sx={{ padding: "0px" }}>
-                  <Avatar src={e.image} />
-                </IconButton>
-              );
-            })}
-          {/* Показать Avatar вкладок */}
-          {Array.isArray(subUserChats) &&
-            isActiveTabs &&
-            subUserChats.map((e) => {
-              if (e.userAuthId === accessLogin.id) {
-                return (
+                <>
                   <IconButton key={e.id} sx={{ padding: "0px" }}>
                     <Avatar src={e.image} />
                   </IconButton>
-                );
-              }
-            })}
-
-          {/* {Array.isArray(inviteToSubChat) &&
-            inviteToSubChat.map((e) => {
-              if (
-                (chatById[0]?.id === e.userChatId &&
-                  subChatById[0]?.userAuthId === e.subUserChatId) ||
-                //Условие ниже не совсем точно работает
-                (accessLogin?.id === e.userAuthId &&
-                  accessLogin?.id !== e.userChatId &&
-                  accessLogin?.id !== e.subUserChatId)
-              ) {
-                return (
-                  <IconButton key={e.id} sx={{ padding: "0px" }}>
-                    <Avatar
-                      src={e.image}
-                      sx={{ width: "24px", height: "24px" }}
-                    />
-                  </IconButton>
-                );
-              }
-            })} */}
+                  {invitedToSubChatTabs?.map((invite) => {
+                    if (
+                      subUserChatTabsById[0]?.id === invite.subUserChatTabId
+                    ) {
+                      return (
+                        <IconButton key={invite.id} sx={{ padding: "0px" }}>
+                          <Avatar
+                            src={invite.image}
+                            sx={{ width: "24px", height: "24px" }}
+                          />
+                        </IconButton>
+                      );
+                    }
+                  })}
+                </>
+              );
+          })}
         </div>
       </header>
-      {showInviteModal && (
-        <InviteToSubChat handleModal={handleIntiveToSubChat} />
-      )}
     </>
   );
 };

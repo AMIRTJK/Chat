@@ -24,23 +24,24 @@ import {
   getUserStructureExecutor,
   getUserChatsExecutor,
   postUserChatsExecutor,
-  getUserChatsExecutorTabs,
-  postUserChatsExecutorTabs,
-  putUserChatsExecutorTabs,
-  deleteUserChatsExecutorTabs,
   getVisaMessage,
   postVisaMessage,
   deleteVisaMessage,
   getDefaultVisa,
   getOwnVisa,
   putUserChatsExecutor,
-  getSubChatById,
   getSubMessages,
   postSubMessage,
   deleteSubMessage,
-  getInviteToSubChat,
-  postInviteToSubChat,
-  deleteInviteToSubChat,
+  putSubMessages,
+  getSubUserChatTabs,
+  postSubUserChatTabs,
+  deleteSubUserChatTabs,
+  getSubTabMessages,
+  postSubTabMessages,
+  putSubUserChatTabsById,
+  getSubUserChatTabsById,
+  getInvitedToSubChatTabs,
 } from "../actions/chatApi";
 
 const initialState = {
@@ -76,16 +77,20 @@ const initialState = {
   showVisaPopUp: false,
   userStructureExecutor: [],
   subUserChats: [],
-  subUserChatsTabs: [],
   executorVisa: false,
   visaMessage: [],
   visaTemp: {},
   visaExecutors: [],
   defaultVisa: [],
   ownVisa: [],
-  subChatById: [],
   subMessages: [],
-  inviteToSubChat: [],
+  subUserChatTabs: [],
+  subTabMessages: [],
+  subUserChatTabsById: [],
+  idxSubTab: null,
+  invitedToSubChatTabs: [],
+  tabNameValue: "",
+  invite: "",
 };
 
 const chatSlice = createSlice({
@@ -146,6 +151,15 @@ const chatSlice = createSlice({
     setVisaTemp: (state, action) => {
       state.visaTemp = action.payload;
     },
+    setIdxSubTab: (state, action) => {
+      state.idxSubTab = action.payload;
+    },
+    setTabNameValue: (state, action) => {
+      state.tabNameValue = action.payload;
+    },
+    setInvite: (state, action) => {
+      state.invite = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getUsers.fulfilled, (state, action) => {
@@ -166,7 +180,6 @@ const chatSlice = createSlice({
     builder.addCase(getUserChats.fulfilled, (state, action) => {
       state.userChats = action.payload;
     });
-
     builder.addCase(getVisaList.fulfilled, (state, action) => {
       state.visaList = action.payload;
     });
@@ -221,18 +234,6 @@ const chatSlice = createSlice({
     builder.addCase(postUserChatsExecutor.fulfilled, (state, action) => {
       state.subUserChats = action.payload;
     });
-    builder.addCase(getUserChatsExecutorTabs.fulfilled, (state, action) => {
-      state.subUserChatsTabs = action.payload;
-    });
-    builder.addCase(postUserChatsExecutorTabs.fulfilled, (state, action) => {
-      state.subUserChatsTabs = action.payload;
-    });
-    builder.addCase(putUserChatsExecutorTabs.fulfilled, (state, action) => {
-      state.subUserChatsTabs = action.payload;
-    });
-    builder.addCase(deleteUserChatsExecutorTabs.fulfilled, (state, action) => {
-      state.subUserChatsTabs = action.payload;
-    });
     builder.addCase(getVisaMessage.fulfilled, (state, action) => {
       state.visaMessage = action.payload;
     });
@@ -251,9 +252,6 @@ const chatSlice = createSlice({
     builder.addCase(putUserChatsExecutor.fulfilled, (state, action) => {
       state.subUserChats = action.payload;
     });
-    builder.addCase(getSubChatById.fulfilled, (state, action) => {
-      state.subChatById = action.payload;
-    });
     builder.addCase(getSubMessages.fulfilled, (state, action) => {
       state.subMessages = action.payload;
     });
@@ -263,14 +261,32 @@ const chatSlice = createSlice({
     builder.addCase(deleteSubMessage.fulfilled, (state, action) => {
       state.subMessages = action.payload;
     });
-    builder.addCase(getInviteToSubChat.fulfilled, (state, action) => {
-      state.inviteToSubChat = action.payload;
+    builder.addCase(putSubMessages.fulfilled, (state, action) => {
+      state.subMessages = action.payload;
     });
-    builder.addCase(postInviteToSubChat.fulfilled, (state, action) => {
-      state.inviteToSubChat = action.payload;
+    builder.addCase(getSubUserChatTabs.fulfilled, (state, action) => {
+      state.subUserChatTabs = action.payload;
     });
-    builder.addCase(deleteInviteToSubChat.fulfilled, (state, action) => {
-      state.inviteToSubChat = action.payload;
+    builder.addCase(postSubUserChatTabs.fulfilled, (state, action) => {
+      state.subUserChatTabs = action.payload;
+    });
+    builder.addCase(deleteSubUserChatTabs.fulfilled, (state, action) => {
+      state.subUserChatTabs = action.payload;
+    });
+    builder.addCase(getSubTabMessages.fulfilled, (state, action) => {
+      state.subTabMessages = action.payload;
+    });
+    builder.addCase(postSubTabMessages.fulfilled, (state, action) => {
+      state.subTabMessages = action.payload;
+    });
+    builder.addCase(putSubUserChatTabsById.fulfilled, (state, action) => {
+      state.subUserChatTabsById = action.payload;
+    });
+    builder.addCase(getSubUserChatTabsById.fulfilled, (state, action) => {
+      state.subUserChatTabsById = action.payload;
+    });
+    builder.addCase(getInvitedToSubChatTabs.fulfilled, (state, action) => {
+      state.invitedToSubChatTabs = action.payload;
     });
   },
 });

@@ -411,24 +411,6 @@
       "userChatId": "3"
     }
   ],
-  "subUserChatsTabs": [
-    {
-      "id": "1717479813279",
-      "subUserChat": "1717406729364",
-      "userAuthId": "5",
-      "userChatId": "2",
-      "name": "Вкладка №1",
-      "status": false
-    },
-    {
-      "id": "1717479815598",
-      "subUserChat": "1717406729364",
-      "userAuthId": "5",
-      "userChatId": "2",
-      "name": "Вкладка №2",
-      "status": false
-    }
-  ],
   "visaUsers": [
     {
       "id": "3",
@@ -438,106 +420,93 @@
       "status": "",
       "eds": "",
       "createdAt": "04-06-2024"
+    },
+    {
+      "id": "2",
+      "userAuthId": "2",
+      "login": "s.sobirovich",
+      "term": "",
+      "status": "",
+      "eds": "",
+      "createdAt": "04-06-2024"
+    },
+    {
+      "id": "2",
+      "userAuthId": "2",
+      "login": "s.sobirovich",
+      "term": "",
+      "status": "",
+      "eds": "",
+      "createdAt": "04-06-2024"
     }
   ],
   "visaMessage": [],
   "subMessages": [
     {
-      "id": "1717478384559",
+      "id": "3241",
       "subUserChatId": "4",
       "name": "Акрамшох Рамазонович",
       "role": "Директор",
       "image": "https://i.ibb.co/Kb1V9nM/583-IMG-6443-47034.png",
-      "text": "2",
-      "userAuthId": "4",
-      "userChatId": "2",
-      "subUserTabId": "1717420556186",
-      "dateTime": "10:19",
-      "replyMessage": {}
-    },
-    {
-      "id": "1717478386830",
-      "subUserChatId": "4",
-      "name": "Акрамшох Рамазонович",
-      "role": "Директор",
-      "image": "https://i.ibb.co/Kb1V9nM/583-IMG-6443-47034.png",
-      "text": "3",
-      "userAuthId": "4",
-      "userChatId": "2",
-      "subUserTabId": "1717420592672",
-      "dateTime": "10:19",
-      "replyMessage": {}
-    },
-    {
-      "id": "1717479825214",
-      "subUserChatId": "5",
-      "name": "Заъфар Исмоил",
-      "role": "Начальник гл.управление",
-      "image": "https://i.ibb.co/3Mctzwb/image.png",
-      "text": "Общий чат",
-      "userAuthId": "5",
-      "userChatId": "2",
-      "subUserTabId": null,
-      "dateTime": "10:43",
-      "replyMessage": {}
-    },
-    {
-      "id": "1717479830095",
-      "subUserChatId": "5",
-      "name": "Заъфар Исмоил",
-      "role": "Начальник гл.управление",
-      "image": "https://i.ibb.co/3Mctzwb/image.png",
-      "text": "Вкладка 1",
-      "userAuthId": "5",
-      "userChatId": "2",
-      "subUserTabId": "1717479813279",
-      "dateTime": "10:43",
-      "replyMessage": {}
-    },
-    {
-      "id": "1717479835630",
-      "subUserChatId": "5",
-      "name": "Заъфар Исмоил",
-      "role": "Начальник гл.управление",
-      "image": "https://i.ibb.co/3Mctzwb/image.png",
-      "text": "Вкладка 2",
-      "userAuthId": "5",
-      "userChatId": "2",
-      "subUserTabId": "1717479815598",
-      "dateTime": "10:43",
-      "replyMessage": {}
-    },
-    {
-      "id": "1717480160763",
-      "subUserChatId": "4",
-      "name": "Акрамшох Рамазонович",
-      "role": "Директор",
-      "image": "https://i.ibb.co/Kb1V9nM/583-IMG-6443-47034.png",
-      "text": "Общий чат Юсуф Хайрулло",
+      "text": "Барои корбари ва пешниходи хулоса (Юсуф Мачиди)!",
       "userAuthId": "4",
       "userChatId": "3",
-      "subUserTabId": null,
-      "dateTime": "10:49",
+      "subUserTabId": false,
+      "dateTime": "25.11.2024",
       "replyMessage": {}
     },
     {
-      "id": "1717480327198",
+      "id": "3341",
+      "subUserChatId": "5",
+      "name": "Заъфар Исмоил",
+      "role": "Начальник гл.управление",
+      "image": "https://i.ibb.co/3Mctzwb/image.png",
+      "text": "Барои пешниход (Курбониён Сарвар)!",
+      "userAuthId": "5",
+      "userChatId": "2",
+      "subUserTabId": false,
+      "dateTime": "22.11.2024",
+      "replyMessage": {}
+    },
+    {
+      "id": "1717648117049",
       "subUserChatId": "4",
       "name": "Акрамшох Рамазонович",
       "role": "Директор",
       "image": "https://i.ibb.co/Kb1V9nM/583-IMG-6443-47034.png",
-      "text": "Сообщение в обоих чатах",
+      "text": "Барои пешниход (Курбониён Сарвар)!",
       "userAuthId": "4",
       "userChatId": "2",
-      "subUserTabId": null,
-      "dateTime": "10:52",
+      "subUserTabId": false,
+      "dateTime": "09:28",
       "replyMessage": {}
     }
   ],
-  "inviteToSubChat": [
+  "subUserChatTabs": [
     {
-      "id": "1717403417307",
-      "subUserChatId": "5",
+      "id": "1717648092592",
+      "subUserChatId": "1717406669556",
+      "userAuthId": "4",
+      "userChatId": "2",
+      "name": "Вкладка №1",
+      "status": false
+    }
+  ],
+  "invitedToSubChatTabs": [
+    {
+      "id": "1717648131256",
+      "subUserChatTabId": "1717648092592",
+      "name": "Бехруз Рамазонович",
+      "role": "Начальник отдела",
+      "image": "src/assets/Бехруз Рамазонович.jpg",
+      "status": true,
+      "login": "b.ramazonovich",
+      "userAuthId": "6",
+      "userChatId": "2"
+    },
+    {
+      "id": "1717648132824",
+      "subUserChatTabId": "1717648092592",
       "name": "Махмуд Абдурахмонович",
       "role": "Начальник отдела",
       "image": "src/assets/Махмуд Абдурахмонович.jpg",
@@ -545,6 +514,34 @@
       "login": "m.abdurahmonovich",
       "userAuthId": "7",
       "userChatId": "2"
+    }
+  ],
+  "subTabMessages": [
+    {
+      "id": "1717494221713",
+      "subUserChatId": "1717406669556",
+      "name": "Акрамшох Рамазонович",
+      "role": "Директор",
+      "image": "https://i.ibb.co/Kb1V9nM/583-IMG-6443-47034.png",
+      "text": "Бехруз Рамазонович, корбари намоед!",
+      "userAuthId": "4",
+      "userChatId": "2",
+      "subUserTabId": "1717648092592",
+      "dateTime": "14:43",
+      "replyMessage": {}
+    },
+    {
+      "id": "1717494221714",
+      "subUserChatId": "1717406669556",
+      "name": "Бехруз Рамазонович",
+      "role": "Начальник отдела",
+      "image": "src/assets/Бехруз Рамазонович.jpg",
+      "text": "Мухтарам Акрамшох Рамазонович, корбари карда шуд!",
+      "userAuthId": "6",
+      "userChatId": "2",
+      "subUserTabId": "1717648092592",
+      "dateTime": "15:01",
+      "replyMessage": {}
     }
   ]
 }
