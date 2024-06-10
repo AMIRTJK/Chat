@@ -451,7 +451,7 @@
       "text": "Барои корбари ва пешниходи хулоса (Юсуф Мачиди)!",
       "userAuthId": "4",
       "userChatId": "3",
-      "subUserTabId": false,
+      "subUserTabId": true,
       "dateTime": "25.11.2024",
       "replyMessage": {}
     },
@@ -464,7 +464,7 @@
       "text": "Барои пешниход (Курбониён Сарвар)!",
       "userAuthId": "5",
       "userChatId": "2",
-      "subUserTabId": false,
+      "subUserTabId": true,
       "dateTime": "22.11.2024",
       "replyMessage": {}
     },
@@ -477,7 +477,7 @@
       "text": "Барои пешниход (Курбониён Сарвар)!",
       "userAuthId": "4",
       "userChatId": "2",
-      "subUserTabId": false,
+      "subUserTabId": true,
       "dateTime": "09:28",
       "replyMessage": {}
     }
@@ -489,7 +489,16 @@
       "userAuthId": "4",
       "userChatId": "2",
       "name": "Вкладка №1",
-      "status": false
+      "status": true
+    },
+    {
+      "id": "35a3"
+    },
+    {
+      "id": "74d5"
+    },
+    {
+      "id": "ff0c"
     }
   ],
   "invitedToSubChatTabs": [

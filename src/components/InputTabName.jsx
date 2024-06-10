@@ -1,8 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Button, Avatar, IconButton } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
+
 import { actions } from "../slices/chat-slice";
 
-import { Button } from "@mui/material";
+import {
+  getUsers,
+  postInvitedToSubChatTabs,
+  getDefaultVisa,
+  getOwnVisa,
+} from "../actions/chatApi";
+
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const InputTabName = ({ handleShowTabName, handlePostSubTabMessages }) => {
   const Dispatch = useDispatch();
@@ -11,6 +20,51 @@ const InputTabName = ({ handleShowTabName, handlePostSubTabMessages }) => {
 
   const { setTabNameValue } = actions;
 
+  const users = useSelector((store) => store.chat.users);
+  const chatById = useSelector((store) => store.chat.chatById);
+
+  const subUserChatTabsById = useSelector(
+    (store) => store.chat.subUserChatTabsById
+  );
+  const accessLogin = JSON.parse(localStorage.getItem("accessLogin"));
+
+  const handlePostInvitedToSubChatTabs = (item) => {
+    const newObj = {
+      id: Date.now().toString(),
+      subUserChatTabId: subUserChatTabsById[0]?.id,
+      name: item.name,
+      role: item.role,
+      image: item.image,
+      status: true,
+      login: item.login,
+      userAuthId: item.userAuthId,
+      userChatId: chatById[0]?.id,
+    };
+
+    if (
+      subUserChatTabsById[0]?.userAuthId === accessLogin.id &&
+      chatById[0]?.id === subUserChatTabsById[0]?.userChatId
+    ) {
+      Dispatch(postInvitedToSubChatTabs(newObj));
+    }
+  };
+
+  const defaultVisa = useSelector((store) => store.chat.defaultVisa);
+  const ownVisa = useSelector((store) => store.chat.ownVisa);
+  const ownVisaValue = useSelector((store) => store.chat.ownVisaValue);
+
+  const { setOwnVisaValue } = actions;
+
+  const [stateVisa, setStateVisa] = useState(false);
+  const [ownVisaInput, setOwnVisaInput] = useState(false);
+
+  useEffect(() => {
+    Dispatch(getUsers());
+
+    Dispatch(getDefaultVisa());
+    Dispatch(getOwnVisa());
+  }, [Dispatch]);
+
   return (
     <div
       onClick={() => handleShowTabName(false)}
@@ -18,16 +72,123 @@ const InputTabName = ({ handleShowTabName, handlePostSubTabMessages }) => {
     >
       <main
         onClick={(event) => event.stopPropagation()}
-        className="bg-[#fff] absolute flex flex-col gap-5 items-start top-1/2 left-1/2 translate-x-[-20%] translate-y-[-50%] shadow-lg w-[30%] p-[20px]"
+        className="bg-[#fff] absolute flex flex-col gap-5 items-start justify-between top-1/2 left-1/2 translate-x-[-20%] translate-y-[-50%] shadow-lg w-[30%] p-[20px]"
       >
-        <p className="font-semibold text-[15px]">Новая вкладка</p>
-        <input
-          onChange={(event) => Dispatch(setTabNameValue(event.target.value))}
-          value={tabNameValue}
-          type="text"
-          placeholder="Введите название вкладки"
-          className="border-b-[1px] border-[#000000] outline-none w-full py-[5px] text-[15px]"
-        />
+        <h1 className="text-center mx-auto font-semibold">Создание бесседы</h1>
+        <div className="add-tab flex flex-col items-start w-full">
+          <p className="font-semibold text-[15px]">Новая вкладка</p>
+          <input
+            onChange={(event) => Dispatch(setTabNameValue(event.target.value))}
+            value={tabNameValue}
+            type="text"
+            placeholder="Введите название вкладки"
+            className="border-b-[1px] outline-none w-full py-[5px] text-[15px]"
+          />
+        </div>
+        <div className="add-executors flex flex-col items-start w-full">
+          <p className="font-semibold text-[15px]">Пригласить участника</p>
+          <input
+            type="text"
+            placeholder="Поиск"
+            className="border-b-[1px] outline-none w-full py-[5px] text-[15px]"
+          />
+          <main className="category-scrollbar w-full overflow-auto h-[20vh]">
+            <ul>
+              {users.map((e) => {
+                return (
+                  <li
+                    onClick={() => handlePostInvitedToSubChatTabs(e)}
+                    key={e.id}
+                    className="flex justify-between items-center p-[10px] border-b-[1px] hover:bg-[#00000010] cursor-pointer transition-all duration-100"
+                  >
+                    <div className="user flex items-center gap-5">
+                      <Avatar src={e.image} />
+                      <div className="role-title flex flex-col ">
+                        <p className="font-semibold">{e.name}</p>
+                        <p className="font-medium text-[#00000095]">{e.role}</p>
+                      </div>
+                    </div>
+                    <IconButton>
+                      <DeleteIcon
+                        sx={{
+                          transition: "all .2s",
+                          "&:hover": {
+                            color: "red",
+                          },
+                        }}
+                      />
+                    </IconButton>
+                  </li>
+                );
+              })}
+            </ul>
+          </main>
+        </div>
+        <div className="add-visa w-full">
+          <p className="font-semibold text-[15px]">Выбрать визу</p>
+          <div className="visa-category bg-[#fff] mt-[15px] w-full">
+            <button
+              onClick={() => setStateVisa(false)}
+              className={`${
+                stateVisa === false ? "bg-[#007bd248]" : ""
+              } border-r-[1px] border-[#00000058] w-[50%] p-[10px] bg-[#007bd22a] hover:bg-[#007bd248] transition-all duration-100`}
+            >
+              Шаблонные
+            </button>
+            <button
+              onClick={() => setStateVisa(true)}
+              className={`${
+                stateVisa === true ? "bg-[#007bd248]" : ""
+              } border-r-[1px] border-[#00000058] w-[50%] p-[10px] bg-[#007bd22a] hover:bg-[#007bd248] transition-all duration-100`}
+            >
+              Личные
+            </button>
+          </div>
+          <main className="overflow-auto h-[20vh] category-scrollbar">
+            {stateVisa === false
+              ? Array.isArray(defaultVisa) &&
+                defaultVisa.map((e) => {
+                  return (
+                    <p
+                      key={e.id}
+                      className="p-[10px] border-b-[1px] cursor-pointer hover:bg-[#f9f9f9]"
+                    >
+                      {e.name}
+                    </p>
+                    // <VisaListExecutors key={e.id} name={e.name} item={e} />
+                  );
+                })
+              : Array.isArray(ownVisa) &&
+                ownVisa.map((e) => {
+                  return (
+                    <p
+                      key={e.id}
+                      className="p-[10px] border-b-[1px] cursor-pointer hover:bg-[#f9f9f9]"
+                    >
+                      {e.name}
+                    </p>
+                    // <VisaListExecutors key={e.id} item={e} />;
+                  );
+                })}
+          </main>
+          <footer className="flex justify-end gap-5 items-center">
+            <input
+              onChange={(event) =>
+                Dispatch(setOwnVisaValue(event.target.value))
+              }
+              value={ownVisaValue}
+              type="text"
+              placeholder="Введите собственную визу"
+              className="bg-[#007bd22a] text-[#000] border-[1px] border-[#fff] outline-none px-[10px] py-[15px] w-full  placeholder:text-[#000b] placeholder:font-normal"
+            />
+          </footer>
+        </div>
+        <div className="add-term w-full">
+          <input
+            type="date"
+            className="border-[#007bd22a] w-full border-[2px] rounded-lg p-[10px] text-[#007cd2] font-medium cursor-pointer "
+          />
+        </div>
         <div className="panel-control flex justify-end w-full">
           <div className="wrapper-buttons flex gap-5">
             <Button
