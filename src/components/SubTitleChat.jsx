@@ -99,6 +99,7 @@ const SubTitleChat = () => {
           name: tabNameValue,
           status: subUserChatTabs.length === 0 ? true : false,
         };
+        console.log(newObj);
       }
     });
 

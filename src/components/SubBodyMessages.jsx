@@ -3,6 +3,7 @@ import {
   getSubMessages,
   getSubTabMessages,
   getSubUserChatTabsById,
+  getTabVisaUsers,
 } from "../actions/chatApi";
 import SubMessageText from "./SubMessageText";
 import { useSelector, useDispatch } from "react-redux";
@@ -17,6 +18,7 @@ const SubBodyMessages = () => {
   const subUserChatTabsById = useSelector(
     (store) => store.chat.subUserChatTabsById
   );
+  const subTabVisaUsers = useSelector((store) => store.chat.subTabVisaUsers);
 
   const accessLogin = JSON.parse(localStorage.getItem("accessLogin"));
 
@@ -25,6 +27,7 @@ const SubBodyMessages = () => {
   useEffect(() => {
     Dispatch(getSubMessages());
     Dispatch(getSubTabMessages());
+    Dispatch(getTabVisaUsers());
   }, [Dispatch]);
 
   const filteredSubMessages =
@@ -49,6 +52,8 @@ const SubBodyMessages = () => {
         subUserChatTabsById[0]?.subUserChatId === subTabMessage.subUserChatId &&
         subUserChatTabsById[0]?.id === subTabMessage.subUserTabId
     );
+
+  console.log(subTabVisaUsers);
 
   return (
     <main className="category-scrollbar h-[69vh] overflow-auto relative">

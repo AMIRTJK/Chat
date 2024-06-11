@@ -9,6 +9,7 @@ import {
   postInvitedToSubChatTabs,
   getDefaultVisa,
   getOwnVisa,
+  postTabVisaUsers
 } from "../actions/chatApi";
 
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -25,6 +26,9 @@ const InputTabName = ({ handleShowTabName, handlePostSubTabMessages }) => {
 
   const subUserChatTabsById = useSelector(
     (store) => store.chat.subUserChatTabsById
+  );
+  const subUserChatTabs = useSelector(
+    (store) => store.chat.subUserChatTabs
   );
   const accessLogin = JSON.parse(localStorage.getItem("accessLogin"));
 
@@ -64,6 +68,28 @@ const InputTabName = ({ handleShowTabName, handlePostSubTabMessages }) => {
     Dispatch(getDefaultVisa());
     Dispatch(getOwnVisa());
   }, [Dispatch]);
+
+  const handlePostTab = () => {
+    handlePostSubTabMessages();
+
+    const newObj = {
+      id: Date.now().toString(),
+      subUserChatTabId: subUserChatTabs[subUserChatTabs.length - 1]?.id,
+      userAuthId: accessLogin.id,
+      userChatId: chatById[0]?.id,
+      login: accessLogin.name,
+      term: "",
+      status: "",
+      eds: "",
+      createdAt: "04-06-2024",
+    };
+
+
+
+    Dispatch(postTabVisaUsers(newObj));
+  };
+
+  console.log(tabNameValue);
 
   return (
     <div
@@ -179,14 +205,14 @@ const InputTabName = ({ handleShowTabName, handlePostSubTabMessages }) => {
               value={ownVisaValue}
               type="text"
               placeholder="Введите собственную визу"
-              className="bg-[#007bd22a] text-[#000] border-[1px] border-[#fff] outline-none px-[10px] py-[15px] w-full  placeholder:text-[#000b] placeholder:font-normal"
+              className="border-[2px] border-[#007bd22a] text-[#000] outline-none px-[10px] py-[15px] w-full  placeholder:text-[#000b] placeholder:font-normal"
             />
           </footer>
         </div>
         <div className="add-term w-full">
           <input
             type="date"
-            className="border-[#007bd22a] w-full border-[2px] rounded-lg p-[10px] text-[#007cd2] font-medium cursor-pointer "
+            className="border-[#007bd22a] w-full border-[2px] p-[10px] text-[#007cd2] font-medium cursor-pointer "
           />
         </div>
         <div className="panel-control flex justify-end w-full">
@@ -200,7 +226,8 @@ const InputTabName = ({ handleShowTabName, handlePostSubTabMessages }) => {
             </Button>
             <Button
               onClick={() => {
-                handlePostSubTabMessages();
+                handlePostTab()
+ 
               }}
               variant="contained"
               sx={{ textTransform: "none", fontWeight: "400" }}
