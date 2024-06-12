@@ -5,7 +5,6 @@ import AddIcon from "@mui/icons-material/Add";
 import CloseIcon from "@mui/icons-material/Close";
 import {
   getSubUserChatTabs,
-
   deleteSubUserChatTabs,
   getSubUserChatTabsById,
   putSubUserChatTabsById,
@@ -121,8 +120,8 @@ const SubTitleChat = () => {
                       sx={{
                         fontSize: "13px",
                         height: "30px",
-                        width: "160px",
                         position: "relative",
+                        paddingRight: "30px",
                       }}
                     >
                       {e.name}
@@ -133,7 +132,7 @@ const SubTitleChat = () => {
                           color: e.status ? "white" : "000000af",
                           position: "absolute",
                           bottom: "10px",
-                          left: "140px",
+                          right: "0",
                           padding: "2px",
                           "&:hover": {
                             color: "#000000",

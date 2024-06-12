@@ -108,13 +108,32 @@ const InputTabName = ({ handleShowTabName }) => {
     };
 
     Dispatch(postTabVisaUsers(newSubTabMessage));
+  };
 
-    // const { visaUserId, ...rest } = item;
-    // const newSubTabVisaMessage = {
-    //   ...rest,
-    //   subVisaUserId: subUserChatTabs[subUserChatTabs.length - 1]?.id, // замените на нужное значение
-    // };
-    // Dispatch(postSubTabVisaMessages(newSubTabVisaMessage));
+  const handleSubTabVisaMessage = (item) => {
+    const { visaUserId, ...rest } = item;
+    const newSubTabVisaMessage = {
+      ...rest,
+      subVisaUserId: subUserChatTabs[subUserChatTabs.length - 1]?.id,
+    };
+    Dispatch(postSubTabVisaMessages(newSubTabVisaMessage));
+  };
+
+  console.log(ownVisaValue);
+
+  // Добавить собственную визу
+
+  const handleShowOwnVisa = () => {
+    if (ownVisaValue.length > 0) {
+      const newObj = {
+        id: Date.now().toString(),
+        name: ownVisaValue,
+        status: true,
+        subVisaUserId: subUserChatTabs[subUserChatTabs.length - 1]?.id,
+      };
+      Dispatch(postSubTabVisaMessages(newObj));
+      Dispatch(setOwnVisaValue(""));
+    }
   };
 
   const handleCloseSubTabVisaUser = () => {
@@ -151,9 +170,7 @@ const InputTabName = ({ handleShowTabName }) => {
               placeholder="Введите название вкладки"
               className=" outline-none w-full py-[5px] text-[15px]"
             />
-            <Button onClick={() => handlePostSubUserChatTabs()}>
-              Сохранить
-            </Button>
+            <Button onClick={() => handlePostSubUserChatTabs()}>Создать</Button>
           </fieldset>
         </div>
         <div className="add-executors flex flex-col items-start w-full">
@@ -221,6 +238,7 @@ const InputTabName = ({ handleShowTabName }) => {
                 defaultVisa.map((e) => {
                   return (
                     <p
+                      onClick={() => handleSubTabVisaMessage(e)}
                       key={e.id}
                       className="p-[10px] border-b-[1px] cursor-pointer hover:bg-[#f9f9f9]"
                     >
@@ -243,15 +261,18 @@ const InputTabName = ({ handleShowTabName }) => {
                 })}
           </main>
           <footer className="flex justify-end gap-5 items-center">
-            <input
-              onChange={(event) =>
-                Dispatch(setOwnVisaValue(event.target.value))
-              }
-              value={ownVisaValue}
-              type="text"
-              placeholder="Введите собственную визу"
-              className="border-[2px] border-[#007bd22a] text-[#000] outline-none px-[10px] py-[15px] w-full  placeholder:text-[#000b] placeholder:font-normal"
-            />
+            <fieldset className="flex border-[2px] border-[#007bd22a] p-[10px]  w-full">
+              <input
+                onChange={(event) =>
+                  Dispatch(setOwnVisaValue(event.target.value))
+                }
+                value={ownVisaValue}
+                type="text"
+                placeholder="Введите собственную визу"
+                className=" text-[#000] outline-none  w-full  placeholder:text-[#000b] placeholder:font-normal"
+              />
+              <Button onClick={() => handleShowOwnVisa()}>Добавить</Button>
+            </fieldset>
           </footer>
         </div>
         <div className="add-term w-full">

@@ -237,7 +237,7 @@
       "name": "Сарвар Собирович",
       "image": "https://i.ibb.co/zRQyxxP/image.jpg",
       "role": "Заминистр",
-      "status": false
+      "status": true
     },
     {
       "id": "3",
@@ -496,7 +496,7 @@
       "userAuthId": "4",
       "userChatId": "2",
       "name": "Вкладка №1",
-      "status": true
+      "status": false
     }
   ],
   "invitedToSubChatTabs": [
@@ -520,61 +520,6 @@
       "status": true,
       "login": "m.abdurahmonovich",
       "userAuthId": "7",
-      "userChatId": "2"
-    },
-    {
-      "id": "1718175804921",
-      "subUserChatTabId": "1717648092592",
-      "name": "Сарвар Собирович",
-      "role": "Заминистр",
-      "image": "https://i.ibb.co/zRQyxxP/image.jpg",
-      "status": true,
-      "login": "s.sobirovich",
-      "userAuthId": "2",
-      "userChatId": "2"
-    },
-    {
-      "id": "1718175925504",
-      "subUserChatTabId": "1717648092592",
-      "name": "Сарвар Собирович",
-      "role": "Заминистр",
-      "image": "https://i.ibb.co/zRQyxxP/image.jpg",
-      "status": true,
-      "login": "s.sobirovich",
-      "userAuthId": "2",
-      "userChatId": "2"
-    },
-    {
-      "id": "1718176036566",
-      "subUserChatTabId": "1717648092592",
-      "name": "Сарвар Собирович",
-      "role": "Заминистр",
-      "image": "https://i.ibb.co/zRQyxxP/image.jpg",
-      "status": true,
-      "login": "s.sobirovich",
-      "userAuthId": "2",
-      "userChatId": "2"
-    },
-    {
-      "id": "1718176043186",
-      "subUserChatTabId": null,
-      "name": "Сарвар Собирович",
-      "role": "Заминистр",
-      "image": "https://i.ibb.co/zRQyxxP/image.jpg",
-      "status": true,
-      "login": "s.sobirovich",
-      "userAuthId": "2",
-      "userChatId": "2"
-    },
-    {
-      "id": "1718176516415",
-      "subUserChatTabId": null,
-      "name": "Файзиддин Саттор",
-      "role": "Министр Финансов",
-      "image": "https://i.ibb.co/HqvF08R/image.jpg",
-      "status": true,
-      "login": "f.kahhorzoda",
-      "userAuthId": "1",
       "userChatId": "2"
     }
   ],
@@ -606,167 +551,6 @@
       "replyMessage": {}
     }
   ],
-  "subTabVisaUsers": [
-    {
-      "id": "1718174373584",
-      "subUserChatTabId": "1717648092592",
-      "userAuthId": "4",
-      "userChatId": "2",
-      "term": "",
-      "status": "",
-      "eds": "",
-      "createdAt": "04-06-2024"
-    },
-    {
-      "id": "1718174435648",
-      "subUserChatTabId": null,
-      "userAuthId": "4",
-      "userChatId": "2",
-      "term": "",
-      "status": "",
-      "eds": "",
-      "createdAt": "04-06-2024"
-    },
-    {
-      "id": "1718174463360",
-      "subUserChatTabId": "1717648092592",
-      "userAuthId": "4",
-      "userChatId": "2",
-      "term": "",
-      "status": "",
-      "eds": "",
-      "createdAt": "04-06-2024"
-    },
-    {
-      "id": "1718174881514",
-      "subUserChatTabId": null,
-      "userAuthId": "4",
-      "userChatId": "2",
-      "term": "",
-      "status": "",
-      "eds": "",
-      "createdAt": "04-06-2024"
-    },
-    {
-      "id": "1718174894601",
-      "subUserChatTabId": "1717648092592",
-      "userAuthId": "4",
-      "userChatId": "2",
-      "term": "",
-      "status": "",
-      "eds": "",
-      "createdAt": "04-06-2024"
-    },
-    {
-      "id": "1718175029925",
-      "subUserChatTabId": "1717648092592",
-      "userAuthId": "4",
-      "userChatId": "2",
-      "term": "",
-      "status": "",
-      "eds": "",
-      "createdAt": "04-06-2024"
-    },
-    {
-      "id": "1718175057947",
-      "subUserChatTabId": null,
-      "userAuthId": "4",
-      "userChatId": "2",
-      "term": "",
-      "status": "",
-      "eds": "",
-      "createdAt": "04-06-2024"
-    },
-    {
-      "id": "1718175098785",
-      "subUserChatTabId": "1717648092592",
-      "userAuthId": "4",
-      "userChatId": "2",
-      "term": "",
-      "status": "",
-      "eds": "",
-      "createdAt": "04-06-2024"
-    },
-    {
-      "id": "1718175124823",
-      "subUserChatTabId": null,
-      "userAuthId": "4",
-      "userChatId": "2",
-      "term": "",
-      "status": "",
-      "eds": "",
-      "createdAt": "04-06-2024"
-    },
-    {
-      "id": "1718175603882",
-      "subUserChatTabId": "1717648092592",
-      "userAuthId": "4",
-      "userChatId": "2",
-      "term": "",
-      "status": "",
-      "eds": "",
-      "createdAt": "04-06-2024"
-    },
-    {
-      "id": "1718175608892",
-      "subUserChatTabId": null,
-      "userAuthId": "4",
-      "userChatId": "2",
-      "term": "",
-      "status": "",
-      "eds": "",
-      "createdAt": "04-06-2024"
-    },
-    {
-      "id": "1718175804922",
-      "subUserChatTabId": "1717648092592",
-      "userAuthId": "4",
-      "userChatId": "2",
-      "term": "",
-      "status": "",
-      "eds": "",
-      "createdAt": "04-06-2024"
-    },
-    {
-      "id": "1718175925505",
-      "subUserChatTabId": "1717648092592",
-      "userAuthId": "4",
-      "userChatId": "2",
-      "term": "",
-      "status": "",
-      "eds": "",
-      "createdAt": "04-06-2024"
-    },
-    {
-      "id": "1718176036566",
-      "subUserChatTabId": "1717648092592",
-      "userAuthId": "4",
-      "userChatId": "2",
-      "term": "",
-      "status": "",
-      "eds": "",
-      "createdAt": "04-06-2024"
-    },
-    {
-      "id": "1718176043187",
-      "subUserChatTabId": null,
-      "userAuthId": "4",
-      "userChatId": "2",
-      "term": "",
-      "status": "",
-      "eds": "",
-      "createdAt": "04-06-2024"
-    },
-    {
-      "id": "1718176516416",
-      "subUserChatTabId": null,
-      "userAuthId": "4",
-      "userChatId": "2",
-      "term": "",
-      "status": "",
-      "eds": "",
-      "createdAt": "04-06-2024"
-    }
-  ],
+  "subTabVisaUsers": [],
   "subTabVisaMessages": []
 }
