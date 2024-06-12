@@ -43,7 +43,9 @@ import {
   getSubUserChatTabsById,
   getInvitedToSubChatTabs,
   getTabVisaUsers,
-  postTabVisaUsers
+  postTabVisaUsers,
+  getSubTabVisaMessages,
+  postSubTabVisaMessages,
 } from "../actions/chatApi";
 
 const initialState = {
@@ -94,6 +96,7 @@ const initialState = {
   tabNameValue: "",
   invite: "",
   subTabVisaUsers: [],
+  subTabVisaMessages: [],
 };
 
 const chatSlice = createSlice({
@@ -296,6 +299,12 @@ const chatSlice = createSlice({
     });
     builder.addCase(postTabVisaUsers.fulfilled, (state, action) => {
       state.subTabVisaUsers = action.payload;
+    });
+    builder.addCase(getSubTabVisaMessages.fulfilled, (state, action) => {
+      state.subTabVisaMessages = action.payload;
+    });
+    builder.addCase(postSubTabVisaMessages.fulfilled, (state, action) => {
+      state.subTabVisaMessages = action.payload;
     });
   },
 });

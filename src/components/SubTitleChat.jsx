@@ -5,7 +5,7 @@ import AddIcon from "@mui/icons-material/Add";
 import CloseIcon from "@mui/icons-material/Close";
 import {
   getSubUserChatTabs,
-  postSubUserChatTabs,
+
   deleteSubUserChatTabs,
   getSubUserChatTabsById,
   putSubUserChatTabsById,
@@ -83,33 +83,6 @@ const SubTitleChat = () => {
     setTabName(state);
   };
 
-  const handlePostSubTabMessages = () => {
-    let newObj = {};
-
-    subUserChats.forEach((e) => {
-      if (
-        (accessLogin.id === e.userAuthId && chatById[0].id === e.userChatId) ||
-        (accessLogin.id === e.userChatId && chatById[0].id === e.userChatId)
-      ) {
-        newObj = {
-          id: Date.now().toString(),
-          subUserChatId: e.id,
-          userAuthId: e.userAuthId,
-          userChatId: e.userChatId,
-          name: tabNameValue,
-          status: subUserChatTabs.length === 0 ? true : false,
-        };
-        console.log(newObj);
-      }
-    });
-
-    console.log(newObj);
-
-    Dispatch(postSubUserChatTabs(newObj));
-    handleShowTabName(false);
-    Dispatch(setTabNameValue(""));
-  };
-
   const handleDeleteSubUserChatTabs = (id) => {
     Dispatch(deleteSubUserChatTabs(id));
   };
@@ -183,12 +156,7 @@ const SubTitleChat = () => {
           >
             <AddIcon />
           </IconButton>
-          {tabName && (
-            <InputTabName
-              handleShowTabName={handleShowTabName}
-              handlePostSubTabMessages={handlePostSubTabMessages}
-            />
-          )}
+          {tabName && <InputTabName handleShowTabName={handleShowTabName} />}
         </div>
         <div className="panel-user flex items-end gap-3">
           {subUserChats?.map((e) => {

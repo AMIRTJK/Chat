@@ -1040,3 +1040,43 @@ export const postTabVisaUsers = createAsyncThunk(
     }
   }
 );
+
+export const getSubTabVisaMessages = createAsyncThunk(
+  "getSubTabVisaMessages",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await fetch(
+        import.meta.env.VITE_API_SUB_TAB_VISA_MESSAGES
+      );
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const postSubTabVisaMessages = createAsyncThunk(
+  "postSubTabVisaMessages",
+  async (newObj, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await fetch(
+        import.meta.env.VITE_API_SUB_TAB_VISA_MESSAGES,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newObj),
+        }
+      );
+      const data = await response.json();
+      dispatch(getSubTabVisaMessages());
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);

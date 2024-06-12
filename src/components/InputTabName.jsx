@@ -9,12 +9,15 @@ import {
   postInvitedToSubChatTabs,
   getDefaultVisa,
   getOwnVisa,
-  postTabVisaUsers
+  postTabVisaUsers,
+  getSubTabVisaMessages,
+  postSubUserChatTabs,
+  postSubTabVisaMessages,
 } from "../actions/chatApi";
 
 import DeleteIcon from "@mui/icons-material/Delete";
 
-const InputTabName = ({ handleShowTabName, handlePostSubTabMessages }) => {
+const InputTabName = ({ handleShowTabName }) => {
   const Dispatch = useDispatch();
 
   const tabNameValue = useSelector((store) => store.chat.tabNameValue);
@@ -27,31 +30,12 @@ const InputTabName = ({ handleShowTabName, handlePostSubTabMessages }) => {
   const subUserChatTabsById = useSelector(
     (store) => store.chat.subUserChatTabsById
   );
-  const subUserChatTabs = useSelector(
-    (store) => store.chat.subUserChatTabs
+  const subUserChats = useSelector((store) => store.chat.subUserChats);
+  const subUserChatTabs = useSelector((store) => store.chat.subUserChatTabs);
+  const subTabVisaMessages = useSelector(
+    (store) => store.chat.subTabVisaMessages
   );
   const accessLogin = JSON.parse(localStorage.getItem("accessLogin"));
-
-  const handlePostInvitedToSubChatTabs = (item) => {
-    const newObj = {
-      id: Date.now().toString(),
-      subUserChatTabId: subUserChatTabsById[0]?.id,
-      name: item.name,
-      role: item.role,
-      image: item.image,
-      status: true,
-      login: item.login,
-      userAuthId: item.userAuthId,
-      userChatId: chatById[0]?.id,
-    };
-
-    if (
-      subUserChatTabsById[0]?.userAuthId === accessLogin.id &&
-      chatById[0]?.id === subUserChatTabsById[0]?.userChatId
-    ) {
-      Dispatch(postInvitedToSubChatTabs(newObj));
-    }
-  };
 
   const defaultVisa = useSelector((store) => store.chat.defaultVisa);
   const ownVisa = useSelector((store) => store.chat.ownVisa);
@@ -62,17 +46,56 @@ const InputTabName = ({ handleShowTabName, handlePostSubTabMessages }) => {
   const [stateVisa, setStateVisa] = useState(false);
   const [ownVisaInput, setOwnVisaInput] = useState(false);
 
-  useEffect(() => {
-    Dispatch(getUsers());
+  // Добавляем вкладку
+  const handlePostSubUserChatTabs = () => {
+    let newObj = {};
 
-    Dispatch(getDefaultVisa());
-    Dispatch(getOwnVisa());
-  }, [Dispatch]);
+    subUserChats.forEach((e) => {
+      if (
+        (accessLogin.id === e.userAuthId && chatById[0].id === e.userChatId) ||
+        (accessLogin.id === e.userChatId && chatById[0].id === e.userChatId)
+      ) {
+        newObj = {
+          id: Date.now().toString(),
+          subUserChatId: e.id,
+          userAuthId: e.userAuthId,
+          userChatId: e.userChatId,
+          name: tabNameValue,
+          status: subUserChatTabs.length === 0 ? true : false,
+        };
+        console.log(newObj);
+      }
+    });
 
-  const handlePostTab = () => {
-    handlePostSubTabMessages();
+    console.log(newObj);
 
-    const newObj = {
+    Dispatch(postSubUserChatTabs(newObj));
+  };
+
+  // Нужно написать post запрос для getSubTabVisaMessages
+  const handlePostSubTabVisa = (item) => {
+    const newInvitedToSubChatTabs = {
+      id: Date.now().toString(),
+      subUserChatTabId: subUserChatTabs[subUserChatTabs.length - 1]?.id,
+      name: item.name,
+      role: item.role,
+      image: item.image,
+      status: true,
+      login: item.login,
+      userAuthId: item.userAuthId,
+      userChatId: chatById[0]?.id,
+    };
+
+    if (
+      subUserChatTabs[subUserChatTabs.length - 1]?.userAuthId ===
+        accessLogin.id &&
+      chatById[0]?.id ===
+        subUserChatTabs[subUserChatTabs.length - 1]?.userChatId
+    ) {
+      Dispatch(postInvitedToSubChatTabs(newInvitedToSubChatTabs));
+    }
+
+    const newSubTabMessage = {
       id: Date.now().toString(),
       subUserChatTabId: subUserChatTabs[subUserChatTabs.length - 1]?.id,
       userAuthId: accessLogin.id,
@@ -84,12 +107,27 @@ const InputTabName = ({ handleShowTabName, handlePostSubTabMessages }) => {
       createdAt: "04-06-2024",
     };
 
+    Dispatch(postTabVisaUsers(newSubTabMessage));
 
-
-    Dispatch(postTabVisaUsers(newObj));
+    // const { visaUserId, ...rest } = item;
+    // const newSubTabVisaMessage = {
+    //   ...rest,
+    //   subVisaUserId: subUserChatTabs[subUserChatTabs.length - 1]?.id, // замените на нужное значение
+    // };
+    // Dispatch(postSubTabVisaMessages(newSubTabVisaMessage));
   };
 
-  console.log(tabNameValue);
+  const handleCloseSubTabVisaUser = () => {
+    handleShowTabName(false);
+    Dispatch(setTabNameValue(""));
+  };
+
+  useEffect(() => {
+    Dispatch(getUsers());
+    Dispatch(getDefaultVisa());
+    Dispatch(getOwnVisa());
+    Dispatch(getSubTabVisaMessages());
+  }, [Dispatch]);
 
   return (
     <div
@@ -103,13 +141,20 @@ const InputTabName = ({ handleShowTabName, handlePostSubTabMessages }) => {
         <h1 className="text-center mx-auto font-semibold">Создание бесседы</h1>
         <div className="add-tab flex flex-col items-start w-full">
           <p className="font-semibold text-[15px]">Новая вкладка</p>
-          <input
-            onChange={(event) => Dispatch(setTabNameValue(event.target.value))}
-            value={tabNameValue}
-            type="text"
-            placeholder="Введите название вкладки"
-            className="border-b-[1px] outline-none w-full py-[5px] text-[15px]"
-          />
+          <fieldset className="flex border-b-[1px] w-full">
+            <input
+              onChange={(event) =>
+                Dispatch(setTabNameValue(event.target.value))
+              }
+              value={tabNameValue}
+              type="text"
+              placeholder="Введите название вкладки"
+              className=" outline-none w-full py-[5px] text-[15px]"
+            />
+            <Button onClick={() => handlePostSubUserChatTabs()}>
+              Сохранить
+            </Button>
+          </fieldset>
         </div>
         <div className="add-executors flex flex-col items-start w-full">
           <p className="font-semibold text-[15px]">Пригласить участника</p>
@@ -123,7 +168,7 @@ const InputTabName = ({ handleShowTabName, handlePostSubTabMessages }) => {
               {users.map((e) => {
                 return (
                   <li
-                    onClick={() => handlePostInvitedToSubChatTabs(e)}
+                    onClick={() => handlePostSubTabVisa(e)}
                     key={e.id}
                     className="flex justify-between items-center p-[10px] border-b-[1px] hover:bg-[#00000010] cursor-pointer transition-all duration-100"
                   >
@@ -225,10 +270,7 @@ const InputTabName = ({ handleShowTabName, handlePostSubTabMessages }) => {
               Отмена
             </Button>
             <Button
-              onClick={() => {
-                handlePostTab()
- 
-              }}
+              onClick={() => handleCloseSubTabVisaUser()}
               variant="contained"
               sx={{ textTransform: "none", fontWeight: "400" }}
             >
