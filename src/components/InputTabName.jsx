@@ -13,6 +13,7 @@ import {
   getSubTabVisaMessages,
   postSubUserChatTabs,
   postSubTabVisaMessages,
+  putTabVisaUsersTerm,
 } from "../actions/chatApi";
 
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -40,11 +41,13 @@ const InputTabName = ({ handleShowTabName }) => {
   const defaultVisa = useSelector((store) => store.chat.defaultVisa);
   const ownVisa = useSelector((store) => store.chat.ownVisa);
   const ownVisaValue = useSelector((store) => store.chat.ownVisaValue);
+  const subTabVisaUsers = useSelector((store) => store.chat.subTabVisaUsers);
 
   const { setOwnVisaValue } = actions;
 
   const [stateVisa, setStateVisa] = useState(false);
   const [ownVisaInput, setOwnVisaInput] = useState(false);
+  const [dateTerm, setDateTerm] = useState("");
 
   // Добавляем вкладку
   const handlePostSubUserChatTabs = () => {
@@ -95,6 +98,16 @@ const InputTabName = ({ handleShowTabName }) => {
       Dispatch(postInvitedToSubChatTabs(newInvitedToSubChatTabs));
     }
 
+    // Получаем текущую дату
+    const now = new Date();
+
+    // Форматируем дату
+    const day = String(now.getDate()).padStart(2, "0");
+    const month = String(now.getMonth() + 1).padStart(2, "0"); // Месяцы начинаются с 0
+    const year = now.getFullYear();
+
+    const formattedDate = `${day}-${month}-${year}`;
+
     const newSubTabMessage = {
       id: Date.now().toString(),
       subUserChatTabId: subUserChatTabs[subUserChatTabs.length - 1]?.id,
@@ -104,7 +117,7 @@ const InputTabName = ({ handleShowTabName }) => {
       term: "",
       status: "",
       eds: "",
-      createdAt: "04-06-2024",
+      createdAt: formattedDate,
     };
 
     Dispatch(postTabVisaUsers(newSubTabMessage));
@@ -129,7 +142,7 @@ const InputTabName = ({ handleShowTabName }) => {
         id: Date.now().toString(),
         name: ownVisaValue,
         status: true,
-        subVisaUserId: subUserChatTabs[subUserChatTabs.length - 1]?.id,
+        subVisaUserId: subTabVisaUsers[subTabVisaUsers.length - 1]?.id,
       };
       Dispatch(postSubTabVisaMessages(newObj));
       Dispatch(setOwnVisaValue(""));
@@ -141,12 +154,28 @@ const InputTabName = ({ handleShowTabName }) => {
     Dispatch(setTabNameValue(""));
   };
 
+  const handlePutTerm = (event) => {
+    setDateTerm(event.target.value);
+  };
+
+  const handlePutSubTabVisaTerm = () => {
+    const newObj = {
+      ...subTabVisaUsers[subTabVisaUsers.length - 1],
+      term: dateTerm,
+    };
+    Dispatch(putTabVisaUsersTerm(newObj));
+  };
+
   useEffect(() => {
     Dispatch(getUsers());
     Dispatch(getDefaultVisa());
     Dispatch(getOwnVisa());
     Dispatch(getSubTabVisaMessages());
   }, [Dispatch]);
+
+  useEffect(() => {
+    handlePutSubTabVisaTerm();
+  }, [Dispatch, dateTerm]);
 
   return (
     <div
@@ -277,6 +306,8 @@ const InputTabName = ({ handleShowTabName }) => {
         </div>
         <div className="add-term w-full">
           <input
+            onChange={(event) => handlePutTerm(event)}
+            value={dateTerm}
             type="date"
             className="border-[#007bd22a] w-full border-[2px] p-[10px] text-[#007cd2] font-medium cursor-pointer "
           />

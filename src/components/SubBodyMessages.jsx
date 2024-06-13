@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   getSubMessages,
   getSubTabMessages,
@@ -7,6 +7,10 @@ import {
 } from "../actions/chatApi";
 import SubMessageText from "./SubMessageText";
 import { useSelector, useDispatch } from "react-redux";
+
+import { Avatar } from "@mui/material";
+
+import SubTabVisaUser from "./SubTabVisaUser";
 
 const SubBodyMessages = () => {
   const subChatById = useSelector((store) => store.chat.subChatById);
@@ -19,16 +23,11 @@ const SubBodyMessages = () => {
     (store) => store.chat.subUserChatTabsById
   );
   const subTabVisaUsers = useSelector((store) => store.chat.subTabVisaUsers);
+  const subUserChatTabs = useSelector((store) => store.chat.subUserChatTabs);
 
   const accessLogin = JSON.parse(localStorage.getItem("accessLogin"));
 
   const Dispatch = useDispatch();
-
-  useEffect(() => {
-    Dispatch(getSubMessages());
-    Dispatch(getSubTabMessages());
-    Dispatch(getTabVisaUsers());
-  }, [Dispatch]);
 
   const filteredSubMessages =
     Array.isArray(subMessages) &&
@@ -53,10 +52,32 @@ const SubBodyMessages = () => {
         subUserChatTabsById[0]?.id === subTabMessage.subUserTabId
     );
 
-  console.log(subTabVisaUsers);
+  useEffect(() => {
+    Dispatch(getSubMessages());
+    Dispatch(getSubTabMessages());
+    Dispatch(getTabVisaUsers());
+  }, [Dispatch]);
+
+  const filteredSubTabVisaUser =
+    Array.isArray(subTabVisaUsers) &&
+    subTabVisaUsers.filter((subVisa) => {
+      return (
+        Array.isArray(subUserChatTabs) &&
+        subUserChatTabs.some(
+          (subTab) =>
+            subVisa.subUserChatTabId === subTab.id && subTab.status === true
+        )
+      );
+    });
+
+  // console.log(filteredSubTabVisaUser);
+
+  // console.log(subUserChatTabs);
+  // console.log(subTabVisaUsers);
 
   return (
     <main className="category-scrollbar h-[69vh] overflow-auto relative">
+      <SubTabVisaUser filteredSubTabVisaUser={filteredSubTabVisaUser}/>
       <ul>
         {Array.isArray(filteredSubMessages) &&
           filteredSubMessages.map((e) => {

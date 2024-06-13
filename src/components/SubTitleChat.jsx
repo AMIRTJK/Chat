@@ -40,8 +40,6 @@ const SubTitleChat = () => {
 
   const Dispatch = useDispatch();
 
-  console.log();
-
   const handleSubTabMessagesById = async (item) => {
     // Отключаем все вкладки
     for (const e of Array.isArray(subUserChatTabs) && subUserChatTabs) {

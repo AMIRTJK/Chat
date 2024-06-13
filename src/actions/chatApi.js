@@ -1080,3 +1080,28 @@ export const postSubTabVisaMessages = createAsyncThunk(
     }
   }
 );
+
+export const putTabVisaUsersTerm = createAsyncThunk(
+  "putTabVisaUsersTerm",
+  async (newObj, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_SUB_TAB_VISA_USERS}/${newObj.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newObj),
+        }
+      );
+      const data = await response.json();
+      dispatch(getTabVisaUsers());
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+

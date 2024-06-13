@@ -497,6 +497,14 @@
       "userChatId": "2",
       "name": "Вкладка №1",
       "status": false
+    },
+    {
+      "id": "1718250003961",
+      "subUserChatId": "1717406669556",
+      "userAuthId": "4",
+      "userChatId": "2",
+      "name": "Отдел по разработке и развитию",
+      "status": true
     }
   ],
   "invitedToSubChatTabs": [
@@ -520,6 +528,17 @@
       "status": true,
       "login": "m.abdurahmonovich",
       "userAuthId": "7",
+      "userChatId": "2"
+    },
+    {
+      "id": "1718250007552",
+      "subUserChatTabId": "1718250003961",
+      "name": "Бехруз Рамазонович",
+      "role": "Начальник отдела",
+      "image": "src/assets/Бехруз Рамазонович.jpg",
+      "status": true,
+      "login": "b.ramazonovich",
+      "userAuthId": "6",
       "userChatId": "2"
     }
   ],
@@ -551,6 +570,151 @@
       "replyMessage": {}
     }
   ],
-  "subTabVisaUsers": [],
-  "subTabVisaMessages": []
+  "subTabVisaUsers": [
+    {
+      "id": "1718250007553",
+      "subUserChatTabId": "1717648092592",
+      "userAuthId": "4",
+      "userChatId": "2",
+      "term": "18.06.2024",
+      "status": "",
+      "eds": "",
+      "createdAt": "04-06-2024"
+    },
+    {
+      "id": "1718250007554",
+      "subUserChatTabId": "1718250003961",
+      "userAuthId": "4",
+      "userChatId": "2",
+      "term": "20.06.2024",
+      "status": "",
+      "eds": "",
+      "createdAt": "06-06-2024"
+    }
+  ],
+  "subTabVisaMessages": [
+    {
+      "id": "1718250027672",
+      "name": "Барои тахлил ва пешниход",
+      "status": true,
+      "subVisaUserId": "1718250007553"
+    },
+    {
+      "id": "1718250027673",
+      "name": "Барои мувофика ва корбари",
+      "status": true,
+      "subVisaUserId": "1718250007554"
+    },
+    {
+      "id": "5c27"
+    },
+    {
+      "id": "5126"
+    },
+    {
+      "id": "528c"
+    },
+    {
+      "id": "91b4"
+    },
+    {
+      "id": "aecc"
+    },
+    {
+      "id": "4eac"
+    },
+    {
+      "id": "7dc8"
+    },
+    {
+      "id": "1d3b"
+    },
+    {
+      "id": "4754"
+    },
+    {
+      "id": "c095"
+    },
+    {
+      "id": "4476"
+    },
+    {
+      "id": "1712"
+    },
+    {
+      "id": "1cbf"
+    },
+    {
+      "id": "7004"
+    },
+    {
+      "id": "3166"
+    },
+    {
+      "id": "e690"
+    },
+    {
+      "id": "8c2b"
+    },
+    {
+      "id": "6a56"
+    },
+    {
+      "id": "514e"
+    },
+    {
+      "id": "05ab"
+    },
+    {
+      "id": "33d1"
+    },
+    {
+      "id": "5adc"
+    },
+    {
+      "id": "9e5e"
+    },
+    {
+      "id": "8d65"
+    },
+    {
+      "id": "76c1"
+    },
+    {
+      "id": "9e05"
+    },
+    {
+      "id": "09b2"
+    },
+    {
+      "id": "a7b7"
+    },
+    {
+      "id": "4251"
+    },
+    {
+      "id": "3bb4"
+    },
+    {
+      "id": "89c3"
+    },
+    {
+      "id": "5697"
+    },
+    {
+      "id": "3b8a"
+    },
+    {
+      "id": "26e6"
+    },
+    {
+      "id": "7b9d"
+    },
+    {
+      "id": "c2e6"
+    },
+    {
+      "id": "b7b6"
+    }
+  ]
 }
