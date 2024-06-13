@@ -4,7 +4,6 @@ import {
   getSubTabMessages,
   getSubUserChatTabsById,
   getTabVisaUsers,
-  postSubTabVisaMessages,
   getUsers,
 } from "../actions/chatApi";
 import SubMessageText from "./SubMessageText";
@@ -49,7 +48,6 @@ const SubTabVisaUser = ({ filteredSubTabVisaUser }) => {
   useEffect(() => {
     Dispatch(getTabVisaUsers());
     Dispatch(getSubUserChatTabsById());
-    Dispatch(postSubTabVisaMessages());
     Dispatch(getUsers());
   }, [Dispatch]);
 
