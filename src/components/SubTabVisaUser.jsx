@@ -28,6 +28,9 @@ const SubTabVisaUser = ({ filteredSubTabVisaUser }) => {
     (store) => store.chat.subTabVisaMessages
   );
   const users = useSelector((store) => store.chat.users);
+  const invitedToSubChatTabs = useSelector(
+    (store) => store.chat.invitedToSubChatTabs
+  );
 
   const accessLogin = JSON.parse(localStorage.getItem("accessLogin"));
 
@@ -60,8 +63,11 @@ const SubTabVisaUser = ({ filteredSubTabVisaUser }) => {
         </div>
       </div>
       <div className="visa-members">
-        <p>Бехруз Рамазонович</p>
-        <p>Бехруз Рамазонович</p>
+        {invitedToSubChatTabs.map((e) => {
+          if (subVisa?.subUserChatTabId === e.subUserChatTabId) {
+            return <p>{e.name}</p>;
+          }
+        })}
       </div>
       <div className="visa-message">
         {Array.isArray(subTabVisaMessages) &&

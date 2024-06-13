@@ -99,7 +99,6 @@ const SubTitleChat = () => {
           >
             Исполнители
           </Button>
-
           <div className="wrapper-sub-tabs flex gap-5">
             {Array.isArray(subUserChatTabs) &&
               subUserChatTabs.map((e) => {

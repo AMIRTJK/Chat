@@ -52,12 +52,6 @@ const SubBodyMessages = () => {
         subUserChatTabsById[0]?.id === subTabMessage.subUserTabId
     );
 
-  useEffect(() => {
-    Dispatch(getSubMessages());
-    Dispatch(getSubTabMessages());
-    Dispatch(getTabVisaUsers());
-  }, [Dispatch]);
-
   const filteredSubTabVisaUser =
     Array.isArray(subTabVisaUsers) &&
     subTabVisaUsers.filter((subVisa) => {
@@ -70,14 +64,27 @@ const SubBodyMessages = () => {
       );
     });
 
+  const isActiveSubTabVisa = subUserChatTabs.some(
+    (e) => e.id === filteredSubTabVisaUser[0]?.subUserChatTabId
+  );
+
   // console.log(filteredSubTabVisaUser);
 
   // console.log(subUserChatTabs);
   // console.log(subTabVisaUsers);
 
+  useEffect(() => {
+    Dispatch(getSubMessages());
+    Dispatch(getSubTabMessages());
+    Dispatch(getTabVisaUsers());
+  }, [Dispatch]);
+
   return (
     <main className="category-scrollbar h-[69vh] overflow-auto relative">
-      <SubTabVisaUser filteredSubTabVisaUser={filteredSubTabVisaUser}/>
+      {/* Этот запрос ломает логику отображение, если закоментировать то при нажатии на вкладки и список участников и сообщение чатов отображаются, а если оставить как есть то их нет */}
+      {isActiveSubTabVisa && (
+        <SubTabVisaUser filteredSubTabVisaUser={filteredSubTabVisaUser} />
+      )}
       <ul>
         {Array.isArray(filteredSubMessages) &&
           filteredSubMessages.map((e) => {
