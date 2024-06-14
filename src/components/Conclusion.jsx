@@ -35,7 +35,7 @@ const Conclusion = ({ handleModalConclusion }) => {
   return (
     <div
       onClick={() => handleModalConclusion(false)}
-      className="fixed w-full h-full top-0 left-0 z-10"
+      className="fixed w-full h-full top-0 left-0 z-10 bg-[#00000030]"
     >
       <div
         onClick={(event) => event.stopPropagation()}
