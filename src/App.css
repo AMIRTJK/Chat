@@ -141,3 +141,16 @@ body {
     width: 0%;
   }
 }
+
+.aside-left-conclusion {
+  background: linear-gradient(to bottom, #f1f1f1, #d6d7db);
+}
+
+.react-quill-editor .ql-container {
+  border: none !important; /* Important to override Quill's styles */
+}
+
+.ql-toolbar {
+  border-left: none !important; /* Убираем границу у всей панели управления */
+  border-right: none !important; /* Убираем границу у всей панели управления */
+}

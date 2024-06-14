@@ -496,7 +496,7 @@
       "userAuthId": "4",
       "userChatId": "2",
       "name": "Вкладка №1",
-      "status": false
+      "status": true
     },
     {
       "id": "1718250003961",
@@ -504,7 +504,23 @@
       "userAuthId": "4",
       "userChatId": "2",
       "name": "Отдел по разработке и развитию",
-      "status": true
+      "status": false
+    },
+    {
+      "id": "1718355543168",
+      "subUserChatId": "1717406729364",
+      "userAuthId": "5",
+      "userChatId": "2",
+      "name": "Вкладка Зафара Исмоила",
+      "status": false
+    },
+    {
+      "id": "1718356223326",
+      "subUserChatId": "1717406729364",
+      "userAuthId": "5",
+      "userChatId": "2",
+      "name": "Вкладка Зафара Исмоили №2",
+      "status": false
     }
   ],
   "invitedToSubChatTabs": [
@@ -540,6 +556,28 @@
       "login": "b.ramazonovich",
       "userAuthId": "6",
       "userChatId": "2"
+    },
+    {
+      "id": "1718355551046",
+      "subUserChatTabId": "1718355543168",
+      "name": "Абдуҷаббори Зарифӣ",
+      "role": "Главный специалист",
+      "image": "src/assets/Абдуҷаббори Зарифӣ.jpg",
+      "status": true,
+      "login": "a.zarifi",
+      "userAuthId": "9",
+      "userChatId": "2"
+    },
+    {
+      "id": "1718356226517",
+      "subUserChatTabId": "1718356223326",
+      "name": "Шарифов Хисрав",
+      "role": "Начальник отдела",
+      "image": "src/assets/Шарифов Хисрав.jpg",
+      "status": true,
+      "login": "h.sharifov",
+      "userAuthId": "8",
+      "userChatId": "2"
     }
   ],
   "subTabMessages": [
@@ -568,6 +606,19 @@
       "subUserTabId": "1717648092592",
       "dateTime": "15:01",
       "replyMessage": {}
+    },
+    {
+      "id": "1718356238326",
+      "subUserChatId": "1717406729364",
+      "name": "Заъфар Исмоил",
+      "role": "Начальник гл.управление",
+      "image": "https://i.ibb.co/3Mctzwb/image.png",
+      "text": "Барои корбари",
+      "userAuthId": "5",
+      "userChatId": "2",
+      "subUserTabId": "1718356223326",
+      "dateTime": "14:10",
+      "replyMessage": {}
     }
   ],
   "subTabVisaUsers": [
@@ -586,10 +637,30 @@
       "subUserChatTabId": "1718250003961",
       "userAuthId": "4",
       "userChatId": "2",
-      "term": "20.06.2024",
+      "term": "",
       "status": "",
       "eds": "",
       "createdAt": "06-06-2024"
+    },
+    {
+      "id": "1718355551047",
+      "subUserChatTabId": "1718355543168",
+      "userAuthId": "5",
+      "userChatId": "2",
+      "term": "",
+      "status": "",
+      "eds": "",
+      "createdAt": "14-06-2024"
+    },
+    {
+      "id": "1718356226518",
+      "subUserChatTabId": "1718356223326",
+      "userAuthId": "5",
+      "userChatId": "2",
+      "term": "2024-06-22",
+      "status": "",
+      "eds": "",
+      "createdAt": "14-06-2024"
     }
   ],
   "subTabVisaMessages": [
@@ -597,13 +668,25 @@
       "id": "1718250027672",
       "name": "Барои тахлил ва пешниход",
       "status": true,
-      "subVisaUserId": "1718250007553"
+      "subVisaUserId": "1717648092592"
     },
     {
       "id": "1718250027673",
       "name": "Барои мувофика ва корбари",
       "status": true,
-      "subVisaUserId": "1718250007554"
+      "subVisaUserId": "1718250003961"
+    },
+    {
+      "id": "5",
+      "name": "Барои хулоса",
+      "status": true,
+      "subVisaUserId": "1718355543168"
+    },
+    {
+      "id": "4",
+      "name": "Барои пешбари",
+      "status": false,
+      "subVisaUserId": "1718356223326"
     }
   ]
 }

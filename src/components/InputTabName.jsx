@@ -53,7 +53,10 @@ const InputTabName = ({ handleShowTabName }) => {
   const handlePostSubUserChatTabs = () => {
     let newObj = {};
 
+  
+
     subUserChats.forEach((e) => {
+      console.log(accessLogin.id, e.userAuthId, accessLogin.id === e.userAuthId && chatById[0].id === e.userChatId);
       if (
         (accessLogin.id === e.userAuthId && chatById[0].id === e.userChatId) ||
         (accessLogin.id === e.userChatId && chatById[0].id === e.userChatId)
@@ -132,7 +135,6 @@ const InputTabName = ({ handleShowTabName }) => {
     Dispatch(postSubTabVisaMessages(newSubTabVisaMessage));
   };
 
-  console.log(ownVisaValue);
 
   // Добавить собственную визу
 

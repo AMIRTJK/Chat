@@ -1,11 +1,7 @@
 import React, { useEffect } from "react";
 import { Button, Avatar, IconButton } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  getUsers,
-  postInvitedToSubChatTabs,
-  getSubUserChatTabsById,
-} from "../actions/chatApi";
+import { getUsers, postInvitedToSubChatTabs } from "../actions/chatApi";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 const InviteToSubChat = ({ handleModal }) => {

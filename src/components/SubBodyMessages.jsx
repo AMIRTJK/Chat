@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import {
   getSubMessages,
   getSubTabMessages,
-  getSubUserChatTabsById,
   getTabVisaUsers,
 } from "../actions/chatApi";
 import SubMessageText from "./SubMessageText";
@@ -64,9 +63,11 @@ const SubBodyMessages = () => {
       );
     });
 
-  const isActiveSubTabVisa = subUserChatTabs.some(
-    (e) => e.id === filteredSubTabVisaUser[0]?.subUserChatTabId
-  );
+  const isActiveSubTabVisa =
+    Array.isArray(subUserChatTabs) &&
+    subUserChatTabs.some(
+      (e) => e.id === filteredSubTabVisaUser[0]?.subUserChatTabId
+    );
 
   // console.log(filteredSubTabVisaUser);
 

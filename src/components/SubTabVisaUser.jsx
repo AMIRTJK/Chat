@@ -5,6 +5,7 @@ import {
   getSubUserChatTabsById,
   getTabVisaUsers,
   getUsers,
+  getSubTabVisaMessages,
 } from "../actions/chatApi";
 import SubMessageText from "./SubMessageText";
 import { useSelector, useDispatch } from "react-redux";
@@ -43,12 +44,12 @@ const SubTabVisaUser = ({ filteredSubTabVisaUser }) => {
     (e) => e.userAuthId === subVisa?.userAuthId
   );
 
-  console.log(filteredUser);
-
   useEffect(() => {
     Dispatch(getTabVisaUsers());
-    Dispatch(getSubUserChatTabsById());
+    // Эта гребанная опечатка обощлась мне нескольким часов мучения, закоментировав этот запрос, я решил проблему с рендером сообщение в теле чата
+    // Dispatch(getSubUserChatTabsById());
     Dispatch(getUsers());
+    Dispatch(getSubTabVisaMessages());
   }, [Dispatch]);
 
   return (
@@ -56,8 +57,8 @@ const SubTabVisaUser = ({ filteredSubTabVisaUser }) => {
       <div className="user flex items-center gap-5">
         <Avatar src={filteredUser[0]?.image} />
         <div className="user-text">
-          <p>{filteredUser[0]?.name}</p>
-          <p>{filteredUser[0]?.role}</p>
+          <p className="text-[#007cd2] font-[500]">{filteredUser[0]?.name}</p>
+          <p className="text-[#989898] text-[14px]">{filteredUser[0]?.role}</p>
         </div>
       </div>
       <div className="visa-members">
@@ -70,7 +71,8 @@ const SubTabVisaUser = ({ filteredSubTabVisaUser }) => {
       <div className="visa-message">
         {Array.isArray(subTabVisaMessages) &&
           subTabVisaMessages.map((e) => {
-            if (e.subVisaUserId === subVisa?.id) {
+            console.log(e.subVisaUserId, subVisa?.id);
+            if (e.subVisaUserId === subVisa?.subUserChatTabId) {
               return <p>{e.name}</p>;
             }
           })}
@@ -79,8 +81,10 @@ const SubTabVisaUser = ({ filteredSubTabVisaUser }) => {
         <p>До: {subVisa?.term}</p>
       </div>
       <div className="visa-date">
-        <p>Нет подписи</p>
-        <p>{filteredUser[0]?.name}</p>
+        <p className="hover:text-[#ff0000] cursor-pointer">
+          {subVisa.eds ? "Подпись" : "Нет подписи"}
+        </p>
+        <p className="font-semibold text-[#345581]">{filteredUser[0]?.name}</p>
         <div className="term flex gap-2">
           <p className="underline text-[#345581] font-semibold text-[14px]">
             «{Array.isArray(date) && date[0]}»
