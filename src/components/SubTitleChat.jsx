@@ -82,6 +82,15 @@ const SubTitleChat = () => {
     Dispatch(deleteSubUserChatTabs(id));
   };
 
+  const isActiveTab = subUserChatTabs.some((subTab) => {
+    return invitedToSubChatTabs.some(
+      (invite) =>
+        invite.subUserChatTabId === subTab.id &&
+        invite.userAuthId === accessLogin.id &&
+        chatById[0]?.id === subTab.userChatId
+    );
+  });
+
   useEffect(() => {
     Dispatch(getSubUserChatTabs());
     Dispatch(getInvitedToSubChatTabs());
@@ -99,46 +108,42 @@ const SubTitleChat = () => {
           </Button>
           <div className="wrapper-sub-tabs flex gap-5">
             {Array.isArray(subUserChatTabs) &&
-              subUserChatTabs.map((e) => {
-                return invitedToSubChatTabs.map((invite) => {
-                  if (
-                    (accessLogin.id === e.userAuthId &&
-                      chatById[0]?.id === e.userChatId) ||
-                    // нижнее второе условие конфликтует с вышестояшим, то есть Зафар Азими видит лишние вкладки, но и не только он, также и другие участники
-                    (invite.subUserChatTabId === e.id &&
-                      invite.userAuthId === accessLogin.id &&
-                      chatById[0]?.id === e.userChatId)
-                  )
-                    return (
-                      <Button
-                        onClick={() => handleSubTabMessagesById(e)}
-                        key={e.id}
-                        variant={e.status ? "contained" : "outlined"}
+              subUserChatTabs.map((subTab) => {
+                if (
+                  (accessLogin.id === subTab.userAuthId &&
+                    chatById[0]?.id === subTab.userChatId) ||
+                  // участники исполнителей (Акрамшох и Азими) видят все существующие вкладки, нужно исправить
+                  isActiveTab
+                )
+                  return (
+                    <Button
+                      onClick={() => handleSubTabMessagesById(subTab)}
+                      key={subTab.id}
+                      variant={subTab.status ? "contained" : "outlined"}
+                      sx={{
+                        fontSize: "13px",
+                        height: "30px",
+                        position: "relative",
+                        paddingRight: "30px",
+                      }}
+                    >
+                      {subTab.name}
+                      <CloseIcon
+                        onClick={() => handleDeleteSubUserChatTabs(subTab.id)}
                         sx={{
-                          fontSize: "13px",
-                          height: "30px",
-                          position: "relative",
-                          paddingRight: "30px",
+                          fontSize: "17px",
+                          color: subTab.status ? "white" : "000000af",
+                          position: "absolute",
+                          bottom: "10px",
+                          right: "0",
+                          padding: "2px",
+                          "&:hover": {
+                            color: "#000000",
+                          },
                         }}
-                      >
-                        {e.name}
-                        <CloseIcon
-                          onClick={() => handleDeleteSubUserChatTabs(e.id)}
-                          sx={{
-                            fontSize: "17px",
-                            color: e.status ? "white" : "000000af",
-                            position: "absolute",
-                            bottom: "10px",
-                            right: "0",
-                            padding: "2px",
-                            "&:hover": {
-                              color: "#000000",
-                            },
-                          }}
-                        />
-                      </Button>
-                    );
-                });
+                      />
+                    </Button>
+                  );
               })}
           </div>
           <IconButton
