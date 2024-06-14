@@ -760,7 +760,7 @@ export const getSubMessages = createAsyncThunk("getSubMessages", async () => {
 
 export const postSubMessage = createAsyncThunk(
   "postSubMessage",
-  async (newObj, { rejectWithValue, dispatch, getState }) => {
+  async (newObj, { rejectWithValue, dispatch }) => {
     try {
       const response = await fetch(import.meta.env.VITE_API_SUB_MESSAGES, {
         method: "POST",
@@ -771,8 +771,6 @@ export const postSubMessage = createAsyncThunk(
       });
       const data = await response.json();
       dispatch(getSubMessages());
-      // dispatch(getSubUserChatTabsById(getState().chat.idxSubTab));
-      // console.log(getState().chat.idxSubTab);
       return data;
     } catch (error) {
       console.error(error);

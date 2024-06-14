@@ -71,7 +71,6 @@ const SubTabVisaUser = ({ filteredSubTabVisaUser }) => {
       <div className="visa-message">
         {Array.isArray(subTabVisaMessages) &&
           subTabVisaMessages.map((e) => {
-            console.log(e.subVisaUserId, subVisa?.id);
             if (e.subVisaUserId === subVisa?.subUserChatTabId) {
               return <p>{e.name}</p>;
             }

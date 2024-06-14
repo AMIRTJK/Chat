@@ -24,7 +24,6 @@ const SubTitleChat = () => {
   const subChatById = useSelector((store) => store.chat.subChatById);
   const subMessages = useSelector((store) => store.chat.subMessages);
   const subUserChatTabs = useSelector((store) => store.chat.subUserChatTabs);
-  const idxSubTab = useSelector((store) => store.chat.idxSubTab);
   const invitedToSubChatTabs = useSelector(
     (store) => store.chat.invitedToSubChatTabs
   );
@@ -34,7 +33,7 @@ const SubTitleChat = () => {
 
   const tabNameValue = useSelector((store) => store.chat.tabNameValue);
 
-  const { setIdxSubTab, setTabNameValue } = actions;
+  const { setTabNameValue } = actions;
 
   const [tabName, setTabName] = useState(false);
 
@@ -59,7 +58,6 @@ const SubTitleChat = () => {
 
     // Получаем данные для выбранной вкладки
     Dispatch(getSubUserChatTabsById(item.id));
-    Dispatch(setIdxSubTab(item.id));
   };
 
   const handleSetStatusSubChat = async () => {
@@ -102,42 +100,45 @@ const SubTitleChat = () => {
           <div className="wrapper-sub-tabs flex gap-5">
             {Array.isArray(subUserChatTabs) &&
               subUserChatTabs.map((e) => {
-                if (
-                  (accessLogin.id === e.userAuthId &&
-                    chatById[0]?.id === e.userChatId) ||
-                  // нижнее второе условие конфликтует с вышестояшим, то есть Зафар Азими видит лишние вкладки
-                  (invitedToSubChatTabs[0]?.subUserChatTabId === e.id &&
-                    chatById[0]?.id === e.userChatId)
-                )
-                  return (
-                    <Button
-                      onClick={() => handleSubTabMessagesById(e)}
-                      key={e.id}
-                      variant={e.status ? "contained" : "outlined"}
-                      sx={{
-                        fontSize: "13px",
-                        height: "30px",
-                        position: "relative",
-                        paddingRight: "30px",
-                      }}
-                    >
-                      {e.name}
-                      <CloseIcon
-                        onClick={() => handleDeleteSubUserChatTabs(e.id)}
+                return invitedToSubChatTabs.map((invite) => {
+                  if (
+                    (accessLogin.id === e.userAuthId &&
+                      chatById[0]?.id === e.userChatId) ||
+                    // нижнее второе условие конфликтует с вышестояшим, то есть Зафар Азими видит лишние вкладки, но и не только он, также и другие участники
+                    (invite.subUserChatTabId === e.id &&
+                      invite.userAuthId === accessLogin.id &&
+                      chatById[0]?.id === e.userChatId)
+                  )
+                    return (
+                      <Button
+                        onClick={() => handleSubTabMessagesById(e)}
+                        key={e.id}
+                        variant={e.status ? "contained" : "outlined"}
                         sx={{
-                          fontSize: "17px",
-                          color: e.status ? "white" : "000000af",
-                          position: "absolute",
-                          bottom: "10px",
-                          right: "0",
-                          padding: "2px",
-                          "&:hover": {
-                            color: "#000000",
-                          },
+                          fontSize: "13px",
+                          height: "30px",
+                          position: "relative",
+                          paddingRight: "30px",
                         }}
-                      />
-                    </Button>
-                  );
+                      >
+                        {e.name}
+                        <CloseIcon
+                          onClick={() => handleDeleteSubUserChatTabs(e.id)}
+                          sx={{
+                            fontSize: "17px",
+                            color: e.status ? "white" : "000000af",
+                            position: "absolute",
+                            bottom: "10px",
+                            right: "0",
+                            padding: "2px",
+                            "&:hover": {
+                              color: "#000000",
+                            },
+                          }}
+                        />
+                      </Button>
+                    );
+                });
               })}
           </div>
           <IconButton

@@ -92,7 +92,6 @@ const initialState = {
   subUserChatTabs: [],
   subTabMessages: [],
   subUserChatTabsById: [],
-  idxSubTab: null,
   invitedToSubChatTabs: [],
   tabNameValue: "",
   invite: "",
@@ -157,9 +156,6 @@ const chatSlice = createSlice({
     },
     setVisaTemp: (state, action) => {
       state.visaTemp = action.payload;
-    },
-    setIdxSubTab: (state, action) => {
-      state.idxSubTab = action.payload;
     },
     setTabNameValue: (state, action) => {
       state.tabNameValue = action.payload;
