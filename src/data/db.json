@@ -708,10 +708,11 @@
       "title": "1",
       "invitedToSubChatTabId": null,
       "subUserChatTabId": "1717648092592",
-      "status": true,
+      "status": false,
       "login": "a.ramazonovich",
       "userAuthId": "4",
-      "userChatId": "2"
+      "userChatId": "2",
+      "text": "<p>Другой текст 4</p>"
     },
     {
       "id": "1718743833286",
@@ -721,7 +722,8 @@
       "status": false,
       "login": "a.ramazonovich",
       "userAuthId": "4",
-      "userChatId": "2"
+      "userChatId": "2",
+      "text": ""
     },
     {
       "id": "1718743984369",
@@ -731,7 +733,30 @@
       "status": false,
       "login": "a.ramazonovich",
       "userAuthId": "4",
-      "userChatId": "2"
+      "userChatId": "2",
+      "text": "<p>1234</p>"
+    },
+    {
+      "id": "1718746802067",
+      "title": "Заключение №1",
+      "invitedToSubChatTabId": "1717648131256",
+      "subUserChatTabId": "1717648092592",
+      "status": false,
+      "login": "b.ramazonovich",
+      "userAuthId": "6",
+      "userChatId": "2",
+      "text": "<p>Другой текст</p>"
+    },
+    {
+      "id": "1718749308363",
+      "title": "Проверочный",
+      "invitedToSubChatTabId": null,
+      "subUserChatTabId": "1717648092592",
+      "status": true,
+      "login": "a.ramazonovich",
+      "userAuthId": "4",
+      "userChatId": "2",
+      "text": "<p>12dds</p>"
     }
   ]
 }

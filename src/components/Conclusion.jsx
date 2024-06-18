@@ -9,12 +9,14 @@ import { useSelector, useDispatch } from "react-redux";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
-import { getSubTabConclusionList } from "../actions/chatApi";
+import {
+  getSubTabConclusionList,
+  putSubTabConclusionList,
+  putSubTabConclusionListText,
+} from "../actions/chatApi";
 
 const Conclusion = ({ handleModalConclusion }) => {
   const Dispatch = useDispatch();
-
-  const [value, setValue] = useState("");
 
   const subUserChatTabsById = useSelector(
     (store) => store.chat.subUserChatTabsById
@@ -29,11 +31,11 @@ const Conclusion = ({ handleModalConclusion }) => {
     (store) => store.chat.subTabConclusionList
   );
 
+  const accessLogin = JSON.parse(localStorage.getItem("accessLogin"));
+
   const filteredExecutor = users.filter(
     (e) => e.userAuthId === subUserChatTabsById[0]?.userAuthId
   );
-
-  console.log(value);
 
   const [visible, setVisible] = useState({});
 
@@ -50,9 +52,45 @@ const Conclusion = ({ handleModalConclusion }) => {
     setNameConclusion(state);
   };
 
+  const handlePutSubTabConclusionList = async (item) => {
+    for (const e of Array.isArray(subTabConclusionList) &&
+      subTabConclusionList) {
+      if (e.status === true) {
+        await Dispatch(putSubTabConclusionList({ ...e, status: false }));
+      }
+    }
+
+    // Включаем выбранную вкладку
+    await Dispatch(putSubTabConclusionList({ ...item, status: true }));
+    setEditConclusion(false);
+  };
+
+  // Получаем актуальную вкладку - заключение
+  const filteredConclusionList =
+    Array.isArray(subTabConclusionList) &&
+    subTabConclusionList.filter((e) => e.status === true);
+
+  const [value, setValue] = useState("");
+
+  // const [value, setValue] = useState(filteredConclusionList[0]?.text || "");
+  const [editConclusion, setEditConclusion] = useState(true);
+
+  const handlePutSubTabConclusionListText = () => {
+    Dispatch(
+      putSubTabConclusionListText({ ...filteredConclusionList[0], text: value })
+    );
+    setEditConclusion(false);
+  };
+
   useEffect(() => {
     Dispatch(getSubTabConclusionList());
   }, []);
+
+  useEffect(() => {
+    if (filteredConclusionList.length > 0) {
+      setValue(filteredConclusionList[0]?.text || "");
+    }
+  }, [filteredConclusionList[0]?.id]);
 
   return (
     <>
@@ -94,8 +132,13 @@ const Conclusion = ({ handleModalConclusion }) => {
                         ) {
                           return (
                             <li
+                              onClick={() =>
+                                handlePutSubTabConclusionList(conclusion)
+                              }
                               key={conclusion.id}
-                              className="p-[10px] border-b-[1px] hover:bg-[#d4d4d9] cursor-pointer text-[14px]"
+                              className={`${
+                                conclusion.status ? "bg-[#d4d4d9]" : ""
+                              } p-[10px] border-b-[1px] hover:bg-[#d4d4d9] cursor-pointer text-[14px]`}
                             >
                               {conclusion.title}
                             </li>
@@ -137,8 +180,17 @@ const Conclusion = ({ handleModalConclusion }) => {
                                   ) {
                                     return (
                                       <li
+                                        onClick={() =>
+                                          handlePutSubTabConclusionList(
+                                            conclusion
+                                          )
+                                        }
                                         key={conclusion.id}
-                                        className="p-[10px] border-b-[1px] hover:bg-[#d4d4d9] cursor-pointer text-[14px]"
+                                        className={`${
+                                          conclusion.status
+                                            ? "bg-[#d4d4d9]"
+                                            : ""
+                                        } p-[10px] border-b-[1px] hover:bg-[#d4d4d9] cursor-pointer text-[14px]`}
                                       >
                                         {conclusion.title}
                                       </li>
@@ -153,12 +205,22 @@ const Conclusion = ({ handleModalConclusion }) => {
                 })}
             </aside>
             <main className="min-w-[700px] bg-[#fff]">
-              <ReactQuill
-                theme="snow"
-                value={value}
-                onChange={setValue}
-                className="react-quill-editor"
-              />
+              {!editConclusion && (
+                <div
+                  className="text-[14px] p-[15px]"
+                  dangerouslySetInnerHTML={{
+                    __html: filteredConclusionList[0]?.text,
+                  }}
+                />
+              )}
+              {editConclusion && (
+                <ReactQuill
+                  theme="snow"
+                  value={value}
+                  onChange={setValue}
+                  className="react-quill-editor"
+                />
+              )}
             </main>
             {/* Подпись ======= */}
             <aside className="right aside-left-conclusion h-full min-w-[135px]  flex flex-col items-center gap-5 py-[20px]">
@@ -177,19 +239,31 @@ const Conclusion = ({ handleModalConclusion }) => {
                 })}
             </aside>
           </div>
-          <div className="bg-[#fff] w-full flex justify-end gap-5 text-[red] border-t-[1px] p-[20px]">
-            <Button
-              onClick={() => handleModalConclusion(false)}
-              sx={{ textTransform: "none" }}
-            >
-              Отмена
-            </Button>
-            <Button
-              variant="contained"
-              sx={{ textTransform: "none", fontWeight: "400" }}
-            >
-              Сохранить
-            </Button>
+          <div className="bg-[#fff] flex justify-between text-[red] border-t-[1px] p-[20px]">
+            <div className="panel-control">
+              <Button
+                onClick={() => setEditConclusion(true)}
+                variant="outlined"
+                sx={{ textTransform: "none" }}
+              >
+                Изменить
+              </Button>
+            </div>
+            <div className="wrapper-buttons flex gap-5">
+              <Button
+                onClick={() => handleModalConclusion(false)}
+                sx={{ textTransform: "none" }}
+              >
+                Отмена
+              </Button>
+              <Button
+                onClick={() => handlePutSubTabConclusionListText()}
+                variant="contained"
+                sx={{ textTransform: "none", fontWeight: "400" }}
+              >
+                Сохранить
+              </Button>
+            </div>
           </div>
         </div>
       </div>
