@@ -92,6 +92,8 @@ const Conclusion = ({ handleModalConclusion }) => {
     }
   }, [filteredConclusionList[0]?.id]);
 
+  console.log(filteredConclusionList[0]);
+
   return (
     <>
       <div
