@@ -1122,3 +1122,43 @@ export const putTabVisaUsersTerm = createAsyncThunk(
     }
   }
 );
+
+export const getSubTabConclusionList = createAsyncThunk(
+  "getSubTabConclusionList",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await fetch(
+        import.meta.env.VITE_API_SUB_TAB_CONCLUSION_LIST
+      );
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const postSubTabConclusionList = createAsyncThunk(
+  "postSubTabConclusionList",
+  async (newObj, { dispatch, rejectWithValue }) => {
+    try {
+      const response = await fetch(
+        import.meta.env.VITE_API_SUB_TAB_CONCLUSION_LIST,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newObj),
+        }
+      );
+      const data = await response.json();
+      dispatch(getSubTabConclusionList());
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);

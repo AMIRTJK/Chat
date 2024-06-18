@@ -704,7 +704,21 @@
   ],
   "subTabConclusionList": [
     {
+      "id": "12314154431654",
+      "title": "Заключение Акрамшох №1",
+      "invitedToSubChatTabId": null,
+      "subUserChatTabId": "1717648092592",
+      "name": "Акрамшох Рамазонович",
+      "role": "Директор",
+      "image": "https://i.ibb.co/Kb1V9nM/583-IMG-6443-47034.png",
+      "status": false,
+      "login": "a.ramazonovich",
+      "userAuthId": "4",
+      "userChatId": "2"
+    },
+    {
       "id": "12314154431641",
+      "title": "Заключение №1",
       "invitedToSubChatTabId": "1717648131256",
       "subUserChatTabId": "1717648092592",
       "name": "Бехруз Рамазонович",
