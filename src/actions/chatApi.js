@@ -920,6 +920,26 @@ export const postSubTabMessages = createAsyncThunk(
   }
 );
 
+export const deleteSubTabMessages = createAsyncThunk(
+  "deleteSubTabMessages",
+  async (id, { dispatch, rejectWithValue }) => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_SUB_TAB_MESSAGES}/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+      const data = await response.json();
+      dispatch(getSubTabMessages());
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
 export const putSubUserChatTabsById = createAsyncThunk(
   "putSubUserChatTabsById",
   async (newObj, { rejectWithValue, dispatch }) => {
@@ -1102,4 +1122,3 @@ export const putTabVisaUsersTerm = createAsyncThunk(
     }
   }
 );
-

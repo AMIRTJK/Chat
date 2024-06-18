@@ -39,6 +39,7 @@ import {
   deleteSubUserChatTabs,
   getSubTabMessages,
   postSubTabMessages,
+  deleteSubTabMessages,
   putSubUserChatTabsById,
   getSubUserChatTabsById,
   getInvitedToSubChatTabs,
@@ -280,6 +281,9 @@ const chatSlice = createSlice({
       state.subTabMessages = action.payload;
     });
     builder.addCase(postSubTabMessages.fulfilled, (state, action) => {
+      state.subTabMessages = action.payload;
+    });
+    builder.addCase(deleteSubTabMessages.fulfilled, (state, action) => {
       state.subTabMessages = action.payload;
     });
     builder.addCase(putSubUserChatTabsById.fulfilled, (state, action) => {

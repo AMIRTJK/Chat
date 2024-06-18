@@ -1,14 +1,25 @@
 import React from "react";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
-import { deleteSubMessage } from "../actions/chatApi";
-import { useDispatch } from "react-redux";
+import { deleteSubMessage, deleteSubTabMessages } from "../actions/chatApi";
+import { useDispatch, useSelector } from "react-redux";
 
 const MoreVertSubMessage = ({ item }) => {
   const Dispatch = useDispatch();
+  const subUserChatTabs = useSelector((store) => store.chat.subUserChatTabs);
+
+  const isActivePostSubMessageStatus =
+    Array.isArray(subUserChatTabs) &&
+    subUserChatTabs.every((e) => e.status === false);
+
+  console.log(isActivePostSubMessageStatus);
 
   const handleDeleteSubMessage = (id) => {
-    Dispatch(deleteSubMessage(id));
+    if (isActivePostSubMessageStatus) {
+      Dispatch(deleteSubMessage(id));
+    } else {
+      Dispatch(deleteSubTabMessages(id));
+    }
   };
 
   return (

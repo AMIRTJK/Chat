@@ -101,18 +101,27 @@ const SubInputMessage = () => {
     replyMessage: {},
   };
 
-
-
-  const isActivePostSubMessage =
+  const isActivePostSubMessageStatus =
     Array.isArray(subUserChatTabs) &&
-    subUserChatTabs.every((e) => e.status === false && e.userAuthId === authedLogin.id);
+    subUserChatTabs.every((e) => e.status === false);
 
+  const isActivePostSubMessageUser =
+    Array.isArray(subUserChatTabs) &&
+    subUserChatTabs.some((e) => e.userAuthId === authedLogin.id);
+
+  // Условие для отправки мессенджа исполнителей
+  const isActivePostSubMessage =
+    isActivePostSubMessageStatus && isActivePostSubMessageUser;
+
+  // Условие для отправки мессенджа участников вкладки
   const isActivePostSubTabMessages =
     Array.isArray(subUserChatTabs) &&
     subUserChatTabs.some((e) => e.status === true);
 
   const handlePostSubMessage = () => {
+    console.log(subUserChatTabs);
     if (isActivePostSubMessage) {
+      console.log("работает");
       Dispatch(postSubMessage(messageSubUser));
     }
     setShowSend("");
