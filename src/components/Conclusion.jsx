@@ -32,6 +32,15 @@ const Conclusion = ({ handleModalConclusion }) => {
 
   console.log(value);
 
+  const [visible, setVisible] = useState({});
+
+  const handleShowConclusion = (id) => {
+    setVisible((prevState) => ({
+      ...prevState,
+      [id]: !prevState[id],
+    }));
+  };
+
   return (
     <div
       onClick={() => handleModalConclusion(false)}
@@ -46,24 +55,24 @@ const Conclusion = ({ handleModalConclusion }) => {
             <p className="text-[14px] text-[#939393] font-[500]">Документы</p>
             <IconButton
               sx={{ padding: "0px" }}
-              onClick={() => handleShowPanelControlConclusion()}
+              onClick={() => handleShowConclusion(filteredExecutor[0]?.id)}
             >
               <Avatar
                 src={filteredExecutor[0]?.image}
                 className="border-[2px] border-[#007cd2]"
               />
             </IconButton>
-            {panelControlConclusion && (
+            {visible[filteredExecutor[0]?.id] && (
               <div className="panel-control-conclusion flex flex-col items-center gap-4">
                 <IconButton>
                   <AddIcon />
                 </IconButton>
                 <ul className="conclusion-list">
                   <li className="p-[10px] border-b-[1px] hover:bg-[#d4d4d9] cursor-pointer text-[14px]">
-                    Заключение №1
+                    Заключение №
                   </li>
                   <li className="p-[10px] border-b-[1px] hover:bg-[#d4d4d9] cursor-pointer text-[14px]">
-                    Заключение №2
+                    Заключение №
                   </li>
                 </ul>
               </div>
@@ -72,12 +81,33 @@ const Conclusion = ({ handleModalConclusion }) => {
               invitedToSubChatTabs.map((e) => {
                 if (e.subUserChatTabId === subUserChatTabsById[0]?.id)
                   return (
-                    <IconButton key={e.id} sx={{ padding: "0px" }}>
-                      <Avatar
-                        src={e.image}
-                        className="border-[2px] border-[#007cd2]"
-                      />
-                    </IconButton>
+                    <>
+                      <IconButton
+                        onClick={() => handleShowConclusion(e.id)}
+                        key={e.id}
+                        sx={{ padding: "0px" }}
+                      >
+                        <Avatar
+                          src={e.image}
+                          className="border-[2px] border-[#007cd2]"
+                        />
+                      </IconButton>
+                      {visible[e.id] && (
+                        <div className="panel-control-conclusion flex flex-col items-center gap-4">
+                          <IconButton>
+                            <AddIcon />
+                          </IconButton>
+                          <ul className="conclusion-list">
+                            <li className="p-[10px] border-b-[1px] hover:bg-[#d4d4d9] cursor-pointer text-[14px]">
+                              Заключение №
+                            </li>
+                            <li className="p-[10px] border-b-[1px] hover:bg-[#d4d4d9] cursor-pointer text-[14px]">
+                              Заключение №
+                            </li>
+                          </ul>
+                        </div>
+                      )}
+                    </>
                   );
               })}
           </aside>
