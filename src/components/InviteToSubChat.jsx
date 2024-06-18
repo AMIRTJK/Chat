@@ -25,7 +25,7 @@ const InviteToSubChat = ({ handleModal }) => {
       name: item.name,
       role: item.role,
       image: item.image,
-      status: true,
+      status: false,
       login: item.login,
       userAuthId: item.userAuthId,
       userChatId: chatById[0]?.id,

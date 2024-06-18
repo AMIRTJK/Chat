@@ -530,7 +530,7 @@
       "name": "Бехруз Рамазонович",
       "role": "Начальник отдела",
       "image": "src/assets/Бехруз Рамазонович.jpg",
-      "status": true,
+      "status": false,
       "login": "b.ramazonovich",
       "userAuthId": "6",
       "userChatId": "2"
@@ -541,7 +541,7 @@
       "name": "Махмуд Абдурахмонович",
       "role": "Начальник отдела",
       "image": "src/assets/Махмуд Абдурахмонович.jpg",
-      "status": true,
+      "status": false,
       "login": "m.abdurahmonovich",
       "userAuthId": "7",
       "userChatId": "2"
@@ -552,7 +552,7 @@
       "name": "Бехруз Рамазонович",
       "role": "Начальник отдела",
       "image": "src/assets/Бехруз Рамазонович.jpg",
-      "status": true,
+      "status": false,
       "login": "b.ramazonovich",
       "userAuthId": "6",
       "userChatId": "2"
@@ -563,7 +563,7 @@
       "name": "Абдуҷаббори Зарифӣ",
       "role": "Главный специалист",
       "image": "src/assets/Абдуҷаббори Зарифӣ.jpg",
-      "status": true,
+      "status": false,
       "login": "a.zarifi",
       "userAuthId": "9",
       "userChatId": "2"
@@ -574,7 +574,7 @@
       "name": "Шарифов Хисрав",
       "role": "Начальник отдела",
       "image": "src/assets/Шарифов Хисрав.jpg",
-      "status": true,
+      "status": false,
       "login": "h.sharifov",
       "userAuthId": "8",
       "userChatId": "2"
@@ -657,7 +657,7 @@
       "subUserChatTabId": "1718356223326",
       "userAuthId": "5",
       "userChatId": "2",
-      "term": "2024-06-22",
+      "term": "",
       "status": "",
       "eds": "",
       "createdAt": "14-06-2024"
@@ -687,6 +687,20 @@
       "name": "Барои пешбари",
       "status": false,
       "subVisaUserId": "1718356223326"
+    }
+  ],
+  "subTabConclusionList": [
+    {
+      "id": "12314154431641",
+      "invitedToSubChatTabId": "1717648131256",
+      "subUserChatTabId": "1717648092592",
+      "name": "Бехруз Рамазонович",
+      "role": "Начальник отдела",
+      "image": "src/assets/Бехруз Рамазонович.jpg",
+      "status": false,
+      "login": "b.ramazonovich",
+      "userAuthId": "6",
+      "userChatId": "2"
     }
   ]
 }
