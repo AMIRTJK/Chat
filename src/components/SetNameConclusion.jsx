@@ -1,7 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "@mui/material";
 
-const SetNameConclusion = ({handleSetNameConclusion}) => {
+import { useDispatch, useSelector } from "react-redux";
+
+import { postSubTabConclusionList } from "../actions/chatApi";
+
+const SetNameConclusion = ({ handleSetNameConclusion }) => {
+  const Dispatch = useDispatch();
+  const subUserChatTabsById = useSelector(
+    (store) => store.chat.subUserChatTabsById
+  );
+  const invitedToSubChatTabs = useSelector(
+    (store) => store.chat.invitedToSubChatTabs
+  );
+  const subTabConclusionList = useSelector(
+    (store) => store.chat.subTabConclusionList
+  );
+
+  const [value, setValue] = useState("");
+
+  const accessLogin = JSON.parse(localStorage.getItem("accessLogin"));
+
+  const filterInvitedTabId =
+    Array.isArray(invitedToSubChatTabs) &&
+    invitedToSubChatTabs.filter(
+      (e) =>
+        e.userAuthId === accessLogin.id &&
+        subUserChatTabsById[0]?.id === e.subUserChatTabId
+    );
+
+  const handlePostSubTabConclusionList = () => {
+    const newObj = {
+      id: Date.now().toString(),
+      title: value,
+      invitedToSubChatTabId:
+        filterInvitedTabId.length > 0 ? filterInvitedTabId[0]?.id : null,
+      subUserChatTabId: subUserChatTabsById[0]?.id,
+      status: subTabConclusionList.length > 0 ? false : true,
+      login: accessLogin.login,
+      userAuthId: accessLogin.id,
+      userChatId: subUserChatTabsById[0]?.userChatId,
+    };
+    Dispatch(postSubTabConclusionList(newObj));
+    handleSetNameConclusion(false);
+  };
+
   return (
     <div
       onClick={() => handleSetNameConclusion(false)}
@@ -13,6 +56,8 @@ const SetNameConclusion = ({handleSetNameConclusion}) => {
       >
         <p className="font-[600]">Новое заключение</p>
         <input
+          onChange={() => setValue(event.target.value)}
+          value={value}
           type="text"
           placeholder="Введите название заключение"
           className="border-b-[1px] border-[#000] outline-none"
@@ -26,7 +71,11 @@ const SetNameConclusion = ({handleSetNameConclusion}) => {
             >
               Отмена
             </Button>
-            <Button variant="contained" sx={{ textTransform: "none" }}>
+            <Button
+              onClick={() => handlePostSubTabConclusionList()}
+              variant="contained"
+              sx={{ textTransform: "none" }}
+            >
               Создать
             </Button>
           </div>
