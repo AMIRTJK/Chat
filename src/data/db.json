@@ -439,7 +439,7 @@
       "text": "Барои пешниход (Курбониён Сарвар)!",
       "userAuthId": "5",
       "userChatId": "2",
-      "subUserTabId": false,
+      "subUserTabId": true,
       "dateTime": "22.11.2024",
       "replyMessage": {}
     },
@@ -452,7 +452,7 @@
       "text": "Хулоса оиди мактуб замима мегардад.",
       "userAuthId": "4",
       "userChatId": "2",
-      "subUserTabId": false,
+      "subUserTabId": true,
       "dateTime": "18:12",
       "replyMessage": {}
     }
@@ -464,7 +464,7 @@
       "userAuthId": "4",
       "userChatId": "2",
       "name": "Вкладка №1",
-      "status": false
+      "status": true
     }
   ],
   "invitedToSubChatTabs": [
@@ -537,15 +537,15 @@
       "text": "<p class=\"ql-align-justify\">КВД “Маркази дастгирии амалиётҳои молиявии байнибуҷетӣ” мактуби Раёсати молияи ноҳияи Фархорро аз 12.06.2023с., №100 мавриди баррасӣ қарор дода, эҳтиромона маълумот медиҳад.</p><p class=\"ql-align-justify\">Тибқи мактуби мазкур дархост карда мешавад, ки барои пардохт намудани супоришномаҳои дар руйхат замимагашта, ки дар ҳолати “Нав” қарор доранд, мусоидат карда шавад.</p><p class=\"ql-align-justify\"><br></p><p class=\"ql-align-justify\"><br></p>"
     },
     {
-      "id": "1718771877023",
-      "title": "Хулоса №2",
-      "invitedToSubChatTabId": null,
+      "id": "1718795387260",
+      "title": "321",
+      "invitedToSubChatTabId": "1718771242072",
       "subUserChatTabId": "1718771234714",
       "status": true,
-      "login": "a.ramazonovich",
-      "userAuthId": "4",
+      "login": "b.ramazonovich",
+      "userAuthId": "6",
       "userChatId": "2",
-      "text": "<p class=\"ql-align-justify\">КВД “Маркази дастгирии амалиётҳои молиявии байнибуҷетӣ” мактуби Раёсати молияи ноҳияи Фархорро аз 12.06.2023с., №100 мавриди баррасӣ қарор дода, эҳтиромона маълумот медиҳад.</p><p class=\"ql-align-justify\">Тибқи мактуби мазкур дархост карда мешавад, ки барои пардохт намудани супоришномаҳои дар руйхат замимагашта, ки дар ҳолати “Нав” қарор доранд, мусоидат карда шавад.</p><p class=\"ql-align-justify\"><br></p><p class=\"ql-align-justify\">Бояд қайд кард, ки муҳлати пардохти супоришномаҳои пулии дарҷгардида гузаштааст ва барои пардохт намудани онҳо лозим аст, ки санаи супоришномаҳо аз тарафи сармуҳосибон иваз карда шавад.&nbsp;</p><p><br></p>"
+      "text": "<p>22222</p>"
     }
   ],
   "subTabConclusionListEds": [

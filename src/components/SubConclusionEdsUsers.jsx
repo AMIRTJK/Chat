@@ -60,25 +60,6 @@ const SubConclusionEdsUsers = ({ handleShowConclusionEdsUsers }) => {
         <p className="p-[10px] font-[600] text-center">Добавить участников</p>
         <form>
           <ul>
-            <li
-              onClick={() =>
-                handlePostSubTabConclusionListEds(filteredExecutor[0])
-              }
-              key={filteredExecutor[0]?.id}
-              className="border-b-[1px] p-[10px] flex gap-5 items-center cursor-pointer hover:bg-[#f0f0f0] transition-all duration-100"
-            >
-              <IconButton sx={{ padding: "0px" }}>
-                <Avatar src={filteredExecutor[0]?.image} />
-              </IconButton>
-              <div className="user-name flex flex-col">
-                <p className="text-[#007cd2] font-[500]">
-                  {filteredExecutor[0]?.name}
-                </p>
-                <p className="text-[#989898] text-[15px]">
-                  {filteredExecutor[0]?.role}
-                </p>
-              </div>
-            </li>
             {Array.isArray(invitedToSubChatTabs) &&
               invitedToSubChatTabs.map((e) => {
                 return (

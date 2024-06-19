@@ -113,48 +113,6 @@ const Conclusion = ({ handleModalConclusion }) => {
           <div className="conclusion-content flex h-full">
             <aside className="left aside-left-conclusion h-full min-w-[135px] flex flex-col items-center gap-5 py-[20px]">
               <p className="text-[14px] text-[#939393] font-[500]">Документы</p>
-              <IconButton
-                key={filteredExecutor[0]?.id}
-                sx={{ padding: "0px" }}
-                onClick={() => handleShowConclusion(filteredExecutor[0]?.id)}
-              >
-                <Avatar
-                  src={filteredExecutor[0]?.image}
-                  className="border-[2px] border-[#007cd2]"
-                />
-              </IconButton>
-              {visible[filteredExecutor[0]?.id] && (
-                <div className="panel-control-conclusion flex flex-col items-center gap-4">
-                  <IconButton onClick={() => handleSetNameConclusion(true)}>
-                    <AddIcon />
-                  </IconButton>
-                  <ul className="conclusion-list">
-                    {Array.isArray(subTabConclusionList) &&
-                      subTabConclusionList.map((conclusion) => {
-                        if (
-                          conclusion.subUserChatTabId ===
-                            subUserChatTabsById[0]?.id &&
-                          conclusion.userAuthId ===
-                            subUserChatTabsById[0]?.userAuthId
-                        ) {
-                          return (
-                            <li
-                              onClick={() =>
-                                handlePutSubTabConclusionList(conclusion)
-                              }
-                              key={conclusion.id}
-                              className={`${
-                                conclusion.status ? "bg-[#d4d4d9]" : ""
-                              } p-[10px] border-b-[1px] hover:bg-[#d4d4d9] cursor-pointer text-[14px]`}
-                            >
-                              {conclusion.title}
-                            </li>
-                          );
-                        }
-                      })}
-                  </ul>
-                </div>
-              )}
               {/* Заключение участников вкладки */}
               {Array.isArray(invitedToSubChatTabs) &&
                 invitedToSubChatTabs.map((invite) => {
