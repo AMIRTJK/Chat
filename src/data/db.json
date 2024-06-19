@@ -457,97 +457,12 @@
       "replyMessage": {}
     }
   ],
-  "subUserChatTabs": [
-    {
-      "id": "1718771234714",
-      "subUserChatId": "1717406669556",
-      "userAuthId": "4",
-      "userChatId": "2",
-      "name": "Вкладка №1",
-      "status": true
-    }
-  ],
-  "invitedToSubChatTabs": [
-    {
-      "id": "1718771242072",
-      "subUserChatTabId": "1718771234714",
-      "name": "Бехруз Рамазонович",
-      "role": "Начальник отдела разработки и внедрения ИС",
-      "image": "src/assets/Бехруз Рамазонович.jpg",
-      "status": true,
-      "login": "b.ramazonovich",
-      "userAuthId": "6",
-      "userChatId": "2"
-    }
-  ],
-  "subTabMessages": [
-    {
-      "id": "1718771282024",
-      "subUserChatId": "1717406669556",
-      "name": "Акрамшох Рамазонович",
-      "role": "Директор ГУП «ЦФИТ»",
-      "image": "https://i.ibb.co/Kb1V9nM/583-IMG-6443-47034.png",
-      "text": "Барои корбари",
-      "userAuthId": "4",
-      "userChatId": "2",
-      "subUserTabId": "1718771234714",
-      "dateTime": "09:28",
-      "replyMessage": {}
-    }
-  ],
-  "subTabVisaUsers": [
-    {
-      "id": "1718770997920",
-      "userAuthId": "4",
-      "userChatId": "2",
-      "term": "",
-      "status": "",
-      "eds": "",
-      "createdAt": "19-06-2024"
-    },
-    {
-      "id": "1718771242073",
-      "subUserChatTabId": "1718771234714",
-      "userAuthId": "4",
-      "userChatId": "2",
-      "term": "",
-      "status": "",
-      "eds": "",
-      "createdAt": "19-06-2024"
-    }
-  ],
-  "subTabVisaMessages": [
-    {
-      "id": "2",
-      "name": "Барои барраси тибки тартиби мукарраргардида",
-      "status": false,
-      "subVisaUserId": "1718771234714"
-    }
-  ],
-  "subTabConclusionList": [
-    {
-      "id": "1718771320897",
-      "title": "Хулоса №1",
-      "invitedToSubChatTabId": "1718771242072",
-      "subUserChatTabId": "1718771234714",
-      "status": false,
-      "login": "b.ramazonovich",
-      "userAuthId": "6",
-      "userChatId": "2",
-      "text": "<p class=\"ql-align-justify\">КВД “Маркази дастгирии амалиётҳои молиявии байнибуҷетӣ” мактуби Раёсати молияи ноҳияи Фархорро аз 12.06.2023с., №100 мавриди баррасӣ қарор дода, эҳтиромона маълумот медиҳад.</p><p class=\"ql-align-justify\">Тибқи мактуби мазкур дархост карда мешавад, ки барои пардохт намудани супоришномаҳои дар руйхат замимагашта, ки дар ҳолати “Нав” қарор доранд, мусоидат карда шавад.</p><p class=\"ql-align-justify\"><br></p><p class=\"ql-align-justify\"><br></p>"
-    },
-    {
-      "id": "1718771877023",
-      "title": "Хулоса №2",
-      "invitedToSubChatTabId": null,
-      "subUserChatTabId": "1718771234714",
-      "status": true,
-      "login": "a.ramazonovich",
-      "userAuthId": "4",
-      "userChatId": "2",
-      "text": "<p class=\"ql-align-justify\">КВД “Маркази дастгирии амалиётҳои молиявии байнибуҷетӣ” мактуби Раёсати молияи ноҳияи Фархорро аз 12.06.2023с., №100 мавриди баррасӣ қарор дода, эҳтиромона маълумот медиҳад.</p><p class=\"ql-align-justify\">Тибқи мактуби мазкур дархост карда мешавад, ки барои пардохт намудани супоришномаҳои дар руйхат замимагашта, ки дар ҳолати “Нав” қарор доранд, мусоидат карда шавад.</p><p class=\"ql-align-justify\"><br></p><p class=\"ql-align-justify\">Бояд қайд кард, ки муҳлати пардохти супоришномаҳои пулии дарҷгардида гузаштааст ва барои пардохт намудани онҳо лозим аст, ки санаи супоришномаҳо аз тарафи сармуҳосибон иваз карда шавад.&nbsp;</p><p><br></p>"
-    }
-  ],
+  "subUserChatTabs": [],
+  "invitedToSubChatTabs": [],
+  "subTabMessages": [],
+  "subTabVisaUsers": [],
+  "subTabVisaMessages": [],
+  "subTabConclusionList": [],
   "subTabConclusionListEds": [
     {
       "id": "1714452575821442",
