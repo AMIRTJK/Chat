@@ -113,7 +113,7 @@
     {
       "id": "2",
       "name": "Сарвар Собирович",
-      "role": "Заминистр",
+      "role": "Заместитель Министра Финансов",
       "image": "https://i.ibb.co/zRQyxxP/image.jpg",
       "status": false,
       "userAuthId": "2",
@@ -122,7 +122,7 @@
     {
       "id": "3",
       "name": "Юсуф Хайрулло",
-      "role": "Первый Заминистр",
+      "role": "Первый Заместитель Министра Финансов",
       "image": "https://i.ibb.co/fvwb1qX/image.jpg",
       "status": false,
       "userAuthId": "3",
@@ -131,7 +131,7 @@
     {
       "id": "4",
       "name": "Акрамшох Рамазонович",
-      "role": "Директор",
+      "role": "Директор ГУП «ЦФИТ»",
       "image": "https://i.ibb.co/Kb1V9nM/583-IMG-6443-47034.png",
       "status": false,
       "userAuthId": "4",
@@ -139,8 +139,8 @@
     },
     {
       "id": "5",
-      "name": "Заъфар Исмоил",
-      "role": "Начальник гл.управление",
+      "name": "Зафар Исмоил",
+      "role": "Начальник управления государственного бюджета",
       "image": "https://i.ibb.co/3Mctzwb/image.png",
       "status": false,
       "userAuthId": "5",
@@ -149,7 +149,7 @@
     {
       "id": "6",
       "name": "Бехруз Рамазонович",
-      "role": "Начальник отдела",
+      "role": "Начальник отдела разработки и внедрения ИС",
       "image": "src/assets/Бехруз Рамазонович.jpg",
       "status": false,
       "userAuthId": "6",
@@ -158,7 +158,7 @@
     {
       "id": "7",
       "name": "Махмуд Абдурахмонович",
-      "role": "Начальник отдела",
+      "role": "Начальник отдела по работе с клиентами",
       "image": "src/assets/Махмуд Абдурахмонович.jpg",
       "status": false,
       "userAuthId": "7",
@@ -167,7 +167,7 @@
     {
       "id": "8",
       "name": "Шарифов Хисрав",
-      "role": "Начальник отдела",
+      "role": "Заместитель начальника управления-начальник отдела",
       "image": "src/assets/Шарифов Хисрав.jpg",
       "status": false,
       "userAuthId": "8",
@@ -236,14 +236,14 @@
       "id": "2",
       "name": "Сарвар Собирович",
       "image": "https://i.ibb.co/zRQyxxP/image.jpg",
-      "role": "Заминистр",
-      "status": true
+      "role": "Заместитель Министра Финансов",
+      "status": false
     },
     {
       "id": "3",
       "name": "Юсуф Хайрулло",
       "image": "https://i.ibb.co/fvwb1qX/image.jpg",
-      "role": "Первый Заминистр",
+      "role": "Первый Заместитель Министра Финансов",
       "status": false
     }
   ],
@@ -383,7 +383,7 @@
     {
       "id": "1717406669556",
       "name": "Акрамшох Рамазонович",
-      "role": "Директор",
+      "role": "Директор ГУП «ЦФИТ»",
       "image": "https://i.ibb.co/Kb1V9nM/583-IMG-6443-47034.png",
       "status": true,
       "login": "a.ramazonovich",
@@ -393,34 +393,15 @@
     {
       "id": "1717406729364",
       "name": "Заъфар Исмоил",
-      "role": "Начальник гл.управление",
+      "role": "Начальник управления государственного бюджета",
       "image": "https://i.ibb.co/3Mctzwb/image.png",
       "status": true,
       "login": "z.ismoil",
       "userAuthId": "5",
       "userChatId": "2"
-    },
-    {
-      "id": "1717480019894",
-      "name": "Акрамшох Рамазонович",
-      "role": "Директор",
-      "image": "https://i.ibb.co/Kb1V9nM/583-IMG-6443-47034.png",
-      "status": true,
-      "login": "a.ramazonovich",
-      "userAuthId": "4",
-      "userChatId": "3"
     }
   ],
   "visaUsers": [
-    {
-      "id": "3",
-      "userAuthId": "3",
-      "login": "y.khayrullo",
-      "term": "",
-      "status": "",
-      "eds": "",
-      "createdAt": "04-06-2024"
-    },
     {
       "id": "2",
       "userAuthId": "2",
@@ -450,23 +431,10 @@
   ],
   "subMessages": [
     {
-      "id": "3241",
-      "subUserChatId": "4",
-      "name": "Акрамшох Рамазонович",
-      "role": "Директор",
-      "image": "https://i.ibb.co/Kb1V9nM/583-IMG-6443-47034.png",
-      "text": "Барои корбари ва пешниходи хулоса (Юсуф Мачиди)!",
-      "userAuthId": "4",
-      "userChatId": "3",
-      "subUserTabId": false,
-      "dateTime": "25.11.2024",
-      "replyMessage": {}
-    },
-    {
       "id": "3341",
       "subUserChatId": "5",
       "name": "Заъфар Исмоил",
-      "role": "Начальник гл.управление",
+      "role": "Начальник управления государственного бюджета",
       "image": "https://i.ibb.co/3Mctzwb/image.png",
       "text": "Барои пешниход (Курбониён Сарвар)!",
       "userAuthId": "5",
@@ -479,7 +447,7 @@
       "id": "1718716367256",
       "subUserChatId": "4",
       "name": "Акрамшох Рамазонович",
-      "role": "Директор",
+      "role": "Директор ГУП «ЦФИТ»",
       "image": "https://i.ibb.co/Kb1V9nM/583-IMG-6443-47034.png",
       "text": "Хулоса оиди мактуб замима мегардад.",
       "userAuthId": "4",
@@ -489,285 +457,10 @@
       "replyMessage": {}
     }
   ],
-  "subUserChatTabs": [
-    {
-      "id": "1717648092592",
-      "subUserChatId": "1717406669556",
-      "userAuthId": "4",
-      "userChatId": "2",
-      "name": "Вкладка №1",
-      "status": false
-    },
-    {
-      "id": "1718250003961",
-      "subUserChatId": "1717406669556",
-      "userAuthId": "4",
-      "userChatId": "2",
-      "name": "Отдел по разработке и развитию",
-      "status": false
-    },
-    {
-      "id": "1718355543168",
-      "subUserChatId": "1717406729364",
-      "userAuthId": "5",
-      "userChatId": "2",
-      "name": "Вкладка Зафара Исмоила",
-      "status": false
-    },
-    {
-      "id": "1718356223326",
-      "subUserChatId": "1717406729364",
-      "userAuthId": "5",
-      "userChatId": "2",
-      "name": "Вкладка Зафара Исмоили №2",
-      "status": false
-    }
-  ],
-  "invitedToSubChatTabs": [
-    {
-      "id": "1717648131256",
-      "subUserChatTabId": "1717648092592",
-      "name": "Бехруз Рамазонович",
-      "role": "Начальник отдела",
-      "image": "src/assets/Бехруз Рамазонович.jpg",
-      "status": false,
-      "login": "b.ramazonovich",
-      "userAuthId": "6",
-      "userChatId": "2"
-    },
-    {
-      "id": "1717648132824",
-      "subUserChatTabId": "1717648092592",
-      "name": "Махмуд Абдурахмонович",
-      "role": "Начальник отдела",
-      "image": "src/assets/Махмуд Абдурахмонович.jpg",
-      "status": false,
-      "login": "m.abdurahmonovich",
-      "userAuthId": "7",
-      "userChatId": "2"
-    },
-    {
-      "id": "1718250007552",
-      "subUserChatTabId": "1718250003961",
-      "name": "Бехруз Рамазонович",
-      "role": "Начальник отдела",
-      "image": "src/assets/Бехруз Рамазонович.jpg",
-      "status": false,
-      "login": "b.ramazonovich",
-      "userAuthId": "6",
-      "userChatId": "2"
-    },
-    {
-      "id": "1718355551046",
-      "subUserChatTabId": "1718355543168",
-      "name": "Абдуҷаббори Зарифӣ",
-      "role": "Главный специалист",
-      "image": "src/assets/Абдуҷаббори Зарифӣ.jpg",
-      "status": false,
-      "login": "a.zarifi",
-      "userAuthId": "9",
-      "userChatId": "2"
-    },
-    {
-      "id": "1718356226517",
-      "subUserChatTabId": "1718356223326",
-      "name": "Шарифов Хисрав",
-      "role": "Начальник отдела",
-      "image": "src/assets/Шарифов Хисрав.jpg",
-      "status": false,
-      "login": "h.sharifov",
-      "userAuthId": "8",
-      "userChatId": "2"
-    }
-  ],
-  "subTabMessages": [
-    {
-      "id": "1717494221713",
-      "subUserChatId": "1717406669556",
-      "name": "Акрамшох Рамазонович",
-      "role": "Директор",
-      "image": "https://i.ibb.co/Kb1V9nM/583-IMG-6443-47034.png",
-      "text": "Бехруз Рамазонович, корбари намоед!",
-      "userAuthId": "4",
-      "userChatId": "2",
-      "subUserTabId": "1717648092592",
-      "dateTime": "14:43",
-      "replyMessage": {}
-    },
-    {
-      "id": "1717494221714",
-      "subUserChatId": "1717406669556",
-      "name": "Бехруз Рамазонович",
-      "role": "Начальник отдела",
-      "image": "src/assets/Бехруз Рамазонович.jpg",
-      "text": "Мухтарам Акрамшох Рамазонович, корбари карда шуд!",
-      "userAuthId": "6",
-      "userChatId": "2",
-      "subUserTabId": "1717648092592",
-      "dateTime": "15:01",
-      "replyMessage": {}
-    },
-    {
-      "id": "1718356238326",
-      "subUserChatId": "1717406729364",
-      "name": "Заъфар Исмоил",
-      "role": "Начальник гл.управление",
-      "image": "https://i.ibb.co/3Mctzwb/image.png",
-      "text": "Барои корбари",
-      "userAuthId": "5",
-      "userChatId": "2",
-      "subUserTabId": "1718356223326",
-      "dateTime": "14:10",
-      "replyMessage": {}
-    },
-    {
-      "id": "1718715319543",
-      "subUserChatId": "1717406669556",
-      "name": "Бехруз Рамазонович",
-      "role": "Начальник отдела",
-      "image": "src/assets/Бехруз Рамазонович.jpg",
-      "text": "Салом",
-      "userAuthId": "6",
-      "userChatId": "2",
-      "subUserTabId": "1718250003961",
-      "dateTime": "17:55",
-      "replyMessage": {}
-    }
-  ],
-  "subTabVisaUsers": [
-    {
-      "id": "1718250007553",
-      "subUserChatTabId": "1717648092592",
-      "userAuthId": "4",
-      "userChatId": "2",
-      "term": "18.06.2024",
-      "status": "",
-      "eds": "",
-      "createdAt": "04-06-2024"
-    },
-    {
-      "id": "1718250007554",
-      "subUserChatTabId": "1718250003961",
-      "userAuthId": "4",
-      "userChatId": "2",
-      "term": "",
-      "status": "",
-      "eds": "",
-      "createdAt": "06-06-2024"
-    },
-    {
-      "id": "1718355551047",
-      "subUserChatTabId": "1718355543168",
-      "userAuthId": "5",
-      "userChatId": "2",
-      "term": "",
-      "status": "",
-      "eds": "",
-      "createdAt": "14-06-2024"
-    },
-    {
-      "id": "1718356226518",
-      "subUserChatTabId": "1718356223326",
-      "userAuthId": "5",
-      "userChatId": "2",
-      "term": "",
-      "status": "",
-      "eds": "",
-      "createdAt": "14-06-2024"
-    }
-  ],
-  "subTabVisaMessages": [
-    {
-      "id": "1718250027672",
-      "name": "Барои тахлил ва пешниход",
-      "status": true,
-      "subVisaUserId": "1717648092592"
-    },
-    {
-      "id": "1718250027673",
-      "name": "Барои мувофика ва корбари",
-      "status": true,
-      "subVisaUserId": "1718250003961"
-    },
-    {
-      "id": "5",
-      "name": "Барои хулоса",
-      "status": true,
-      "subVisaUserId": "1718355543168"
-    },
-    {
-      "id": "4",
-      "name": "Барои пешбари",
-      "status": false,
-      "subVisaUserId": "1718356223326"
-    }
-  ],
-  "subTabConclusionList": [
-    {
-      "id": "1718743822249",
-      "title": "1",
-      "invitedToSubChatTabId": null,
-      "subUserChatTabId": "1717648092592",
-      "status": false,
-      "login": "a.ramazonovich",
-      "userAuthId": "4",
-      "userChatId": "2",
-      "text": "<p>Другой текст 4</p>"
-    },
-    {
-      "id": "1718743833286",
-      "title": "2",
-      "invitedToSubChatTabId": null,
-      "subUserChatTabId": "1717648092592",
-      "status": false,
-      "login": "a.ramazonovich",
-      "userAuthId": "4",
-      "userChatId": "2",
-      "text": ""
-    },
-    {
-      "id": "1718743984369",
-      "title": "43243242",
-      "invitedToSubChatTabId": null,
-      "subUserChatTabId": "1717648092592",
-      "status": false,
-      "login": "a.ramazonovich",
-      "userAuthId": "4",
-      "userChatId": "2",
-      "text": "<p>1234</p>"
-    },
-    {
-      "id": "1718746802067",
-      "title": "Заключение №1",
-      "invitedToSubChatTabId": "1717648131256",
-      "subUserChatTabId": "1717648092592",
-      "status": true,
-      "login": "b.ramazonovich",
-      "userAuthId": "6",
-      "userChatId": "2",
-      "text": "<p>Текст Бехруза Рамазоновича,</p><p>Текст Акрамшох Рамазоновича</p>"
-    },
-    {
-      "id": "1718749308363",
-      "title": "Проверочный",
-      "invitedToSubChatTabId": null,
-      "subUserChatTabId": "1717648092592",
-      "status": false,
-      "login": "a.ramazonovich",
-      "userAuthId": "4",
-      "userChatId": "2",
-      "text": "<p>12dds</p>"
-    },
-    {
-      "id": "1718753539731",
-      "title": "Заключение Зафара Исмоила",
-      "invitedToSubChatTabId": null,
-      "subUserChatTabId": "1718355543168",
-      "status": false,
-      "login": "z.ismoil",
-      "userAuthId": "5",
-      "userChatId": "2",
-      "text": "<p>Салом</p>"
-    }
-  ]
+  "subUserChatTabs": [],
+  "invitedToSubChatTabs": [],
+  "subTabMessages": [],
+  "subTabVisaUsers": [],
+  "subTabVisaMessages": [],
+  "subTabConclusionList": []
 }
