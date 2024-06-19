@@ -3,6 +3,7 @@ import { Avatar, Button, IconButton } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 
 import SetNameConclusion from "./SetNameConclusion";
+import SubConclusionEdsUsers from "./SubConclusionEdsUsers";
 
 import { useSelector, useDispatch } from "react-redux";
 
@@ -82,6 +83,12 @@ const Conclusion = ({ handleModalConclusion }) => {
     setEditConclusion(false);
   };
 
+  const [showConclusionEdsUsers, setShowConclusionEdsUsers] = useState(false);
+
+  const handleShowConclusionEdsUsers = (state) => {
+    setShowConclusionEdsUsers(state);
+  };
+
   useEffect(() => {
     Dispatch(getSubTabConclusionList());
   }, []);
@@ -91,8 +98,6 @@ const Conclusion = ({ handleModalConclusion }) => {
       setValue(filteredConclusionList[0]?.text || "");
     }
   }, [filteredConclusionList[0]?.id]);
-
-  console.log(filteredConclusionList[0]);
 
   return (
     <>
@@ -227,6 +232,9 @@ const Conclusion = ({ handleModalConclusion }) => {
             {/* Подпись ======= */}
             <aside className="right aside-left-conclusion h-full min-w-[135px]  flex flex-col items-center gap-5 py-[20px]">
               <p className="text-[14px] text-[#939393] font-[500]">Подписи</p>
+              <IconButton onClick={() => handleShowConclusionEdsUsers(true)}>
+                <AddIcon />
+              </IconButton>
               {Array.isArray(invitedToSubChatTabs) &&
                 invitedToSubChatTabs.map((e) => {
                   if (e.subUserChatTabId === subUserChatTabsById[0]?.id)
@@ -242,13 +250,22 @@ const Conclusion = ({ handleModalConclusion }) => {
             </aside>
           </div>
           <div className="bg-[#fff] flex justify-between text-[red] border-t-[1px] p-[20px]">
-            <div className="panel-control">
+            <div className="panel-control flex gap-5 items-center">
               <Button
                 onClick={() => setEditConclusion(true)}
                 variant="outlined"
                 sx={{ textTransform: "none" }}
               >
                 Изменить
+              </Button>
+              <Button variant="outlined" sx={{ textTransform: "none" }}>
+                Подписать
+              </Button>
+              <Button
+                variant="contained"
+                sx={{ textTransform: "none", fontWeight: "400" }}
+              >
+                Завершить
               </Button>
             </div>
             <div className="wrapper-buttons flex gap-5">
@@ -271,6 +288,11 @@ const Conclusion = ({ handleModalConclusion }) => {
       </div>
       {nameConclusion && (
         <SetNameConclusion handleSetNameConclusion={handleSetNameConclusion} />
+      )}
+      {showConclusionEdsUsers && (
+        <SubConclusionEdsUsers
+          handleShowConclusionEdsUsers={handleShowConclusionEdsUsers}
+        />
       )}
     </>
   );
