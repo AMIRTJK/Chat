@@ -82,8 +82,8 @@ const SubTitleChat = () => {
     Dispatch(deleteSubUserChatTabs(id));
   };
 
-  const isActiveTab = subUserChatTabs.some((subTab) => {
-    return invitedToSubChatTabs.some(
+  const isActiveTab = Array.isArray(subUserChatTabs) && subUserChatTabs.some((subTab) => {
+    return Array.isArray(invitedToSubChatTabs) && invitedToSubChatTabs.some(
       (invite) =>
         invite.subUserChatTabId === subTab.id &&
         invite.userAuthId === accessLogin.id &&
