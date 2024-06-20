@@ -36,7 +36,7 @@ const SubBodyMessages = () => {
         subUserChats.some((subChat) => {
           return (
             chatById[0]?.id === subMessage.userChatId &&
-            subChat.userAuthId === subMessage.subUserChatId
+            subChat.id === subMessage.subUserChatId
           );
         })
       );

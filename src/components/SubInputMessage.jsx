@@ -43,23 +43,26 @@ const SubInputMessage = () => {
 
   Array.isArray(subUserChats) &&
     subUserChats.forEach((subChat) => {
-      invitedToSubChatTabs.forEach((invited) => {
-        if (subChat.userAuthId === authedLogin.id) {
-          // это условие работает, создатели subChat могут отправлять сообщение
-          newObj = { ...subChat };
-        } else if (invited.userAuthId === authedLogin.id) {
-          newObj = { ...invited };
-        }
-      });
+      if (subChat.userAuthId === authedLogin.id) {
+        newObj = { ...subChat };
+      }
     });
+
+  if (Object.keys(newObj).length === 0) {
+    invitedToSubChatTabs.forEach((invited) => {
+      if (invited.userAuthId === authedLogin.id) {
+        newObj = { ...invited };
+      }
+    });
+  }
 
   const activeTab = subUserChatTabsById[0]?.status
     ? subUserChatTabsById[0]?.id
     : false;
 
   const activeSubUser =
-    Array.isArray(subUserChatTabs) &&
-    subUserChatTabs.find(
+    Array.isArray(subUserChats) &&
+    subUserChats.find(
       (e) => e.userAuthId === authedLogin.id && e.status === false
     );
   // Исправить
@@ -67,15 +70,9 @@ const SubInputMessage = () => {
     Array.isArray(subUserChatTabs) &&
     subUserChatTabs.find((e) => e.status === true);
 
-  const activeSubInvitedUser =
-    Array.isArray(invitedToSubChatTabs) &&
-    invitedToSubChatTabs.find(
-      (e) => e.userAuthId === authedLogin.id && e.status === true
-    );
-
   let messageSubUser = {
     id: Date.now().toString(),
-    subUserChatId: activeSubUser?.userAuthId,
+    subUserChatId: activeSubUser?.id,
     name: newObj.name,
     role: newObj.role,
     image: newObj.image,
@@ -106,8 +103,8 @@ const SubInputMessage = () => {
     subUserChatTabs.every((e) => e.status === false);
 
   const isActivePostSubMessageUser =
-    Array.isArray(subUserChatTabs) &&
-    subUserChatTabs.some((e) => e.userAuthId === authedLogin.id);
+    Array.isArray(subUserChats) &&
+    subUserChats.some((e) => e.userAuthId === authedLogin.id);
 
   // Условие для отправки мессенджа исполнителей
   const isActivePostSubMessage =
@@ -119,9 +116,11 @@ const SubInputMessage = () => {
     subUserChatTabs.some((e) => e.status === true);
 
   const handlePostSubMessage = () => {
-    console.log(subUserChatTabs);
-    if (isActivePostSubMessage) {
-      console.log("работает");
+    console.log(isActivePostSubMessageStatus);
+    // console.log(messageSubUser);
+    // Добавил новое условие, что до создание вкладок можно писать сообщение, на данный момент если вкладок нет то и сообщение не пишутся и тем более не отображаются
+    if (isActivePostSubMessage || subUserChatTabs.length === 0) {
+      console.log(messageSubUser);
       Dispatch(postSubMessage(messageSubUser));
     }
     setShowSend("");

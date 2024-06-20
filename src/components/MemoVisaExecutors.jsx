@@ -17,7 +17,7 @@ const MemoVisaExecutors = () => {
   const tempVisaUser = () => {
     Array.isArray(visaUsers) &&
       visaUsers.forEach((e) => {
-        if (e.id === chatById[0].id) {
+        if (e.id === chatById[0]?.id) {
           setVisaUser(e);
         }
       });
@@ -35,7 +35,7 @@ const MemoVisaExecutors = () => {
       <div className="wrapper-logo flex flex-col items-center gap-2 w-[19%]">
         {/* <img src={emblem} alt="" className="w-[20%]" /> */}
         <h1 className="uppercase text-center text-[#345581] font-semibold text-[13px]">
-          {chatById[0].id === "3"
+          {chatById[0]?.id === "3"
             ? "Муовини якуми Вазири молияи Чумхурии Точикистон"
             : "Муовини Вазири молияи Чумхурии Точикистон"}
         </h1>

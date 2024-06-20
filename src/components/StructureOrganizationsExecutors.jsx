@@ -17,11 +17,9 @@ import {
   getVisaUsers,
 } from "../actions/chatApi";
 
-const StructureOrganizationsExecutors = ({ setExecutor, executor }) => {
+const StructureOrganizationsExecutors = ({ handleShowStructure }) => {
   const Dispatch = useDispatch();
 
-  const { setShowStructure } = actions;
-  const showStructure = useSelector((store) => store.chat.showStructure);
   const users = useSelector((store) => store.chat.users);
   const userChats = useSelector((store) => store.chat.userChats);
   const chatById = useSelector((store) => store.chat.chatById);
@@ -32,10 +30,6 @@ const StructureOrganizationsExecutors = ({ setExecutor, executor }) => {
   );
 
   const accessLogin = JSON.parse(localStorage.getItem("accessLogin"));
-
-  const handleModal = () => {
-    setExecutor(false);
-  };
 
   const stopPropagation = (event) => {
     event.stopPropagation();
@@ -84,7 +78,7 @@ const StructureOrganizationsExecutors = ({ setExecutor, executor }) => {
 
   return (
     <div
-      onClick={handleModal}
+      onClick={() => handleShowStructure(false)}
       className="wrapper-modal w-full h-full bg-red fixed top-0 left-0 z-10"
     >
       <div
@@ -95,7 +89,7 @@ const StructureOrganizationsExecutors = ({ setExecutor, executor }) => {
           <h1 className="text-[#fff] text-center text-[20px] mx-auto">
             Структура организации
           </h1>
-          <IconButton onClick={handleModal}>
+          <IconButton onClick={() => handleShowStructure(false)}>
             <CloseIcon
               className="icon-effects"
               sx={{
@@ -163,7 +157,7 @@ const StructureOrganizationsExecutors = ({ setExecutor, executor }) => {
           <div className="panel-control">
             <Button
               onClick={async () => {
-                handleModal();
+                handleShowStructure(false);
                 for (const user of userStructureExecutor) {
                   await Dispatch(multiDeleteUsersExecutor(user.id));
                 }

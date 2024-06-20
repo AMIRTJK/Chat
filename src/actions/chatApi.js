@@ -633,6 +633,31 @@ export const postVisaUsers = createAsyncThunk(
         body: JSON.stringify(newObj),
       });
       const data = await response.json();
+      dispatch(getVisaUsers());
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const putVisaUsers = createAsyncThunk(
+  "putVisaUsers",
+  async (newObj, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_VISA_USERS}/${newObj.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newObj),
+        }
+      );
+      const data = await response.json();
+      dispatch(getVisaUsers());
       return data;
     } catch (error) {
       console.error(error);

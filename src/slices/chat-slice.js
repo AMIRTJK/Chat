@@ -21,6 +21,8 @@ import {
   getUsersAuth,
   postUserAuth,
   getVisaUsers,
+  postVisaUsers,
+  putVisaUsers,
   getUserStructureExecutor,
   getUserChatsExecutor,
   postUserChatsExecutor,
@@ -232,6 +234,12 @@ const chatSlice = createSlice({
       state.visaStatusTemp = action.payload;
     });
     builder.addCase(getVisaUsers.fulfilled, (state, action) => {
+      state.visaUsers = action.payload;
+    });
+    builder.addCase(postVisaUsers.fulfilled, (state, action) => {
+      state.visaUsers = action.payload;
+    });
+    builder.addCase(putVisaUsers.fulfilled, (state, action) => {
       state.visaUsers = action.payload;
     });
     builder.addCase(getUserStructureExecutor.fulfilled, (state, action) => {

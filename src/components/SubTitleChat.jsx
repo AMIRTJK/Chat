@@ -82,14 +82,19 @@ const SubTitleChat = () => {
     Dispatch(deleteSubUserChatTabs(id));
   };
 
-  const isActiveTab = Array.isArray(subUserChatTabs) && subUserChatTabs.some((subTab) => {
-    return Array.isArray(invitedToSubChatTabs) && invitedToSubChatTabs.some(
-      (invite) =>
-        invite.subUserChatTabId === subTab.id &&
-        invite.userAuthId === accessLogin.id &&
-        chatById[0]?.id === subTab.userChatId
-    );
-  });
+  const isActiveTab =
+    Array.isArray(subUserChatTabs) &&
+    subUserChatTabs.some((subTab) => {
+      return (
+        Array.isArray(invitedToSubChatTabs) &&
+        invitedToSubChatTabs.some(
+          (invite) =>
+            invite.subUserChatTabId === subTab.id &&
+            invite.userAuthId === accessLogin.id &&
+            chatById[0]?.id === subTab.userChatId
+        )
+      );
+    });
 
   useEffect(() => {
     Dispatch(getSubUserChatTabs());
@@ -102,7 +107,7 @@ const SubTitleChat = () => {
         <div className="wrapper-tabs flex items-end gap-3">
           <Button
             onClick={() => handleSetStatusSubChat()}
-            variant={subMessages[0]?.subUserTabId ? "outlined" : "contained"}
+            variant={subUserChatTabsById[0]?.status ? "outlined" : "contained"}
           >
             Исполнители
           </Button>
@@ -161,34 +166,35 @@ const SubTitleChat = () => {
           {tabName && <InputTabName handleShowTabName={handleShowTabName} />}
         </div>
         <div className="panel-user flex items-end gap-3">
-          {subUserChats?.map((e) => {
-            if (
-              e.userChatId === chatById[0]?.id &&
-              e.userAuthId === subUserChatTabsById[0]?.userAuthId
-              // Нужно добавить условие либо еще один map для того чтобы вывести Avatar пользователей подчата, на данный момент выводятся только пользователи вкладок подчата
-            )
-              return (
-                <>
-                  <IconButton key={e.id} sx={{ padding: "0px" }}>
-                    <Avatar src={e.image} />
-                  </IconButton>
-                  {invitedToSubChatTabs?.map((invite) => {
-                    if (
-                      subUserChatTabsById[0]?.id === invite.subUserChatTabId
-                    ) {
-                      return (
-                        <IconButton key={invite.id} sx={{ padding: "0px" }}>
-                          <Avatar
-                            src={invite.image}
-                            sx={{ width: "24px", height: "24px" }}
-                          />
-                        </IconButton>
-                      );
-                    }
-                  })}
-                </>
-              );
-          })}
+          {Array.isArray(subUserChats) &&
+            subUserChats?.map((e) => {
+              if (
+                e.userChatId === chatById[0]?.id &&
+                e.userAuthId === subUserChatTabsById[0]?.userAuthId
+                // Нужно добавить условие либо еще один map для того чтобы вывести Avatar пользователей подчата, на данный момент выводятся только пользователи вкладок подчата
+              )
+                return (
+                  <>
+                    <IconButton key={e.id} sx={{ padding: "0px" }}>
+                      <Avatar src={e.image} />
+                    </IconButton>
+                    {invitedToSubChatTabs?.map((invite) => {
+                      if (
+                        subUserChatTabsById[0]?.id === invite.subUserChatTabId
+                      ) {
+                        return (
+                          <IconButton key={invite.id} sx={{ padding: "0px" }}>
+                            <Avatar
+                              src={invite.image}
+                              sx={{ width: "24px", height: "24px" }}
+                            />
+                          </IconButton>
+                        );
+                      }
+                    })}
+                  </>
+                );
+            })}
         </div>
       </header>
     </>

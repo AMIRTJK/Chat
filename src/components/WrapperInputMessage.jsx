@@ -12,8 +12,6 @@ const WrapperInputMessage = () => {
   const { setShowSend, setExecutorVisa } = actions;
   const showSend = useSelector((store) => store.chat.showSend);
 
-  const [executor, setExecutor] = useState(false);
-
   const handleShowMention = (value) => {
     Dispatch(setShowSend("@"));
   };
@@ -58,6 +56,12 @@ const WrapperInputMessage = () => {
   // console.log(accessLogin?.id);
   // console.log(chatById[0]?.id);
 
+  const [showStructure, setShowStructure] = useState(false);
+
+  const handleShowStructure = (state) => {
+    setShowStructure(state);
+  };
+
   useEffect(() => {
     renderRoleUsers();
   }, [Dispatch, chatById, accessLogin]);
@@ -73,25 +77,18 @@ const WrapperInputMessage = () => {
           <div className="panel-control flex items-center gap-5">
             <PanelTabVisa name="Упомянуть" handleShowTab={handleShowMention} />
             <PanelTabVisa
-              name="Исполнитель"
-              handleShowTab={handleShowExecutor}
+              name="Пригласить"
+              handleShowTab={handleShowStructure}
             />
-            <PanelTabVisa name="Виза" handleShowTab={handleShowVisa} />
-            <PanelTabVisa
-              name="К исполнению"
-              handleShowTab={handleShowStatus}
-            />
-            <PanelTabVisa name="Срок" handleShowTab={handleShowTerm} />
           </div>
         )}
 
         {showReply && <ReplyMessage />}
         <InputMessage />
       </div>
-      {executor && (
+      {showStructure && (
         <StructureOrganizationsExecutors
-          executor={executor}
-          setExecutor={setExecutor}
+          handleShowStructure={handleShowStructure}
         />
       )}
     </>

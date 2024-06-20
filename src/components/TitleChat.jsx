@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Avatar, IconButton } from "@mui/material";
+import { Avatar, IconButton, Button } from "@mui/material";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import { getChatById, getUserChatsExecutor } from "../actions/chatApi";
 import { useSelector, useDispatch } from "react-redux";
@@ -7,12 +7,14 @@ import { actions } from "../slices/chat-slice";
 import SubChat from "./SubChat";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import MemoVisaExecutors from "./MemoVisaExecutors";
+import SubVisa from "./SubVisa";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const TitleChat = () => {
   const dispatch = useDispatch();
+  const userChats = useSelector((store) => store.chat.userChats);
   const chatById = useSelector((store) => store.chat.chatById);
   const showVisaPopUp = useSelector((store) => store.chat.showVisaPopUp);
   const subUserChats = useSelector((store) => store.chat.subUserChats);
@@ -21,6 +23,8 @@ const TitleChat = () => {
   const accessLogin = JSON.parse(localStorage.getItem("accessLogin"));
 
   const { setShowVisaPopUp } = actions;
+
+  const emblem = "https://i.ibb.co/xCjbnnw/emblem.png";
 
   const handleShow = (event, state) => {
     event.stopPropagation();
@@ -31,22 +35,11 @@ const TitleChat = () => {
     dispatch(setShowVisaPopUp(false));
   };
 
-  useEffect(() => {
-    dispatch(getChatById());
-    dispatch(getUserChatsExecutor());
-  }, [dispatch]);
+  console.log(userChats);
 
-  useEffect(() => {
-    window.addEventListener("click", handleCloseVisaPopUp);
-
-    return () => {
-      window.removeEventListener("click", handleCloseVisaPopUp);
-    };
-  }, []);
-
-  const isActive = visaUsers.some(
-    (e) => e.id === chatById[0]?.id && visaUsers.length > 0
-  );
+  const isActive =
+    Array.isArray(userChats) &&
+    userChats.some((e) => e.status === true && subUserChats.length > 0);
 
   const [state, setState] = useState(false);
 
@@ -71,7 +64,24 @@ const TitleChat = () => {
     // }
   };
 
-  const emblem = "https://i.ibb.co/xCjbnnw/emblem.png";
+  const [showSubVisa, setShowSubVisa] = useState(false);
+
+  const handleShowSubVisa = (state) => {
+    setShowSubVisa(state);
+  };
+
+  useEffect(() => {
+    dispatch(getChatById());
+    dispatch(getUserChatsExecutor());
+  }, [dispatch]);
+
+  useEffect(() => {
+    window.addEventListener("click", handleCloseVisaPopUp);
+
+    return () => {
+      window.removeEventListener("click", handleCloseVisaPopUp);
+    };
+  }, []);
 
   return (
     <>
@@ -102,10 +112,13 @@ const TitleChat = () => {
                 }
               })}
           </div>
-          <div className="settings flex items-center">
-            {/* <IconButton>
-            <NotificationsOutlinedIcon />
-          </IconButton> */}
+          <div className="settings flex items-center gap-5">
+            {subUserChats.length < 1 && (
+              <Button onClick={() => handleShowSubVisa(true)}>
+                Создать визу
+              </Button>
+            )}
+
             <IconButton onClick={toggleDrawer(true)}>
               <EmailOutlinedIcon />
             </IconButton>
@@ -120,6 +133,7 @@ const TitleChat = () => {
       >
         <SubChat />
       </SwipeableDrawer>
+      {showSubVisa && <SubVisa handleShowSubVisa={handleShowSubVisa} />}
     </>
   );
 };
