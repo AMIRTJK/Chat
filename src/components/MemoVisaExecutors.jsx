@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getVisaMessage } from "../actions/chatApi";
+import { getVisaMessage, getVisaUsers } from "../actions/chatApi";
 
 const MemoVisaExecutors = () => {
   const visaUsers = useSelector((store) => store.chat.visaUsers);
@@ -17,18 +17,25 @@ const MemoVisaExecutors = () => {
   const tempVisaUser = () => {
     Array.isArray(visaUsers) &&
       visaUsers.forEach((e) => {
-        if (e.id === chatById[0]?.id) {
+        console.log(e.userAuthId === chatById[0]?.id);
+        if (e.userAuthId === chatById[0]?.id) {
           setVisaUser(e);
         }
       });
   };
 
+  const date = visaUser?.createdAt?.split("-");
+
+  console.log(visaUser);
+
   useEffect(() => {
-    tempVisaUser();
+    Dispatch(getVisaUsers());
     Dispatch(getVisaMessage());
   }, [Dispatch]);
 
-  const date = visaUser?.createdAt?.split("-");
+  useEffect(() => {
+    tempVisaUser();
+  }, [visaUsers, chatById]);
 
   return (
     <main className="flex justify-between items-start flex-wrap w-[70%]">
@@ -65,8 +72,8 @@ const MemoVisaExecutors = () => {
           })}
       </div>
       <div className="term-state">
-        <p className="text-[14px]">До: 20.04.2024 {visaUser.term}</p>
-        <p className="text-[14px]">Статус: Назорати {visaUser.status}</p>
+        <p className="text-[14px]">До: {visaUser.term}</p>
+        {/* <p className="text-[14px]">Статус: Назорати {visaUser.status}</p> */}
       </div>
       <div className="wrapper-signature flex flex-col">
         <div className="signature flex flex-col">

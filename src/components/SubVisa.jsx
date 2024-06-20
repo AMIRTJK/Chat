@@ -7,11 +7,15 @@ import { actions } from "../slices/chat-slice";
 import {
   getDefaultVisa,
   getOwnVisa,
+  getVisaUsers,
   postVisaMessage,
   putVisaUsers,
+  postVisaUsers,
 } from "../actions/chatApi";
 
 import StructureOrganizationsExecutors from "./StructureOrganizationsExecutors";
+
+import { formattedDate } from "../utils/currentDate.js";
 
 const SubVisa = ({ handleShowSubVisa }) => {
   const [stateVisa, setStateVisa] = useState(false);
@@ -25,6 +29,8 @@ const SubVisa = ({ handleShowSubVisa }) => {
   const { setOwnVisaValue } = actions;
 
   const Dispatch = useDispatch();
+
+  const accessLogin = JSON.parse(localStorage.getItem("accessLogin"));
 
   const [showStructure, setShowStructure] = useState(false);
 
@@ -45,15 +51,18 @@ const SubVisa = ({ handleShowSubVisa }) => {
     }
   };
 
-  const handlePostVisaStatus = (clickedItem) => {
-    const newObj = {
-      id: clickedItem.id,
-      name: clickedItem.name,
-      status: true,
-      visaUserId: chatById[0].id,
-    };
-
-    Dispatch(postVisaMessage(newObj));
+  const handlePostSubVisa = () => {
+    Dispatch(
+      postVisaUsers({
+        id: chatById[0].id,
+        userAuthId: accessLogin.id,
+        login: accessLogin.login,
+        term: "",
+        status: "",
+        eds: "",
+        createdAt: formattedDate,
+      })
+    );
   };
 
   const [dateTerm, setDateTerm] = useState("");
@@ -62,7 +71,7 @@ const SubVisa = ({ handleShowSubVisa }) => {
     setDateTerm(event.target.value);
   };
 
-  const handlePutSubTabVisaTerm = () => {
+  const handlePutSubVisaTerm = () => {
     const newObj = {
       ...visaUsers[visaUsers.length - 1],
       term: dateTerm,
@@ -70,14 +79,22 @@ const SubVisa = ({ handleShowSubVisa }) => {
     Dispatch(putVisaUsers(newObj));
   };
 
+  const handlePostVisaMessage = (clickedItem) => {
+    const newObj = {
+      id: clickedItem.id,
+      name: clickedItem.name,
+      status: true,
+      visaUserId: chatById[0].id,
+    };
+    console.log(newObj);
+    Dispatch(postVisaMessage(newObj));
+  };
+
   useEffect(() => {
     Dispatch(getDefaultVisa());
     Dispatch(getOwnVisa());
+    Dispatch(getVisaUsers());
   }, [Dispatch]);
-
-  useEffect(() => {
-    handlePutSubTabVisaTerm();
-  }, [Dispatch, dateTerm]);
 
   return (
     <>
@@ -124,7 +141,8 @@ const SubVisa = ({ handleShowSubVisa }) => {
                     return (
                       <p
                         onClick={() => {
-                          handlePostVisaStatus(e);
+                          handlePostSubVisa();
+                          handlePostVisaMessage(e);
                         }}
                         key={e.id}
                         className="p-[10px] border-b-[1px] cursor-pointer hover:bg-[#f9f9f9]"
@@ -138,7 +156,8 @@ const SubVisa = ({ handleShowSubVisa }) => {
                     return (
                       <p
                         onClick={() => {
-                          handlePostVisaStatus(e);
+                          handlePostSubVisa();
+                          handlePostVisaMessage(e);
                         }}
                         key={e.id}
                         className="p-[10px] border-b-[1px] cursor-pointer hover:bg-[#f9f9f9]"
@@ -181,7 +200,10 @@ const SubVisa = ({ handleShowSubVisa }) => {
                 Отмена
               </Button>
               <Button
-                onClick={() => handleShowSubVisa(false)}
+                onClick={() => {
+                  handlePutSubVisaTerm();
+                  handleShowSubVisa(false);
+                }}
                 variant="contained"
                 sx={{ textTransform: "none", fontWeight: "400" }}
               >

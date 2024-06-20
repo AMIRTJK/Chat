@@ -9,7 +9,7 @@ import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import MemoVisaExecutors from "./MemoVisaExecutors";
 import SubVisa from "./SubVisa";
 
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const TitleChat = () => {
@@ -35,19 +35,17 @@ const TitleChat = () => {
     dispatch(setShowVisaPopUp(false));
   };
 
-  console.log(userChats);
-
   const isActive =
     Array.isArray(userChats) &&
     userChats.some((e) => e.status === true && subUserChats.length > 0);
 
   const [state, setState] = useState(false);
 
-  // const notify = () => {
-  //   toast.info("Вы не являетесь участником этого чата!", {
-  //     position: "top-right",
-  //   });
-  // };
+  const notify = () => {
+    toast.info("Вы не являетесь участником этого чата!", {
+      position: "top-right",
+    });
+  };
 
   const toggleDrawer = (open) => () => {
     // Алгоритм для того чтобы тот кто создал подчат и пользователи подчата моги открыть этот чат
@@ -57,11 +55,11 @@ const TitleChat = () => {
     //     (e.userChatId === accessLogin.id && e.userChatId === chatById[0]?.id)
     // );
 
-    setState(open);
-    // if (isActiveToCreatorsSubChat) {
-    // } else {
-    //   notify();
-    // }
+    if (subUserChats.length < 1) {
+      notify();
+    } else {
+      setState(open);
+    }
   };
 
   const [showSubVisa, setShowSubVisa] = useState(false);

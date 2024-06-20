@@ -623,7 +623,7 @@ export const getVisaUsers = createAsyncThunk(
 
 export const postVisaUsers = createAsyncThunk(
   "postVisaUsers",
-  async (newObj, { rejectWithValue }) => {
+  async (newObj, { rejectWithValue, dispatch }) => {
     try {
       const response = await fetch(import.meta.env.VITE_API_VISA_USERS, {
         method: "POST",

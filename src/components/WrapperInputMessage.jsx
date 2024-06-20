@@ -8,9 +8,15 @@ import InputMessage from "./InputMessage";
 import ReplyMessage from "./ReplyMessage";
 import StructureOrganizationsExecutors from "./StructureOrganizationsExecutors";
 
+import { getVisaUsers } from "../actions/chatApi";
+
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const WrapperInputMessage = () => {
   const { setShowSend, setExecutorVisa } = actions;
   const showSend = useSelector((store) => store.chat.showSend);
+  const visaUsers = useSelector((store) => store.chat.visaUsers);
 
   const handleShowMention = (value) => {
     Dispatch(setShowSend("@"));
@@ -21,12 +27,6 @@ const WrapperInputMessage = () => {
 
   const handleShowVisa = (state) => {
     Dispatch(setExecutorVisa(state));
-  };
-  const handleShowStatus = (state) => {
-    // setExecutor(state);
-  };
-  const handleShowTerm = (state) => {
-    // setExecutor(state);
   };
 
   const Dispatch = useDispatch();
@@ -53,18 +53,29 @@ const WrapperInputMessage = () => {
     }
   };
 
-  // console.log(accessLogin?.id);
-  // console.log(chatById[0]?.id);
+  const notify = () => {
+    toast.info("Виза не создана. Создайте визу!", {
+      position: "top-right",
+    });
+  };
 
   const [showStructure, setShowStructure] = useState(false);
 
   const handleShowStructure = (state) => {
-    setShowStructure(state);
+    if (visaUsers.length < 1) {
+      notify();
+    } else {
+      setShowStructure(state);
+    }
   };
 
   useEffect(() => {
     renderRoleUsers();
   }, [Dispatch, chatById, accessLogin]);
+
+  useEffect(() => {
+    getVisaUsers();
+  }, [Dispatch]);
 
   return (
     <>

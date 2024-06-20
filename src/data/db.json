@@ -310,7 +310,7 @@
   "userStructureExecutor": [],
   "subUserChats": [
     {
-      "id": "1718863550025",
+      "id": "1718877029715",
       "name": "Акрамшох Рамазонович",
       "role": "Директор ГУП «ЦФИТ»",
       "image": "https://i.ibb.co/Kb1V9nM/583-IMG-6443-47034.png",
@@ -320,7 +320,7 @@
       "userChatId": "2"
     },
     {
-      "id": "1718863589032",
+      "id": "1718877051675",
       "name": "Зафар Исмоил",
       "role": "Начальник управления государственного бюджета",
       "image": "https://i.ibb.co/3Mctzwb/image.png",
@@ -335,269 +335,27 @@
       "id": "2",
       "userAuthId": "2",
       "login": "s.sobirovich",
-      "term": "",
-      "status": "",
-      "eds": "",
-      "createdAt": "20-06-2024"
-    },
-    {
-      "id": "2",
-      "userAuthId": "2",
-      "login": "s.sobirovich",
-      "term": "",
+      "term": "2024-06-22",
       "status": "",
       "eds": "",
       "createdAt": "20-06-2024"
     }
   ],
-  "visaMessage": [],
-  "subMessages": [
-    {
-      "id": "1718867222323",
-      "subUserChatId": "1718863589032",
-      "name": "Зафар Исмоил",
-      "role": "Начальник управления государственного бюджета",
-      "image": "https://i.ibb.co/3Mctzwb/image.png",
-      "text": "2",
-      "userAuthId": "5",
-      "userChatId": "2",
-      "subUserTabId": true,
-      "dateTime": "12:07",
-      "replyMessage": {}
-    },
-    {
-      "id": "1718867269938",
-      "subUserChatId": "1718863550025",
-      "name": "Акрамшох Рамазонович",
-      "role": "Директор ГУП «ЦФИТ»",
-      "image": "https://i.ibb.co/Kb1V9nM/583-IMG-6443-47034.png",
-      "text": "3",
-      "userAuthId": "4",
-      "userChatId": "2",
-      "subUserTabId": true,
-      "dateTime": "12:07",
-      "replyMessage": {}
-    },
-    {
-      "id": "1718867333343",
-      "subUserChatId": "1718863550025",
-      "name": "Акрамшох Рамазонович",
-      "role": "Директор ГУП «ЦФИТ»",
-      "image": "https://i.ibb.co/Kb1V9nM/583-IMG-6443-47034.png",
-      "text": "3",
-      "userAuthId": "4",
-      "userChatId": "2",
-      "subUserTabId": true,
-      "dateTime": "12:08",
-      "replyMessage": {}
-    },
-    {
-      "id": "1718867345104",
-      "subUserChatId": "1718863589032",
-      "name": "Зафар Исмоил",
-      "role": "Начальник управления государственного бюджета",
-      "image": "https://i.ibb.co/3Mctzwb/image.png",
-      "text": "1",
-      "userAuthId": "5",
-      "userChatId": "2",
-      "subUserTabId": true,
-      "dateTime": "12:09",
-      "replyMessage": {}
-    },
-    {
-      "id": "1718867365599",
-      "subUserChatId": "1718863589032",
-      "name": "Зафар Исмоил",
-      "role": "Начальник управления государственного бюджета",
-      "image": "https://i.ibb.co/3Mctzwb/image.png",
-      "text": "555",
-      "userAuthId": "5",
-      "userChatId": "2",
-      "subUserTabId": true,
-      "dateTime": "12:09",
-      "replyMessage": {}
-    },
-    {
-      "id": "1718867380831",
-      "subUserChatId": "1718863550025",
-      "name": "Акрамшох Рамазонович",
-      "role": "Директор ГУП «ЦФИТ»",
-      "image": "https://i.ibb.co/Kb1V9nM/583-IMG-6443-47034.png",
-      "text": "c4c2c4c2c432",
-      "userAuthId": "4",
-      "userChatId": "2",
-      "subUserTabId": true,
-      "dateTime": "12:09",
-      "replyMessage": {}
-    }
-  ],
-  "subUserChatTabs": [
-    {
-      "id": "1718867349888",
-      "subUserChatId": "1718863589032",
-      "userAuthId": "5",
-      "userChatId": "2",
-      "name": "123",
-      "status": false
-    },
-    {
-      "id": "1718867386818",
-      "subUserChatId": "1718863550025",
-      "userAuthId": "4",
-      "userChatId": "2",
-      "name": "cccccc",
-      "status": true
-    }
-  ],
-  "invitedToSubChatTabs": [
-    {
-      "id": "1718867352695",
-      "subUserChatTabId": "1718867349888",
-      "name": "Шарифов Хисрав",
-      "role": "Заместитель начальника управления-начальник отдела",
-      "image": "src/assets/Шарифов Хисрав.jpg",
-      "status": true,
-      "login": "h.sharifov",
-      "userAuthId": "8",
-      "userChatId": "2"
-    },
-    {
-      "id": "1718867388808",
-      "subUserChatTabId": "1718867386818",
-      "name": "Бехруз Рамазонович",
-      "role": "Начальник отдела разработки и внедрения ИС",
-      "image": "src/assets/Бехруз Рамазонович.jpg",
-      "status": true,
-      "login": "b.ramazonovich",
-      "userAuthId": "6",
-      "userChatId": "2"
-    }
-  ],
-  "subTabMessages": [
-    {
-      "id": "1718867369039",
-      "subUserChatId": "1718863589032",
-      "name": "Зафар Исмоил",
-      "role": "Начальник управления государственного бюджета",
-      "image": "https://i.ibb.co/3Mctzwb/image.png",
-      "text": "3123213",
-      "userAuthId": "5",
-      "userChatId": "2",
-      "subUserTabId": "1718867349888",
-      "dateTime": "12:09",
-      "replyMessage": {}
-    },
-    {
-      "id": "1718867398363",
-      "subUserChatId": "1718863550025",
-      "name": "Акрамшох Рамазонович",
-      "role": "Директор ГУП «ЦФИТ»",
-      "image": "https://i.ibb.co/Kb1V9nM/583-IMG-6443-47034.png",
-      "text": "c423c4324c",
-      "userAuthId": "4",
-      "userChatId": "2",
-      "subUserTabId": "1718867386818",
-      "dateTime": "12:09",
-      "replyMessage": {}
-    },
-    {
-      "id": "1718867403417",
-      "subUserChatId": "1718863550025",
-      "name": "Акрамшох Рамазонович",
-      "role": "Директор ГУП «ЦФИТ»",
-      "image": "https://i.ibb.co/Kb1V9nM/583-IMG-6443-47034.png",
-      "text": "2",
-      "userAuthId": "4",
-      "userChatId": "2",
-      "subUserTabId": "1718867386818",
-      "dateTime": "12:10",
-      "replyMessage": {}
-    },
-    {
-      "id": "1718867423560",
-      "subUserChatId": "1718863550025",
-      "name": "Бехруз Рамазонович",
-      "role": "Начальник отдела разработки и внедрения ИС",
-      "image": "src/assets/Бехруз Рамазонович.jpg",
-      "text": "v543v53",
-      "userAuthId": "6",
-      "userChatId": "2",
-      "subUserTabId": "1718867386818",
-      "dateTime": "12:10",
-      "replyMessage": {}
-    }
-  ],
-  "subTabVisaUsers": [
-    {
-      "id": "1718867352696",
-      "subUserChatTabId": "1718867349888",
-      "userAuthId": "5",
-      "userChatId": "2",
-      "term": "",
-      "status": "",
-      "eds": "",
-      "createdAt": "20-06-2024"
-    },
-    {
-      "id": "1718867388809",
-      "subUserChatTabId": "1718867386818",
-      "userAuthId": "4",
-      "userChatId": "2",
-      "term": "2024-06-27",
-      "status": "",
-      "eds": "",
-      "createdAt": "20-06-2024"
-    }
-  ],
-  "subTabVisaMessages": [
-    {
-      "id": "1",
-      "name": "Барои барраси ва пешниходи маълумоти мавриди назар",
-      "status": false,
-      "subVisaUserId": "1718867349888"
-    },
+  "visaMessage": [
     {
       "id": "2",
       "name": "Барои барраси тибки тартиби мукарраргардида",
-      "status": false,
-      "subVisaUserId": "1718867386818"
-    }
-  ],
-  "subTabConclusionList": [
-    {
-      "id": "1718867468449",
-      "title": "123",
-      "invitedToSubChatTabId": null,
-      "subUserChatTabId": "1718867349888",
-      "status": false,
-      "login": "b.ramazonovich",
-      "userAuthId": "6",
-      "userChatId": "2",
-      "text": ""
-    },
-    {
-      "id": "1718867489593",
-      "title": "123",
-      "invitedToSubChatTabId": "1718867388808",
-      "subUserChatTabId": "1718867386818",
-      "status": false,
-      "login": "b.ramazonovich",
-      "userAuthId": "6",
-      "userChatId": "2",
-      "text": "<p>123</p>"
-    },
-    {
-      "id": "1718867496649",
-      "title": "222",
-      "invitedToSubChatTabId": "1718867388808",
-      "subUserChatTabId": "1718867386818",
       "status": true,
-      "login": "b.ramazonovich",
-      "userAuthId": "6",
-      "userChatId": "2",
-      "text": "<p>ccc12314</p>"
+      "visaUserId": "2"
     }
   ],
+  "subMessages": [],
+  "subUserChatTabs": [],
+  "invitedToSubChatTabs": [],
+  "subTabMessages": [],
+  "subTabVisaUsers": [],
+  "subTabVisaMessages": [],
+  "subTabConclusionList": [],
   "subTabConclusionListEds": [
     {
       "id": "1714452575821442",

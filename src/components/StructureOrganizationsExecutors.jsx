@@ -13,7 +13,7 @@ import {
   postUserChatsExecutor,
   getUserStructureExecutor,
   deleteUsersExecutor,
-  postVisaUsers,
+  // postVisaUsers,
   getVisaUsers,
 } from "../actions/chatApi";
 
@@ -63,17 +63,17 @@ const StructureOrganizationsExecutors = ({ handleShowStructure }) => {
 
     // Алгоритм для добавление только уникальных id в массив visaUsers
 
-    Dispatch(
-      postVisaUsers({
-        id: chatById[0].id,
-        userAuthId: accessLogin.id,
-        login: accessLogin.login,
-        term: "",
-        status: "",
-        eds: "",
-        createdAt: formattedDate,
-      })
-    );
+    // Dispatch(
+    //   postVisaUsers({
+    //     id: chatById[0].id,
+    //     userAuthId: accessLogin.id,
+    //     login: accessLogin.login,
+    //     term: "",
+    //     status: "",
+    //     eds: "",
+    //     createdAt: formattedDate,
+    //   })
+    // );
   };
 
   return (
