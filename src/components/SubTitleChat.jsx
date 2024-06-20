@@ -96,7 +96,7 @@ const SubTitleChat = () => {
       );
     });
 
-  const filterActiveTab =
+  const filterActiveTabMembers =
     Array.isArray(subUserChatTabs) &&
     subUserChatTabs.filter((subTab) => {
       return (
@@ -110,7 +110,15 @@ const SubTitleChat = () => {
       );
     });
 
-  console.log(filterActiveTab);
+  const filterActiveTabCreator =
+    Array.isArray(subUserChatTabs) &&
+    subUserChatTabs.filter(
+      (subTab) =>
+        accessLogin.id === subTab.userAuthId &&
+        chatById[0]?.id === subTab.userChatId
+    );
+
+  console.log(filterActiveTabCreator);
 
   useEffect(() => {
     Dispatch(getSubUserChatTabs());
@@ -128,8 +136,42 @@ const SubTitleChat = () => {
             Исполнители
           </Button>
           <div className="wrapper-sub-tabs flex gap-5">
-            {Array.isArray(filterActiveTab) &&
-              filterActiveTab.map((subTab) => {
+            {/* Вкладки видят создатели */}
+            {Array.isArray(filterActiveTabCreator) &&
+              filterActiveTabCreator.map((subTab) => {
+                return (
+                  <Button
+                    onClick={() => handleSubTabMessagesById(subTab)}
+                    key={subTab.id}
+                    variant={subTab.status ? "contained" : "outlined"}
+                    sx={{
+                      fontSize: "13px",
+                      height: "30px",
+                      position: "relative",
+                      paddingRight: "30px",
+                    }}
+                  >
+                    {subTab.name}
+                    <CloseIcon
+                      onClick={() => handleDeleteSubUserChatTabs(subTab.id)}
+                      sx={{
+                        fontSize: "17px",
+                        color: subTab.status ? "white" : "000000af",
+                        position: "absolute",
+                        bottom: "10px",
+                        right: "0",
+                        padding: "2px",
+                        "&:hover": {
+                          color: "#000000",
+                        },
+                      }}
+                    />
+                  </Button>
+                );
+              })}
+            {/* Вкладки видят участники */}
+            {Array.isArray(filterActiveTabMembers) &&
+              filterActiveTabMembers.map((subTab) => {
                 return (
                   <Button
                     onClick={() => handleSubTabMessagesById(subTab)}

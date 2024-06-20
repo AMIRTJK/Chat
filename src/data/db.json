@@ -169,6 +169,15 @@
       "status": false,
       "userAuthId": "9",
       "login": "a.zarifi"
+    },
+    {
+      "id": "10",
+      "name": "Адиба Махмадалиевна",
+      "role": "Начальник раздела по управлению персоналом",
+      "image": "src/assets/Адиба Махмадалиевна.jpg",
+      "status": false,
+      "userAuthId": "1718884725115",
+      "login": "a.mahmadalievna"
     }
   ],
   "usersAuth": [
@@ -216,6 +225,12 @@
       "id": "9",
       "login": "a.zarifi",
       "password": "123"
+    },
+    {
+      "id": "10",
+      "login": "a.mahmadalievna",
+      "password": "123",
+      "number": ""
     }
   ],
   "userStructure": [],
