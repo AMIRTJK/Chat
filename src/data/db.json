@@ -310,7 +310,7 @@
   "userStructureExecutor": [],
   "subUserChats": [
     {
-      "id": "1718877029715",
+      "id": "1718879335808",
       "name": "Акрамшох Рамазонович",
       "role": "Директор ГУП «ЦФИТ»",
       "image": "https://i.ibb.co/Kb1V9nM/583-IMG-6443-47034.png",
@@ -320,7 +320,7 @@
       "userChatId": "2"
     },
     {
-      "id": "1718877051675",
+      "id": "1718879456448",
       "name": "Зафар Исмоил",
       "role": "Начальник управления государственного бюджета",
       "image": "https://i.ibb.co/3Mctzwb/image.png",
@@ -335,7 +335,7 @@
       "id": "2",
       "userAuthId": "2",
       "login": "s.sobirovich",
-      "term": "2024-06-22",
+      "term": "2024-06-21",
       "status": "",
       "eds": "",
       "createdAt": "20-06-2024"
@@ -343,19 +343,310 @@
   ],
   "visaMessage": [
     {
-      "id": "2",
-      "name": "Барои барраси тибки тартиби мукарраргардида",
+      "id": "1",
+      "name": "Барои омузиш ва тафтиш",
       "status": true,
       "visaUserId": "2"
     }
   ],
-  "subMessages": [],
-  "subUserChatTabs": [],
-  "invitedToSubChatTabs": [],
-  "subTabMessages": [],
-  "subTabVisaUsers": [],
-  "subTabVisaMessages": [],
-  "subTabConclusionList": [],
+  "subMessages": [
+    {
+      "id": "1718879472816",
+      "subUserChatId": "1718879335808",
+      "name": "Акрамшох Рамазонович",
+      "role": "Директор ГУП «ЦФИТ»",
+      "image": "https://i.ibb.co/Kb1V9nM/583-IMG-6443-47034.png",
+      "text": "Салом",
+      "userAuthId": "4",
+      "userChatId": "2",
+      "subUserTabId": false,
+      "dateTime": "15:31",
+      "replyMessage": {}
+    },
+    {
+      "id": "1718879497040",
+      "subUserChatId": "1718879456448",
+      "name": "Зафар Исмоил",
+      "role": "Начальник управления государственного бюджета",
+      "image": "https://i.ibb.co/3Mctzwb/image.png",
+      "text": "ва алейкум",
+      "userAuthId": "5",
+      "userChatId": "2",
+      "subUserTabId": false,
+      "dateTime": "15:31",
+      "replyMessage": {}
+    }
+  ],
+  "subUserChatTabs": [
+    {
+      "id": "1718879547896",
+      "subUserChatId": "1718879456448",
+      "userAuthId": "5",
+      "userChatId": "2",
+      "name": "Шуъбаи ***",
+      "status": false
+    },
+    {
+      "id": "1718879592639",
+      "subUserChatId": "1718879335808",
+      "userAuthId": "4",
+      "userChatId": "2",
+      "name": "Отдел разработки",
+      "status": false
+    },
+    {
+      "id": "1718882039527",
+      "subUserChatId": "1718879335808",
+      "userAuthId": "4",
+      "userChatId": "2",
+      "name": "Отдел по работе с клиентами",
+      "status": false
+    }
+  ],
+  "invitedToSubChatTabs": [
+    {
+      "id": "1718879517912",
+      "subUserChatTabId": null,
+      "name": "Шарифов Хисрав",
+      "role": "Заместитель начальника управления-начальник отдела",
+      "image": "src/assets/Шарифов Хисрав.jpg",
+      "status": true,
+      "login": "h.sharifov",
+      "userAuthId": "8",
+      "userChatId": "2"
+    },
+    {
+      "id": "1718879550039",
+      "subUserChatTabId": "1718879547896",
+      "name": "Абдуҷаббори Зарифӣ",
+      "role": "Главный специалист",
+      "image": "src/assets/Абдуҷаббори Зарифӣ.jpg",
+      "status": true,
+      "login": "a.zarifi",
+      "userAuthId": "9",
+      "userChatId": "2"
+    },
+    {
+      "id": "1718879595607",
+      "subUserChatTabId": "1718879592639",
+      "name": "Бехруз Рамазонович",
+      "role": "Начальник отдела разработки и внедрения ИС",
+      "image": "src/assets/Бехруз Рамазонович.jpg",
+      "status": true,
+      "login": "b.ramazonovich",
+      "userAuthId": "6",
+      "userChatId": "2"
+    },
+    {
+      "id": "1718879711478",
+      "subUserChatTabId": "1718879592639",
+      "name": "Махмуд Абдурахмонович",
+      "role": "Начальник отдела по работе с клиентами",
+      "image": "src/assets/Махмуд Абдурахмонович.jpg",
+      "status": false,
+      "login": "m.abdurahmonovich",
+      "userAuthId": "7",
+      "userChatId": "2"
+    },
+    {
+      "id": "1718882041579",
+      "subUserChatTabId": "1718882039527",
+      "name": "Бехруз Рамазонович",
+      "role": "Начальник отдела разработки и внедрения ИС",
+      "image": "src/assets/Бехруз Рамазонович.jpg",
+      "status": true,
+      "login": "b.ramazonovich",
+      "userAuthId": "6",
+      "userChatId": "2"
+    },
+    {
+      "id": "1718882042675",
+      "subUserChatTabId": "1718882039527",
+      "name": "Махмуд Абдурахмонович",
+      "role": "Начальник отдела по работе с клиентами",
+      "image": "src/assets/Махмуд Абдурахмонович.jpg",
+      "status": true,
+      "login": "m.abdurahmonovich",
+      "userAuthId": "7",
+      "userChatId": "2"
+    }
+  ],
+  "subTabMessages": [
+    {
+      "id": "1718879563824",
+      "subUserChatId": "1718879456448",
+      "name": "Зафар Исмоил",
+      "role": "Начальник управления государственного бюджета",
+      "image": "https://i.ibb.co/3Mctzwb/image.png",
+      "text": "Корбари намоед",
+      "userAuthId": "5",
+      "userChatId": "2",
+      "subUserTabId": "1718879547896",
+      "dateTime": "15:32",
+      "replyMessage": {}
+    },
+    {
+      "id": "1718879620223",
+      "subUserChatId": "1718879335808",
+      "name": "Акрамшох Рамазонович",
+      "role": "Директор ГУП «ЦФИТ»",
+      "image": "https://i.ibb.co/Kb1V9nM/583-IMG-6443-47034.png",
+      "text": "Предоставьте заключение",
+      "userAuthId": "4",
+      "userChatId": "2",
+      "subUserTabId": "1718879592639",
+      "dateTime": "15:33",
+      "replyMessage": {}
+    },
+    {
+      "id": "1718879663312",
+      "subUserChatId": "1718879335808",
+      "name": "Бехруз Рамазонович",
+      "role": "Начальник отдела разработки и внедрения ИС",
+      "image": "src/assets/Бехруз Рамазонович.jpg",
+      "text": "Заключение предоставлено!",
+      "userAuthId": "6",
+      "userChatId": "2",
+      "subUserTabId": "1718879592639",
+      "dateTime": "15:34",
+      "replyMessage": {}
+    },
+    {
+      "id": "1718879724767",
+      "subUserChatId": "1718879335808",
+      "name": "Акрамшох Рамазонович",
+      "role": "Директор ГУП «ЦФИТ»",
+      "image": "https://i.ibb.co/Kb1V9nM/583-IMG-6443-47034.png",
+      "text": "Махмуд Абдурахмонович, предоставьте заключение!",
+      "userAuthId": "4",
+      "userChatId": "2",
+      "subUserTabId": "1718879592639",
+      "dateTime": "15:35",
+      "replyMessage": {}
+    },
+    {
+      "id": "1718879739471",
+      "subUserChatId": "1718879335808",
+      "name": "Махмуд Абдурахмонович",
+      "role": "Начальник отдела по работе с клиентами",
+      "image": "src/assets/Махмуд Абдурахмонович.jpg",
+      "text": "Ок",
+      "userAuthId": "7",
+      "userChatId": "2",
+      "subUserTabId": "1718879592639",
+      "dateTime": "15:35",
+      "replyMessage": {}
+    },
+    {
+      "id": "1718882053342",
+      "subUserChatId": "1718879335808",
+      "name": "Акрамшох Рамазонович",
+      "role": "Директор ГУП «ЦФИТ»",
+      "image": "https://i.ibb.co/Kb1V9nM/583-IMG-6443-47034.png",
+      "text": "Корбари намоед!",
+      "userAuthId": "4",
+      "userChatId": "2",
+      "subUserTabId": "1718882039527",
+      "dateTime": "16:14",
+      "replyMessage": {}
+    }
+  ],
+  "subTabVisaUsers": [
+    {
+      "id": "1718879517912",
+      "subUserChatTabId": "1718879515496",
+      "userAuthId": "5",
+      "userChatId": "2",
+      "term": "",
+      "status": "",
+      "eds": "",
+      "createdAt": "20-06-2024"
+    },
+    {
+      "id": "1718879550040",
+      "subUserChatTabId": "1718879547896",
+      "userAuthId": "5",
+      "userChatId": "2",
+      "term": "",
+      "status": "",
+      "eds": "",
+      "createdAt": "20-06-2024"
+    },
+    {
+      "id": "1718879595607",
+      "subUserChatTabId": "1718879592639",
+      "userAuthId": "4",
+      "userChatId": "2",
+      "term": "",
+      "status": "",
+      "eds": "",
+      "createdAt": "20-06-2024"
+    },
+    {
+      "id": "1718882041580",
+      "subUserChatTabId": "1718882039527",
+      "userAuthId": "4",
+      "userChatId": "2",
+      "term": "",
+      "status": "",
+      "eds": "",
+      "createdAt": "20-06-2024"
+    },
+    {
+      "id": "1718882042676",
+      "subUserChatTabId": "1718882039527",
+      "userAuthId": "4",
+      "userChatId": "2",
+      "term": "2024-06-23",
+      "status": "",
+      "eds": "",
+      "createdAt": "20-06-2024"
+    }
+  ],
+  "subTabVisaMessages": [
+    {
+      "id": "1",
+      "name": "Барои барраси ва пешниходи маълумоти мавриди назар",
+      "status": false,
+      "subVisaUserId": "1718879547896"
+    },
+    {
+      "id": "2",
+      "name": "Барои барраси тибки тартиби мукарраргардида",
+      "status": false,
+      "subVisaUserId": "1718879592639"
+    },
+    {
+      "id": "3",
+      "name": "Барои корбари",
+      "status": false,
+      "subVisaUserId": "1718882039527"
+    }
+  ],
+  "subTabConclusionList": [
+    {
+      "id": "1718879673216",
+      "title": "Новое заключение №1",
+      "invitedToSubChatTabId": "1718879595607",
+      "subUserChatTabId": "1718879592639",
+      "status": false,
+      "login": "b.ramazonovich",
+      "userAuthId": "6",
+      "userChatId": "2",
+      "text": "<p>Этот документ предназначен для...</p>"
+    },
+    {
+      "id": "1718879751127",
+      "title": "Заключение №2",
+      "invitedToSubChatTabId": "1718879711478",
+      "subUserChatTabId": "1718879592639",
+      "status": true,
+      "login": "m.abdurahmonovich",
+      "userAuthId": "7",
+      "userChatId": "2",
+      "text": "<p>Данное заключение предназначается для использование...</p>"
+    }
+  ],
   "subTabConclusionListEds": [
     {
       "id": "1714452575821442",

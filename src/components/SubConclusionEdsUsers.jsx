@@ -48,6 +48,8 @@ const SubConclusionEdsUsers = ({ handleShowConclusionEdsUsers }) => {
     console.log(newObj);
   };
 
+  console.log(invitedToSubChatTabs);
+
   return (
     <div
       onClick={() => handleShowConclusionEdsUsers(false)}
@@ -62,21 +64,23 @@ const SubConclusionEdsUsers = ({ handleShowConclusionEdsUsers }) => {
           <ul>
             {Array.isArray(invitedToSubChatTabs) &&
               invitedToSubChatTabs.map((e) => {
-                return (
-                  <li
-                    onClick={() => handlePostSubTabConclusionListEds(e)}
-                    key={e.id}
-                    className="border-b-[1px] p-[10px] flex gap-5 items-center cursor-pointer hover:bg-[#f0f0f0] transition-all duration-100"
-                  >
-                    <IconButton sx={{ padding: "0px" }}>
-                      <Avatar src={e.image} />
-                    </IconButton>
-                    <div className="user-name flex flex-col">
-                      <p className="text-[#007cd2] font-[500]">{e.name}</p>
-                      <p className="text-[#989898] text-[15px]">{e.role}</p>
-                    </div>
-                  </li>
-                );
+                if (subUserChatTabsById[0]?.id === e.subUserChatTabId) {
+                  return (
+                    <li
+                      onClick={() => handlePostSubTabConclusionListEds(e)}
+                      key={e.id}
+                      className="border-b-[1px] p-[10px] flex gap-5 items-center cursor-pointer hover:bg-[#f0f0f0] transition-all duration-100"
+                    >
+                      <IconButton sx={{ padding: "0px" }}>
+                        <Avatar src={e.image} />
+                      </IconButton>
+                      <div className="user-name flex flex-col">
+                        <p className="text-[#007cd2] font-[500]">{e.name}</p>
+                        <p className="text-[#989898] text-[15px]">{e.role}</p>
+                      </div>
+                    </li>
+                  );
+                }
               })}
           </ul>
           <div className="panel-control flex justify-end p-[10px]">

@@ -32,7 +32,7 @@ const UserStructureExecutor = ({
           <img src={userImage} alt="" />
         </div>
       </IconButton>
-      <div className="wrapper-info bg-[#fff] min-w-[250px] px-[15px] py-[5px] rounded-lg text-center">
+      <div className="wrapper-info bg-[#fff] max-w-[250px] px-[15px] py-[5px] rounded-lg text-center">
         <p className="text-[#007cd2] font-bold">{userName}</p>
         <p className="text-[#3E3E3E] text-[14px] font-semibold">
           {userPosition}
