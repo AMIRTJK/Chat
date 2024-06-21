@@ -176,7 +176,7 @@
       "role": "Начальник раздела по управлению персоналом",
       "image": "src/assets/Адиба Махмадалиевна.jpg",
       "status": false,
-      "userAuthId": "1718884725115",
+      "userAuthId": "10",
       "login": "a.mahmadalievna"
     }
   ],
@@ -229,8 +229,7 @@
     {
       "id": "10",
       "login": "a.mahmadalievna",
-      "password": "123",
-      "number": ""
+      "password": "123"
     }
   ],
   "userStructure": [],
@@ -374,7 +373,7 @@
       "text": "Салом",
       "userAuthId": "4",
       "userChatId": "2",
-      "subUserTabId": false,
+      "subUserTabId": true,
       "dateTime": "15:31",
       "replyMessage": {}
     },
@@ -387,7 +386,7 @@
       "text": "ва алейкум",
       "userAuthId": "5",
       "userChatId": "2",
-      "subUserTabId": false,
+      "subUserTabId": true,
       "dateTime": "15:31",
       "replyMessage": {}
     }
@@ -415,7 +414,7 @@
       "userAuthId": "4",
       "userChatId": "2",
       "name": "Отдел по работе с клиентами",
-      "status": false
+      "status": true
     }
   ],
   "invitedToSubChatTabs": [
@@ -483,6 +482,17 @@
       "status": true,
       "login": "m.abdurahmonovich",
       "userAuthId": "7",
+      "userChatId": "2"
+    },
+    {
+      "id": "1718941312318",
+      "subUserChatTabId": "1718882039527",
+      "name": "Адиба Махмадалиевна",
+      "role": "Начальник раздела по управлению персоналом",
+      "image": "src/assets/Адиба Махмадалиевна.jpg",
+      "status": false,
+      "login": "a.mahmadalievna",
+      "userAuthId": "10",
       "userChatId": "2"
     }
   ],
@@ -563,6 +573,45 @@
       "userChatId": "2",
       "subUserTabId": "1718882039527",
       "dateTime": "16:14",
+      "replyMessage": {}
+    },
+    {
+      "id": "1718941043905",
+      "subUserChatId": "1718879335808",
+      "name": "Махмуд Абдурахмонович",
+      "role": "Начальник отдела по работе с клиентами",
+      "image": "src/assets/Махмуд Абдурахмонович.jpg",
+      "text": "Бехруз Рамазонович, прошу рассмотреть моё заключение. Спасибо",
+      "userAuthId": "7",
+      "userChatId": "2",
+      "subUserTabId": "1718882039527",
+      "dateTime": "08:37",
+      "replyMessage": {}
+    },
+    {
+      "id": "1718941082005",
+      "subUserChatId": "1718879335808",
+      "name": "Бехруз Рамазонович",
+      "role": "Начальник отдела разработки и внедрения ИС",
+      "image": "src/assets/Бехруз Рамазонович.jpg",
+      "text": "Махмуд Абдурахмонович, рассмотрено.",
+      "userAuthId": "6",
+      "userChatId": "2",
+      "subUserTabId": "1718882039527",
+      "dateTime": "08:38",
+      "replyMessage": {}
+    },
+    {
+      "id": "1718941331981",
+      "subUserChatId": "1718879335808",
+      "name": "Акрамшох Рамазонович",
+      "role": "Директор ГУП «ЦФИТ»",
+      "image": "https://i.ibb.co/Kb1V9nM/583-IMG-6443-47034.png",
+      "text": "Адиба Махмадалиевна, подготовьте окончательное заключение!",
+      "userAuthId": "4",
+      "userChatId": "2",
+      "subUserTabId": "1718882039527",
+      "dateTime": "08:42",
       "replyMessage": {}
     }
   ],

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 
@@ -132,6 +132,12 @@ const SubInputMessage = () => {
     }
     setShowSend("");
   };
+
+  console.log(subUserChatTabsById);
+
+  useEffect(() => {
+    setShowSend("");
+  }, [subUserChatTabsById[0]?.id]);
 
   return (
     <div className="input-message border-[2px] rounded-lg border-[#007fd2] p-[5px] w-full flex justify-between relative">
