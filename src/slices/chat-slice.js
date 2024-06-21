@@ -54,6 +54,9 @@ import {
   postSubTabConclusionList,
   putSubTabConclusionList,
   putSubTabConclusionListText,
+  getSubTabConclusionListEds,
+  postSubTabConclusionListEds,
+  putSubTabConclusionListEds,
 } from "../actions/chatApi";
 
 const initialState = {
@@ -105,6 +108,7 @@ const initialState = {
   subTabVisaUsers: [],
   subTabVisaMessages: [],
   subTabConclusionList: [],
+  subTabConclusionListEds: [],
 };
 
 const chatSlice = createSlice({
@@ -334,6 +338,15 @@ const chatSlice = createSlice({
     });
     builder.addCase(putSubTabConclusionListText.fulfilled, (state, action) => {
       state.subTabConclusionList = action.payload;
+    });
+    builder.addCase(getSubTabConclusionListEds.fulfilled, (state, action) => {
+      state.subTabConclusionListEds = action.payload;
+    });
+    builder.addCase(postSubTabConclusionListEds.fulfilled, (state, action) => {
+      state.subTabConclusionListEds = action.payload;
+    });
+    builder.addCase(putSubTabConclusionListEds.fulfilled, (state, action) => {
+      state.subTabConclusionListEds = action.payload;
     });
   },
 });

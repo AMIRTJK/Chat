@@ -1234,3 +1234,67 @@ export const putSubTabConclusionListText = createAsyncThunk(
     }
   }
 );
+
+export const getSubTabConclusionListEds = createAsyncThunk(
+  "getSubTabConclusionListEds",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await fetch(
+        import.meta.env.VITE_API_SUB_TAB_CONCLUSION_LIST_EDS
+      );
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const postSubTabConclusionListEds = createAsyncThunk(
+  "postSubTabConclusionListEds",
+  async (newObj, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await fetch(
+        import.meta.env.VITE_API_SUB_TAB_CONCLUSION_LIST_EDS,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newObj),
+        }
+      );
+      const data = await response.json();
+      dispatch(getSubTabConclusionListEds());
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const putSubTabConclusionListEds = createAsyncThunk(
+  "putSubTabConclusionListEds",
+  async (newObj, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_SUB_TAB_CONCLUSION_LIST_EDS}/${newObj.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newObj),
+        }
+      );
+      const data = await response.json();
+      dispatch(getSubTabConclusionListEds());
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);

@@ -17,7 +17,6 @@ const MemoVisaExecutors = () => {
   const tempVisaUser = () => {
     Array.isArray(visaUsers) &&
       visaUsers.forEach((e) => {
-        console.log(e.userAuthId === chatById[0]?.id);
         if (e.userAuthId === chatById[0]?.id) {
           setVisaUser(e);
         }
@@ -25,8 +24,6 @@ const MemoVisaExecutors = () => {
   };
 
   const date = visaUser?.createdAt?.split("-");
-
-  console.log(visaUser);
 
   useEffect(() => {
     Dispatch(getVisaUsers());

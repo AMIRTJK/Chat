@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Avatar, Button, IconButton } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+import {
+  getSubTabConclusionListEds,
+  putSubTabConclusionListEds,
+} from "../actions/chatApi";
 
 import SetNameConclusion from "./SetNameConclusion";
 import SubConclusionEdsUsers from "./SubConclusionEdsUsers";
+import CommentsConclusion from "./CommentsConclusion";
 
 import { useSelector, useDispatch } from "react-redux";
 
@@ -34,9 +39,24 @@ const Conclusion = ({ handleModalConclusion }) => {
 
   const accessLogin = JSON.parse(localStorage.getItem("accessLogin"));
 
+  const subTabConclusionListEds = useSelector(
+    (store) => store.chat.subTabConclusionListEds
+  );
+
   const filteredExecutor = users.filter(
     (e) => e.userAuthId === subUserChatTabsById[0]?.userAuthId
   );
+
+  const filteredConclusionListCurrent =
+    Array.isArray(subTabConclusionList) &&
+    subTabConclusionList.filter(
+      (e) =>
+        subUserChatTabsById[0]?.id === e.subUserChatTabId &&
+        // e.userAuthId === accessLogin.id &&
+        e.status === true
+    );
+
+  console.log(filteredConclusionListCurrent);
 
   const [visible, setVisible] = useState({});
 
@@ -89,8 +109,45 @@ const Conclusion = ({ handleModalConclusion }) => {
     setShowConclusionEdsUsers(state);
   };
 
+  const [showCommentsConclusion, setShowCommentsConclusion] = useState();
+
+  const handleShowCommentsConclusion = (state) => {
+    setShowCommentsConclusion(state);
+  };
+
+  const handlePutSubTabConclusionListEds = (value) => {
+    const currentEds = subTabConclusionListEds.filter(
+      (e) =>
+        e.userAuthId === accessLogin.id &&
+        e.subTabConclusionListId === filteredConclusionListCurrent[0]?.id
+    );
+    Dispatch(
+      putSubTabConclusionListEds({
+        ...currentEds[0],
+        edsStatus: true,
+        comments: value,
+      })
+    );
+    handleShowCommentsConclusion(false);
+  };
+
+  const [showInfoBlockOfConclusionEds, setShowInfoBlockOfConclusionEds] =
+    useState(false);
+
+  const handlePutShowInfoBlockOfConclusionEds = (clickedItem) => {
+    console.log(clickedItem);
+    setShowInfoBlockOfConclusionEds(!showInfoBlockOfConclusionEds);
+    Dispatch(
+      putSubTabConclusionListEds({
+        ...clickedItem,
+        status: !clickedItem.status,
+      })
+    );
+  };
+
   useEffect(() => {
     Dispatch(getSubTabConclusionList());
+    Dispatch(getSubTabConclusionListEds());
   }, []);
 
   useEffect(() => {
@@ -188,21 +245,53 @@ const Conclusion = ({ handleModalConclusion }) => {
               )}
             </main>
             {/* Подпись ======= */}
-            <aside className="right aside-left-conclusion h-full min-w-[135px]  flex flex-col items-center gap-5 py-[20px]">
+            <aside className="right aside-left-conclusion h-full min-w-[135px] relative  flex flex-col items-center gap-5 py-[20px]">
               <p className="text-[14px] text-[#939393] font-[500]">Подписи</p>
-              <IconButton onClick={() => handleShowConclusionEdsUsers(true)}>
+              <IconButton
+                onClick={() => {
+                  handleShowConclusionEdsUsers(true);
+                }}
+              >
                 <AddIcon />
               </IconButton>
-              {Array.isArray(invitedToSubChatTabs) &&
-                invitedToSubChatTabs.map((e) => {
-                  if (e.subUserChatTabId === subUserChatTabsById[0]?.id)
+              {Array.isArray(subTabConclusionListEds) &&
+                subTabConclusionListEds.map((e) => {
+                  if (
+                    filteredConclusionListCurrent[0]?.id ===
+                    e.subTabConclusionListId
+                  )
                     return (
-                      <IconButton key={e.id} sx={{ padding: "0px" }}>
-                        <Avatar
-                          src={e.image}
-                          className="border-[2px] border-[#007cd2]"
-                        />
-                      </IconButton>
+                      <>
+                        <IconButton
+                          onClick={() =>
+                            handlePutShowInfoBlockOfConclusionEds(e)
+                          }
+                          className={`${
+                            e.edsStatus ? "opacity-100" : "opacity-50"
+                          }`}
+                          key={e.id}
+                          sx={{ padding: "0px" }}
+                        >
+                          <Avatar
+                            src={e.image}
+                            className="border-[2px] border-[#007cd2]"
+                          />
+                        </IconButton>
+                        {e.status ? (
+                          <div className="bg-[#ffffffbd] py-[20px] px-[10px] w-full">
+                            <p className="text-[14px]">{e.name}</p>
+                            <p
+                              className={`text-[14px] cursor-pointer ${
+                                e.edsStatus ? "text-[#007cd2]" : "text-[red]"
+                              }`}
+                            >
+                              {e.edsStatus ? "Подписан" : "Не подписан"}
+                            </p>
+                          </div>
+                        ) : (
+                          <></>
+                        )}
+                      </>
                     );
                 })}
             </aside>
@@ -216,7 +305,11 @@ const Conclusion = ({ handleModalConclusion }) => {
               >
                 Изменить
               </Button>
-              <Button variant="outlined" sx={{ textTransform: "none" }}>
+              <Button
+                onClick={() => handleShowCommentsConclusion(true)}
+                variant="outlined"
+                sx={{ textTransform: "none" }}
+              >
                 Подписать
               </Button>
               <Button
@@ -250,6 +343,14 @@ const Conclusion = ({ handleModalConclusion }) => {
       {showConclusionEdsUsers && (
         <SubConclusionEdsUsers
           handleShowConclusionEdsUsers={handleShowConclusionEdsUsers}
+          filteredExecutor={filteredExecutor}
+          filteredConclusionListCurrent={filteredConclusionListCurrent}
+        />
+      )}
+      {showCommentsConclusion && (
+        <CommentsConclusion
+          handleShowCommentsConclusion={handleShowCommentsConclusion}
+          handlePutSubTabConclusionListEds={handlePutSubTabConclusionListEds}
         />
       )}
     </>

@@ -1,54 +1,45 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Avatar, IconButton, Button } from "@mui/material";
+import { postSubTabConclusionListEds } from "../actions/chatApi";
 
-const SubConclusionEdsUsers = ({ handleShowConclusionEdsUsers }) => {
+const SubConclusionEdsUsers = ({
+  handleShowConclusionEdsUsers,
+  filteredExecutor,
+  filteredConclusionListCurrent,
+}) => {
+  const Dispatch = useDispatch();
+
   const invitedToSubChatTabs = useSelector(
     (store) => store.chat.invitedToSubChatTabs
   );
 
-  const accessLogin = JSON.parse(localStorage.getItem("accessLogin"));
+  // const accessLogin = JSON.parse(localStorage.getItem("accessLogin"));
 
   const subUserChatTabsById = useSelector(
     (store) => store.chat.subUserChatTabsById
   );
 
-  const subTabConclusionList = useSelector(
-    (store) => store.chat.subTabConclusionList
-  );
-
-  const users = useSelector((store) => store.chat.users);
-
-  const filteredExecutor = users.filter(
-    (e) => e.userAuthId === subUserChatTabsById[0]?.userAuthId
-  );
-
-  const filteredConclusionList =
-    Array.isArray(subTabConclusionList) &&
-    subTabConclusionList.filter(
-      (e) =>
-        subUserChatTabsById[0]?.id === e.subUserChatTabId &&
-        e.userAuthId === accessLogin.id &&
-        e.status === true
-    );
+  // const subTabConclusionList = useSelector(
+  //   (store) => store.chat.subTabConclusionList
+  // );
 
   const handlePostSubTabConclusionListEds = (item) => {
-    console.log(filteredConclusionList[0]);
     const newObj = {
       id: Date.now().toString(),
-      subTabConclusionListId: filteredConclusionList[0]
-        ? filteredConclusionList[0]?.id
+      subTabConclusionListId: filteredConclusionListCurrent[0]
+        ? filteredConclusionListCurrent[0]?.id
         : null,
       userAuthId: item.userAuthId,
+      comments: "",
+      status: false,
       edsStatus: false,
       name: item.name,
       role: item.role,
       image: item.image,
     };
-    console.log(newObj);
+    Dispatch(postSubTabConclusionListEds(newObj));
   };
-
-  console.log(invitedToSubChatTabs);
 
   return (
     <div
@@ -93,6 +84,7 @@ const SubConclusionEdsUsers = ({ handleShowConclusionEdsUsers }) => {
                 Отмена
               </Button>
               <Button
+                onClick={() => handleShowConclusionEdsUsers(false)}
                 variant="contained"
                 sx={{ textTransform: "none", fontWeight: "400" }}
               >
