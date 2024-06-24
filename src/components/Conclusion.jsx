@@ -188,7 +188,7 @@ const Conclusion = ({ handleModalConclusion }) => {
     const conclusionListTemp = {
       ...filteredConclusionList[0],
       subTabConclusionListId: filteredConclusionList[0].id,
-      title: `${filteredConclusionList[0].title} - V`,
+      title: "V1",
       image: filteredCurrentMember[0]?.image,
       statusTemp: subTabConclusionListTemp.length === 0 ? true : false,
       text: "",
@@ -475,7 +475,7 @@ const Conclusion = ({ handleModalConclusion }) => {
                 variant="outlined"
                 sx={{ textTransform: "none" }}
               >
-                Изменить
+                Новый
               </Button>
               <Button
                 onClick={() => handleShowCommentsConclusion(true)}
@@ -486,9 +486,10 @@ const Conclusion = ({ handleModalConclusion }) => {
               </Button>
               <Button
                 variant="outlined"
+                sx={{ textTransform: "none" }}
                 onClick={() => setEditConclusion(true)}
               >
-                Edit
+                Изменить
               </Button>
               <Button
                 variant="contained"
