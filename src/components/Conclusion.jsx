@@ -419,13 +419,7 @@ const Conclusion = ({ handleModalConclusion }) => {
             {/* Подпись ======= */}
             <aside className="right aside-left-conclusion h-full min-w-[135px] relative  flex flex-col items-center gap-5 py-[20px]">
               <p className="text-[14px] text-[#939393] font-[500]">Подписи</p>
-              <IconButton
-                onClick={() => {
-                  handleShowConclusionEdsUsers(true);
-                }}
-              >
-                <AddIcon />
-              </IconButton>
+
               {Array.isArray(subTabConclusionListEdsTemp) &&
                 subTabConclusionListEdsTemp.map((e) => {
                   if (
@@ -476,6 +470,15 @@ const Conclusion = ({ handleModalConclusion }) => {
                 sx={{ textTransform: "none" }}
               >
                 Новый
+              </Button>
+              <Button
+                onClick={() => {
+                  handleShowConclusionEdsUsers(true);
+                }}
+                variant="outlined"
+                sx={{ textTransform: "none" }}
+              >
+                Пригласить
               </Button>
               <Button
                 onClick={() => handleShowCommentsConclusion(true)}
