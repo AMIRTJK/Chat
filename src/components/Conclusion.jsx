@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
+
+import { v4 as uuidv4 } from "uuid";
+
 import { Avatar, Button, IconButton } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import {
-  getSubTabConclusionListEds,
-  putSubTabConclusionListEds,
-} from "../actions/chatApi";
 
 import SetNameConclusion from "./SetNameConclusion";
 import SubConclusionEdsUsers from "./SubConclusionEdsUsers";
@@ -18,7 +17,14 @@ import "react-quill/dist/quill.snow.css";
 import {
   getSubTabConclusionList,
   putSubTabConclusionList,
-  putSubTabConclusionListText,
+  getSubTabConclusionListEds,
+  putSubTabConclusionListEds,
+  getSubTabConclusionListTemp,
+  postSubTabConclusionListTemp,
+  putSubTabConclusionListTempText,
+  putSubTabConclusionListTempStatus,
+  getSubTabConclusionListEdsTemp,
+  postSubTabConclusionListEdsTemp,
 } from "../actions/chatApi";
 
 const Conclusion = ({ handleModalConclusion }) => {
@@ -37,14 +43,26 @@ const Conclusion = ({ handleModalConclusion }) => {
     (store) => store.chat.subTabConclusionList
   );
 
+  const subTabConclusionListTemp = useSelector(
+    (store) => store.chat.subTabConclusionListTemp
+  );
+
   const accessLogin = JSON.parse(localStorage.getItem("accessLogin"));
 
   const subTabConclusionListEds = useSelector(
     (store) => store.chat.subTabConclusionListEds
   );
 
+  const subTabConclusionListEdsTemp = useSelector(
+    (store) => store.chat.subTabConclusionListEdsTemp
+  );
+
   const filteredExecutor = users.filter(
     (e) => e.userAuthId === subUserChatTabsById[0]?.userAuthId
+  );
+
+  const filteredCurrentMember = users.filter(
+    (e) => e.userAuthId === accessLogin.id
   );
 
   const filteredConclusionListCurrent =
@@ -55,8 +73,6 @@ const Conclusion = ({ handleModalConclusion }) => {
         // e.userAuthId === accessLogin.id &&
         e.status === true
     );
-
-  console.log(filteredConclusionListCurrent);
 
   const [visible, setVisible] = useState({});
 
@@ -91,14 +107,25 @@ const Conclusion = ({ handleModalConclusion }) => {
     Array.isArray(subTabConclusionList) &&
     subTabConclusionList.filter((e) => e.status === true);
 
+  // Получаем актуальную версионность вкладки - заключение
+  const [filteredConclusionListTemp, setFilteredConclusionListTemp] = useState(
+    []
+  );
+
+  // const filteredConclusionListTemp =
+  //   Array.isArray(subTabConclusionListTemp) &&
+  //   subTabConclusionListTemp.filter((e) => e.statusTemp === true);
+
   const [value, setValue] = useState("");
 
-  // const [value, setValue] = useState(filteredConclusionList[0]?.text || "");
   const [editConclusion, setEditConclusion] = useState(true);
 
-  const handlePutSubTabConclusionListText = () => {
+  const handlePutSubTabConclusionListTempText = () => {
     Dispatch(
-      putSubTabConclusionListText({ ...filteredConclusionList[0], text: value })
+      putSubTabConclusionListTempText({
+        ...filteredConclusionListTemp[0],
+        text: value,
+      })
     );
     setEditConclusion(false);
   };
@@ -135,7 +162,6 @@ const Conclusion = ({ handleModalConclusion }) => {
     useState(false);
 
   const handlePutShowInfoBlockOfConclusionEds = (clickedItem) => {
-    console.log(clickedItem);
     setShowInfoBlockOfConclusionEds(!showInfoBlockOfConclusionEds);
     Dispatch(
       putSubTabConclusionListEds({
@@ -146,15 +172,78 @@ const Conclusion = ({ handleModalConclusion }) => {
   };
 
   useEffect(() => {
-    Dispatch(getSubTabConclusionList());
-    Dispatch(getSubTabConclusionListEds());
-  }, []);
+    // Фильтрация актуальной версии вкладки - заключение
+    const filtered =
+      Array.isArray(subTabConclusionListTemp) &&
+      subTabConclusionListTemp.filter((e) => e.statusTemp === true);
+    setFilteredConclusionListTemp(filtered);
+  }, [subTabConclusionListTemp]);
+
+  const handlePostSubTabConclusionListTemp = () => {
+    if (!filteredConclusionList[0]) {
+      console.error("No filtered conclusion list found");
+      return;
+    }
+
+    const conclusionListTemp = {
+      ...filteredConclusionList[0],
+      subTabConclusionListId: filteredConclusionList[0].id,
+      title: `${filteredConclusionList[0].title} - V`,
+      image: filteredCurrentMember[0]?.image,
+      statusTemp: subTabConclusionListTemp.length === 0 ? true : false,
+      text: "",
+      id: Date.now().toString(),
+    };
+
+    Dispatch(postSubTabConclusionListTemp(conclusionListTemp));
+
+    const updatedFilteredConclusionListTemp = [
+      ...filteredConclusionListTemp,
+      conclusionListTemp,
+    ];
+    setFilteredConclusionListTemp(updatedFilteredConclusionListTemp);
+
+    subTabConclusionListEds.forEach((e) => {
+      const conclusionListEdsTemp = {
+        ...e,
+        id: uuidv4(),
+        subTabConclusionListTempId: conclusionListTemp.id,
+        subTabConclusionListEdsId: e.id,
+      };
+      Dispatch(postSubTabConclusionListEdsTemp(conclusionListEdsTemp));
+    });
+  };
+
+  const handlePutSubTabConclusionListTempStatus = async (item) => {
+    // Отключаем все вкладкии
+    for (const e of Array.isArray(subTabConclusionListTemp) &&
+      subTabConclusionListTemp) {
+      if (e.statusTemp === true) {
+        await Dispatch(
+          putSubTabConclusionListTempStatus({ ...e, statusTemp: false })
+        );
+      }
+    }
+
+    // Включаем выбранную вкладку
+    await Dispatch(
+      putSubTabConclusionListTempStatus({ ...item, statusTemp: true })
+    );
+  };
 
   useEffect(() => {
-    if (filteredConclusionList.length > 0) {
-      setValue(filteredConclusionList[0]?.text || "");
+    Dispatch(getSubTabConclusionList());
+    Dispatch(getSubTabConclusionListEds());
+    Dispatch(getSubTabConclusionListTemp());
+    Dispatch(getSubTabConclusionListEdsTemp());
+  }, []);
+
+  // Сейчас после добавление версионности вкладок, этот алгоритм может испортить весь код
+  useEffect(() => {
+    if (filteredConclusionListTemp.length > 0) {
+      setValue(filteredConclusionListTemp[0]?.text || "");
     }
-  }, [filteredConclusionList[0]?.id]);
+  }, [filteredConclusionListTemp[0]?.id]);
 
   return (
     <>
@@ -228,20 +317,103 @@ const Conclusion = ({ handleModalConclusion }) => {
             </aside>
             <main className="min-w-[700px] bg-[#fff]">
               {!editConclusion && (
-                <div
-                  className="text-[14px] p-[15px]"
-                  dangerouslySetInnerHTML={{
-                    __html: filteredConclusionList[0]?.text,
-                  }}
-                />
+                <>
+                  <div className="wrapper-conclusions-temp flex border-b-[1px] flex-wrap">
+                    {Array.isArray(subTabConclusionListTemp) &&
+                      subTabConclusionListTemp.map((e) => {
+                        if (
+                          e.subTabConclusionListId ===
+                          filteredConclusionList[0]?.id
+                        ) {
+                          return (
+                            <Button
+                              onClick={() =>
+                                handlePutSubTabConclusionListTempStatus(e)
+                              }
+                              key={e.id}
+                              variant={e.statusTemp ? "contained" : "variant"}
+                              sx={{
+                                height: "30px",
+                                display: "flex",
+                                gap: "10px",
+                                borderLeft: "0",
+                                borderTop: "0",
+                                borderRadius: "0",
+                                borderBottom: "0",
+                                textTransform: "none",
+                                "&:hover": {
+                                  borderLeft: "0",
+                                  borderTop: "0",
+                                  borderBottom: "0",
+                                },
+                              }}
+                            >
+                              <Avatar
+                                src={e.image}
+                                sx={{ height: "20px", width: "20px" }}
+                              />
+                              <p>{e.title}</p>
+                            </Button>
+                          );
+                        }
+                      })}
+                  </div>
+                  <div
+                    className="text-[14px] p-[15px]"
+                    dangerouslySetInnerHTML={{
+                      __html: filteredConclusionListTemp[0]?.text,
+                    }}
+                  />
+                </>
               )}
               {editConclusion && (
-                <ReactQuill
-                  theme="snow"
-                  value={value}
-                  onChange={setValue}
-                  className="react-quill-editor"
-                />
+                <>
+                  <div className="wrapper-conclusions-temp flex w-full overflow-x-auto">
+                    {Array.isArray(subTabConclusionListTemp) &&
+                      subTabConclusionListTemp.map((e) => {
+                        if (
+                          e.subTabConclusionListId ===
+                          filteredConclusionList[0]?.id
+                        ) {
+                          return (
+                            <Button
+                              onClick={() =>
+                                handlePutSubTabConclusionListTempStatus(e)
+                              }
+                              variant="outlined"
+                              sx={{
+                                height: "30px",
+                                display: "flex",
+                                gap: "10px",
+                                borderLeft: "0",
+                                borderTop: "0",
+                                borderRadius: "0",
+                                borderBottom: "0",
+                                textTransform: "none",
+                                "&:hover": {
+                                  borderLeft: "0",
+                                  borderTop: "0",
+                                  borderBottom: "0",
+                                },
+                              }}
+                            >
+                              <Avatar
+                                src={e.image}
+                                sx={{ height: "20px", width: "20px" }}
+                              />
+                              <p>{e.title}</p>
+                            </Button>
+                          );
+                        }
+                      })}
+                  </div>
+                  <ReactQuill
+                    theme="snow"
+                    value={value}
+                    onChange={setValue}
+                    className="react-quill-editor"
+                  />
+                </>
               )}
             </main>
             {/* Подпись ======= */}
@@ -254,11 +426,11 @@ const Conclusion = ({ handleModalConclusion }) => {
               >
                 <AddIcon />
               </IconButton>
-              {Array.isArray(subTabConclusionListEds) &&
-                subTabConclusionListEds.map((e) => {
+              {Array.isArray(subTabConclusionListEdsTemp) &&
+                subTabConclusionListEdsTemp.map((e) => {
                   if (
-                    filteredConclusionListCurrent[0]?.id ===
-                    e.subTabConclusionListId
+                    filteredConclusionListTemp[0]?.id ===
+                    e.subTabConclusionListTempId
                   )
                     return (
                       <>
@@ -299,7 +471,7 @@ const Conclusion = ({ handleModalConclusion }) => {
           <div className="bg-[#fff] flex justify-between text-[red] border-t-[1px] p-[20px]">
             <div className="panel-control flex gap-5 items-center">
               <Button
-                onClick={() => setEditConclusion(true)}
+                onClick={() => handlePostSubTabConclusionListTemp()}
                 variant="outlined"
                 sx={{ textTransform: "none" }}
               >
@@ -311,6 +483,12 @@ const Conclusion = ({ handleModalConclusion }) => {
                 sx={{ textTransform: "none" }}
               >
                 Подписать
+              </Button>
+              <Button
+                variant="outlined"
+                onClick={() => setEditConclusion(true)}
+              >
+                Edit
               </Button>
               <Button
                 variant="contained"
@@ -327,7 +505,7 @@ const Conclusion = ({ handleModalConclusion }) => {
                 Отмена
               </Button>
               <Button
-                onClick={() => handlePutSubTabConclusionListText()}
+                onClick={() => handlePutSubTabConclusionListTempText()}
                 variant="contained"
                 sx={{ textTransform: "none", fontWeight: "400" }}
               >
@@ -345,6 +523,7 @@ const Conclusion = ({ handleModalConclusion }) => {
           handleShowConclusionEdsUsers={handleShowConclusionEdsUsers}
           filteredExecutor={filteredExecutor}
           filteredConclusionListCurrent={filteredConclusionListCurrent}
+          filteredConclusionListTemp={filteredConclusionListTemp}
         />
       )}
       {showCommentsConclusion && (

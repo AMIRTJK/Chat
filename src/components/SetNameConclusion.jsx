@@ -40,7 +40,6 @@ const SetNameConclusion = ({ handleSetNameConclusion }) => {
       login: accessLogin.login,
       userAuthId: accessLogin.id,
       userChatId: subUserChatTabsById[0]?.userChatId,
-      text: "",
     };
     Dispatch(postSubTabConclusionList(newObj));
     handleSetNameConclusion(false);

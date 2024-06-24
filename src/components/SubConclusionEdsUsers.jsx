@@ -1,12 +1,16 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Avatar, IconButton, Button } from "@mui/material";
-import { postSubTabConclusionListEds } from "../actions/chatApi";
+import {
+  postSubTabConclusionListEds,
+  postSubTabConclusionListEdsTemp,
+} from "../actions/chatApi";
 
 const SubConclusionEdsUsers = ({
   handleShowConclusionEdsUsers,
   filteredExecutor,
   filteredConclusionListCurrent,
+  filteredConclusionListTemp,
 }) => {
   const Dispatch = useDispatch();
 
@@ -37,8 +41,9 @@ const SubConclusionEdsUsers = ({
       name: item.name,
       role: item.role,
       image: item.image,
+      subTabConclusionListTempId: filteredConclusionListTemp[0]?.id,
     };
-    Dispatch(postSubTabConclusionListEds(newObj));
+    Dispatch(postSubTabConclusionListEdsTemp(newObj));
   };
 
   return (

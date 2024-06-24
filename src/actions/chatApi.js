@@ -1211,30 +1211,6 @@ export const putSubTabConclusionList = createAsyncThunk(
   }
 );
 
-export const putSubTabConclusionListText = createAsyncThunk(
-  "putSubTabConclusionListText",
-  async (newObj, { dispatch, rejectWithValue }) => {
-    try {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_SUB_TAB_CONCLUSION_LIST}/${newObj.id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(newObj),
-        }
-      );
-      const data = await response.json();
-      dispatch(getSubTabConclusionList());
-      return data;
-    } catch (error) {
-      console.error(error);
-      return rejectWithValue(error);
-    }
-  }
-);
-
 export const getSubTabConclusionListEds = createAsyncThunk(
   "getSubTabConclusionListEds",
   async (_, { rejectWithValue }) => {
@@ -1298,3 +1274,132 @@ export const putSubTabConclusionListEds = createAsyncThunk(
     }
   }
 );
+
+export const getSubTabConclusionListTemp = createAsyncThunk(
+  "getSubTabConclusionListTemp",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await fetch(
+        import.meta.env.VITE_API_SUB_TAB_CONCLUSION_LIST_TEMP
+      );
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const postSubTabConclusionListTemp = createAsyncThunk(
+  "postSubTabConclusionListTemp",
+  async (newObj, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await fetch(
+        import.meta.env.VITE_API_SUB_TAB_CONCLUSION_LIST_TEMP,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newObj),
+        }
+      );
+      const data = await response.json();
+      dispatch(getSubTabConclusionListTemp());
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const putSubTabConclusionListTempText = createAsyncThunk(
+  "putSubTabConclusionListTempText",
+  async (newObj, { dispatch, rejectWithValue }) => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_SUB_TAB_CONCLUSION_LIST_TEMP}/${newObj.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newObj),
+        }
+      );
+      const data = await response.json();
+      dispatch(getSubTabConclusionListTemp());
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const putSubTabConclusionListTempStatus = createAsyncThunk(
+  "putSubTabConclusionListTempStatus",
+  async (newObj, { dispatch, rejectWithValue }) => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_SUB_TAB_CONCLUSION_LIST_TEMP}/${newObj.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newObj),
+        }
+      );
+      const data = await response.json();
+      dispatch(getSubTabConclusionListTemp());
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const getSubTabConclusionListEdsTemp = createAsyncThunk(
+  "getSubTabConclusionListEdsTemp",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await fetch(
+        import.meta.env.VITE_API_SUB_TAB_CONCLUSION_LIST_EDS_TEMP
+      );
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const postSubTabConclusionListEdsTemp = createAsyncThunk(
+  "postSubTabConclusionListEdsTemp",
+  async (newObj, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await fetch(
+        import.meta.env.VITE_API_SUB_TAB_CONCLUSION_LIST_EDS_TEMP,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newObj),
+        }
+      );
+      const data = await response.json();
+      dispatch(getSubTabConclusionListEdsTemp());
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+

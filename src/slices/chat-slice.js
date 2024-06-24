@@ -53,10 +53,15 @@ import {
   getSubTabConclusionList,
   postSubTabConclusionList,
   putSubTabConclusionList,
-  putSubTabConclusionListText,
   getSubTabConclusionListEds,
   postSubTabConclusionListEds,
   putSubTabConclusionListEds,
+  getSubTabConclusionListTemp,
+  postSubTabConclusionListTemp,
+  putSubTabConclusionListTempText,
+  putSubTabConclusionListTempStatus,
+  getSubTabConclusionListEdsTemp,
+  postSubTabConclusionListEdsTemp,
 } from "../actions/chatApi";
 
 const initialState = {
@@ -109,6 +114,8 @@ const initialState = {
   subTabVisaMessages: [],
   subTabConclusionList: [],
   subTabConclusionListEds: [],
+  subTabConclusionListTemp: [],
+  subTabConclusionListEdsTemp: [],
 };
 
 const chatSlice = createSlice({
@@ -336,9 +343,6 @@ const chatSlice = createSlice({
     builder.addCase(putSubTabConclusionList.fulfilled, (state, action) => {
       state.subTabConclusionList = action.payload;
     });
-    builder.addCase(putSubTabConclusionListText.fulfilled, (state, action) => {
-      state.subTabConclusionList = action.payload;
-    });
     builder.addCase(getSubTabConclusionListEds.fulfilled, (state, action) => {
       state.subTabConclusionListEds = action.payload;
     });
@@ -348,6 +352,36 @@ const chatSlice = createSlice({
     builder.addCase(putSubTabConclusionListEds.fulfilled, (state, action) => {
       state.subTabConclusionListEds = action.payload;
     });
+    builder.addCase(getSubTabConclusionListTemp.fulfilled, (state, action) => {
+      state.subTabConclusionListTemp = action.payload;
+    });
+    builder.addCase(postSubTabConclusionListTemp.fulfilled, (state, action) => {
+      state.subTabConclusionListTemp = action.payload;
+    });
+    builder.addCase(
+      putSubTabConclusionListTempText.fulfilled,
+      (state, action) => {
+        state.subTabConclusionListTemp = action.payload;
+      }
+    );
+    builder.addCase(
+      putSubTabConclusionListTempStatus.fulfilled,
+      (state, action) => {
+        state.subTabConclusionListTemp = action.payload;
+      }
+    );
+    builder.addCase(
+      getSubTabConclusionListEdsTemp.fulfilled,
+      (state, action) => {
+        state.subTabConclusionListEdsTemp = action.payload;
+      }
+    );
+    builder.addCase(
+      postSubTabConclusionListEdsTemp.fulfilled,
+      (state, action) => {
+        state.subTabConclusionListEdsTemp = action.payload;
+      }
+    );
   },
 });
 
