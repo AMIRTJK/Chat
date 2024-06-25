@@ -7,8 +7,6 @@ const CommentsConclusion = ({
 }) => {
   const [value, setValue] = useState("");
 
-  console.log(value);
-
   return (
     <div
       onClick={() => handleShowCommentsConclusion(false)}

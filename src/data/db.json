@@ -700,8 +700,47 @@
       "subVisaUserId": "1718882039527"
     }
   ],
-  "subTabConclusionList": [],
+  "subTabConclusionList": [
+    {
+      "id": "1719311362374",
+      "title": "Хулоса №1",
+      "invitedToSubChatTabId": "1718882041579",
+      "subUserChatTabId": "1718882039527",
+      "status": true,
+      "login": "b.ramazonovich",
+      "userAuthId": "6",
+      "userChatId": "2"
+    }
+  ],
   "subTabConclusionListEds": [],
-  "subTabConclusionListTemp": [],
-  "subTabConclusionListEdsTemp": []
+  "subTabConclusionListTemp": [
+    {
+      "id": "1719311363663",
+      "title": "V1",
+      "invitedToSubChatTabId": "1718882041579",
+      "subUserChatTabId": "1718882039527",
+      "status": true,
+      "login": "b.ramazonovich",
+      "userAuthId": "6",
+      "userChatId": "2",
+      "subTabConclusionListId": "1719311362374",
+      "image": "src/assets/Бехруз Рамазонович.jpg",
+      "statusTemp": true,
+      "text": "<p>Данное заключение предназначено для разработки и анализа метаданных связанных с нейронными связами диффузионных клеток молекул On6.</p>"
+    }
+  ],
+  "subTabConclusionListEdsTemp": [
+    {
+      "id": "1719311439933",
+      "subTabConclusionListId": "1719311362374",
+      "userAuthId": "7",
+      "comments": "123",
+      "status": false,
+      "edsStatus": false,
+      "name": "Махмуд Абдурахмонович",
+      "role": "Начальник отдела по работе с клиентами",
+      "image": "src/assets/Махмуд Абдурахмонович.jpg",
+      "subTabConclusionListTempId": "1719311363663"
+    }
+  ]
 }

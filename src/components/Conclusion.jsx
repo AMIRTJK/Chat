@@ -50,10 +50,6 @@ const Conclusion = ({ handleModalConclusion }) => {
 
   const accessLogin = JSON.parse(localStorage.getItem("accessLogin"));
 
-  const subTabConclusionListEds = useSelector(
-    (store) => store.chat.subTabConclusionListEds
-  );
-
   const subTabConclusionListEdsTemp = useSelector(
     (store) => store.chat.subTabConclusionListEdsTemp
   );
@@ -144,13 +140,14 @@ const Conclusion = ({ handleModalConclusion }) => {
   };
 
   const handlePutSubTabConclusionListEds = (value) => {
-    const currentEds = subTabConclusionListEds.filter(
+    const currentEds = subTabConclusionListEdsTemp.filter(
       (e) =>
         e.userAuthId === accessLogin.id &&
-        e.subTabConclusionListId === filteredConclusionListCurrent[0]?.id
+        e.subTabConclusionListTempId === filteredConclusionListTemp[0]?.id
     );
+
     Dispatch(
-      putSubTabConclusionListEds({
+      putSubTabConclusionListEdsTempStatus({
         ...currentEds[0],
         edsStatus: true,
         comments: value,
@@ -204,17 +201,6 @@ const Conclusion = ({ handleModalConclusion }) => {
       conclusionListTemp,
     ];
     setFilteredConclusionListTemp(updatedFilteredConclusionListTemp);
-
-    subTabConclusionListEds.forEach((e) => {
-      const conclusionListEdsTemp = {
-        ...e,
-        edsStatus: false,
-        id: uuidv4(),
-        subTabConclusionListTempId: conclusionListTemp?.id,
-        subTabConclusionListEdsId: e.id,
-      };
-      Dispatch(postSubTabConclusionListEdsTemp(conclusionListEdsTemp));
-    });
   };
 
   const handlePutSubTabConclusionListTempStatus = async (item) => {
@@ -256,9 +242,9 @@ const Conclusion = ({ handleModalConclusion }) => {
         e.subTabConclusionListTempId === filteredConclusionListTemp[0]?.id
     );
 
-  const isDisabledIfNotInvite = subTabConclusionListEdsTemp.some(
-    (e) => e.userAuthId === accessLogin.id
-  );
+  const isDisabledIfNotInvite =
+    Array.isArray(subTabConclusionListEdsTemp) &&
+    subTabConclusionListEdsTemp.some((e) => e.userAuthId === accessLogin.id);
 
   const isCreator =
     filteredConclusionListTemp[0]?.userAuthId === accessLogin.id;
@@ -301,7 +287,7 @@ const Conclusion = ({ handleModalConclusion }) => {
         >
           {/* Заключение создателя вкладки */}
           <div className="conclusion-content flex justify-between h-full">
-            <aside className="left aside-left-conclusion h-full min-w-[135px] flex flex-col items-center gap-5 py-[20px]">
+            <aside className="left aside-left-conclusion h-full min-w-[150px] flex flex-col items-center gap-5 py-[20px]">
               <p className="text-[14px] text-[#939393] font-[500]">Документы</p>
               {/* Заключение участников вкладки */}
               {Array.isArray(invitedToSubChatTabs) &&
@@ -465,7 +451,7 @@ const Conclusion = ({ handleModalConclusion }) => {
               )}
             </main>
             {/* Подпись ======= */}
-            <aside className="right aside-left-conclusion h-full min-w-[135px] relative  flex flex-col items-center gap-5 py-[20px]">
+            <aside className="right aside-left-conclusion h-full min-w-[180px] relative  flex flex-col items-center gap-5 py-[20px]">
               <p className="text-[14px] text-[#939393] font-[500]">Подписи</p>
 
               {Array.isArray(subTabConclusionListEdsTemp) &&
