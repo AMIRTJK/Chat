@@ -725,7 +725,7 @@
       "userChatId": "2",
       "subTabConclusionListId": "1719311362374",
       "image": "src/assets/Бехруз Рамазонович.jpg",
-      "statusTemp": true,
+      "statusTemp": false,
       "text": "<p>Данное заключение предназначено для разработки и анализа метаданных связанных с нейронными связами диффузионных клеток молекул On6.</p>"
     }
   ],
@@ -734,7 +734,7 @@
       "id": "1719311439933",
       "subTabConclusionListId": "1719311362374",
       "userAuthId": "7",
-      "comments": "123",
+      "comments": "222",
       "status": false,
       "edsStatus": false,
       "name": "Махмуд Абдурахмонович",

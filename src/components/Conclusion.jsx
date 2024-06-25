@@ -143,7 +143,8 @@ const Conclusion = ({ handleModalConclusion }) => {
     const currentEds = subTabConclusionListEdsTemp.filter(
       (e) =>
         e.userAuthId === accessLogin.id &&
-        e.subTabConclusionListTempId === filteredConclusionListTemp[0]?.id
+        e.subTabConclusionListId ===
+          filteredConclusionListTemp[0]?.subTabConclusionListId
     );
 
     Dispatch(
@@ -196,6 +197,15 @@ const Conclusion = ({ handleModalConclusion }) => {
 
     Dispatch(postSubTabConclusionListTemp(conclusionListTemp));
 
+    // На данный момент оставим так, но в будущем необходимо чтобы каждая версия сохраняло историю подписей
+    for (let key of subTabConclusionListEdsTemp) {
+      if (key.edsStatus === true) {
+        Dispatch(
+          putSubTabConclusionListEdsTempStatus({ ...key, edsStatus: false })
+        );
+      }
+    }
+
     const updatedFilteredConclusionListTemp = [
       ...filteredConclusionListTemp,
       conclusionListTemp,
@@ -227,7 +237,8 @@ const Conclusion = ({ handleModalConclusion }) => {
       subTabConclusionListEdsTemp.forEach((e) => {
         if (
           e.edsStatus === true &&
-          e.subTabConclusionListTempId === filteredConclusionListTemp[0]?.id
+          e.subTabConclusionListId ===
+            filteredConclusionListTemp[0]?.subTabConclusionListTempId
         ) {
           setEditConclusion(false);
         }
@@ -239,7 +250,8 @@ const Conclusion = ({ handleModalConclusion }) => {
     subTabConclusionListEdsTemp.some(
       (e) =>
         e.edsStatus === true &&
-        e.subTabConclusionListTempId === filteredConclusionListTemp[0]?.id
+        e.subTabConclusionListId ===
+          filteredConclusionListTemp[0]?.subTabConclusionListId
     );
 
   const isDisabledIfNotInvite =
@@ -457,8 +469,8 @@ const Conclusion = ({ handleModalConclusion }) => {
               {Array.isArray(subTabConclusionListEdsTemp) &&
                 subTabConclusionListEdsTemp.map((e) => {
                   if (
-                    filteredConclusionListTemp[0]?.id ===
-                    e.subTabConclusionListTempId
+                    filteredConclusionListTemp[0]?.subTabConclusionListId ===
+                    e.subTabConclusionListId
                   )
                     return (
                       <>
