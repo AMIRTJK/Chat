@@ -139,6 +139,7 @@ const Conclusion = ({ handleModalConclusion }) => {
     setShowCommentsConclusion(state);
   };
 
+  // Раньше вместо e.subTabConclusionListId было subTabConclusionListTempId
   const handlePutSubTabConclusionListEds = (value) => {
     const currentEds = subTabConclusionListEdsTemp.filter(
       (e) =>
@@ -235,16 +236,18 @@ const Conclusion = ({ handleModalConclusion }) => {
   const handleDisabledChange = () => {
     Array.isArray(subTabConclusionListEdsTemp) &&
       subTabConclusionListEdsTemp.forEach((e) => {
+        // Раньше вместо e.subTabConclusionListId было subTabConclusionListTempId
         if (
           e.edsStatus === true &&
           e.subTabConclusionListId ===
-            filteredConclusionListTemp[0]?.subTabConclusionListTempId
+            filteredConclusionListTemp[0]?.subTabConclusionListId
         ) {
           setEditConclusion(false);
         }
       });
   };
 
+  // Раньше вместо e.subTabConclusionListId было subTabConclusionListTempId
   const isDisabledIfNotEds =
     Array.isArray(subTabConclusionListEdsTemp) &&
     subTabConclusionListEdsTemp.some(
@@ -366,6 +369,7 @@ const Conclusion = ({ handleModalConclusion }) => {
                   <div className="wrapper-conclusions-temp flex border-b-[1px] flex-wrap">
                     {Array.isArray(subTabConclusionListTemp) &&
                       subTabConclusionListTemp.map((e) => {
+                        // Раньше вместо e.subTabConclusionListId было subTabConclusionListTempId
                         if (
                           e.subTabConclusionListId ===
                           filteredConclusionList[0]?.id
@@ -416,6 +420,7 @@ const Conclusion = ({ handleModalConclusion }) => {
                   <div className="wrapper-conclusions-temp flex w-full overflow-x-auto">
                     {Array.isArray(subTabConclusionListTemp) &&
                       subTabConclusionListTemp.map((e) => {
+                        // Раньше вместо e.subTabConclusionListId было subTabConclusionListTempId
                         if (
                           e.subTabConclusionListId ===
                           filteredConclusionList[0]?.id
@@ -468,6 +473,7 @@ const Conclusion = ({ handleModalConclusion }) => {
 
               {Array.isArray(subTabConclusionListEdsTemp) &&
                 subTabConclusionListEdsTemp.map((e) => {
+                  // Раньше вместо e.subTabConclusionListId было subTabConclusionListTempId
                   if (
                     filteredConclusionListTemp[0]?.subTabConclusionListId ===
                     e.subTabConclusionListId
