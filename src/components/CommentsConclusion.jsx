@@ -20,7 +20,7 @@ const CommentsConclusion = ({
       >
         <p className="font-[600]">Комментарии к заключению</p>
         <input
-          onChange={() => setValue(event.target.value)}
+          onChange={(event) => setValue(event.target.value)}
           value={value}
           type="text"
           placeholder="Введите название комментарий"

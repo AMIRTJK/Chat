@@ -702,18 +702,8 @@
   ],
   "subTabConclusionList": [
     {
-      "id": "1718944733763",
-      "title": "Заключение (Норов Махмуд)",
-      "invitedToSubChatTabId": "1718882042675",
-      "subUserChatTabId": "1718882039527",
-      "status": false,
-      "login": "m.abdurahmonovich",
-      "userAuthId": "7",
-      "userChatId": "2"
-    },
-    {
-      "id": "1719200393695",
-      "title": "Хулоса Бехруз №1",
+      "id": "1719296179788",
+      "title": "Хулоса №1",
       "invitedToSubChatTabId": "1718882041579",
       "subUserChatTabId": "1718882039527",
       "status": true,
@@ -722,158 +712,61 @@
       "userChatId": "2"
     }
   ],
-  "subTabConclusionListEds": [
-    {
-      "id": "1714452575821442",
-      "subTabConclusionListId": "1719200393695",
-      "userAuthId": "4",
-      "status": false,
-      "edsStatus": true,
-      "name": "Акрамшох Рамазонович",
-      "role": "Директор ГУП «ЦФИТ»",
-      "image": "https://i.ibb.co/Kb1V9nM/583-IMG-6443-47034.png"
-    },
-    {
-      "id": "1714452575821443",
-      "subTabConclusionListId": "1719200393695",
-      "userAuthId": "6",
-      "status": false,
-      "edsStatus": false,
-      "name": "Бехруз Рамазонович",
-      "role": "Начальник отдела разработки и внедрения ИС",
-      "image": "src/assets/Бехруз Рамазонович.jpg",
-      "comments": ""
-    },
-    {
-      "id": "1718946441759",
-      "subTabConclusionListId": "1719200393695",
-      "userAuthId": "10",
-      "status": false,
-      "edsStatus": true,
-      "name": "Адиба Махмадалиевна",
-      "role": "Начальник раздела по управлению персоналом",
-      "image": "src/assets/Адиба Махмадалиевна.jpg",
-      "comments": "423432"
-    }
-  ],
+  "subTabConclusionListEds": [],
   "subTabConclusionListTemp": [
     {
-      "id": "1719217588345",
-      "title": "Хулоса Бехруз №1 - V",
+      "id": "1719296180812",
+      "title": "V1",
       "invitedToSubChatTabId": "1718882041579",
       "subUserChatTabId": "1718882039527",
       "status": true,
       "login": "b.ramazonovich",
       "userAuthId": "6",
       "userChatId": "2",
-      "subTabConclusionListId": "1719200393695",
+      "subTabConclusionListId": "1719296179788",
       "image": "src/assets/Бехруз Рамазонович.jpg",
       "statusTemp": true,
-      "text": ""
+      "text": "<p>1</p>"
     },
     {
-      "id": "1719218446280",
-      "title": "Хулоса Бехруз №1 - V",
+      "id": "1719296849501",
+      "title": "V2",
       "invitedToSubChatTabId": "1718882041579",
       "subUserChatTabId": "1718882039527",
       "status": true,
       "login": "b.ramazonovich",
       "userAuthId": "6",
       "userChatId": "2",
-      "subTabConclusionListId": "1719200393695",
+      "subTabConclusionListId": "1719296179788",
       "image": "src/assets/Бехруз Рамазонович.jpg",
       "statusTemp": false,
-      "text": "<p>123</p>"
+      "text": ""
     }
   ],
   "subTabConclusionListEdsTemp": [
     {
-      "id": "95891a5d-41db-4e8f-995f-ddbe5e50ba39",
-      "subTabConclusionListId": "1719200393695",
-      "userAuthId": "4",
-      "status": false,
-      "edsStatus": true,
-      "name": "Акрамшох Рамазонович",
-      "role": "Директор ГУП «ЦФИТ»",
-      "image": "https://i.ibb.co/Kb1V9nM/583-IMG-6443-47034.png",
-      "subTabConclusionListTempId": "1719217588345",
-      "subTabConclusionListEdsId": "1714452575821442"
-    },
-    {
-      "id": "0cdfe6b0-2c97-4da1-83e0-63999cdaac13",
-      "subTabConclusionListId": "1719200393695",
-      "userAuthId": "6",
-      "status": false,
-      "edsStatus": false,
-      "name": "Бехруз Рамазонович",
-      "role": "Начальник отдела разработки и внедрения ИС",
-      "image": "src/assets/Бехруз Рамазонович.jpg",
-      "comments": "",
-      "subTabConclusionListTempId": "1719217588345",
-      "subTabConclusionListEdsId": "1714452575821443"
-    },
-    {
-      "id": "c2b57f0c-49f3-4584-9172-1ba6eb49ebfbx",
-      "subTabConclusionListId": "1719200393695",
-      "userAuthId": "10",
-      "status": false,
-      "edsStatus": true,
-      "name": "Адиба Махмадалиевна",
-      "role": "Начальник раздела по управлению персоналом",
-      "image": "src/assets/Адиба Махмадалиевна.jpg",
-      "comments": "423432",
-      "subTabConclusionListTempId": "1719217588345",
-      "subTabConclusionListEdsId": "1718946441759"
-    },
-    {
-      "id": "1719218438413",
-      "subTabConclusionListId": "1719200393695",
+      "id": "1719298511850",
+      "subTabConclusionListId": "1719296179788",
       "userAuthId": "7",
       "comments": "",
       "status": false,
-      "edsStatus": false,
+      "edsStatus": true,
       "name": "Махмуд Абдурахмонович",
       "role": "Начальник отдела по работе с клиентами",
       "image": "src/assets/Махмуд Абдурахмонович.jpg",
-      "subTabConclusionListTempId": "1719217588345"
+      "subTabConclusionListTempId": "1719296180812"
     },
     {
-      "id": "c9348351-f0ab-4f75-983d-99e49f35f128",
-      "subTabConclusionListId": "1719200393695",
-      "userAuthId": "4",
-      "status": false,
-      "edsStatus": true,
-      "name": "Акрамшох Рамазонович",
-      "role": "Директор ГУП «ЦФИТ»",
-      "image": "https://i.ibb.co/Kb1V9nM/583-IMG-6443-47034.png",
-      "subTabConclusionListTempId": "1719218446280",
-      "subTabConclusionListEdsId": "1714452575821442"
-    },
-    {
-      "id": "5eaeafca-c323-4bf6-8bd3-5381aebf4a5a",
-      "subTabConclusionListId": "1719200393695",
-      "userAuthId": "6",
+      "id": "1719298513250",
+      "subTabConclusionListId": "1719296179788",
+      "userAuthId": "10",
+      "comments": "",
       "status": false,
       "edsStatus": false,
-      "name": "Бехруз Рамазонович",
-      "role": "Начальник отдела разработки и внедрения ИС",
-      "image": "src/assets/Бехруз Рамазонович.jpg",
-      "comments": "",
-      "subTabConclusionListTempId": "1719218446280",
-      "subTabConclusionListEdsId": "1714452575821443"
-    },
-    {
-      "id": "94622c67-bc7e-4dfd-89cb-3269ef88640f",
-      "subTabConclusionListId": "1719200393695",
-      "userAuthId": "10",
-      "status": false,
-      "edsStatus": true,
       "name": "Адиба Махмадалиевна",
       "role": "Начальник раздела по управлению персоналом",
       "image": "src/assets/Адиба Махмадалиевна.jpg",
-      "comments": "423432",
-      "subTabConclusionListTempId": "1719218446280",
-      "subTabConclusionListEdsId": "1718946441759"
+      "subTabConclusionListTempId": "1719296180812"
     }
   ]
 }

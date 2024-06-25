@@ -8,7 +8,6 @@ import {
 
 const SubConclusionEdsUsers = ({
   handleShowConclusionEdsUsers,
-  filteredExecutor,
   filteredConclusionListCurrent,
   filteredConclusionListTemp,
 }) => {
@@ -43,6 +42,7 @@ const SubConclusionEdsUsers = ({
       image: item.image,
       subTabConclusionListTempId: filteredConclusionListTemp[0]?.id,
     };
+
     Dispatch(postSubTabConclusionListEdsTemp(newObj));
   };
 

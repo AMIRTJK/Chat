@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "@mui/material";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import { postSubTabConclusionList } from "../actions/chatApi";
+import {
+  postSubTabConclusionList,
+  postSubTabConclusionListTemp,
+} from "../actions/chatApi";
 
 const SetNameConclusion = ({ handleSetNameConclusion }) => {
   const Dispatch = useDispatch();
@@ -29,6 +32,24 @@ const SetNameConclusion = ({ handleSetNameConclusion }) => {
         subUserChatTabsById[0]?.id === e.subUserChatTabId
     );
 
+  // ==========================
+
+  const users = useSelector((store) => store.chat.users);
+
+  const subTabConclusionListTemp = useSelector(
+    (store) => store.chat.subTabConclusionListTemp
+  );
+
+  const filteredConclusionList =
+    Array.isArray(subTabConclusionList) &&
+    subTabConclusionList.filter((e) => e.status === true);
+
+  const filteredCurrentMember = users.filter(
+    (e) => e.userAuthId === accessLogin.id
+  );
+
+  // ===========================
+
   const handlePostSubTabConclusionList = () => {
     const newObj = {
       id: Date.now().toString(),
@@ -42,6 +63,19 @@ const SetNameConclusion = ({ handleSetNameConclusion }) => {
       userChatId: subUserChatTabsById[0]?.userChatId,
     };
     Dispatch(postSubTabConclusionList(newObj));
+  };
+
+  const handlePostSubTabConclusionListTemp = () => {
+    const conclusionListTemp = {
+      ...filteredConclusionList[0],
+      subTabConclusionListId: filteredConclusionList[0]?.id,
+      title: "V1",
+      image: filteredCurrentMember[0]?.image,
+      statusTemp: subTabConclusionListTemp.length === 0 ? true : false,
+      text: "",
+      id: Date.now().toString(),
+    };
+    Dispatch(postSubTabConclusionListTemp(conclusionListTemp));
     handleSetNameConclusion(false);
   };
 
@@ -56,7 +90,7 @@ const SetNameConclusion = ({ handleSetNameConclusion }) => {
       >
         <p className="font-[600]">Новое заключение</p>
         <input
-          onChange={() => setValue(event.target.value)}
+          onChange={(event) => setValue(event.target.value)}
           value={value}
           type="text"
           placeholder="Введите название заключение"
@@ -72,7 +106,18 @@ const SetNameConclusion = ({ handleSetNameConclusion }) => {
               Отмена
             </Button>
             <Button
-              onClick={() => handlePostSubTabConclusionList()}
+              onClick={() => {
+                handlePostSubTabConclusionList();
+              }}
+              variant="contained"
+              sx={{ textTransform: "none" }}
+            >
+              Сохранить
+            </Button>
+            <Button
+              onClick={() => {
+                handlePostSubTabConclusionListTemp();
+              }}
               variant="contained"
               sx={{ textTransform: "none" }}
             >

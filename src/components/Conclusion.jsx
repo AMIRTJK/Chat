@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import { v4 as uuidv4 } from "uuid";
 
@@ -156,6 +156,7 @@ const Conclusion = ({ handleModalConclusion }) => {
       })
     );
     handleShowCommentsConclusion(false);
+    setEditConclusion(false);
   };
 
   const [showInfoBlockOfConclusionEds, setShowInfoBlockOfConclusionEds] =
@@ -187,11 +188,11 @@ const Conclusion = ({ handleModalConclusion }) => {
 
     const conclusionListTemp = {
       ...filteredConclusionList[0],
-      subTabConclusionListId: filteredConclusionList[0].id,
-      title: "V1",
+      subTabConclusionListId: filteredConclusionList[0]?.id,
+      title: `V${subTabConclusionListTemp.length + 1}`,
       image: filteredCurrentMember[0]?.image,
       statusTemp: subTabConclusionListTemp.length === 0 ? true : false,
-      text: "",
+      text: subTabConclusionListTemp[subTabConclusionListTemp.length - 1]?.text,
       id: Date.now().toString(),
     };
 
@@ -206,8 +207,9 @@ const Conclusion = ({ handleModalConclusion }) => {
     subTabConclusionListEds.forEach((e) => {
       const conclusionListEdsTemp = {
         ...e,
+        edsStatus: false,
         id: uuidv4(),
-        subTabConclusionListTempId: conclusionListTemp.id,
+        subTabConclusionListTempId: conclusionListTemp?.id,
         subTabConclusionListEdsId: e.id,
       };
       Dispatch(postSubTabConclusionListEdsTemp(conclusionListEdsTemp));
@@ -231,12 +233,40 @@ const Conclusion = ({ handleModalConclusion }) => {
     );
   };
 
+  const inputRef = useRef(null);
+
+  const [disabledChange, setDisabledChange] = useState(false);
+
+  const handleDisabledChange = () => {
+    subTabConclusionListEdsTemp.forEach((e) => {
+      if (
+        e.edsStatus === true &&
+        e.subTabConclusionListTempId === filteredConclusionListTemp[0]?.id
+      ) {
+        setDisabledChange(true);
+        setEditConclusion(false);
+      } else {
+        setDisabledChange(false);
+      }
+    });
+  };
+
+  useEffect(() => {
+    handleDisabledChange();
+  }, [subTabConclusionListEdsTemp]);
+
   useEffect(() => {
     Dispatch(getSubTabConclusionList());
     Dispatch(getSubTabConclusionListEds());
     Dispatch(getSubTabConclusionListTemp());
     Dispatch(getSubTabConclusionListEdsTemp());
+    inputRef?.current?.focus();
+    handleDisabledChange();
   }, []);
+
+  useEffect(() => {
+    inputRef?.current?.focus();
+  }, [filteredConclusionListTemp[0]?.status]);
 
   // Сейчас после добавление версионности вкладок, этот алгоритм может испортить весь код
   useEffect(() => {
@@ -380,7 +410,7 @@ const Conclusion = ({ handleModalConclusion }) => {
                               onClick={() =>
                                 handlePutSubTabConclusionListTempStatus(e)
                               }
-                              variant="outlined"
+                              variant={e.statusTemp ? "contained" : "variant"}
                               sx={{
                                 height: "30px",
                                 display: "flex",
@@ -408,6 +438,7 @@ const Conclusion = ({ handleModalConclusion }) => {
                       })}
                   </div>
                   <ReactQuill
+                    ref={inputRef}
                     theme="snow"
                     value={value}
                     onChange={setValue}
@@ -488,18 +519,20 @@ const Conclusion = ({ handleModalConclusion }) => {
                 Подписать
               </Button>
               <Button
+                disabled={disabledChange}
                 variant="outlined"
                 sx={{ textTransform: "none" }}
                 onClick={() => setEditConclusion(true)}
               >
                 Изменить
               </Button>
-              <Button
+              {/* <Button
+                disabled={true}
                 variant="contained"
                 sx={{ textTransform: "none", fontWeight: "400" }}
               >
                 Завершить
-              </Button>
+              </Button> */}
             </div>
             <div className="wrapper-buttons flex gap-5">
               <Button
@@ -525,7 +558,6 @@ const Conclusion = ({ handleModalConclusion }) => {
       {showConclusionEdsUsers && (
         <SubConclusionEdsUsers
           handleShowConclusionEdsUsers={handleShowConclusionEdsUsers}
-          filteredExecutor={filteredExecutor}
           filteredConclusionListCurrent={filteredConclusionListCurrent}
           filteredConclusionListTemp={filteredConclusionListTemp}
         />
