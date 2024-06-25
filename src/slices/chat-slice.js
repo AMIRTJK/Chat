@@ -62,6 +62,7 @@ import {
   putSubTabConclusionListTempStatus,
   getSubTabConclusionListEdsTemp,
   postSubTabConclusionListEdsTemp,
+  putSubTabConclusionListEdsTempStatus
 } from "../actions/chatApi";
 
 const initialState = {
@@ -378,6 +379,12 @@ const chatSlice = createSlice({
     );
     builder.addCase(
       postSubTabConclusionListEdsTemp.fulfilled,
+      (state, action) => {
+        state.subTabConclusionListEdsTemp = action.payload;
+      }
+    );
+    builder.addCase(
+      putSubTabConclusionListEdsTempStatus.fulfilled,
       (state, action) => {
         state.subTabConclusionListEdsTemp = action.payload;
       }

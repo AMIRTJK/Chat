@@ -25,6 +25,7 @@ import {
   putSubTabConclusionListTempStatus,
   getSubTabConclusionListEdsTemp,
   postSubTabConclusionListEdsTemp,
+  putSubTabConclusionListEdsTempStatus,
 } from "../actions/chatApi";
 
 const Conclusion = ({ handleModalConclusion }) => {
@@ -165,7 +166,7 @@ const Conclusion = ({ handleModalConclusion }) => {
   const handlePutShowInfoBlockOfConclusionEds = (clickedItem) => {
     setShowInfoBlockOfConclusionEds(!showInfoBlockOfConclusionEds);
     Dispatch(
-      putSubTabConclusionListEds({
+      putSubTabConclusionListEdsTempStatus({
         ...clickedItem,
         status: !clickedItem.status,
       })
@@ -235,21 +236,35 @@ const Conclusion = ({ handleModalConclusion }) => {
 
   const inputRef = useRef(null);
 
-  const [disabledChange, setDisabledChange] = useState(false);
-
   const handleDisabledChange = () => {
-    subTabConclusionListEdsTemp.forEach((e) => {
-      if (
+    Array.isArray(subTabConclusionListEdsTemp) &&
+      subTabConclusionListEdsTemp.forEach((e) => {
+        if (
+          e.edsStatus === true &&
+          e.subTabConclusionListTempId === filteredConclusionListTemp[0]?.id
+        ) {
+          setEditConclusion(false);
+        }
+      });
+  };
+
+  const isDisabledIfNotEds =
+    Array.isArray(subTabConclusionListEdsTemp) &&
+    subTabConclusionListEdsTemp.some(
+      (e) =>
         e.edsStatus === true &&
         e.subTabConclusionListTempId === filteredConclusionListTemp[0]?.id
-      ) {
-        setDisabledChange(true);
-        setEditConclusion(false);
-      } else {
-        setDisabledChange(false);
-      }
-    });
-  };
+    );
+
+  const isDisabledIfNotInvite = subTabConclusionListEdsTemp.some(
+    (e) => e.userAuthId === accessLogin.id
+  );
+
+  const isCreator =
+    filteredConclusionListTemp[0]?.userAuthId === accessLogin.id;
+
+  const isDisabled =
+    isDisabledIfNotEds || (!isDisabledIfNotInvite && !isCreator);
 
   useEffect(() => {
     handleDisabledChange();
@@ -261,7 +276,6 @@ const Conclusion = ({ handleModalConclusion }) => {
     Dispatch(getSubTabConclusionListTemp());
     Dispatch(getSubTabConclusionListEdsTemp());
     inputRef?.current?.focus();
-    handleDisabledChange();
   }, []);
 
   useEffect(() => {
@@ -279,14 +293,14 @@ const Conclusion = ({ handleModalConclusion }) => {
     <>
       <div
         onClick={() => handleModalConclusion(false)}
-        className="fixed w-full h-full top-0 left-0 z-10 bg-[#00000030]"
+        className="fixed conclusion-animation w-full h-full top-0 left-0 z-10"
       >
         <div
           onClick={(event) => event.stopPropagation()}
-          className="wrapper-conclusion absolute bg-[#fff] h-full flex flex-col translate-x-[-35%] translate-y-[-50%] top-1/2 left-1/2 border-[1px] shadow-lg"
+          className="wrapper-conclusion absolute bg-[#fff] w-[80%] h-full flex flex-col right-0  border-[1px] shadow-lg"
         >
           {/* Заключение создателя вкладки */}
-          <div className="conclusion-content flex h-full">
+          <div className="conclusion-content flex justify-between h-full">
             <aside className="left aside-left-conclusion h-full min-w-[135px] flex flex-col items-center gap-5 py-[20px]">
               <p className="text-[14px] text-[#939393] font-[500]">Документы</p>
               {/* Заключение участников вкладки */}
@@ -307,11 +321,14 @@ const Conclusion = ({ handleModalConclusion }) => {
                         </IconButton>
                         {visible[invite.id] && (
                           <div className="panel-control-conclusion flex flex-col items-center gap-4">
-                            <IconButton
-                              onClick={() => handleSetNameConclusion(true)}
-                            >
-                              <AddIcon />
-                            </IconButton>
+                            {invite.userAuthId === accessLogin.id && (
+                              <IconButton
+                                onClick={() => handleSetNameConclusion(true)}
+                              >
+                                <AddIcon />
+                              </IconButton>
+                            )}
+
                             <ul className="conclusion-list">
                               {Array.isArray(subTabConclusionList) &&
                                 subTabConclusionList.map((conclusion) => {
@@ -345,7 +362,7 @@ const Conclusion = ({ handleModalConclusion }) => {
                     );
                 })}
             </aside>
-            <main className="min-w-[700px] bg-[#fff]">
+            <main className="bg-[#fff] w-full">
               {!editConclusion && (
                 <>
                   <div className="wrapper-conclusions-temp flex border-b-[1px] flex-wrap">
@@ -464,7 +481,7 @@ const Conclusion = ({ handleModalConclusion }) => {
                             handlePutShowInfoBlockOfConclusionEds(e)
                           }
                           className={`${
-                            e.edsStatus ? "opacity-100" : "opacity-50"
+                            e.edsStatus ? "opacity-100" : "opacity-30"
                           }`}
                           key={e.id}
                           sx={{ padding: "0px" }}
@@ -519,7 +536,7 @@ const Conclusion = ({ handleModalConclusion }) => {
                 Подписать
               </Button>
               <Button
-                disabled={disabledChange}
+                disabled={isDisabled}
                 variant="outlined"
                 sx={{ textTransform: "none" }}
                 onClick={() => setEditConclusion(true)}

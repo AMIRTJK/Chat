@@ -154,3 +154,17 @@ body {
   border-left: none !important; /* Убираем границу у всей панели управления */
   border-right: none !important; /* Убираем границу у всей панели управления */
 }
+
+.conclusion-animation {
+  animation-name: conclusion;
+  animation-duration: 300ms;
+}
+
+@keyframes conclusion {
+  from {
+    left: 100%;
+  }
+  to {
+    left: 0;
+  }
+}

@@ -702,20 +702,70 @@
   ],
   "subTabConclusionList": [
     {
-      "id": "1719296179788",
+      "id": "1719307183653",
       "title": "Хулоса №1",
       "invitedToSubChatTabId": "1718882041579",
       "subUserChatTabId": "1718882039527",
-      "status": true,
+      "status": false,
       "login": "b.ramazonovich",
       "userAuthId": "6",
+      "userChatId": "2"
+    },
+    {
+      "id": "1719310263611",
+      "title": "123",
+      "invitedToSubChatTabId": "1718882042675",
+      "subUserChatTabId": "1718882039527",
+      "status": true,
+      "login": "m.abdurahmonovich",
+      "userAuthId": "7",
+      "userChatId": "2"
+    },
+    {
+      "id": "1719310849183",
+      "title": "234",
+      "invitedToSubChatTabId": "1718882042675",
+      "subUserChatTabId": "1718882039527",
+      "status": false,
+      "login": "m.abdurahmonovich",
+      "userAuthId": "7",
+      "userChatId": "2"
+    },
+    {
+      "id": "1719310887127",
+      "title": "3333",
+      "invitedToSubChatTabId": "1718882042675",
+      "subUserChatTabId": "1718882039527",
+      "status": false,
+      "login": "m.abdurahmonovich",
+      "userAuthId": "7",
+      "userChatId": "2"
+    },
+    {
+      "id": "1719311042839",
+      "title": "123123",
+      "invitedToSubChatTabId": "1718882042675",
+      "subUserChatTabId": "1718882039527",
+      "status": false,
+      "login": "m.abdurahmonovich",
+      "userAuthId": "7",
+      "userChatId": "2"
+    },
+    {
+      "id": "1719311177990",
+      "title": "3213213",
+      "invitedToSubChatTabId": "1718882042675",
+      "subUserChatTabId": "1718882039527",
+      "status": false,
+      "login": "m.abdurahmonovich",
+      "userAuthId": "7",
       "userChatId": "2"
     }
   ],
   "subTabConclusionListEds": [],
   "subTabConclusionListTemp": [
     {
-      "id": "1719296180812",
+      "id": "1719307185780",
       "title": "V1",
       "invitedToSubChatTabId": "1718882041579",
       "subUserChatTabId": "1718882039527",
@@ -723,50 +773,108 @@
       "login": "b.ramazonovich",
       "userAuthId": "6",
       "userChatId": "2",
-      "subTabConclusionListId": "1719296179788",
+      "subTabConclusionListId": "1719307183653",
       "image": "src/assets/Бехруз Рамазонович.jpg",
-      "statusTemp": true,
-      "text": "<p>1</p>"
+      "statusTemp": false,
+      "text": "<p>Данная хулоса предназначена для...</p>"
     },
     {
-      "id": "1719296849501",
-      "title": "V2",
-      "invitedToSubChatTabId": "1718882041579",
+      "id": "1719310855583",
+      "title": "V1",
+      "invitedToSubChatTabId": "1718882042675",
       "subUserChatTabId": "1718882039527",
       "status": true,
-      "login": "b.ramazonovich",
-      "userAuthId": "6",
+      "login": "m.abdurahmonovich",
+      "userAuthId": "7",
       "userChatId": "2",
-      "subTabConclusionListId": "1719296179788",
-      "image": "src/assets/Бехруз Рамазонович.jpg",
+      "subTabConclusionListId": "1719310849183",
+      "image": "src/assets/Махмуд Абдурахмонович.jpg",
+      "statusTemp": false,
+      "text": ""
+    },
+    {
+      "id": "1719310895112",
+      "title": "V1",
+      "invitedToSubChatTabId": "1718882042675",
+      "subUserChatTabId": "1718882039527",
+      "status": true,
+      "login": "m.abdurahmonovich",
+      "userAuthId": "7",
+      "userChatId": "2",
+      "subTabConclusionListId": "1719310887127",
+      "image": "src/assets/Махмуд Абдурахмонович.jpg",
+      "statusTemp": false,
+      "text": ""
+    },
+    {
+      "id": "1719311045767",
+      "title": "V1",
+      "invitedToSubChatTabId": "1718882042675",
+      "subUserChatTabId": "1718882039527",
+      "status": true,
+      "login": "m.abdurahmonovich",
+      "userAuthId": "7",
+      "userChatId": "2",
+      "subTabConclusionListId": "1719311042839",
+      "image": "src/assets/Махмуд Абдурахмонович.jpg",
+      "statusTemp": true,
+      "text": ""
+    },
+    {
+      "id": "1719311074894",
+      "title": "V5",
+      "invitedToSubChatTabId": "1718882042675",
+      "subUserChatTabId": "1718882039527",
+      "status": true,
+      "login": "m.abdurahmonovich",
+      "userAuthId": "7",
+      "userChatId": "2",
+      "subTabConclusionListId": "1719311042839",
+      "image": "src/assets/Махмуд Абдурахмонович.jpg",
+      "statusTemp": false,
+      "text": ""
+    },
+    {
+      "id": "1719311082727",
+      "title": "V6",
+      "invitedToSubChatTabId": "1718882042675",
+      "subUserChatTabId": "1718882039527",
+      "status": true,
+      "login": "m.abdurahmonovich",
+      "userAuthId": "7",
+      "userChatId": "2",
+      "subTabConclusionListId": "1719310887127",
+      "image": "src/assets/Махмуд Абдурахмонович.jpg",
+      "statusTemp": false,
+      "text": ""
+    },
+    {
+      "id": "1719311180879",
+      "title": "V1",
+      "invitedToSubChatTabId": "1718882042675",
+      "subUserChatTabId": "1718882039527",
+      "status": true,
+      "login": "m.abdurahmonovich",
+      "userAuthId": "7",
+      "userChatId": "2",
+      "subTabConclusionListId": "1719311177990",
+      "image": "src/assets/Махмуд Абдурахмонович.jpg",
       "statusTemp": false,
       "text": ""
     }
   ],
   "subTabConclusionListEdsTemp": [
     {
-      "id": "1719298511850",
-      "subTabConclusionListId": "1719296179788",
+      "id": "1719309159337",
+      "subTabConclusionListId": "1719307183653",
       "userAuthId": "7",
       "comments": "",
       "status": false,
-      "edsStatus": true,
+      "edsStatus": false,
       "name": "Махмуд Абдурахмонович",
       "role": "Начальник отдела по работе с клиентами",
       "image": "src/assets/Махмуд Абдурахмонович.jpg",
-      "subTabConclusionListTempId": "1719296180812"
-    },
-    {
-      "id": "1719298513250",
-      "subTabConclusionListId": "1719296179788",
-      "userAuthId": "10",
-      "comments": "",
-      "status": false,
-      "edsStatus": false,
-      "name": "Адиба Махмадалиевна",
-      "role": "Начальник раздела по управлению персоналом",
-      "image": "src/assets/Адиба Махмадалиевна.jpg",
-      "subTabConclusionListTempId": "1719296180812"
+      "subTabConclusionListTempId": "1719307185780"
     }
   ]
 }

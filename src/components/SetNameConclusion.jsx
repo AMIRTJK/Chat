@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   postSubTabConclusionList,
   postSubTabConclusionListTemp,
+  putSubTabConclusionList,
+  putSubTabConclusionListTempStatus,
 } from "../actions/chatApi";
 
 const SetNameConclusion = ({ handleSetNameConclusion }) => {
@@ -42,7 +44,9 @@ const SetNameConclusion = ({ handleSetNameConclusion }) => {
 
   const filteredConclusionList =
     Array.isArray(subTabConclusionList) &&
-    subTabConclusionList.filter((e) => e.status === true);
+    subTabConclusionList.filter(
+      (e) => e.userAuthId === accessLogin.id && e.status === true
+    );
 
   const filteredCurrentMember = users.filter(
     (e) => e.userAuthId === accessLogin.id
@@ -57,13 +61,20 @@ const SetNameConclusion = ({ handleSetNameConclusion }) => {
       invitedToSubChatTabId:
         filterInvitedTabId.length > 0 ? filterInvitedTabId[0]?.id : null,
       subUserChatTabId: subUserChatTabsById[0]?.id,
-      status: subTabConclusionList.length > 0 ? false : true,
+      status: true,
       login: accessLogin.login,
       userAuthId: accessLogin.id,
       userChatId: subUserChatTabsById[0]?.userChatId,
     };
+    for (let key of subTabConclusionList) {
+      if (key.status) {
+        Dispatch(putSubTabConclusionList({ ...key, status: false }));
+      }
+    }
     Dispatch(postSubTabConclusionList(newObj));
   };
+
+  console.log(filteredConclusionList);
 
   const handlePostSubTabConclusionListTemp = () => {
     const conclusionListTemp = {
@@ -71,10 +82,17 @@ const SetNameConclusion = ({ handleSetNameConclusion }) => {
       subTabConclusionListId: filteredConclusionList[0]?.id,
       title: "V1",
       image: filteredCurrentMember[0]?.image,
-      statusTemp: subTabConclusionListTemp.length === 0 ? true : false,
+      statusTemp: true,
       text: "",
       id: Date.now().toString(),
     };
+    for (let key of subTabConclusionList) {
+      if (key.status) {
+        Dispatch(
+          putSubTabConclusionListTempStatus({ ...key, statusTemp: false })
+        );
+      }
+    }
     Dispatch(postSubTabConclusionListTemp(conclusionListTemp));
     handleSetNameConclusion(false);
   };
@@ -112,7 +130,7 @@ const SetNameConclusion = ({ handleSetNameConclusion }) => {
               variant="contained"
               sx={{ textTransform: "none" }}
             >
-              Сохранить
+              Создать
             </Button>
             <Button
               onClick={() => {
@@ -121,7 +139,7 @@ const SetNameConclusion = ({ handleSetNameConclusion }) => {
               variant="contained"
               sx={{ textTransform: "none" }}
             >
-              Создать
+              Сохранить
             </Button>
           </div>
         </div>
