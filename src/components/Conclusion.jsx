@@ -4,6 +4,9 @@ import { v4 as uuidv4 } from "uuid";
 
 import { Avatar, Button, IconButton } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
+import MarkChatUnreadIcon from "@mui/icons-material/MarkChatUnread";
+import EmailIcon from "@mui/icons-material/Email";
 
 import SetNameConclusion from "./SetNameConclusion";
 import SubConclusionEdsUsers from "./SubConclusionEdsUsers";
@@ -466,6 +469,9 @@ const Conclusion = ({ handleModalConclusion }) => {
                   />
                 </>
               )}
+              {/* ================================= */}
+              <div className="live-chat w-full h-full bg-[#000]"></div>
+              {/* ================================= */}
             </main>
             {/* Подпись ======= */}
             <aside className="right aside-left-conclusion h-full min-w-[180px] relative  flex flex-col items-center gap-5 py-[20px]">
@@ -547,6 +553,16 @@ const Conclusion = ({ handleModalConclusion }) => {
               >
                 Изменить
               </Button>
+
+              <Button className="flex gap-2">
+                <EmailIcon />
+                <p>Live Chat</p>
+              </Button>
+              <Button className="flex gap-2">
+                <ArrowCircleUpIcon />
+                <p>Загрузить</p>
+              </Button>
+
               {/* <Button
                 disabled={true}
                 variant="contained"
