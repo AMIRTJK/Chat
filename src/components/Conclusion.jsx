@@ -270,6 +270,12 @@ const Conclusion = ({ handleModalConclusion }) => {
   const isDisabled =
     isDisabledIfNotEds || (!isDisabledIfNotInvite && !isCreator);
 
+  const [showLiveChat, setShowLiveChat] = useState(false);
+
+  const handleShowLiveChat = (state) => {
+    setShowLiveChat(state);
+  };
+
   useEffect(() => {
     handleDisabledChange();
   }, [subTabConclusionListEdsTemp]);
@@ -470,7 +476,29 @@ const Conclusion = ({ handleModalConclusion }) => {
                 </>
               )}
               {/* ================================= */}
-              <div className="live-chat w-full h-full bg-[#000]"></div>
+              {showLiveChat && (
+                <div
+                  onClick={() => handleShowLiveChat(false)}
+                  className="live-chat fixed bottom-[8.3%] w-full h-[100%]"
+                >
+                  <div
+                    onClick={(event) => event.stopPropagation()}
+                    className="absolute w-full h-[30%]  bottom-0 bg-[#fff] border-t-[1px]"
+                  >
+                    <div className="flex flex-col justify-between">
+                      <header>
+                        <p>Live Chat</p>
+                      </header>
+                      <main className="border-y-[1px]">
+                        <p>Сообщение...</p>
+                      </main>
+                      <footer>
+                        <input type="text" className="" />
+                      </footer>
+                    </div>
+                  </div>
+                </div>
+              )}
               {/* ================================= */}
             </main>
             {/* Подпись ======= */}
@@ -554,7 +582,10 @@ const Conclusion = ({ handleModalConclusion }) => {
                 Изменить
               </Button>
 
-              <Button className="flex gap-2">
+              <Button
+                onClick={() => handleShowLiveChat(true)}
+                className="flex gap-2"
+              >
                 <EmailIcon />
                 <p>Live Chat</p>
               </Button>
