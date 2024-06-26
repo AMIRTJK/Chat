@@ -299,8 +299,6 @@ const Conclusion = ({ handleModalConclusion }) => {
     setFileValue(file);
   };
 
-  console.log(fileValue);
-
   const handlePostConclusionAttachment = () => {
     const currentDate = new Date();
     const day = String(currentDate.getDate()).padStart(2, "0");
@@ -327,6 +325,7 @@ const Conclusion = ({ handleModalConclusion }) => {
     };
 
     Dispatch(postSubTabConclusionListTempAttachment(newObj));
+    setFileValue("");
   };
 
   const filteredCurrentConclusionAttachment =
@@ -584,6 +583,30 @@ const Conclusion = ({ handleModalConclusion }) => {
                           </tr>
                         );
                       })}
+                    {fileValue?.name && (
+                      <tr className="border-b-[1px] ">
+                        <th className="text-left p-[15px] font-[600] text-[15px]">
+                          {fileValue?.name}
+                        </th>
+                        <th className="text-left p-[15px] font-[600] text-[15px]"></th>
+                        <th className="text-left p-[15px] font-[600] text-[15px]">
+                          <Button
+                            onClick={() => handlePostConclusionAttachment()}
+                            sx={{ textTransform: "none" }}
+                          >
+                            Сохранить
+                          </Button>
+                        </th>
+                        <th className="text-left p-[15px] font-[600] text-[15px]">
+                          <Button
+                            onClick={() => setFileValue("")}
+                            sx={{ textTransform: "none" }}
+                          >
+                            Отмена
+                          </Button>
+                        </th>
+                      </tr>
+                    )}
                   </table>
                   <DocumentPdf
                     url={`src/assets/${filteredCurrentConclusionAttachment[0]?.fileUrl}`}

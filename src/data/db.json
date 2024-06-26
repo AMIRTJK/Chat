@@ -781,6 +781,48 @@
       "image": "src/assets/Махмуд Абдурахмонович.jpg",
       "userAuthId": "6",
       "status": true
+    },
+    {
+      "id": "1719404100671",
+      "subTabConclusionListId": "1719311362374",
+      "subTabConclusionListTempId": "1719311363663",
+      "fileName": "Огохинома - оид ба ворид гардидани ариза.pdf",
+      "fileUrl": "Огохинома - оид ба ворид гардидани ариза.pdf",
+      "fileType": "pdf",
+      "fileDate": "26.06.2024",
+      "name": "Махмуд Абдурахмонович",
+      "role": "Начальник отдела по работе с клиентами",
+      "image": "src/assets/Махмуд Абдурахмонович.jpg",
+      "userAuthId": "6",
+      "status": false
+    },
+    {
+      "id": "1719404116455",
+      "subTabConclusionListId": "1719311362374",
+      "subTabConclusionListTempId": "1719311363663",
+      "fileName": "Огохинома - оид ба ворид гардидани ариза.pdf",
+      "fileUrl": "Огохинома - оид ба ворид гардидани ариза.pdf",
+      "fileType": "pdf",
+      "fileDate": "26.06.2024",
+      "name": "Махмуд Абдурахмонович",
+      "role": "Начальник отдела по работе с клиентами",
+      "image": "src/assets/Махмуд Абдурахмонович.jpg",
+      "userAuthId": "6",
+      "status": false
+    },
+    {
+      "id": "1719404148398",
+      "subTabConclusionListId": "1719311362374",
+      "subTabConclusionListTempId": "1719311363663",
+      "fileName": "Сертификат профессионального бухгалтера.pdf",
+      "fileUrl": "Сертификат профессионального бухгалтера.pdf",
+      "fileType": "pdf",
+      "fileDate": "26.06.2024",
+      "name": "Махмуд Абдурахмонович",
+      "role": "Начальник отдела по работе с клиентами",
+      "image": "src/assets/Махмуд Абдурахмонович.jpg",
+      "userAuthId": "6",
+      "status": false
     }
   ]
 }
