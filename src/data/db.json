@@ -742,5 +742,45 @@
       "image": "src/assets/Махмуд Абдурахмонович.jpg",
       "subTabConclusionListTempId": "1719311363663"
     }
+  ],
+  "liveChatMessages": [
+    {
+      "id": "1719391308389",
+      "subTabConclusionListId": "1719311362374",
+      "name": "Бехруз Рамазонович",
+      "role": "Начальник отдела разработки и внедрения ИС",
+      "image": "src/assets/Бехруз Рамазонович.jpg",
+      "text": "Соедините все заключение",
+      "userAuthId": "6",
+      "dateTime": "13:41",
+      "replyMessage": {}
+    },
+    {
+      "id": "1719391400806",
+      "subTabConclusionListId": "1719311362374",
+      "name": "Махмуд Абдурахмонович",
+      "role": "Начальник отдела по работе с клиентами",
+      "image": "src/assets/Махмуд Абдурахмонович.jpg",
+      "text": "Хорошо",
+      "userAuthId": "6",
+      "dateTime": "13:43",
+      "replyMessage": {}
+    }
+  ],
+  "conclusionAttachment": [
+    {
+      "id": "1719401555583",
+      "subTabConclusionListId": "1719311362374",
+      "subTabConclusionListTempId": "1719311363663",
+      "fileName": "Маълумот оид ба надоштани доги суди.pdf",
+      "fileUrl": "Маълумот оид ба надоштани доги суди.pdf",
+      "fileType": "pdf",
+      "fileDate": "26.06.2024",
+      "name": "Махмуд Абдурахмонович",
+      "role": "Начальник отдела по работе с клиентами",
+      "image": "src/assets/Махмуд Абдурахмонович.jpg",
+      "userAuthId": "6",
+      "status": true
+    }
   ]
 }

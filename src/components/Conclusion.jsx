@@ -5,17 +5,20 @@ import { v4 as uuidv4 } from "uuid";
 import { Avatar, Button, IconButton } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
-import MarkChatUnreadIcon from "@mui/icons-material/MarkChatUnread";
 import EmailIcon from "@mui/icons-material/Email";
 
 import SetNameConclusion from "./SetNameConclusion";
 import SubConclusionEdsUsers from "./SubConclusionEdsUsers";
 import CommentsConclusion from "./CommentsConclusion";
 
+import LiveChat from "./LiveChat";
+
 import { useSelector, useDispatch } from "react-redux";
 
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+
+import DocumentPdf from "./DocumentPdf";
 
 import {
   getSubTabConclusionList,
@@ -29,6 +32,9 @@ import {
   getSubTabConclusionListEdsTemp,
   postSubTabConclusionListEdsTemp,
   putSubTabConclusionListEdsTempStatus,
+  getSubTabConclusionListLiveChat,
+  getSubTabConclusionListTempAttachment,
+  postSubTabConclusionListTempAttachment,
 } from "../actions/chatApi";
 
 const Conclusion = ({ handleModalConclusion }) => {
@@ -276,6 +282,57 @@ const Conclusion = ({ handleModalConclusion }) => {
     setShowLiveChat(state);
   };
 
+  const fileInputRef = useRef(null);
+
+  const handleButtonClick = () => {
+    fileInputRef.current.click();
+  };
+
+  const [fileValue, setFileValue] = useState(null);
+
+  const conclusionAttachment = useSelector(
+    (store) => store.chat.conclusionAttachment
+  );
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    setFileValue(file);
+  };
+
+  console.log(fileValue);
+
+  const handlePostConclusionAttachment = () => {
+    const currentDate = new Date();
+    const day = String(currentDate.getDate()).padStart(2, "0");
+    const month = String(currentDate.getMonth() + 1).padStart(2, "0"); // Месяцы начинаются с 0
+    const year = currentDate.getFullYear();
+    const date = `${day}.${month}.${year}`;
+
+    const fileType = fileValue.name.split(".");
+
+    const newObj = {
+      id: Date.now().toString(),
+      subTabConclusionListId:
+        filteredConclusionListTemp[0]?.subTabConclusionListId,
+      subTabConclusionListTempId: filteredConclusionListTemp[0]?.id,
+      fileName: fileValue?.name,
+      fileUrl: fileValue?.name,
+      fileType: fileType[1],
+      fileDate: date,
+      name: filteredCurrentMember[0]?.name,
+      role: filteredCurrentMember[0]?.role,
+      image: filteredCurrentMember[0]?.image,
+      userAuthId: filteredConclusionListTemp[0]?.userAuthId,
+      status: conclusionAttachment.length === 0 ? true : false,
+    };
+
+    Dispatch(postSubTabConclusionListTempAttachment(newObj));
+  };
+
+  const filteredCurrentConclusionAttachment =
+    Array.isArray(conclusionAttachment) &&
+    conclusionAttachment.filter((e) => e.status === true);
+
   useEffect(() => {
     handleDisabledChange();
   }, [subTabConclusionListEdsTemp]);
@@ -285,6 +342,8 @@ const Conclusion = ({ handleModalConclusion }) => {
     Dispatch(getSubTabConclusionListEds());
     Dispatch(getSubTabConclusionListTemp());
     Dispatch(getSubTabConclusionListEdsTemp());
+    Dispatch(getSubTabConclusionListLiveChat());
+    Dispatch(getSubTabConclusionListTempAttachment());
     inputRef?.current?.focus();
   }, []);
 
@@ -372,7 +431,7 @@ const Conclusion = ({ handleModalConclusion }) => {
                     );
                 })}
             </aside>
-            <main className="bg-[#fff] w-full">
+            <main className="bg-[#fff] w-full relative">
               {!editConclusion && (
                 <>
                   <div className="wrapper-conclusions-temp flex border-b-[1px] flex-wrap">
@@ -477,29 +536,78 @@ const Conclusion = ({ handleModalConclusion }) => {
               )}
               {/* ================================= */}
               {showLiveChat && (
-                <div
-                  onClick={() => handleShowLiveChat(false)}
-                  className="live-chat fixed bottom-[8.3%] w-full h-[100%]"
-                >
-                  <div
-                    onClick={(event) => event.stopPropagation()}
-                    className="absolute w-full h-[30%]  bottom-0 bg-[#fff] border-t-[1px]"
-                  >
-                    <div className="flex flex-col justify-between">
-                      <header>
-                        <p>Live Chat</p>
-                      </header>
-                      <main className="border-y-[1px]">
-                        <p>Сообщение...</p>
-                      </main>
-                      <footer>
-                        <input type="text" className="" />
-                      </footer>
-                    </div>
-                  </div>
-                </div>
+                <LiveChat
+                  handleShowLiveChat={handleShowLiveChat}
+                  filteredConclusionListCurrent={filteredConclusionListCurrent}
+                />
               )}
               {/* ================================= */}
+              {conclusionAttachment.length > 0 && (
+                <div className="attachment absolute w-full bottom-0 overflow-auto">
+                  <p className="text-[15px] px-[15px] py-[5px] bg-[#007cd2] text-[#fff]">
+                    Вложение
+                  </p>
+                  <table className="w-full" border="1">
+                    <tr className="border-b-[1px]">
+                      <th className="text-left p-[15px] font-[600] text-[15px]">
+                        Название
+                      </th>
+                      <th className="text-left p-[15px] font-[600] text-[15px]">
+                        Исполнитель
+                      </th>
+                      <th className="text-left p-[15px] font-[600] text-[15px]">
+                        Тип
+                      </th>
+                      <th className="text-left p-[15px] font-[600] text-[15px]">
+                        Дата
+                      </th>
+                    </tr>
+                    {Array.isArray(conclusionAttachment) &&
+                      conclusionAttachment.map((e) => {
+                        return (
+                          <tr
+                            key={e.id}
+                            className={`${
+                              e.status ? "bg-[#00000008]" : ""
+                            } border-b-[1px] hover:bg-[#00000008] transition-all duration-100 cursor-pointer`}
+                          >
+                            <td className="p-[15px] text-[15px]">
+                              {e.fileName}
+                            </td>
+                            <td className="p-[15px] text-[15px]">{e.name}</td>
+                            <td className="p-[15px] text-[15px]">
+                              {e.fileType}
+                            </td>
+                            <td className="p-[15px] text-[15px]">
+                              {e.fileDate}
+                            </td>
+                          </tr>
+                        );
+                      })}
+                  </table>
+                  <DocumentPdf
+                    url={`src/assets/${filteredCurrentConclusionAttachment[0]?.fileUrl}`}
+                    height="h-[30vh]"
+                  />
+                </div>
+              )}
+
+              {/* <div className="attachment absolute w-full bottom-0">
+                <p className="px-[15px] py-[5px] font-[500] bg-[#007cd2] text-[#fff]">
+                  Вложение
+                </p>
+                <ul className="flex flex-col">
+                  <li className="border-b-[1px] py-[5px] px-[15px] text-[15px]">
+                    Вложение №1
+                  </li>
+                  <li className="border-b-[1px] py-[5px] px-[15px] text-[15px]">
+                    Вложение №2
+                  </li>
+                  <li className="border-b-[1px] py-[5px] px-[15px] text-[15px]">
+                    Вложение №3
+                  </li>
+                </ul>
+              </div> */}
             </main>
             {/* Подпись ======= */}
             <aside className="right aside-left-conclusion h-full min-w-[180px] relative  flex flex-col items-center gap-5 py-[20px]">
@@ -583,17 +691,26 @@ const Conclusion = ({ handleModalConclusion }) => {
               </Button>
 
               <Button
-                onClick={() => handleShowLiveChat(true)}
+                onClick={() => setShowLiveChat(!showLiveChat)}
                 className="flex gap-2"
               >
                 <EmailIcon />
                 <p>Live Chat</p>
               </Button>
-              <Button className="flex gap-2">
+              <Button
+                type="submit"
+                className="flex gap-2"
+                onClick={handleButtonClick}
+              >
+                <input
+                  onChange={handleFileChange}
+                  type="file"
+                  ref={fileInputRef}
+                  className="hidden"
+                />
                 <ArrowCircleUpIcon />
                 <p>Загрузить</p>
               </Button>
-
               {/* <Button
                 disabled={true}
                 variant="contained"

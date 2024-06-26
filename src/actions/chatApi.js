@@ -1408,7 +1408,9 @@ export const putSubTabConclusionListEdsTempStatus = createAsyncThunk(
   async (newObj, { dispatch, rejectWithValue }) => {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_SUB_TAB_CONCLUSION_LIST_EDS_TEMP}/${newObj.id}`,
+        `${import.meta.env.VITE_API_SUB_TAB_CONCLUSION_LIST_EDS_TEMP}/${
+          newObj.id
+        }`,
         {
           method: "PUT",
           headers: {
@@ -1427,3 +1429,102 @@ export const putSubTabConclusionListEdsTempStatus = createAsyncThunk(
   }
 );
 
+export const getSubTabConclusionListLiveChat = createAsyncThunk(
+  "getSubTabConclusionListLiveChat",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await fetch(
+        import.meta.env.VITE_API_SUB_TAB_CONCLUSION_LIST_LIVE_CHAT
+      );
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const postSubTabConclusionListLiveChat = createAsyncThunk(
+  "postSubTabConclusionListLiveChat",
+  async (newObj, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await fetch(
+        import.meta.env.VITE_API_SUB_TAB_CONCLUSION_LIST_LIVE_CHAT,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newObj),
+        }
+      );
+      const data = await response.json();
+      dispatch(getSubTabConclusionListLiveChat());
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const deleteSubTabConclusionListLiveChat = createAsyncThunk(
+  "deleteSubTabConclusionListLiveChat",
+  async (id, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_SUB_TAB_CONCLUSION_LIST_LIVE_CHAT}/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+      const data = await response.json();
+      dispatch(getSubTabConclusionListLiveChat());
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const getSubTabConclusionListTempAttachment = createAsyncThunk(
+  "getSubTabConclusionListTempAttachment",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await fetch(
+        import.meta.env.VITE_API_SUB_TAB_CONCLUSION_LIST_TEMP_ATTACHMENT
+      );
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const postSubTabConclusionListTempAttachment = createAsyncThunk(
+  "postSubTabConclusionListTempAttachment",
+  async (newObj, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await fetch(
+        import.meta.env.VITE_API_SUB_TAB_CONCLUSION_LIST_TEMP_ATTACHMENT,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newObj),
+        }
+      );
+      const data = await response.json();
+      dispatch(getSubTabConclusionListTempAttachment());
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);

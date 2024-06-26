@@ -62,7 +62,12 @@ import {
   putSubTabConclusionListTempStatus,
   getSubTabConclusionListEdsTemp,
   postSubTabConclusionListEdsTemp,
-  putSubTabConclusionListEdsTempStatus
+  putSubTabConclusionListEdsTempStatus,
+  getSubTabConclusionListLiveChat,
+  postSubTabConclusionListLiveChat,
+  deleteSubTabConclusionListLiveChat,
+  getSubTabConclusionListTempAttachment,
+  postSubTabConclusionListTempAttachment,
 } from "../actions/chatApi";
 
 const initialState = {
@@ -117,6 +122,8 @@ const initialState = {
   subTabConclusionListEds: [],
   subTabConclusionListTemp: [],
   subTabConclusionListEdsTemp: [],
+  liveChatMessages: [],
+  conclusionAttachment: [],
 };
 
 const chatSlice = createSlice({
@@ -387,6 +394,36 @@ const chatSlice = createSlice({
       putSubTabConclusionListEdsTempStatus.fulfilled,
       (state, action) => {
         state.subTabConclusionListEdsTemp = action.payload;
+      }
+    );
+    builder.addCase(
+      getSubTabConclusionListLiveChat.fulfilled,
+      (state, action) => {
+        state.liveChatMessages = action.payload;
+      }
+    );
+    builder.addCase(
+      postSubTabConclusionListLiveChat.fulfilled,
+      (state, action) => {
+        state.liveChatMessages = action.payload;
+      }
+    );
+    builder.addCase(
+      deleteSubTabConclusionListLiveChat.fulfilled,
+      (state, action) => {
+        state.liveChatMessages = action.payload;
+      }
+    );
+    builder.addCase(
+      getSubTabConclusionListTempAttachment.fulfilled,
+      (state, action) => {
+        state.conclusionAttachment = action.payload;
+      }
+    );
+    builder.addCase(
+      postSubTabConclusionListTempAttachment.fulfilled,
+      (state, action) => {
+        state.conclusionAttachment = action.payload;
       }
     );
   },

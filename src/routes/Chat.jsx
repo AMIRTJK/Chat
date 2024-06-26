@@ -302,9 +302,12 @@ const Chat = () => {
             >
               <div
                 onClick={(event) => handlePropagation(event)}
-                className="pdf h-[60vh] w-[26%] absolute translate-x-[-50%] translate-y-[-50%] top-1/2 left-1/2 shadow-lg border-[1px] rounded-lg"
+                className="pdf w-[30%] absolute translate-x-[-50%] translate-y-[-50%] top-1/2 left-1/2 shadow-lg border-[1px] rounded-lg"
               >
-                <DocumentPdf />
+                <DocumentPdf
+                  url="src/assets/811_ВИ_541 Кумитаи давла_931217.pdf"
+                  height="h-[70vh]"
+                />
               </div>
             </div>
           )}
