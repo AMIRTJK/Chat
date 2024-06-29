@@ -63,11 +63,13 @@ const SubBodyMessages = () => {
       );
     });
 
+
   const isActiveSubTabVisa =
     Array.isArray(subUserChatTabs) &&
     subUserChatTabs.some(
-      (e) => e.id === filteredSubTabVisaUser[0]?.subUserChatTabId
+      (e) => e.id === filteredSubTabVisaUser[filteredSubTabVisaUser.length - 1]?.subUserChatTabId
     );
+
 
   // console.log(filteredSubTabVisaUser);
 

@@ -1,5 +1,7 @@
 import React from "react";
 
+import { useSelector } from "react-redux";
+
 const MemoVisa = ({
   item,
   userChats,
@@ -18,6 +20,8 @@ const MemoVisa = ({
 
   const termDateObj = termDate[termDate.length - 1];
   const visaStatusTempObj = visaStatusTemp[visaStatusTemp.length - 1];
+
+  const showUserChat = useSelector((store) => store.chat.showUserChat);
 
   return (
     <div className="wrapper w-full border-[2px] p-[15px] rounded-lg flex flex-col gap-4">
@@ -43,13 +47,23 @@ const MemoVisa = ({
             </p>
           );
         })}
-        {termDateObj && <p>До: {termDateObj?.date}</p>}
-        {visaStatusTempObj && <p>Статус: {visaStatusTempObj?.status}</p>}
+        {termDateObj && (
+          <p>
+            <strong>До:</strong> {termDateObj?.date}
+          </p>
+        )}
+        {visaStatusTempObj && (
+          <p>
+            <strong>Статус:</strong> {visaStatusTempObj?.status}
+          </p>
+        )}
       </main>
       <footer className="flex flex-col gap-2">
         <div className="wrapper-signature flex justify-end">
           <div className="signature flex flex-col">
-            <p className="hover:text-[#ff0000] cursor-pointer">Нет подписи</p>
+            <p className="hover:text-[#ff0000] cursor-pointer">
+              {showUserChat ? "Подпись" : "Нет подписи"}
+            </p>
             <p className="font-semibold text-[#345581]">
               {Array.isArray(fullName) && fullName[0][0]}.
               {Array.isArray(fullName) && fullName[1]}

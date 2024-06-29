@@ -53,10 +53,7 @@ const InputTabName = ({ handleShowTabName }) => {
   const handlePostSubUserChatTabs = () => {
     let newObj = {};
 
-  
-
     subUserChats.forEach((e) => {
-      console.log(accessLogin.id, e.userAuthId, accessLogin.id === e.userAuthId && chatById[0].id === e.userChatId);
       if (
         (accessLogin.id === e.userAuthId && chatById[0].id === e.userChatId) ||
         (accessLogin.id === e.userChatId && chatById[0].id === e.userChatId)
@@ -69,11 +66,8 @@ const InputTabName = ({ handleShowTabName }) => {
           name: tabNameValue,
           status: subUserChatTabs.length === 0 ? true : false,
         };
-        console.log(newObj);
       }
     });
-
-    console.log(newObj);
 
     Dispatch(postSubUserChatTabs(newObj));
   };
@@ -130,11 +124,10 @@ const InputTabName = ({ handleShowTabName }) => {
     const { visaUserId, ...rest } = item;
     const newSubTabVisaMessage = {
       ...rest,
-      subVisaUserId: subUserChatTabs[subUserChatTabs.length - 1]?.id,
+      subVisaUserId: subTabVisaUsers[subTabVisaUsers.length - 1]?.id,
     };
     Dispatch(postSubTabVisaMessages(newSubTabVisaMessage));
   };
-
 
   // Добавить собственную визу
 
@@ -143,7 +136,7 @@ const InputTabName = ({ handleShowTabName }) => {
       const newObj = {
         id: Date.now().toString(),
         name: ownVisaValue,
-        status: true,
+        status: false,
         subVisaUserId: subTabVisaUsers[subTabVisaUsers.length - 1]?.id,
       };
       Dispatch(postSubTabVisaMessages(newObj));
@@ -174,10 +167,6 @@ const InputTabName = ({ handleShowTabName }) => {
     Dispatch(getOwnVisa());
     Dispatch(getSubTabVisaMessages());
   }, [Dispatch]);
-
-  useEffect(() => {
-    handlePutSubTabVisaTerm();
-  }, [Dispatch, dateTerm]);
 
   return (
     <div
@@ -282,12 +271,12 @@ const InputTabName = ({ handleShowTabName }) => {
                 ownVisa.map((e) => {
                   return (
                     <p
+                      onClick={() => handleSubTabVisaMessage(e)}
                       key={e.id}
                       className="p-[10px] border-b-[1px] cursor-pointer hover:bg-[#f9f9f9]"
                     >
                       {e.name}
                     </p>
-                    // <VisaListExecutors key={e.id} item={e} />;
                   );
                 })}
           </main>
@@ -324,7 +313,10 @@ const InputTabName = ({ handleShowTabName }) => {
               Отмена
             </Button>
             <Button
-              onClick={() => handleCloseSubTabVisaUser()}
+              onClick={() => {
+                handleCloseSubTabVisaUser();
+                handlePutSubTabVisaTerm();
+              }}
               variant="contained"
               sx={{ textTransform: "none", fontWeight: "400" }}
             >

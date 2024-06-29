@@ -54,7 +54,7 @@ const SubVisa = ({ handleShowSubVisa }) => {
   const handlePostSubVisa = () => {
     Dispatch(
       postVisaUsers({
-        id: chatById[0].id,
+        id: Date.now().toString(),
         userAuthId: accessLogin.id,
         login: accessLogin.login,
         term: "",
@@ -71,11 +71,14 @@ const SubVisa = ({ handleShowSubVisa }) => {
     setDateTerm(event.target.value);
   };
 
+  console.log(visaUsers[visaUsers.length - 1]);
+
   const handlePutSubVisaTerm = () => {
     const newObj = {
       ...visaUsers[visaUsers.length - 1],
       term: dateTerm,
     };
+    console.log(newObj);
     Dispatch(putVisaUsers(newObj));
   };
 
@@ -182,7 +185,7 @@ const SubVisa = ({ handleShowSubVisa }) => {
               </fieldset>
             </footer>
           </div>
-          <div className="add-term w-full">
+          <div className="add-term w-full flex gap-3">
             <input
               onChange={(event) => handlePutTerm(event)}
               value={dateTerm}
@@ -201,8 +204,8 @@ const SubVisa = ({ handleShowSubVisa }) => {
               </Button>
               <Button
                 onClick={() => {
-                  handlePutSubVisaTerm();
                   handleShowSubVisa(false);
+                  handlePutSubVisaTerm();
                 }}
                 variant="contained"
                 sx={{ textTransform: "none", fontWeight: "400" }}

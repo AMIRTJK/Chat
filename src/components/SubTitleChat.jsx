@@ -118,8 +118,6 @@ const SubTitleChat = () => {
         chatById[0]?.id === subTab.userChatId
     );
 
-  console.log(filterActiveTabCreator);
-
   useEffect(() => {
     Dispatch(getSubUserChatTabs());
     Dispatch(getInvitedToSubChatTabs());

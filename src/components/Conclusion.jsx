@@ -376,6 +376,8 @@ const Conclusion = ({ handleModalConclusion }) => {
     }
   }, [filteredConclusionListTemp[0]?.id]);
 
+  console.log(filteredConclusionListTemp);
+
   return (
     <>
       <div
@@ -661,6 +663,10 @@ const Conclusion = ({ handleModalConclusion }) => {
               {Array.isArray(subTabConclusionListEdsTemp) &&
                 subTabConclusionListEdsTemp.map((e) => {
                   // Раньше вместо e.subTabConclusionListId было subTabConclusionListTempId
+                  console.log(
+                    filteredConclusionListTemp[0]?.subTabConclusionListId,
+                    filteredConclusionListCurrent[0]?.id
+                  );
                   if (
                     filteredConclusionListTemp[0]?.subTabConclusionListId ===
                     e.subTabConclusionListId
@@ -783,7 +789,10 @@ const Conclusion = ({ handleModalConclusion }) => {
         </div>
       </div>
       {nameConclusion && (
-        <SetNameConclusion handleSetNameConclusion={handleSetNameConclusion} />
+        <SetNameConclusion
+          handleSetNameConclusion={handleSetNameConclusion}
+          filteredConclusionListTemp={filteredConclusionListTemp}
+        />
       )}
       {showConclusionEdsUsers && (
         <SubConclusionEdsUsers

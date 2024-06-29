@@ -8,9 +8,13 @@ import {
   postSubTabConclusionListTemp,
   putSubTabConclusionList,
   putSubTabConclusionListTempStatus,
+  postSubTabConclusionListEdsTemp,
 } from "../actions/chatApi";
 
-const SetNameConclusion = ({ handleSetNameConclusion }) => {
+const SetNameConclusion = ({
+  handleSetNameConclusion,
+  filteredConclusionListTemp,
+}) => {
   const Dispatch = useDispatch();
   const subUserChatTabsById = useSelector(
     (store) => store.chat.subUserChatTabsById
@@ -38,8 +42,8 @@ const SetNameConclusion = ({ handleSetNameConclusion }) => {
 
   const users = useSelector((store) => store.chat.users);
 
-  const subTabConclusionListTemp = useSelector(
-    (store) => store.chat.subTabConclusionListTemp
+  const subTabConclusionListEdsTemp = useSelector(
+    (store) => store.chat.subTabConclusionListEdsTemp
   );
 
   const filteredConclusionList =
@@ -74,8 +78,6 @@ const SetNameConclusion = ({ handleSetNameConclusion }) => {
     Dispatch(postSubTabConclusionList(newObj));
   };
 
-  console.log(filteredConclusionList);
-
   const handlePostSubTabConclusionListTemp = () => {
     const conclusionListTemp = {
       ...filteredConclusionList[0],
@@ -94,6 +96,29 @@ const SetNameConclusion = ({ handleSetNameConclusion }) => {
       }
     }
     Dispatch(postSubTabConclusionListTemp(conclusionListTemp));
+
+    // Добавляем создателя заключение в список подписей
+
+    const newObj = {
+      id: Date.now().toString(),
+      subTabConclusionListId: filteredConclusionList[0]
+        ? filteredConclusionList[0]?.id
+        : null,
+      userAuthId: filterInvitedTabId[0]?.userAuthId,
+      comments: "",
+      status: false,
+      edsStatus: false,
+      name: filterInvitedTabId[0]?.name,
+      role: filterInvitedTabId[0]?.role,
+      image: filterInvitedTabId[0]?.image,
+      subTabConclusionListTempId: filteredConclusionListTemp[0]?.id,
+    };
+
+    console.log(filteredConclusionListTemp, newObj);
+
+    Dispatch(postSubTabConclusionListEdsTemp(newObj));
+    // ====================
+
     handleSetNameConclusion(false);
   };
 

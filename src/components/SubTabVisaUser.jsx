@@ -36,7 +36,7 @@ const SubTabVisaUser = ({ filteredSubTabVisaUser }) => {
 
   const Dispatch = useDispatch();
 
-  const [subVisa] = filteredSubTabVisaUser;
+  const [subVisa] = [...filteredSubTabVisaUser].reverse();
 
   const date = subVisa?.createdAt?.split("-");
 
@@ -71,7 +71,7 @@ const SubTabVisaUser = ({ filteredSubTabVisaUser }) => {
       <div className="visa-message">
         {Array.isArray(subTabVisaMessages) &&
           subTabVisaMessages.map((e) => {
-            if (e.subVisaUserId === subVisa?.subUserChatTabId) {
+            if (e.subVisaUserId === subVisa?.id) {
               return <p>{e.name}</p>;
             }
           })}
