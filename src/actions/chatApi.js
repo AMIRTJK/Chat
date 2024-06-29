@@ -1528,3 +1528,29 @@ export const postSubTabConclusionListTempAttachment = createAsyncThunk(
     }
   }
 );
+
+export const putSubTabConclusionListTempAttachment = createAsyncThunk(
+  "putSubTabConclusionListTempAttachment",
+  async (newObj, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_SUB_TAB_CONCLUSION_LIST_TEMP_ATTACHMENT}/${
+          newObj.id
+        }`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newObj),
+        }
+      );
+      const data = await response.json();
+      dispatch(getSubTabConclusionListTempAttachment());
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);

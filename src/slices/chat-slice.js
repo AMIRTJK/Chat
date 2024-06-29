@@ -68,6 +68,7 @@ import {
   deleteSubTabConclusionListLiveChat,
   getSubTabConclusionListTempAttachment,
   postSubTabConclusionListTempAttachment,
+  putSubTabConclusionListTempAttachment,
 } from "../actions/chatApi";
 
 const initialState = {
@@ -422,6 +423,12 @@ const chatSlice = createSlice({
     );
     builder.addCase(
       postSubTabConclusionListTempAttachment.fulfilled,
+      (state, action) => {
+        state.conclusionAttachment = action.payload;
+      }
+    );
+    builder.addCase(
+      putSubTabConclusionListTempAttachment.fulfilled,
       (state, action) => {
         state.conclusionAttachment = action.payload;
       }

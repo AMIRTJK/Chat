@@ -780,7 +780,7 @@
       "role": "Начальник отдела по работе с клиентами",
       "image": "src/assets/Махмуд Абдурахмонович.jpg",
       "userAuthId": "6",
-      "status": true
+      "status": false
     },
     {
       "id": "1719404100671",
@@ -822,7 +822,7 @@
       "role": "Начальник отдела по работе с клиентами",
       "image": "src/assets/Махмуд Абдурахмонович.jpg",
       "userAuthId": "6",
-      "status": false
+      "status": true
     }
   ]
 }

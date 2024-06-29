@@ -35,6 +35,7 @@ import {
   getSubTabConclusionListLiveChat,
   getSubTabConclusionListTempAttachment,
   postSubTabConclusionListTempAttachment,
+  putSubTabConclusionListTempAttachment,
 } from "../actions/chatApi";
 
 const Conclusion = ({ handleModalConclusion }) => {
@@ -332,6 +333,24 @@ const Conclusion = ({ handleModalConclusion }) => {
     Array.isArray(conclusionAttachment) &&
     conclusionAttachment.filter((e) => e.status === true);
 
+  const handlePutSubTabConclusionListTempAttachment = (item) => {
+    for (let key of conclusionAttachment) {
+      console.log(key.status);
+      if (key.status === true) {
+        Dispatch(
+          putSubTabConclusionListTempAttachment({ ...key, status: false })
+        );
+      }
+    }
+
+    const newObj = {
+      ...item,
+      status: true,
+    };
+
+    Dispatch(putSubTabConclusionListTempAttachment(newObj));
+  };
+
   useEffect(() => {
     handleDisabledChange();
   }, [subTabConclusionListEdsTemp]);
@@ -565,6 +584,9 @@ const Conclusion = ({ handleModalConclusion }) => {
                       conclusionAttachment.map((e) => {
                         return (
                           <tr
+                            onClick={() =>
+                              handlePutSubTabConclusionListTempAttachment(e)
+                            }
                             key={e.id}
                             className={`${
                               e.status ? "bg-[#00000008]" : ""
