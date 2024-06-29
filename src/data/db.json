@@ -480,18 +480,7 @@
       "subVisaUserId": "1719637566136"
     }
   ],
-  "subTabConclusionList": [
-    {
-      "id": "1719642421769",
-      "title": "123",
-      "invitedToSubChatTabId": "1719637565672",
-      "subUserChatTabId": "1719637561811",
-      "status": true,
-      "login": "b.ramazonovich",
-      "userAuthId": "6",
-      "userChatId": "2"
-    }
-  ],
+  "subTabConclusionList": [],
   "subTabConclusionListEds": [],
   "subTabConclusionListTemp": [],
   "subTabConclusionListEdsTemp": [],
