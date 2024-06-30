@@ -30,9 +30,11 @@ const SubInputMessage = () => {
     (store) => store.chat.subUserChatTabsById
   );
 
+  const userChats = useSelector((store) => store.chat.userChats);
+
   const idxSubTab = useSelector((store) => store.chat.idxSubTab);
 
-  const authedLogin = JSON.parse(localStorage.getItem("accessLogin"));
+  const accessLogin = JSON.parse(localStorage.getItem("accessLogin"));
 
   let date = new Date();
   let hours = date.getHours().toString().padStart(2, "0");
@@ -43,14 +45,14 @@ const SubInputMessage = () => {
 
   Array.isArray(subUserChats) &&
     subUserChats.forEach((subChat) => {
-      if (subChat.userAuthId === authedLogin.id) {
+      if (subChat.userAuthId === accessLogin.id) {
         newObj = { ...subChat };
       }
     });
 
   if (Object.keys(newObj).length === 0) {
     invitedToSubChatTabs.forEach((invited) => {
-      if (invited.userAuthId === authedLogin.id) {
+      if (invited.userAuthId === accessLogin.id) {
         newObj = { ...invited };
       }
     });
@@ -63,7 +65,7 @@ const SubInputMessage = () => {
   const activeSubUser =
     Array.isArray(subUserChats) &&
     subUserChats.find(
-      (e) => e.userAuthId === authedLogin.id && e.status === false
+      (e) => e.userAuthId === accessLogin.id && e.status === false
     );
   // Исправить
   const activeSubInvitorUser =
@@ -77,7 +79,7 @@ const SubInputMessage = () => {
     role: newObj.role,
     image: newObj.image,
     text: showSend,
-    userAuthId: authedLogin.id,
+    userAuthId: accessLogin.id,
     userChatId: chatById[0]?.id,
     subUserTabId: activeTab,
     dateTime: time,
@@ -91,7 +93,7 @@ const SubInputMessage = () => {
     role: newObj.role,
     image: newObj.image,
     text: showSend,
-    userAuthId: authedLogin.id,
+    userAuthId: accessLogin.id,
     userChatId: chatById[0]?.id,
     subUserTabId: activeTab,
     dateTime: time,
@@ -104,7 +106,7 @@ const SubInputMessage = () => {
 
   const isActivePostSubMessageUser =
     Array.isArray(subUserChats) &&
-    subUserChats.some((e) => e.userAuthId === authedLogin.id);
+    subUserChats.some((e) => e.userAuthId === accessLogin.id);
 
   // Условие для отправки мессенджа исполнителей
   const isActivePostSubMessage =
@@ -133,8 +135,6 @@ const SubInputMessage = () => {
     setShowSend("");
   };
 
-  console.log(subUserChatTabsById);
-
   useEffect(() => {
     setShowSend("");
   }, [subUserChatTabsById[0]?.id]);
@@ -146,7 +146,10 @@ const SubInputMessage = () => {
         onChange={(event) => setShowSend(event.target.value)}
         type="text"
         placeholder="Введите сообщение"
-        className="w-full h-[100%] p-[15px] outline-none placeholder:text-[#00558e] placeholder:font-medium"
+        disabled={chatById[0]?.id === accessLogin?.id}
+        className={`${
+          chatById[0]?.id === accessLogin?.id ? "cursor-not-allowed" : ""
+        } w-full h-[100%] p-[15px] outline-none placeholder:text-[#00558e] placeholder:font-medium`}
       />
       <div className="panel-submit flex items-center gap-2">
         <IconButton>

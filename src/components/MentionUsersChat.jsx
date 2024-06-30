@@ -8,6 +8,23 @@ const MentionUsersChat = () => {
   const Dispatch = useDispatch();
 
   const userChats = useSelector((store) => store.chat.userChats);
+  const subUserChats = useSelector((store) => store.chat.subUserChats);
+  const subUserChatTabs = useSelector((store) => store.chat.subUserChatTabs);
+  const chatById = useSelector((store) => store.chat.chatById);
+
+  const subChatMemberIsActive =
+    Array.isArray(subUserChatTabs) &&
+    subUserChatTabs.every((e) => e.status === false);
+
+  const accessLogin = JSON.parse(localStorage.getItem("accessLogin"));
+
+  const filteredUserChat = userChats.filter((e) => accessLogin.id === e.id);
+
+  const filteredSubUserChat = subUserChats.filter(
+    (e) => subChatMemberIsActive && chatById[0]?.id !== accessLogin.id
+  );
+
+  console.log(chatById[0]);
 
   useEffect(() => {
     Dispatch(getUserChats());
@@ -19,7 +36,10 @@ const MentionUsersChat = () => {
         Пользователи чата
       </h1>
       <ul className="wrapper-users flex flex-col overflow-auto max-h-[30vh]">
-        {userChats.map((e) => {
+        {filteredUserChat.map((e) => {
+          return <MentionUser key={e.id} item={e} />;
+        })}
+        {filteredSubUserChat.map((e) => {
           return <MentionUser key={e.id} item={e} />;
         })}
       </ul>

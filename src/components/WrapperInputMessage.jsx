@@ -81,8 +81,8 @@ const WrapperInputMessage = () => {
     <>
       <div
         className={`${
-          showReply ? "h-[10%]" : "h-[20.2%]"
-        } wrapper-input-message border-t-[1px] px-[30px] justify-center flex flex-col items-center gap-4`}
+          showReply ? "h-[15%]" : "h-[20.2%]"
+        } wrapper-input-message bg-[#fff] border-t-[1px] px-[30px] justify-center flex flex-col items-center gap-4`}
       >
         {renderOfRole && (
           <div className="panel-control flex items-center gap-5">

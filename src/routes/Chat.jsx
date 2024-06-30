@@ -17,6 +17,17 @@ import { Button } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { actions } from "../slices/chat-slice";
 
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+
+// import required modules
+import { Pagination, Navigation } from "swiper/modules";
+
 import {
   getUsers,
   getUserChats,
@@ -127,6 +138,7 @@ const Chat = () => {
   };
 
   const handlePostTermDate = (event) => {
+    
     const newObj = {
       id: Date.now().toString(),
       date: event.target.value,
@@ -190,7 +202,7 @@ const Chat = () => {
                   visaStatusTemp={visaStatusTemp}
                 />
               )}
-              {renderOfRole && (
+              {renderOfRole && showUserChat.length < 1 && (
                 <>
                   <TabVisa
                     handleClick={handleClick}
@@ -298,18 +310,49 @@ const Chat = () => {
           {showDocPdf && (
             <div
               onClick={(event) => handleShowDocPdf(false, event)}
-              className="wrapper-pdf fixed top-0 left-0 w-full h-full z-10 bg-[#00000020]"
+              className="wrapper-pdf  fixed top-0 left-0 w-full h-full z-10 bg-[#00000020]"
             >
               <div
                 onClick={(event) => handlePropagation(event)}
-                className="pdf w-[30%] absolute translate-x-[-50%] translate-y-[-50%] top-1/2 left-1/2 shadow-lg border-[1px] rounded-lg"
+                className="pdf w-[30%] h-[80vh] absolute translate-x-[-50%] translate-y-[-50%] top-1/2 left-1/2 shadow-lg border-[1px] rounded-lg"
               >
-                <DocumentPdf
-                  url="src/assets/811_ВИ_541 Кумитаи давла_931217.pdf"
-                  height="h-[70vh]"
-                />
+                <Swiper
+                  pagination={{
+                    type: "fraction",
+                  }}
+                  navigation={true}
+                  modules={[Pagination, Navigation]}
+                  className="mySwiper"
+                >
+                  <SwiperSlide>
+                    <DocumentPdf
+                      url="src/assets/811_ВИ_541 Кумитаи давла_931217.pdf"
+                      height="h-[70vh]"
+                    />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <DocumentPdf
+                      url="src/assets/Огохинома - оид ба баргардонидани ариза.pdf"
+                      height="h-[70vh]"
+                    />
+                  </SwiperSlide>
+                </Swiper>
               </div>
             </div>
+            // <div
+            //   onClick={(event) => handleShowDocPdf(false, event)}
+            //   className="wrapper-pdf fixed top-0 left-0 w-full h-full z-10 bg-[#00000020]"
+            // >
+            //   <div
+            //     onClick={(event) => handlePropagation(event)}
+            //     className="pdf w-[30%] absolute translate-x-[-50%] translate-y-[-50%] top-1/2 left-1/2 shadow-lg border-[1px] rounded-lg"
+            //   >
+            //     <DocumentPdf
+            //       url="src/assets/811_ВИ_541 Кумитаи давла_931217.pdf"
+            //       height="h-[70vh]"
+            //     />
+            //   </div>
+            // </div>
           )}
         </aside>
         <aside className="right w-[80%]">

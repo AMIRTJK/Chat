@@ -8,7 +8,7 @@ const DocumentPdf = ({ url, height }) => {
   const defaultScale = 0.7; // Установите желаемый масштаб, например, 0.8 для уменьшения
 
   return (
-    <div className={`w-full ${height}`}>
+    <div className={`w-full ${height} category-scrollbar`}>
       <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
         <Viewer fileUrl={url} defaultScale={defaultScale} />
       </Worker>
