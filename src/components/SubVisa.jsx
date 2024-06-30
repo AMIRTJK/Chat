@@ -74,9 +74,11 @@ const SubVisa = ({ handleShowSubVisa }) => {
   console.log(visaUsers[visaUsers.length - 1]);
 
   const handlePutSubVisaTerm = () => {
+    const [year, month, day] = dateTerm.split("-");
+
     const newObj = {
       ...visaUsers[visaUsers.length - 1],
-      term: dateTerm,
+      term: `${day}.${month}.${year}`,
     };
     console.log(newObj);
     Dispatch(putVisaUsers(newObj));

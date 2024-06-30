@@ -138,10 +138,10 @@ const Chat = () => {
   };
 
   const handlePostTermDate = (event) => {
-    
+    const [year, month, day] = event.target.value.split("-");
     const newObj = {
       id: Date.now().toString(),
-      date: event.target.value,
+      date: `${day}.${month}.${year}`,
     };
     Dispatch(postTermDate(newObj));
   };
