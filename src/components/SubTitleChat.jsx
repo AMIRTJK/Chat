@@ -118,6 +118,10 @@ const SubTitleChat = () => {
         chatById[0]?.id === subTab.userChatId
     );
 
+  const subChatMemberIsActive =
+    Array.isArray(subUserChatTabs) &&
+    subUserChatTabs.every((e) => e.status === false);
+
   useEffect(() => {
     Dispatch(getSubUserChatTabs());
     Dispatch(getInvitedToSubChatTabs());
@@ -125,7 +129,7 @@ const SubTitleChat = () => {
 
   return (
     <>
-      <header className="bg-[#f5f5f5]  p-[30px] flex justify-between items-center flex-wrap">
+      <header className="bg-[#f5f5f5] p-[30px] flex justify-between items-center flex-wrap">
         <div className="wrapper-tabs flex items-end gap-3">
           <Button
             onClick={() => handleSetStatusSubChat()}
@@ -216,35 +220,42 @@ const SubTitleChat = () => {
           {tabName && <InputTabName handleShowTabName={handleShowTabName} />}
         </div>
         <div className="panel-user flex items-end gap-3">
+          {/* Аватарки - отрисовка пользователей subChats */}
           {Array.isArray(subUserChats) &&
             subUserChats?.map((e) => {
-              if (
-                e.userChatId === chatById[0]?.id &&
-                e.userAuthId === subUserChatTabsById[0]?.userAuthId
-                // Нужно добавить условие либо еще один map для того чтобы вывести Avatar пользователей подчата, на данный момент выводятся только пользователи вкладок подчата
-              )
+              if (e.userChatId === chatById[0]?.id && subChatMemberIsActive)
                 return (
                   <>
                     <IconButton key={e.id} sx={{ padding: "0px" }}>
                       <Avatar src={e.image} />
                     </IconButton>
-                    {invitedToSubChatTabs?.map((invite) => {
-                      if (
-                        subUserChatTabsById[0]?.id === invite.subUserChatTabId
-                      ) {
-                        return (
-                          <IconButton key={invite.id} sx={{ padding: "0px" }}>
-                            <Avatar
-                              src={invite.image}
-                              sx={{ width: "24px", height: "24px" }}
-                            />
-                          </IconButton>
-                        );
-                      }
-                    })}
                   </>
                 );
             })}
+          {/* Аватарки - отрисовка пользователя subChats во вкладках */}
+          {Array.isArray(subUserChats) &&
+            subUserChats.map((e) => {
+              if (e.id === subUserChatTabsById[0]?.subUserChatId) {
+                return (
+                  <IconButton key={e.id} sx={{ padding: "0px" }}>
+                    <Avatar src={e.image} />
+                  </IconButton>
+                );
+              }
+            })}
+          {/* Аватарки- отрисовка пользователей вкладок */}
+          {invitedToSubChatTabs?.map((invite) => {
+            if (subUserChatTabsById[0]?.id === invite.subUserChatTabId) {
+              return (
+                <IconButton key={invite.id} sx={{ padding: "0px" }}>
+                  <Avatar
+                    src={invite.image}
+                    sx={{ width: "24px", height: "24px" }}
+                  />
+                </IconButton>
+              );
+            }
+          })}
         </div>
       </header>
     </>

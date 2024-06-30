@@ -411,6 +411,14 @@
       "userChatId": "2",
       "name": "КВД",
       "status": true
+    },
+    {
+      "id": "1719724814571",
+      "subUserChatId": "1719634265023",
+      "userAuthId": "5",
+      "userChatId": "2",
+      "name": "123",
+      "status": false
     }
   ],
   "invitedToSubChatTabs": [
@@ -435,6 +443,17 @@
       "login": "m.abdurahmonovich",
       "userAuthId": "7",
       "userChatId": "2"
+    },
+    {
+      "id": "1719724821250",
+      "subUserChatTabId": "1719724814571",
+      "name": "Абдуҷаббори Зарифӣ",
+      "role": "Главный специалист",
+      "image": "src/assets/Абдуҷаббори Зарифӣ.jpg",
+      "status": true,
+      "login": "a.zarifi",
+      "userAuthId": "9",
+      "userChatId": "2"
     }
   ],
   "subTabMessages": [],
@@ -458,6 +477,16 @@
       "status": "",
       "eds": "",
       "createdAt": "29-06-2024"
+    },
+    {
+      "id": "1719724821251",
+      "subUserChatTabId": "1719724814571",
+      "userAuthId": "5",
+      "userChatId": "2",
+      "term": "2024-07-01",
+      "status": "",
+      "eds": "",
+      "createdAt": "30-06-2024"
     }
   ],
   "subTabVisaMessages": [
@@ -478,6 +507,12 @@
       "name": "123",
       "status": false,
       "subVisaUserId": "1719637566136"
+    },
+    {
+      "id": "1",
+      "name": "Барои барраси ва пешниходи маълумоти мавриди назар",
+      "status": false,
+      "subVisaUserId": "1719724821251"
     }
   ],
   "subTabConclusionList": [],
