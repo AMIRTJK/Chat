@@ -445,7 +445,7 @@
   ],
   "subTabConclusionList": [
     {
-      "id": "1719805498218",
+      "id": "1719823273000",
       "title": "Заключение №1",
       "invitedToSubChatTabId": "1719805028274",
       "subUserChatTabId": "1719805025474",
@@ -455,7 +455,7 @@
       "userChatId": "2"
     },
     {
-      "id": "1719805584113",
+      "id": "1719823347886",
       "title": "Заключение №2",
       "invitedToSubChatTabId": "1719805028858",
       "subUserChatTabId": "1719805025474",
@@ -463,22 +463,12 @@
       "login": "m.abdurahmonovich",
       "userAuthId": "7",
       "userChatId": "2"
-    },
-    {
-      "id": "1719809220309",
-      "title": "123",
-      "invitedToSubChatTabId": "1719805028274",
-      "subUserChatTabId": "1719805025474",
-      "status": false,
-      "login": "b.ramazonovich",
-      "userAuthId": "6",
-      "userChatId": "2"
     }
   ],
   "subTabConclusionListEds": [],
   "subTabConclusionListTemp": [
     {
-      "id": "1719805500202",
+      "id": "1719823322070",
       "title": "V1",
       "invitedToSubChatTabId": "1719805028274",
       "subUserChatTabId": "1719805025474",
@@ -486,13 +476,13 @@
       "login": "b.ramazonovich",
       "userAuthId": "6",
       "userChatId": "2",
-      "subTabConclusionListId": "1719805498218",
+      "subTabConclusionListId": "1719823273000",
       "image": "src/assets/Бехруз Рамазонович.jpg",
-      "statusTemp": false,
-      "text": "<p>Другое заключение...</p>"
+      "statusTemp": true,
+      "text": "<p>Данное заключение необходимо дополнить...</p>"
     },
     {
-      "id": "1719805584457",
+      "id": "1719823351854",
       "title": "V1",
       "invitedToSubChatTabId": "1719805028858",
       "subUserChatTabId": "1719805025474",
@@ -500,88 +490,18 @@
       "login": "m.abdurahmonovich",
       "userAuthId": "7",
       "userChatId": "2",
-      "subTabConclusionListId": "1719805584113",
+      "subTabConclusionListId": "1719823347886",
       "image": "src/assets/Махмуд Абдурахмонович.jpg",
-      "statusTemp": false,
-      "text": "<p>123</p>"
-    },
-    {
-      "id": "1719809220733",
-      "title": "V1",
-      "invitedToSubChatTabId": "1719805028274",
-      "subUserChatTabId": "1719805025474",
-      "status": true,
-      "login": "b.ramazonovich",
-      "userAuthId": "6",
-      "userChatId": "2",
-      "subTabConclusionListId": "1719809220309",
-      "image": "src/assets/Бехруз Рамазонович.jpg",
       "statusTemp": false,
       "text": ""
-    },
-    {
-      "id": "1719809225613",
-      "title": "V4",
-      "invitedToSubChatTabId": "1719805028274",
-      "subUserChatTabId": "1719805025474",
-      "status": true,
-      "login": "b.ramazonovich",
-      "userAuthId": "6",
-      "userChatId": "2",
-      "subTabConclusionListId": "1719805498218",
-      "image": "src/assets/Бехруз Рамазонович.jpg",
-      "statusTemp": false,
-      "text": "<p>123</p>"
-    },
-    {
-      "id": "1719809659386",
-      "title": "V5",
-      "invitedToSubChatTabId": "1719805028274",
-      "subUserChatTabId": "1719805025474",
-      "status": true,
-      "login": "b.ramazonovich",
-      "userAuthId": "6",
-      "userChatId": "2",
-      "subTabConclusionListId": "1719805498218",
-      "image": "src/assets/Бехруз Рамазонович.jpg",
-      "statusTemp": false,
-      "text": "<p>1234</p>"
-    },
-    {
-      "id": "1719813702267",
-      "title": "V6",
-      "invitedToSubChatTabId": "1719805028274",
-      "subUserChatTabId": "1719805025474",
-      "status": true,
-      "login": "b.ramazonovich",
-      "userAuthId": "6",
-      "userChatId": "2",
-      "subTabConclusionListId": "1719805498218",
-      "image": "src/assets/Бехруз Рамазонович.jpg",
-      "statusTemp": false,
-      "text": "<p>1234</p>"
-    },
-    {
-      "id": "1719817032415",
-      "title": "V7",
-      "invitedToSubChatTabId": "1719805028274",
-      "subUserChatTabId": "1719805025474",
-      "status": true,
-      "login": "b.ramazonovich",
-      "userAuthId": "6",
-      "userChatId": "2",
-      "subTabConclusionListId": "1719805498218",
-      "image": "src/assets/Махмуд Абдурахмонович.jpg",
-      "statusTemp": true,
-      "text": "<p>1234</p>"
     }
   ],
   "subTabConclusionListEdsTemp": [
     {
-      "id": "1719805500203",
-      "subTabConclusionListId": "1719805498218",
+      "id": "1719823322071",
+      "subTabConclusionListId": "1719823273000",
       "userAuthId": "6",
-      "comments": "Без комментариев",
+      "comments": "",
       "status": false,
       "edsStatus": false,
       "name": "Бехруз Рамазонович",
@@ -589,40 +509,28 @@
       "image": "src/assets/Бехруз Рамазонович.jpg"
     },
     {
-      "id": "1719805584457",
-      "subTabConclusionListId": "1719805584113",
+      "id": "1719823351855",
+      "subTabConclusionListId": "1719823347886",
       "userAuthId": "7",
-      "comments": "",
-      "status": false,
-      "edsStatus": false,
-      "name": "Махмуд Абдурахмонович",
-      "role": "Начальник отдела по работе с клиентами",
-      "image": "src/assets/Махмуд Абдурахмонович.jpg",
-      "subTabConclusionListTempId": "1719805500202"
-    },
-    {
-      "id": "1719809220735",
-      "subTabConclusionListId": "1719809220309",
-      "userAuthId": "6",
       "comments": "",
       "status": true,
       "edsStatus": false,
-      "name": "Бехруз Рамазонович",
-      "role": "Начальник отдела разработки и внедрения ИС",
-      "image": "src/assets/Бехруз Рамазонович.jpg",
-      "subTabConclusionListTempId": "1719805500202"
+      "name": "Махмуд Абдурахмонович",
+      "role": "Начальник отдела по работе с клиентами",
+      "image": "src/assets/Махмуд Абдурахмонович.jpg",
+      "subTabConclusionListTempId": "1719823322070"
     },
     {
-      "id": "1719816235963",
-      "subTabConclusionListId": "1719805498218",
+      "id": "1719826125212",
+      "subTabConclusionListId": "1719823273000",
       "userAuthId": "7",
-      "comments": "Согласен с вышеуказанным заключением",
+      "comments": "",
       "status": false,
       "edsStatus": false,
       "name": "Махмуд Абдурахмонович",
       "role": "Начальник отдела по работе с клиентами",
       "image": "src/assets/Махмуд Абдурахмонович.jpg",
-      "subTabConclusionListTempId": "1719813702267"
+      "subTabConclusionListTempId": "1719823322070"
     }
   ],
   "liveChatMessages": [],

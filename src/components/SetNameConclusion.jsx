@@ -58,7 +58,21 @@ const SetNameConclusion = ({
 
   // ===========================
 
+  // Кнопка Создать включена
+  const [buttonCreateConclusion, setButtonCreateConclusion] = useState(false);
+
+  // Кнопка Сохранить отключена
+  const [buttonCreateConclusionTemp, setButtonCreateConclusionTemp] =
+    useState(true);
+
   const handlePostSubTabConclusionList = () => {
+    // Кнопка Создать отключается
+    setButtonCreateConclusion(true);
+    // Кнопка Сохранить включается
+    setButtonCreateConclusionTemp(false);
+    // Поле ввода очищается
+    setValue("");
+
     const newObj = {
       id: Date.now().toString(),
       title: value,
@@ -79,6 +93,9 @@ const SetNameConclusion = ({
   };
 
   const handlePostSubTabConclusionListTemp = () => {
+    setButtonCreateConclusion(true);
+    setButtonCreateConclusionTemp(true);
+
     const conclusionListTemp = {
       ...filteredConclusionList[0],
       subTabConclusionListId: filteredConclusionList[0]?.id,
@@ -149,6 +166,7 @@ const SetNameConclusion = ({
               Отмена
             </Button>
             <Button
+              disabled={buttonCreateConclusion}
               onClick={() => {
                 handlePostSubTabConclusionList();
               }}
@@ -158,6 +176,7 @@ const SetNameConclusion = ({
               Создать
             </Button>
             <Button
+              disabled={buttonCreateConclusionTemp}
               onClick={() => {
                 handlePostSubTabConclusionListTemp();
               }}

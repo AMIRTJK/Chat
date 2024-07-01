@@ -366,6 +366,16 @@ const Conclusion = ({ handleModalConclusion }) => {
       (e) => e.userAuthId === accessLogin.id && e.edsStatus === true
     );
 
+  const isActiveButtonIfInvite =
+    Array.isArray(subTabConclusionListEdsTemp) &&
+    subTabConclusionListEdsTemp.some(
+      (e) =>
+        e.subTabConclusionListId === filteredConclusionListCurrent[0]?.id &&
+        e.userAuthId === accessLogin.id
+    );
+
+  console.log(isActiveButtonIfInvite);
+
   useEffect(() => {
     handleDisabledChange();
   }, [subTabConclusionListEdsTemp]);
@@ -741,6 +751,7 @@ const Conclusion = ({ handleModalConclusion }) => {
           <div className="bg-[#fff] flex justify-between text-[red] border-t-[1px] p-[20px]">
             <div className="panel-control flex gap-5 items-center">
               <Button
+                disabled={!isActiveButtonIfInvite}
                 onClick={() => handlePostSubTabConclusionListTemp()}
                 variant="outlined"
                 sx={{ textTransform: "none" }}
@@ -748,6 +759,7 @@ const Conclusion = ({ handleModalConclusion }) => {
                 Новый
               </Button>
               <Button
+                disabled={!isActiveButtonIfInvite}
                 onClick={() => {
                   handleShowConclusionEdsUsers(true);
                 }}
@@ -757,7 +769,7 @@ const Conclusion = ({ handleModalConclusion }) => {
                 Пригласить
               </Button>
               <Button
-                disabled={isActiveCommentsEds}
+                disabled={isActiveCommentsEds || !isActiveButtonIfInvite}
                 onClick={() => handleShowCommentsConclusion(true)}
                 variant="outlined"
                 sx={{ textTransform: "none" }}
@@ -765,7 +777,7 @@ const Conclusion = ({ handleModalConclusion }) => {
                 Подписать
               </Button>
               <Button
-                disabled={isDisabled}
+                disabled={isDisabled || !isActiveButtonIfInvite}
                 variant="outlined"
                 sx={{ textTransform: "none" }}
                 onClick={() => setEditConclusion(true)}
@@ -784,7 +796,7 @@ const Conclusion = ({ handleModalConclusion }) => {
                 type="submit"
                 className="flex gap-2"
                 onClick={handleButtonClick}
-                disabled={isDisabled}
+                disabled={isDisabled || !isActiveButtonIfInvite}
               >
                 <input
                   onChange={handleFileChange}
@@ -811,6 +823,7 @@ const Conclusion = ({ handleModalConclusion }) => {
                 Отмена
               </Button>
               <Button
+              disabled={!isActiveButtonIfInvite}
                 onClick={() => handlePutSubTabConclusionListTempText()}
                 variant="contained"
                 sx={{ textTransform: "none", fontWeight: "400" }}
