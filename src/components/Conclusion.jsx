@@ -11,6 +11,8 @@ import SetNameConclusion from "./SetNameConclusion";
 import SubConclusionEdsUsers from "./SubConclusionEdsUsers";
 import CommentsConclusion from "./CommentsConclusion";
 
+import NotesIcon from "@mui/icons-material/Notes";
+
 import LiveChat from "./LiveChat";
 
 import { useSelector, useDispatch } from "react-redux";
@@ -96,6 +98,16 @@ const Conclusion = ({ handleModalConclusion }) => {
     setNameConclusion(state);
   };
 
+  // Получаем актуальную версионность вкладки - заключение
+  const [filteredConclusionListTemp, setFilteredConclusionListTemp] = useState(
+    []
+  );
+
+  // Получаем актуальную вкладку - заключение
+  const filteredConclusionList =
+    Array.isArray(subTabConclusionList) &&
+    subTabConclusionList.filter((e) => e.status === true);
+
   const handlePutSubTabConclusionList = async (item) => {
     for (const e of Array.isArray(subTabConclusionList) &&
       subTabConclusionList) {
@@ -106,18 +118,9 @@ const Conclusion = ({ handleModalConclusion }) => {
 
     // Включаем выбранную вкладку
     await Dispatch(putSubTabConclusionList({ ...item, status: true }));
+
     setEditConclusion(false);
   };
-
-  // Получаем актуальную вкладку - заключение
-  const filteredConclusionList =
-    Array.isArray(subTabConclusionList) &&
-    subTabConclusionList.filter((e) => e.status === true);
-
-  // Получаем актуальную версионность вкладки - заключение
-  const [filteredConclusionListTemp, setFilteredConclusionListTemp] = useState(
-    []
-  );
 
   // const filteredConclusionListTemp =
   //   Array.isArray(subTabConclusionListTemp) &&
@@ -351,6 +354,18 @@ const Conclusion = ({ handleModalConclusion }) => {
     Dispatch(putSubTabConclusionListTempAttachment(newObj));
   };
 
+  const [showCommentEds, setShowCommentEds] = useState(false);
+
+  const handleShowCommentEds = () => {
+    setShowCommentEds(!showCommentEds);
+  };
+
+  const isActiveCommentsEds =
+    Array.isArray(subTabConclusionListEdsTemp) &&
+    subTabConclusionListEdsTemp.some(
+      (e) => e.userAuthId === accessLogin.id && e.edsStatus === true
+    );
+
   useEffect(() => {
     handleDisabledChange();
   }, [subTabConclusionListEdsTemp]);
@@ -375,8 +390,6 @@ const Conclusion = ({ handleModalConclusion }) => {
       setValue(filteredConclusionListTemp[0]?.text || "");
     }
   }, [filteredConclusionListTemp[0]?.id]);
-
-  console.log(filteredConclusionListTemp);
 
   return (
     <>
@@ -562,7 +575,7 @@ const Conclusion = ({ handleModalConclusion }) => {
                 />
               )}
               {/* ================================= */}
-              {conclusionAttachment.length > 0 && (
+              {(conclusionAttachment.length > 0 || fileValue?.name) && (
                 <div className="attachment absolute w-full bottom-0 overflow-auto">
                   <p className="text-[15px] px-[15px] py-[5px] bg-[#007cd2] text-[#fff]">
                     Вложение
@@ -663,10 +676,7 @@ const Conclusion = ({ handleModalConclusion }) => {
               {Array.isArray(subTabConclusionListEdsTemp) &&
                 subTabConclusionListEdsTemp.map((e) => {
                   // Раньше вместо e.subTabConclusionListId было subTabConclusionListTempId
-                  console.log(
-                    filteredConclusionListTemp[0]?.subTabConclusionListId,
-                    filteredConclusionListCurrent[0]?.id
-                  );
+
                   if (
                     filteredConclusionListTemp[0]?.subTabConclusionListId ===
                     e.subTabConclusionListId
@@ -689,8 +699,8 @@ const Conclusion = ({ handleModalConclusion }) => {
                           />
                         </IconButton>
                         {e.status ? (
-                          <div className="bg-[#ffffffbd] py-[20px] px-[10px] w-full">
-                            <p className="text-[14px]">{e.name}</p>
+                          <div className="bg-[#ffffffbd] flex flex-col gap-1 items-start py-[20px] px-[10px] w-full">
+                            <p className="text-[14px] font-[600]">{e.name}</p>
                             <p
                               className={`text-[14px] cursor-pointer ${
                                 e.edsStatus ? "text-[#007cd2]" : "text-[red]"
@@ -698,6 +708,27 @@ const Conclusion = ({ handleModalConclusion }) => {
                             >
                               {e.edsStatus ? "Подписан" : "Не подписан"}
                             </p>
+                            {e.comments && (
+                              <Button
+                                onClick={() => handleShowCommentEds()}
+                                variant="text"
+                                sx={{
+                                  paddingY: "0",
+                                  paddingX: "5px",
+                                  paddingLeft: "0",
+                                  textTransform: "none",
+                                  fontWeight: "400",
+                                  display: "flex",
+                                  gap: "5px",
+                                }}
+                              >
+                                <NotesIcon fontSize="small" />
+                                <p>Комментарий</p>
+                              </Button>
+                            )}
+                            {showCommentEds && (
+                              <p className="text-[14px]">{e.comments}</p>
+                            )}
                           </div>
                         ) : (
                           <></>
@@ -726,6 +757,7 @@ const Conclusion = ({ handleModalConclusion }) => {
                 Пригласить
               </Button>
               <Button
+                disabled={isActiveCommentsEds}
                 onClick={() => handleShowCommentsConclusion(true)}
                 variant="outlined"
                 sx={{ textTransform: "none" }}
@@ -752,6 +784,7 @@ const Conclusion = ({ handleModalConclusion }) => {
                 type="submit"
                 className="flex gap-2"
                 onClick={handleButtonClick}
+                disabled={isDisabled}
               >
                 <input
                   onChange={handleFileChange}
