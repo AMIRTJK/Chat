@@ -156,7 +156,7 @@ const SetNameConclusion = ({
       role: filterInvitedTabId[0]?.role,
       image: filterInvitedTabId[0]?.image,
       subTabConclusionListTempId:
-        subTabConclusionListTemp[subTabConclusionList.length - 1]?.id,
+        subTabConclusionListTemp[subTabConclusionListTemp.length - 1]?.id,
     };
 
     Dispatch(postSubTabConclusionListEdsTemp(newObj));

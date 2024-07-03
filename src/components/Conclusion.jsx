@@ -10,6 +10,7 @@ import EmailIcon from "@mui/icons-material/Email";
 import SetNameConclusion from "./SetNameConclusion";
 import SubConclusionEdsUsers from "./SubConclusionEdsUsers";
 import CommentsConclusion from "./CommentsConclusion";
+import NewConclusionCopy from "./NewConclusionCopy";
 
 import NotesIcon from "@mui/icons-material/Notes";
 
@@ -174,8 +175,7 @@ const Conclusion = ({ handleModalConclusion }) => {
     const currentEds = subTabConclusionListEdsTemp.filter(
       (e) =>
         e.userAuthId === accessLogin.id &&
-        e.subTabConclusionListId ===
-          filteredConclusionListTemp[0]?.subTabConclusionListId
+        e.subTabConclusionListTempId === filteredConclusionListTemp[0]?.id
     );
 
     Dispatch(
@@ -210,6 +210,12 @@ const Conclusion = ({ handleModalConclusion }) => {
     setFilteredConclusionListTemp(filtered);
   }, [subTabConclusionListTemp]);
 
+  const [showNewConclusionOfCopy, setShowNewConclusionOfCopy] = useState(false);
+
+  const handleShowNewConclusionOfCopy = (state) => {
+    setShowNewConclusionOfCopy(state);
+  };
+
   const handlePostSubTabConclusionListTemp = () => {
     if (!filteredConclusionList[0]) {
       console.error("No filtered conclusion list found");
@@ -228,20 +234,28 @@ const Conclusion = ({ handleModalConclusion }) => {
 
     Dispatch(postSubTabConclusionListTemp(conclusionListTemp));
 
-    // На данный момент оставим так, но в будущем необходимо чтобы каждая версия сохраняло историю подписей
-    for (let key of subTabConclusionListEdsTemp) {
-      if (key.edsStatus === true) {
-        Dispatch(
-          putSubTabConclusionListEdsTempStatus({ ...key, edsStatus: false })
-        );
-      }
-    }
-
     const updatedFilteredConclusionListTemp = [
       ...filteredConclusionListTemp,
       conclusionListTemp,
     ];
     setFilteredConclusionListTemp(updatedFilteredConclusionListTemp);
+  };
+
+  const handlePostSubTabConclusionListEdsTemp = () => {
+    const lastEds =
+      subTabConclusionListEdsTemp[subTabConclusionListEdsTemp.length - 1];
+
+    const newEdsCopy = {
+      ...lastEds,
+      id: Date.now().toString(),
+      comments: "",
+      edsStatus: false,
+      subTabConclusionListTempId:
+        subTabConclusionListTemp[subTabConclusionListTemp.length - 1]?.id,
+    };
+
+    Dispatch(postSubTabConclusionListEdsTemp(newEdsCopy));
+    handleShowNewConclusionOfCopy(false);
   };
 
   const handlePutSubTabConclusionListTempStatus = async (item) => {
@@ -435,7 +449,7 @@ const Conclusion = ({ handleModalConclusion }) => {
                 invitedToSubChatTabs.map((invite) => {
                   if (invite.subUserChatTabId === subUserChatTabsById[0]?.id)
                     return (
-                      <div key={invite.id} className="flex flex-col gap-5">
+                      <>
                         <IconButton
                           onClick={() => handleShowConclusion(invite.id)}
                           key={invite.id}
@@ -485,7 +499,7 @@ const Conclusion = ({ handleModalConclusion }) => {
                             </ul>
                           </div>
                         )}
-                      </div>
+                      </>
                     );
                 })}
             </aside>
@@ -702,13 +716,12 @@ const Conclusion = ({ handleModalConclusion }) => {
               {Array.isArray(subTabConclusionListEdsTemp) &&
                 subTabConclusionListEdsTemp.map((e) => {
                   // Раньше вместо e.subTabConclusionListId было subTabConclusionListTempId
-
                   if (
-                    filteredConclusionListTemp[0]?.subTabConclusionListId ===
-                    e.subTabConclusionListId
+                    filteredConclusionListTemp[0]?.id ===
+                    e.subTabConclusionListTempId
                   )
                     return (
-                      <div key={uuidv4()}>
+                      <>
                         <IconButton
                           onClick={() =>
                             handlePutShowInfoBlockOfConclusionEds(e)
@@ -759,7 +772,7 @@ const Conclusion = ({ handleModalConclusion }) => {
                         ) : (
                           <></>
                         )}
-                      </div>
+                      </>
                     );
                 })}
             </aside>
@@ -768,7 +781,7 @@ const Conclusion = ({ handleModalConclusion }) => {
             <div className="panel-control flex gap-5 items-center">
               <Button
                 disabled={!isActiveButtonIfInvite}
-                onClick={() => handlePostSubTabConclusionListTemp()}
+                onClick={() => handleShowNewConclusionOfCopy(true)}
                 variant="outlined"
                 sx={{ textTransform: "none" }}
               >
@@ -800,7 +813,6 @@ const Conclusion = ({ handleModalConclusion }) => {
               >
                 Изменить
               </Button>
-
               <Button
                 onClick={() => setShowLiveChat(!showLiveChat)}
                 className="flex gap-2"
@@ -867,6 +879,17 @@ const Conclusion = ({ handleModalConclusion }) => {
         <CommentsConclusion
           handleShowCommentsConclusion={handleShowCommentsConclusion}
           handlePutSubTabConclusionListEds={handlePutSubTabConclusionListEds}
+        />
+      )}
+      {showNewConclusionOfCopy && (
+        <NewConclusionCopy
+          handleShowNewConclusionOfCopy={handleShowNewConclusionOfCopy}
+          handlePostSubTabConclusionListTemp={
+            handlePostSubTabConclusionListTemp
+          }
+          handlePostSubTabConclusionListEdsTemp={
+            handlePostSubTabConclusionListEdsTemp
+          }
         />
       )}
     </>
