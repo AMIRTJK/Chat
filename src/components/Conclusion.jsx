@@ -297,8 +297,7 @@ const Conclusion = ({ handleModalConclusion }) => {
     subTabConclusionListEdsTemp.some(
       (e) =>
         e.edsStatus === true &&
-        e.subTabConclusionListId ===
-          filteredConclusionListTemp[0]?.subTabConclusionListId
+        e.subTabConclusionListTempId === filteredConclusionListTemp[0]?.id
     );
 
   const isDisabledIfNotInvite =
@@ -394,14 +393,17 @@ const Conclusion = ({ handleModalConclusion }) => {
   const isActiveCommentsEds =
     Array.isArray(subTabConclusionListEdsTemp) &&
     subTabConclusionListEdsTemp.some(
-      (e) => e.userAuthId === accessLogin.id && e.edsStatus === true
+      (e) =>
+        e.userAuthId === accessLogin.id &&
+        e.edsStatus === true &&
+        e.subTabConclusionListTempId === filteredConclusionListTemp[0]?.id
     );
 
   const isActiveButtonIfInvite =
     Array.isArray(subTabConclusionListEdsTemp) &&
     subTabConclusionListEdsTemp.some(
       (e) =>
-        e.subTabConclusionListId === filteredConclusionListCurrent[0]?.id &&
+        e.subTabConclusionListTempId === filteredConclusionListTemp[0]?.id &&
         e.userAuthId === accessLogin.id
     );
 
