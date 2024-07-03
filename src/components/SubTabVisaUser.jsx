@@ -64,7 +64,7 @@ const SubTabVisaUser = ({ filteredSubTabVisaUser }) => {
       <div className="visa-members">
         {invitedToSubChatTabs.map((e) => {
           if (subVisa?.subUserChatTabId === e.subUserChatTabId) {
-            return <p>{e.name}</p>;
+            return <p key={e.id}>{e.name}</p>;
           }
         })}
       </div>
@@ -72,7 +72,7 @@ const SubTabVisaUser = ({ filteredSubTabVisaUser }) => {
         {Array.isArray(subTabVisaMessages) &&
           subTabVisaMessages.map((e) => {
             if (e.subVisaUserId === subVisa?.id) {
-              return <p>{e.name}</p>;
+              return <p key={e.id}>{e.name}</p>;
             }
           })}
       </div>

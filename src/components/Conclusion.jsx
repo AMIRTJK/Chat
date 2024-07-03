@@ -374,8 +374,6 @@ const Conclusion = ({ handleModalConclusion }) => {
         e.userAuthId === accessLogin.id
     );
 
-  console.log(isActiveButtonIfInvite);
-
   useEffect(() => {
     handleDisabledChange();
   }, [subTabConclusionListEdsTemp]);
@@ -420,7 +418,7 @@ const Conclusion = ({ handleModalConclusion }) => {
                 invitedToSubChatTabs.map((invite) => {
                   if (invite.subUserChatTabId === subUserChatTabsById[0]?.id)
                     return (
-                      <>
+                      <div key={invite.id} className="flex flex-col gap-5">
                         <IconButton
                           onClick={() => handleShowConclusion(invite.id)}
                           key={invite.id}
@@ -470,7 +468,7 @@ const Conclusion = ({ handleModalConclusion }) => {
                             </ul>
                           </div>
                         )}
-                      </>
+                      </div>
                     );
                 })}
             </aside>
@@ -527,7 +525,7 @@ const Conclusion = ({ handleModalConclusion }) => {
                 </>
               )}
               {editConclusion && (
-                <>
+                <div>
                   <div className="wrapper-conclusions-temp flex w-full overflow-x-auto">
                     {Array.isArray(subTabConclusionListTemp) &&
                       subTabConclusionListTemp.map((e) => {
@@ -538,6 +536,7 @@ const Conclusion = ({ handleModalConclusion }) => {
                         ) {
                           return (
                             <Button
+                              key={e.id}
                               onClick={() =>
                                 handlePutSubTabConclusionListTempStatus(e)
                               }
@@ -575,7 +574,7 @@ const Conclusion = ({ handleModalConclusion }) => {
                     onChange={setValue}
                     className="react-quill-editor"
                   />
-                </>
+                </div>
               )}
               {/* ================================= */}
               {showLiveChat && (
@@ -692,7 +691,7 @@ const Conclusion = ({ handleModalConclusion }) => {
                     e.subTabConclusionListId
                   )
                     return (
-                      <>
+                      <div key={uuidv4()}>
                         <IconButton
                           onClick={() =>
                             handlePutShowInfoBlockOfConclusionEds(e)
@@ -743,7 +742,7 @@ const Conclusion = ({ handleModalConclusion }) => {
                         ) : (
                           <></>
                         )}
-                      </>
+                      </div>
                     );
                 })}
             </aside>
@@ -823,7 +822,7 @@ const Conclusion = ({ handleModalConclusion }) => {
                 Отмена
               </Button>
               <Button
-              disabled={!isActiveButtonIfInvite}
+                disabled={!isActiveButtonIfInvite}
                 onClick={() => handlePutSubTabConclusionListTempText()}
                 variant="contained"
                 sx={{ textTransform: "none", fontWeight: "400" }}

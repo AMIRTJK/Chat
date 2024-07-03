@@ -225,11 +225,9 @@ const SubTitleChat = () => {
             subUserChats?.map((e) => {
               if (e.userChatId === chatById[0]?.id && subChatMemberIsActive)
                 return (
-                  <>
-                    <IconButton key={e.id} sx={{ padding: "0px" }}>
-                      <Avatar src={e.image} />
-                    </IconButton>
-                  </>
+                  <IconButton key={e.id} sx={{ padding: "0px" }}>
+                    <Avatar src={e.image} />
+                  </IconButton>
                 );
             })}
           {/* Аватарки - отрисовка пользователя subChats во вкладках */}
