@@ -43,8 +43,6 @@ const SetNameConclusion = ({
       );
     });
 
-  console.log(filterSubTabConclusionListTemp);
-
   const [value, setValue] = useState("");
 
   const accessLogin = JSON.parse(localStorage.getItem("accessLogin"));
@@ -157,10 +155,9 @@ const SetNameConclusion = ({
       name: filterInvitedTabId[0]?.name,
       role: filterInvitedTabId[0]?.role,
       image: filterInvitedTabId[0]?.image,
-      subTabConclusionListTempId: filteredConclusionListTemp[0]?.id,
+      subTabConclusionListTempId:
+        subTabConclusionListTemp[subTabConclusionList.length - 1]?.id,
     };
-
-    console.log(filteredConclusionListTemp, newObj);
 
     Dispatch(postSubTabConclusionListEdsTemp(newObj));
     // ====================
