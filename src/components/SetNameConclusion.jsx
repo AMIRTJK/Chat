@@ -26,6 +26,25 @@ const SetNameConclusion = ({
     (store) => store.chat.subTabConclusionList
   );
 
+  const subTabConclusionListTemp = useSelector(
+    (store) => store.chat.subTabConclusionListTemp
+  );
+
+  const filterSubTabConclusionListTemp =
+    Array.isArray(subTabConclusionListTemp) &&
+    subTabConclusionListTemp.filter((temp) => {
+      return (
+        Array.isArray(subTabConclusionList) &&
+        subTabConclusionList.some((list) => {
+          if (list.status === true && temp.statusTemp === true) {
+            return temp;
+          }
+        })
+      );
+    });
+
+  console.log(filterSubTabConclusionListTemp);
+
   const [value, setValue] = useState("");
 
   const accessLogin = JSON.parse(localStorage.getItem("accessLogin"));
@@ -65,11 +84,16 @@ const SetNameConclusion = ({
   const [buttonCreateConclusionTemp, setButtonCreateConclusionTemp] =
     useState(true);
 
+  // Кнопка Подписать отключена
+  const [buttonCreateConclusionEdsTemp, setButtonCreateConclusionEdsTemp] =
+    useState(true);
+
   const handlePostSubTabConclusionList = () => {
     // Кнопка Создать отключается
     setButtonCreateConclusion(true);
     // Кнопка Сохранить включается
     setButtonCreateConclusionTemp(false);
+
     // Поле ввода очищается
     setValue("");
 
@@ -95,6 +119,7 @@ const SetNameConclusion = ({
   const handlePostSubTabConclusionListTemp = () => {
     setButtonCreateConclusion(true);
     setButtonCreateConclusionTemp(true);
+    setButtonCreateConclusionEdsTemp(false);
 
     const conclusionListTemp = {
       ...filteredConclusionList[0],
@@ -113,6 +138,10 @@ const SetNameConclusion = ({
       }
     }
     Dispatch(postSubTabConclusionListTemp(conclusionListTemp));
+  };
+
+  const handlePostSubTabConclusionListEdsTemp = () => {
+    setButtonCreateConclusionEdsTemp(true);
 
     // Добавляем создателя заключение в список подписей
 
@@ -151,6 +180,7 @@ const SetNameConclusion = ({
         <p className="font-[600]">Новое заключение</p>
         <input
           onChange={(event) => setValue(event.target.value)}
+          disabled={buttonCreateConclusion}
           value={value}
           type="text"
           placeholder="Введите название заключение"
@@ -159,6 +189,7 @@ const SetNameConclusion = ({
         <div className="wrapper-buttons flex justify-end">
           <div className="buttons flex gap-5">
             <Button
+              disabled={buttonCreateConclusion}
               onClick={() => handleSetNameConclusion(false)}
               variant="text"
               sx={{ textTransform: "none" }}
@@ -184,6 +215,16 @@ const SetNameConclusion = ({
               sx={{ textTransform: "none" }}
             >
               Сохранить
+            </Button>
+            <Button
+              disabled={buttonCreateConclusionEdsTemp}
+              onClick={() => {
+                handlePostSubTabConclusionListEdsTemp();
+              }}
+              variant="contained"
+              sx={{ textTransform: "none" }}
+            >
+              Подписать
             </Button>
           </div>
         </div>

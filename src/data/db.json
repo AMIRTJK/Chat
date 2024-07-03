@@ -443,10 +443,99 @@
       "subVisaUserId": "1719805028858"
     }
   ],
-  "subTabConclusionList": [],
+  "subTabConclusionList": [
+    {
+      "id": "1719990451073",
+      "title": "123",
+      "invitedToSubChatTabId": "1719805028274",
+      "subUserChatTabId": "1719805025474",
+      "status": true,
+      "login": "b.ramazonovich",
+      "userAuthId": "6",
+      "userChatId": "2"
+    },
+    {
+      "id": "1719990466409",
+      "title": "123",
+      "invitedToSubChatTabId": "1719805028274",
+      "subUserChatTabId": "1719805025474",
+      "status": false,
+      "login": "b.ramazonovich",
+      "userAuthId": "6",
+      "userChatId": "2"
+    }
+  ],
   "subTabConclusionListEds": [],
-  "subTabConclusionListTemp": [],
-  "subTabConclusionListEdsTemp": [],
+  "subTabConclusionListTemp": [
+    {
+      "id": "1719990451425",
+      "title": "V1",
+      "invitedToSubChatTabId": "1719805028274",
+      "subUserChatTabId": "1719805025474",
+      "status": true,
+      "login": "b.ramazonovich",
+      "userAuthId": "6",
+      "userChatId": "2",
+      "subTabConclusionListId": "1719990451073",
+      "image": "src/assets/Бехруз Рамазонович.jpg",
+      "statusTemp": false,
+      "text": ""
+    },
+    {
+      "id": "1719990466833",
+      "title": "V1",
+      "invitedToSubChatTabId": "1719805028274",
+      "subUserChatTabId": "1719805025474",
+      "status": false,
+      "login": "b.ramazonovich",
+      "userAuthId": "6",
+      "userChatId": "2",
+      "subTabConclusionListId": "1719990466409",
+      "image": "src/assets/Бехруз Рамазонович.jpg",
+      "statusTemp": false,
+      "text": ""
+    },
+    {
+      "id": "1719990923441",
+      "title": "V3",
+      "invitedToSubChatTabId": "1719805028274",
+      "subUserChatTabId": "1719805025474",
+      "status": true,
+      "login": "b.ramazonovich",
+      "userAuthId": "6",
+      "userChatId": "2",
+      "subTabConclusionListId": "1719990451073",
+      "image": "src/assets/Бехруз Рамазонович.jpg",
+      "statusTemp": true,
+      "text": ""
+    }
+  ],
+  "subTabConclusionListEdsTemp": [
+    {
+      "id": "1719990451954",
+      "subTabConclusionListId": "1719990451073",
+      "userAuthId": "6",
+      "comments": "",
+      "status": false,
+      "edsStatus": false,
+      "name": "Бехруз Рамазонович",
+      "role": "Начальник отдела разработки и внедрения ИС",
+      "image": "src/assets/Бехруз Рамазонович.jpg",
+      "subTabConclusionListTempId": "1719990451425"
+    },
+    {
+      "id": "1719990467209",
+      "subTabConclusionListId": "1719990466409",
+      "userAuthId": "6",
+      "comments": "",
+      "status": false,
+      "edsStatus": false,
+      "name": "Бехруз Рамазонович",
+      "role": "Начальник отдела разработки и внедрения ИС",
+      "image": "src/assets/Бехруз Рамазонович.jpg",
+      "subTabConclusionListTempId": "1719990451425"
+    }
+  ],
   "liveChatMessages": [],
   "conclusionAttachment": []
 }

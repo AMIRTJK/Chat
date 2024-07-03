@@ -119,12 +119,29 @@ const Conclusion = ({ handleModalConclusion }) => {
     // Включаем выбранную вкладку
     await Dispatch(putSubTabConclusionList({ ...item, status: true }));
 
+    // Делаем тоже самое но для массива subTabConclusionListTemp
+    for (const e of Array.isArray(subTabConclusionListTemp) &&
+      subTabConclusionListTemp) {
+      if (e.status === true) {
+        await Dispatch(
+          putSubTabConclusionListTempStatus({ ...e, status: false })
+        );
+      }
+    }
+
+    const itemTemp = subTabConclusionListTemp.filter((e1) => {
+      return subTabConclusionList.some((e2) => {
+        return e1.subTabConclusionListId !== e2.id && e2.status === true;
+      });
+    });
+
+    // Включаем выбранную вкладку для subTabConclusionListTemp
+    await Dispatch(
+      putSubTabConclusionListTempStatus({ ...itemTemp[0], status: true })
+    );
+
     setEditConclusion(false);
   };
-
-  // const filteredConclusionListTemp =
-  //   Array.isArray(subTabConclusionListTemp) &&
-  //   subTabConclusionListTemp.filter((e) => e.statusTemp === true);
 
   const [value, setValue] = useState("");
 
