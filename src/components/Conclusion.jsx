@@ -242,19 +242,21 @@ const Conclusion = ({ handleModalConclusion }) => {
   };
 
   const handlePostSubTabConclusionListEdsTemp = () => {
-    const lastEds =
-      subTabConclusionListEdsTemp[subTabConclusionListEdsTemp.length - 1];
+    let copyEds = {};
 
-    const newEdsCopy = {
-      ...lastEds,
-      id: Date.now().toString(),
-      comments: "",
-      edsStatus: false,
-      subTabConclusionListTempId:
-        subTabConclusionListTemp[subTabConclusionListTemp.length - 1]?.id,
-    };
+    Array.isArray(subTabConclusionListEdsTemp) &&
+      subTabConclusionListEdsTemp.forEach((e) => {
+        copyEds = {
+          ...e,
+          id: Date.now().toString(),
+          comments: "",
+          edsStatus: false,
+          subTabConclusionListTempId:
+            subTabConclusionListTemp[subTabConclusionListTemp.length - 1]?.id,
+        };
+        Dispatch(postSubTabConclusionListEdsTemp(copyEds));
+      });
 
-    Dispatch(postSubTabConclusionListEdsTemp(newEdsCopy));
     handleShowNewConclusionOfCopy(false);
   };
 
