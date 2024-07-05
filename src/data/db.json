@@ -239,7 +239,7 @@
       "name": "Сарвар Собирович",
       "image": "https://i.ibb.co/zRQyxxP/image.jpg",
       "role": "Заместитель Министра Финансов",
-      "status": true
+      "status": false
     }
   ],
   "showUserChat": [
@@ -454,10 +454,117 @@
       "subVisaUserId": "1719805028858"
     }
   ],
-  "subTabConclusionList": [],
+  "subTabConclusionList": [
+    {
+      "id": "1720153084966",
+      "title": "Заключение №1",
+      "invitedToSubChatTabId": "1719805028274",
+      "subUserChatTabId": "1719805025474",
+      "status": false,
+      "login": "b.ramazonovich",
+      "userAuthId": "6",
+      "userChatId": "2"
+    },
+    {
+      "id": "1720153394541",
+      "title": "Заключение №2",
+      "invitedToSubChatTabId": "1719805028274",
+      "subUserChatTabId": "1719805025474",
+      "status": true,
+      "login": "b.ramazonovich",
+      "userAuthId": "6",
+      "userChatId": "2"
+    }
+  ],
   "subTabConclusionListEds": [],
-  "subTabConclusionListTemp": [],
-  "subTabConclusionListEdsTemp": [],
-  "liveChatMessages": [],
+  "subTabConclusionListTemp": [
+    {
+      "id": "1720153088173",
+      "title": "V1",
+      "invitedToSubChatTabId": "1719805028274",
+      "subUserChatTabId": "1719805025474",
+      "status": true,
+      "login": "b.ramazonovich",
+      "userAuthId": "6",
+      "userChatId": "2",
+      "subTabConclusionListId": "1720153084966",
+      "image": "src/assets/Бехруз Рамазонович.jpg",
+      "statusTemp": true,
+      "text": ""
+    },
+    {
+      "id": "1720153394981",
+      "title": "V1",
+      "invitedToSubChatTabId": "1719805028274",
+      "subUserChatTabId": "1719805025474",
+      "status": false,
+      "login": "b.ramazonovich",
+      "userAuthId": "6",
+      "userChatId": "2",
+      "subTabConclusionListId": "1720153394541",
+      "image": "src/assets/Бехруз Рамазонович.jpg",
+      "statusTemp": true,
+      "text": ""
+    }
+  ],
+  "subTabConclusionListEdsTemp": [
+    {
+      "id": "1720153091406",
+      "subTabConclusionListId": "1720153084966",
+      "userAuthId": "6",
+      "comments": "",
+      "status": false,
+      "edsStatus": false,
+      "name": "Бехруз Рамазонович",
+      "role": "Начальник отдела разработки и внедрения ИС",
+      "image": "src/assets/Бехруз Рамазонович.jpg",
+      "subTabConclusionListTempId": "1720153088173"
+    },
+    {
+      "id": "1720153395453",
+      "subTabConclusionListId": "1720153394541",
+      "userAuthId": "6",
+      "comments": "",
+      "status": false,
+      "edsStatus": false,
+      "name": "Бехруз Рамазонович",
+      "role": "Начальник отдела разработки и внедрения ИС",
+      "image": "src/assets/Бехруз Рамазонович.jpg",
+      "subTabConclusionListTempId": "1720153394981"
+    }
+  ],
+  "liveChatMessages": [
+    {
+      "id": "1720153066662",
+      "name": "Бехруз Рамазонович",
+      "role": "Начальник отдела разработки и внедрения ИС",
+      "image": "src/assets/Бехруз Рамазонович.jpg",
+      "text": "Проверка",
+      "dateTime": "09:17",
+      "replyMessage": {}
+    },
+    {
+      "id": "1720153101337",
+      "subTabConclusionListId": "1720153084966",
+      "name": "Бехруз Рамазонович",
+      "role": "Начальник отдела разработки и внедрения ИС",
+      "image": "src/assets/Бехруз Рамазонович.jpg",
+      "text": "Проверка №2",
+      "userAuthId": "6",
+      "dateTime": "09:18",
+      "replyMessage": {}
+    },
+    {
+      "id": "1720153407141",
+      "subTabConclusionListId": "1720153394541",
+      "name": "Бехруз Рамазонович",
+      "role": "Начальник отдела разработки и внедрения ИС",
+      "image": "src/assets/Бехруз Рамазонович.jpg",
+      "text": "Проверка №3",
+      "userAuthId": "6",
+      "dateTime": "09:23",
+      "replyMessage": {}
+    }
+  ],
   "conclusionAttachment": []
 }

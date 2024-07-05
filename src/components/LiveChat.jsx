@@ -80,36 +80,40 @@ const LiveChat = ({ handleShowLiveChat, filteredConclusionListCurrent }) => {
           <main className="category-scrollbar border-y-[1px] h-full py-[15px] overflow-auto">
             {Array.isArray(liveChatMessages) &&
               liveChatMessages.map((e) => {
-                return (
-                  <li
-                    key={e.id}
-                    className="border-b-[1px] p-[10px] flex items-start justify-between"
-                  >
-                    <div className="wrapper">
-                      <div className="wrapper-user flex items-center gap-2 mb-[15px]">
-                        <IconButton sx={{ padding: "0px" }}>
-                          <Avatar src={e.image} />
-                        </IconButton>
-                        <div className="wrapper-text">
-                          <div className="name-time flex items-center gap-2">
-                            <p className="cursor-pointer font-[500] text-[14px]">
-                              {e.name}
-                            </p>
-                            <p className="text-[14px] text-[#7b7b7b]">
-                              {e.dateTime}
-                            </p>
+                if (
+                  filteredConclusionListCurrent[0]?.id ===
+                  e.subTabConclusionListId
+                )
+                  return (
+                    <li
+                      key={e.id}
+                      className="border-b-[1px] p-[10px] flex items-start justify-between"
+                    >
+                      <div className="wrapper">
+                        <div className="wrapper-user flex items-center gap-2 mb-[15px]">
+                          <IconButton sx={{ padding: "0px" }}>
+                            <Avatar src={e.image} />
+                          </IconButton>
+                          <div className="wrapper-text">
+                            <div className="name-time flex items-center gap-2">
+                              <p className="cursor-pointer font-[500] text-[14px]">
+                                {e.name}
+                              </p>
+                              <p className="text-[14px] text-[#7b7b7b]">
+                                {e.dateTime}
+                              </p>
+                            </div>
+                            <p className="text-[14px]">{e.text}</p>
                           </div>
-                          <p className="text-[14px]">{e.text}</p>
                         </div>
                       </div>
-                    </div>
-                    <div className="panel-control relative">
-                      <IconButton onClick={() => handleDeleteLiveChat(e)}>
-                        <MoreVertIcon />
-                      </IconButton>
-                    </div>
-                  </li>
-                );
+                      <div className="panel-control relative">
+                        <IconButton onClick={() => handleDeleteLiveChat(e)}>
+                          <MoreVertIcon />
+                        </IconButton>
+                      </div>
+                    </li>
+                  );
               })}
           </main>
           <footer className="flex justify-between w-full p-[15px]">
@@ -120,7 +124,10 @@ const LiveChat = ({ handleShowLiveChat, filteredConclusionListCurrent }) => {
               className="outline-none w-full"
               placeholder="Введите сообщение..."
             />
-            <IconButton onClick={() => handlePostLiveChat()}>
+            <IconButton
+              disabled={valueMessage.length === 0 ? true : false}
+              onClick={() => handlePostLiveChat()}
+            >
               <SendIcon
                 className={`${
                   valueMessage.length > 0 ? "text-[#007fd2]" : ""
