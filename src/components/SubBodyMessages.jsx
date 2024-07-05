@@ -7,11 +7,12 @@ import {
 import SubMessageText from "./SubMessageText";
 import { useSelector, useDispatch } from "react-redux";
 
-import { Avatar } from "@mui/material";
-
 import SubTabVisaUser from "./SubTabVisaUser";
 
+import ConclusionEnd from "./ConclusionEnd";
+
 const SubBodyMessages = () => {
+  const users = useSelector((store) => store.chat.users);
   const subChatById = useSelector((store) => store.chat.subChatById);
   const subMessages = useSelector((store) => store.chat.subMessages);
   const chatById = useSelector((store) => store.chat.chatById);
@@ -63,18 +64,38 @@ const SubBodyMessages = () => {
       );
     });
 
-
   const isActiveSubTabVisa =
     Array.isArray(subUserChatTabs) &&
     subUserChatTabs.some(
-      (e) => e.id === filteredSubTabVisaUser[filteredSubTabVisaUser.length - 1]?.subUserChatTabId
+      (e) =>
+        e.id ===
+        filteredSubTabVisaUser[filteredSubTabVisaUser.length - 1]
+          ?.subUserChatTabId
     );
 
+  const subTabConclusionList = useSelector(
+    (store) => store.chat.subTabConclusionList
+  );
 
-  // console.log(filteredSubTabVisaUser);
+  const subTabConclusionListTemp = useSelector(
+    (store) => store.chat.subTabConclusionListTemp
+  );
 
-  // console.log(subUserChatTabs);
-  // console.log(subTabVisaUsers);
+  const isActiveConclusionEnd =
+    subTabConclusionListTemp[subTabConclusionListTemp.length - 1]?.statusEnd;
+
+  const date =
+    subTabConclusionListTemp[subTabConclusionListTemp.length - 1]?.endTime;
+
+  const creatorEndingConclusion =
+    Array.isArray(subTabConclusionList) &&
+    subTabConclusionList.find((e) => e.status);
+
+  const userEndConclusion = users.find(
+    (e) => creatorEndingConclusion?.userAuthId === e.userAuthId
+  );
+
+  console.log(creatorEndingConclusion);
 
   useEffect(() => {
     Dispatch(getSubMessages());
@@ -99,6 +120,13 @@ const SubBodyMessages = () => {
           filteredSubMessagesByTabId.map((e) => {
             return <SubMessageText key={e.id} item={e} />;
           })}
+        {isActiveConclusionEnd && (
+          <ConclusionEnd
+            user={userEndConclusion}
+            creatorEndingConclusion={creatorEndingConclusion}
+            date={date}
+          />
+        )}
       </ul>
     </main>
   );

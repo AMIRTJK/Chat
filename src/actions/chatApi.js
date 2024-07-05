@@ -1363,6 +1363,32 @@ export const putSubTabConclusionListTempStatus = createAsyncThunk(
   }
 );
 
+// ДОДЕЛАТЬ завершение заключение
+
+export const putSubTabConclusionListTempStatusEnd = createAsyncThunk(
+  "putSubTabConclusionListTempStatusEnd",
+  async (newObj, { dispatch, rejectWithValue }) => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_SUB_TAB_CONCLUSION_LIST_TEMP}/${newObj.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newObj),
+        }
+      );
+      const data = await response.json();
+      dispatch(getSubTabConclusionListTemp());
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
 export const getSubTabConclusionListEdsTemp = createAsyncThunk(
   "getSubTabConclusionListEdsTemp",
   async (_, { rejectWithValue }) => {

@@ -125,6 +125,7 @@ const SetNameConclusion = ({
       title: "V1",
       image: filteredCurrentMember[0]?.image,
       statusTemp: true,
+      statusEnd: false,
       text: "",
       id: Date.now().toString(),
     };

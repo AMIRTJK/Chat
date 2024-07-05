@@ -23,6 +23,8 @@ import "react-quill/dist/quill.snow.css";
 
 import DocumentPdf from "./DocumentPdf";
 
+import { actions } from "../slices/chat-slice";
+
 import {
   getSubTabConclusionList,
   putSubTabConclusionList,
@@ -39,10 +41,13 @@ import {
   getSubTabConclusionListTempAttachment,
   postSubTabConclusionListTempAttachment,
   putSubTabConclusionListTempAttachment,
+  putSubTabConclusionListTempStatusEnd,
 } from "../actions/chatApi";
 
 const Conclusion = ({ handleModalConclusion }) => {
   const Dispatch = useDispatch();
+
+  const { showEndConclusion } = actions;
 
   const subUserChatTabsById = useSelector(
     (store) => store.chat.subUserChatTabsById
@@ -312,6 +317,21 @@ const Conclusion = ({ handleModalConclusion }) => {
   const isDisabled =
     isDisabledIfNotEds || (!isDisabledIfNotInvite && !isCreator);
 
+  const filteredAllListTemp =
+    Array.isArray(subTabConclusionListEdsTemp) &&
+    subTabConclusionListEdsTemp.filter(
+      (e) => e.subTabConclusionListTempId === filteredConclusionListTemp[0]?.id
+    );
+
+  const isDisabledEnd =
+    Array.isArray(filteredAllListTemp) &&
+    filteredAllListTemp.every((e) => e.edsStatus === true);
+
+  const buttonEndIsDisabled =
+    subTabConclusionListTemp[subTabConclusionListTemp.length - 1]?.statusEnd;
+
+  console.log(isDisabledEnd);
+
   const [showLiveChat, setShowLiveChat] = useState(false);
 
   const handleShowLiveChat = (state) => {
@@ -401,6 +421,7 @@ const Conclusion = ({ handleModalConclusion }) => {
         e.subTabConclusionListTempId === filteredConclusionListTemp[0]?.id
     );
 
+  // Disabled для кнопки "Новый" на данный момент нужно чтобы она всегда была active
   const isActiveButtonIfInvite =
     Array.isArray(subTabConclusionListEdsTemp) &&
     subTabConclusionListEdsTemp.some(
@@ -408,6 +429,30 @@ const Conclusion = ({ handleModalConclusion }) => {
         e.subTabConclusionListTempId === filteredConclusionListTemp[0]?.id &&
         e.userAuthId === accessLogin.id
     );
+
+  const handleShowEndConclusion = () => {
+    const date = new Date();
+
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // Добавляем 1, так как getMonth() возвращает месяцы с 0 по 11
+    const year = date.getFullYear();
+
+    Dispatch(
+      putSubTabConclusionListTempStatusEnd({
+        ...subTabConclusionListTemp[subTabConclusionListTemp.length - 1],
+        statusEnd: true,
+        endTime: `${day}.${month}.${year}`,
+      })
+
+      // const [year, month, day] = dateTerm.split("-");
+
+      // const newObj = {
+      //   ...visaUsers[visaUsers.length - 1],
+      //   term: `${day}.${month}.${year}`,
+      // };
+      // console.log(newObj);
+    );
+  };
 
   useEffect(() => {
     handleDisabledChange();
@@ -816,6 +861,14 @@ const Conclusion = ({ handleModalConclusion }) => {
                 onClick={() => setEditConclusion(true)}
               >
                 Изменить
+              </Button>
+              <Button
+                onClick={() => handleShowEndConclusion()}
+                disabled={!isDisabledEnd || buttonEndIsDisabled}
+                variant="outlined"
+                sx={{ textTransform: "none" }}
+              >
+                Завершить
               </Button>
               <Button
                 onClick={() => setShowLiveChat(!showLiveChat)}
