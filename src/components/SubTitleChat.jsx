@@ -114,8 +114,10 @@ const SubTitleChat = () => {
     Array.isArray(subUserChatTabs) &&
     subUserChatTabs.filter(
       (subTab) =>
-        accessLogin.id === subTab.userAuthId &&
-        chatById[0]?.id === subTab.userChatId
+        (accessLogin.id === subTab.userAuthId &&
+          chatById[0]?.id === subTab.userChatId) ||
+        (chatById[0]?.id === subTab.userChatId &&
+          accessLogin.id === subTab.userChatId)
     );
 
   const subChatMemberIsActive =

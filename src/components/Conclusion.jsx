@@ -161,6 +161,7 @@ const Conclusion = ({ handleModalConclusion }) => {
       })
     );
     setEditConclusion(false);
+    buttonEndIsDisabled && handleModalConclusion(false);
   };
 
   const [showConclusionEdsUsers, setShowConclusionEdsUsers] = useState(false);
@@ -253,7 +254,7 @@ const Conclusion = ({ handleModalConclusion }) => {
       subTabConclusionListEdsTemp.forEach((e) => {
         copyEds = {
           ...e,
-          id: Date.now().toString(),
+          id: uuidv4(),
           comments: "",
           edsStatus: false,
           subTabConclusionListTempId:
@@ -330,8 +331,6 @@ const Conclusion = ({ handleModalConclusion }) => {
   const buttonEndIsDisabled =
     subTabConclusionListTemp[subTabConclusionListTemp.length - 1]?.statusEnd;
 
-  console.log(isDisabledEnd);
-
   const [showLiveChat, setShowLiveChat] = useState(false);
 
   const handleShowLiveChat = (state) => {
@@ -376,7 +375,7 @@ const Conclusion = ({ handleModalConclusion }) => {
       name: filteredCurrentMember[0]?.name,
       role: filteredCurrentMember[0]?.role,
       image: filteredCurrentMember[0]?.image,
-      userAuthId: filteredConclusionListTemp[0]?.userAuthId,
+      userAuthId: accessLogin.id,
       status: conclusionAttachment.length === 0 ? true : false,
     };
 
@@ -453,6 +452,21 @@ const Conclusion = ({ handleModalConclusion }) => {
       // console.log(newObj);
     );
   };
+
+  // Убираем дублирующие подписи
+  const currentSubTabConclusionListEdsTemp =
+    Array.isArray(subTabConclusionListEdsTemp) &&
+    subTabConclusionListEdsTemp.filter(
+      (e, index, self) =>
+        index ===
+        self.findIndex(
+          (t) =>
+            t.subTabConclusionListTempId === e.subTabConclusionListTempId &&
+            t.userAuthId === e.userAuthId
+        )
+    );
+
+  console.log(currentSubTabConclusionListEdsTemp);
 
   useEffect(() => {
     handleDisabledChange();
@@ -761,9 +775,8 @@ const Conclusion = ({ handleModalConclusion }) => {
             {/* Подпись ======= */}
             <aside className="right aside-left-conclusion h-full min-w-[180px] relative  flex flex-col items-center gap-5 py-[20px]">
               <p className="text-[14px] text-[#939393] font-[500]">Подписи</p>
-
-              {Array.isArray(subTabConclusionListEdsTemp) &&
-                subTabConclusionListEdsTemp.map((e) => {
+              {Array.isArray(currentSubTabConclusionListEdsTemp) &&
+                currentSubTabConclusionListEdsTemp.map((e) => {
                   // Раньше вместо e.subTabConclusionListId было subTabConclusionListTempId
                   if (
                     filteredConclusionListTemp[0]?.id ===
@@ -864,7 +877,11 @@ const Conclusion = ({ handleModalConclusion }) => {
               </Button>
               <Button
                 onClick={() => handleShowEndConclusion()}
-                disabled={!isDisabledEnd || buttonEndIsDisabled}
+                disabled={
+                  filteredAllListTemp.length === 0
+                    ? true
+                    : !isDisabledEnd || buttonEndIsDisabled
+                }
                 variant="outlined"
                 sx={{ textTransform: "none" }}
               >

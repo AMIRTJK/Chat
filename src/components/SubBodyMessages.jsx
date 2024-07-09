@@ -81,8 +81,20 @@ const SubBodyMessages = () => {
     (store) => store.chat.subTabConclusionListTemp
   );
 
+  const currentSubUserChatTabs =
+    Array.isArray(subUserChatTabs) &&
+    subUserChatTabs.find((e) => e.status === true);
+
+  // Чуть позже необходимо использовать, если участник находится в чате Исполнители то он должен видеть заключение
+  const isActiveSubUserChatTabs =
+    Array.isArray(subUserChatTabs) &&
+    subUserChatTabs.every((e) => e.status === false);
+
   const isActiveConclusionEnd =
-    subTabConclusionListTemp[subTabConclusionListTemp.length - 1]?.statusEnd;
+    subTabConclusionListTemp[subTabConclusionListTemp.length - 1]?.statusEnd &&
+    currentSubUserChatTabs?.id ===
+      subTabConclusionListTemp[subTabConclusionListTemp.length - 1]
+        ?.subUserChatTabId;
 
   const date =
     subTabConclusionListTemp[subTabConclusionListTemp.length - 1]?.endTime;
@@ -94,8 +106,6 @@ const SubBodyMessages = () => {
   const userEndConclusion = users.find(
     (e) => creatorEndingConclusion?.userAuthId === e.userAuthId
   );
-
-  console.log(creatorEndingConclusion);
 
   useEffect(() => {
     Dispatch(getSubMessages());

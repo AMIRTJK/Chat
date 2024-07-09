@@ -239,7 +239,7 @@
       "name": "Сарвар Собирович",
       "image": "https://i.ibb.co/zRQyxxP/image.jpg",
       "role": "Заместитель Министра Финансов",
-      "status": true
+      "status": false
     }
   ],
   "showUserChat": [
@@ -363,7 +363,21 @@
       "visaUserId": "2"
     }
   ],
-  "subMessages": [],
+  "subMessages": [
+    {
+      "id": "1720497045934",
+      "subUserChatId": "1719748218901",
+      "name": "Акрамшох Рамазонович",
+      "role": "Директор ГУП «ЦФИТ»",
+      "image": "https://i.ibb.co/Kb1V9nM/583-IMG-6443-47034.png",
+      "text": "Оид мактуб хулоса коркард карда шавад",
+      "userAuthId": "4",
+      "userChatId": "2",
+      "subUserTabId": true,
+      "dateTime": "08:50",
+      "replyMessage": {}
+    }
+  ],
   "subUserChatTabs": [
     {
       "id": "1719805025474",
@@ -372,6 +386,14 @@
       "userChatId": "2",
       "name": "КВД",
       "status": true
+    },
+    {
+      "id": "1720495732279",
+      "subUserChatId": "1719748220885",
+      "userAuthId": "5",
+      "userChatId": "2",
+      "name": "Вкладка Зафара Исмоила",
+      "status": false
     }
   ],
   "invitedToSubChatTabs": [
@@ -406,6 +428,17 @@
       "status": false,
       "login": "a.mahmadalievna",
       "userAuthId": "10",
+      "userChatId": "2"
+    },
+    {
+      "id": "1720495735326",
+      "subUserChatTabId": "1720495732279",
+      "name": "Абдуҷаббори Зарифӣ",
+      "role": "Главный специалист",
+      "image": "src/assets/Абдуҷаббори Зарифӣ.jpg",
+      "status": true,
+      "login": "a.zarifi",
+      "userAuthId": "9",
       "userChatId": "2"
     }
   ],
@@ -444,6 +477,16 @@
       "status": "",
       "eds": "",
       "createdAt": "01-07-2024"
+    },
+    {
+      "id": "1720495735327",
+      "subUserChatTabId": "1720495732279",
+      "userAuthId": "5",
+      "userChatId": "2",
+      "term": "2024-07-12",
+      "status": "",
+      "eds": "",
+      "createdAt": "09-07-2024"
     }
   ],
   "subTabVisaMessages": [
@@ -452,6 +495,12 @@
       "name": "Барои барраси ва пешниходи маълумоти мавриди назар",
       "status": false,
       "subVisaUserId": "1719805028858"
+    },
+    {
+      "id": "1",
+      "name": "Барои барраси ва пешниходи маълумоти мавриди назар",
+      "status": false,
+      "subVisaUserId": "1720495735327"
     }
   ],
   "subTabConclusionList": [],
