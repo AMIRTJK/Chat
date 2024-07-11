@@ -166,7 +166,7 @@ const VisaModal = ({ handleShowVisa }) => {
               },
             }}
           >
-            Добавить
+            Сохранить
           </Button>
         </footer>
       </div>
