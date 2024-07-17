@@ -372,19 +372,6 @@
   ],
   "subMessages": [
     {
-      "id": "1720672018490",
-      "subUserChatId": "1720603469640",
-      "name": "Акрамшох Рамазонович",
-      "role": "Директор ГУП «ЦФИТ»",
-      "image": "https://i.ibb.co/Kb1V9nM/583-IMG-6443-47034.png",
-      "text": "Уважаемый Зафар Исмоил,  как только наше заключение будет готово, предоставим его для общей обработки.",
-      "userAuthId": "4",
-      "userChatId": "3",
-      "subUserTabId": true,
-      "dateTime": "09:26",
-      "replyMessage": {}
-    },
-    {
       "id": "1720672213968",
       "subUserChatId": "1720603470207",
       "name": "Зафар Исмоил",
@@ -393,8 +380,47 @@
       "text": "Уважаемый Акрамшох Рамазонович, благодарю за информацию. Как только обе заключение будут готовы, приступить к общей обработке.",
       "userAuthId": "5",
       "userChatId": "3",
-      "subUserTabId": true,
+      "subUserTabId": false,
       "dateTime": "09:30",
+      "replyMessage": {}
+    },
+    {
+      "id": "1721022161025",
+      "subUserChatId": "1720603469640",
+      "name": "Акрамшох Рамазонович",
+      "role": "Директор ГУП «ЦФИТ»",
+      "image": "https://i.ibb.co/Kb1V9nM/583-IMG-6443-47034.png",
+      "text": "Заключение №1",
+      "userAuthId": "4",
+      "userChatId": "3",
+      "subUserTabId": false,
+      "dateTime": "10:42",
+      "replyMessage": {}
+    },
+    {
+      "id": "1721022221537",
+      "subUserChatId": "1720603470207",
+      "name": "Зафар Исмоил",
+      "role": "Начальник управления государственного бюджета",
+      "image": "https://i.ibb.co/3Mctzwb/image.png",
+      "text": "Заключение №2",
+      "userAuthId": "5",
+      "userChatId": "3",
+      "subUserTabId": false,
+      "dateTime": "10:43",
+      "replyMessage": {}
+    },
+    {
+      "id": "1721022796575",
+      "subUserChatId": "1720603469640",
+      "name": "Акрамшох Рамазонович",
+      "role": "Директор ГУП «ЦФИТ»",
+      "image": "https://i.ibb.co/Kb1V9nM/583-IMG-6443-47034.png",
+      "text": "Заключение для первого заместителя министра финансов.",
+      "userAuthId": "4",
+      "userChatId": "3",
+      "subUserTabId": false,
+      "dateTime": "10:53",
       "replyMessage": {}
     }
   ],
@@ -405,7 +431,7 @@
       "userAuthId": "4",
       "userChatId": "3",
       "name": "ГУП «ЦФИТ»",
-      "status": true
+      "status": false
     }
   ],
   "invitedToSubChatTabs": [
@@ -477,10 +503,104 @@
       "subVisaUserId": "1720673475317"
     }
   ],
-  "subTabConclusionList": [],
+  "subTabConclusionList": [
+    {
+      "id": "1720762861394",
+      "title": "Заключение №1",
+      "invitedToSubChatTabId": "1720673474172",
+      "subUserChatTabId": "1720673470631",
+      "status": true,
+      "login": "b.ramazonovich",
+      "userAuthId": "6",
+      "userChatId": "3"
+    }
+  ],
   "subTabConclusionListEds": [],
-  "subTabConclusionListTemp": [],
-  "subTabConclusionListEdsTemp": [],
-  "liveChatMessages": [],
-  "conclusionAttachment": []
+  "subTabConclusionListTemp": [
+    {
+      "id": "1720762861985",
+      "title": "V1",
+      "invitedToSubChatTabId": "1720673474172",
+      "subUserChatTabId": "1720673470631",
+      "status": false,
+      "login": "b.ramazonovich",
+      "userAuthId": "6",
+      "userChatId": "3",
+      "subTabConclusionListId": "1720762861394",
+      "image": "src/assets/Бехруз Рамазонович.jpg",
+      "statusTemp": true,
+      "statusEnd": true,
+      "text": "",
+      "endTime": "15.07.2024"
+    }
+  ],
+  "subTabConclusionListEdsTemp": [
+    {
+      "id": "1720762862505",
+      "subTabConclusionListId": "1720762861394",
+      "userAuthId": "6",
+      "comments": "Без комментариев",
+      "status": false,
+      "edsStatus": true,
+      "name": "Бехруз Рамазонович",
+      "role": "Начальник отдела разработки и внедрения ИС",
+      "image": "src/assets/Бехруз Рамазонович.jpg",
+      "subTabConclusionListTempId": "1720762861985"
+    },
+    {
+      "id": "1721015942358",
+      "subTabConclusionListId": "1720762861394",
+      "userAuthId": "7",
+      "comments": "123",
+      "status": false,
+      "edsStatus": true,
+      "name": "Махмуд Абдурахмонович",
+      "role": "Начальник отдела по работе с клиентами",
+      "image": "src/assets/Махмуд Абдурахмонович.jpg",
+      "subTabConclusionListTempId": "1720762861985"
+    }
+  ],
+  "liveChatMessages": [
+    {
+      "id": "1721019298018",
+      "subTabConclusionListId": "1720762861394",
+      "name": "Бехруз Рамазонович",
+      "role": "Начальник отдела разработки и внедрения ИС",
+      "image": "src/assets/Бехруз Рамазонович.jpg",
+      "text": "Салом",
+      "userAuthId": "6",
+      "dateTime": "09:54",
+      "replyMessage": {}
+    }
+  ],
+  "conclusionAttachment": [
+    {
+      "id": "1721019305979",
+      "subTabConclusionListId": "1720762861394",
+      "subTabConclusionListTempId": "1720762861985",
+      "fileName": "Нақшаи чорабинӣ (ру).pdf",
+      "fileUrl": "Нақшаи чорабинӣ (ру).pdf",
+      "fileType": "pdf",
+      "fileDate": "15.07.2024",
+      "name": "Бехруз Рамазонович",
+      "role": "Начальник отдела разработки и внедрения ИС",
+      "image": "src/assets/Бехруз Рамазонович.jpg",
+      "userAuthId": "6",
+      "status": false
+    },
+    {
+      "id": "1721019336946",
+      "subTabConclusionListId": "1720762861394",
+      "subTabConclusionListTempId": "1720762861985",
+      "fileName": "Маълумот оид ба надоштани доги суди.pdf",
+      "fileUrl": "Маълумот оид ба надоштани доги суди.pdf",
+      "fileType": "pdf",
+      "fileDate": "15.07.2024",
+      "name": "Бехруз Рамазонович",
+      "role": "Начальник отдела разработки и внедрения ИС",
+      "image": "src/assets/Бехруз Рамазонович.jpg",
+      "userAuthId": "6",
+      "status": true
+    }
+  ]
 }

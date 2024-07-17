@@ -125,7 +125,7 @@ const VisaModalExecutors = () => {
               }
               value={ownVisaValue}
               type="text"
-              placeholder="Собственная виза"
+              placeholder="Комментарии"
               className="bg-[transparent] text-[#fff] border-[1px] border-[#fff] outline-none p-[5.7px] w-full rounded-[5px] placeholder:text-[#fff] placeholder:font-light"
             />
           )}

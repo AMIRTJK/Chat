@@ -68,7 +68,7 @@ const SubMessageText = ({ item }) => {
               <p className="cursor-pointer font-[500]">{item.name}</p>
               <p className="text-[14px] text-[#7b7b7b]">{item.dateTime}</p>
             </div>
-            <p>{item.text}</p>
+            <p className="flex flex-wrap w-[90%]">{item.text}</p>
           </div>
         </div>
         <div className="wrapper-panel ml-[50px] flex gap-5 items-center">
