@@ -16,7 +16,7 @@ const MemoVisa = ({
 
   const fullName = item && item[0]?.name.split(" ");
 
-  const emblem = "https://i.ibb.co/xCjbnnw/emblem.png";
+  const emblem = "src/assets/emblem.png";
 
   const termDateObj = termDate[termDate.length - 1];
   const visaStatusTempObj = visaStatusTemp[visaStatusTemp.length - 1];

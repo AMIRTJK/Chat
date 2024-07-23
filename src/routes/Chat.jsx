@@ -107,7 +107,7 @@ const Chat = () => {
     event.stopPropagation();
   };
 
-  const docNo1Img = "https://i.ibb.co/L1Bj3fb/Document-1.png";
+  const docNo1Img = "src/assets/Document№1.png";
 
   const renderRoleUsers = () => {
     if (accessLogin.login === "f.kahhorzoda") {
@@ -339,20 +339,6 @@ const Chat = () => {
                 </Swiper>
               </div>
             </div>
-            // <div
-            //   onClick={(event) => handleShowDocPdf(false, event)}
-            //   className="wrapper-pdf fixed top-0 left-0 w-full h-full z-10 bg-[#00000020]"
-            // >
-            //   <div
-            //     onClick={(event) => handlePropagation(event)}
-            //     className="pdf w-[30%] absolute translate-x-[-50%] translate-y-[-50%] top-1/2 left-1/2 shadow-lg border-[1px] rounded-lg"
-            //   >
-            //     <DocumentPdf
-            //       url="src/assets/811_ВИ_541 Кумитаи давла_931217.pdf"
-            //       height="h-[70vh]"
-            //     />
-            //   </div>
-            // </div>
           )}
         </aside>
         <aside className="right w-[80%]">

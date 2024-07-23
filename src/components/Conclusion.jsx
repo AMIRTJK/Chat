@@ -16,6 +16,8 @@ import NotesIcon from "@mui/icons-material/Notes";
 
 import LiveChat from "./LiveChat";
 
+import VideocamIcon from "@mui/icons-material/Videocam";
+
 import { useSelector, useDispatch } from "react-redux";
 
 import ReactQuill from "react-quill";
@@ -893,6 +895,10 @@ const Conclusion = ({ handleModalConclusion }) => {
               >
                 <EmailIcon />
                 <p>Live Chat</p>
+              </Button>
+              <Button className="flex gap-2">
+                <VideocamIcon />
+                <p>Video Chat</p>
               </Button>
               <Button
                 type="submit"

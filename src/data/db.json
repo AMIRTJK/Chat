@@ -93,7 +93,7 @@
       "id": "1",
       "name": "Файзиддин Саттор",
       "role": "Министр Финансов",
-      "image": "https://i.ibb.co/HqvF08R/image.jpg",
+      "image": "src/assets/КАХХОРЗОДА ФАЙЗИДДИН САТТОР.jpg",
       "status": false,
       "userAuthId": "1",
       "login": "f.kahhorzoda"
@@ -102,7 +102,7 @@
       "id": "2",
       "name": "Сарвар Собирович",
       "role": "Заместитель Министра Финансов",
-      "image": "https://i.ibb.co/zRQyxxP/image.jpg",
+      "image": "src/assets/Курбониён Сарвар.jpg",
       "status": false,
       "userAuthId": "2",
       "login": "s.sobir"
@@ -111,7 +111,7 @@
       "id": "3",
       "name": "Юсуф Хайрулло",
       "role": "Первый Заместитель Министра Финансов",
-      "image": "https://i.ibb.co/fvwb1qX/image.jpg",
+      "image": "src/assets/Мачиди Юсуф.jpg",
       "status": false,
       "userAuthId": "3",
       "login": "y.khayrullo"
@@ -120,7 +120,7 @@
       "id": "4",
       "name": "Акрамшох Рамазонович",
       "role": "Директор ГУП «ЦФИТ»",
-      "image": "https://i.ibb.co/Kb1V9nM/583-IMG-6443-47034.png",
+      "image": "src/assets/Акрамшох Рамазонович.png",
       "status": false,
       "userAuthId": "4",
       "login": "a.ramazonovich"
@@ -129,7 +129,7 @@
       "id": "5",
       "name": "Зафар Исмоил",
       "role": "Начальник управления государственного бюджета",
-      "image": "https://i.ibb.co/3Mctzwb/image.png",
+      "image": "src/assets/Зафар Исмоил.png",
       "status": false,
       "userAuthId": "5",
       "login": "z.ismoil"
@@ -237,14 +237,14 @@
     {
       "id": "3",
       "name": "Юсуф Хайрулло",
-      "image": "https://i.ibb.co/fvwb1qX/image.jpg",
+      "image": "src/assets/Мачиди Юсуф.jpg",
       "role": "Первый Заместитель Министра Финансов",
       "status": true
     },
     {
       "id": "2",
       "name": "Сарвар Собирович",
-      "image": "https://i.ibb.co/zRQyxxP/image.jpg",
+      "image": "src/assets/Курбониён Сарвар.jpg",
       "role": "Заместитель Министра Финансов",
       "status": false
     }
@@ -334,7 +334,7 @@
       "id": "1720603469640",
       "name": "Акрамшох Рамазонович",
       "role": "Директор ГУП «ЦФИТ»",
-      "image": "https://i.ibb.co/Kb1V9nM/583-IMG-6443-47034.png",
+      "image": "src/assets/Акрамшох Рамазонович.png",
       "status": false,
       "login": "a.ramazonovich",
       "userAuthId": "4",
@@ -344,7 +344,7 @@
       "id": "1720603470207",
       "name": "Зафар Исмоил",
       "role": "Начальник управления государственного бюджета",
-      "image": "https://i.ibb.co/3Mctzwb/image.png",
+      "image": "src/assets/Зафар Исмоил.png",
       "status": false,
       "login": "z.ismoil",
       "userAuthId": "5",
@@ -376,11 +376,11 @@
       "subUserChatId": "1720603470207",
       "name": "Зафар Исмоил",
       "role": "Начальник управления государственного бюджета",
-      "image": "https://i.ibb.co/3Mctzwb/image.png",
+      "image": "src/assets/Зафар Исмоил.png",
       "text": "Уважаемый Акрамшох Рамазонович, благодарю за информацию. Как только обе заключение будут готовы, приступить к общей обработке.",
       "userAuthId": "5",
       "userChatId": "3",
-      "subUserTabId": false,
+      "subUserTabId": true,
       "dateTime": "09:30",
       "replyMessage": {}
     },
@@ -389,11 +389,11 @@
       "subUserChatId": "1720603469640",
       "name": "Акрамшох Рамазонович",
       "role": "Директор ГУП «ЦФИТ»",
-      "image": "https://i.ibb.co/Kb1V9nM/583-IMG-6443-47034.png",
+      "image": "src/assets/Акрамшох Рамазонович.png",
       "text": "Заключение №1",
       "userAuthId": "4",
       "userChatId": "3",
-      "subUserTabId": false,
+      "subUserTabId": true,
       "dateTime": "10:42",
       "replyMessage": {}
     },
@@ -402,11 +402,11 @@
       "subUserChatId": "1720603470207",
       "name": "Зафар Исмоил",
       "role": "Начальник управления государственного бюджета",
-      "image": "https://i.ibb.co/3Mctzwb/image.png",
+      "image": "src/assets/Зафар Исмоил.png",
       "text": "Заключение №2",
       "userAuthId": "5",
       "userChatId": "3",
-      "subUserTabId": false,
+      "subUserTabId": true,
       "dateTime": "10:43",
       "replyMessage": {}
     },
@@ -415,11 +415,11 @@
       "subUserChatId": "1720603469640",
       "name": "Акрамшох Рамазонович",
       "role": "Директор ГУП «ЦФИТ»",
-      "image": "https://i.ibb.co/Kb1V9nM/583-IMG-6443-47034.png",
+      "image": "src/assets/Акрамшох Рамазонович.png",
       "text": "Заключение для первого заместителя министра финансов.",
       "userAuthId": "4",
       "userChatId": "3",
-      "subUserTabId": false,
+      "subUserTabId": true,
       "dateTime": "10:53",
       "replyMessage": {}
     }
@@ -431,7 +431,7 @@
       "userAuthId": "4",
       "userChatId": "3",
       "name": "ГУП «ЦФИТ»",
-      "status": false
+      "status": true
     }
   ],
   "invitedToSubChatTabs": [
@@ -464,7 +464,7 @@
       "subUserChatId": "1720603469640",
       "name": "Акрамшох Рамазонович",
       "role": "Директор ГУП «ЦФИТ»",
-      "image": "https://i.ibb.co/Kb1V9nM/583-IMG-6443-47034.png",
+      "image": "src/assets/Акрамшох Рамазонович.png",
       "text": "Бехруз Рамазонович, прошу предоставить заключение по предоставленному письму. ",
       "userAuthId": "4",
       "userChatId": "3",
