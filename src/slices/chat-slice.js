@@ -95,7 +95,7 @@ const initialState = {
   signPassword: "",
   signNumber: "",
   usersAuth: [],
-  regLog: false,
+  regLog: true,
   renderOfRole: false,
   showReply: false,
   getReplyMessage: null,
