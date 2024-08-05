@@ -1580,3 +1580,19 @@ export const putSubTabConclusionListTempAttachment = createAsyncThunk(
     }
   }
 );
+
+export const deleteAllData = createAsyncThunk(
+  "refreshAllData",
+  async ({ api, id }, { rejectWithValue }) => {
+    try {
+      const response = await fetch(`${api}/${id}`, {
+        method: "DELETE",
+      });
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);

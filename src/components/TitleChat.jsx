@@ -1,16 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { Avatar, IconButton, Button } from "@mui/material";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
-import { getChatById, getUserChatsExecutor } from "../actions/chatApi";
-import { useSelector, useDispatch } from "react-redux";
-import { actions } from "../slices/chat-slice";
-import SubChat from "./SubChat";
+import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
-import MemoVisaExecutors from "./MemoVisaExecutors";
-import SubVisa from "./SubVisa";
-
+import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+import {
+  getChatById,
+  getUserChatsExecutor,
+  getSubTabConclusionList,
+  getSubTabConclusionListTemp,
+  getSubTabConclusionListEdsTemp,
+  getSubTabConclusionListLiveChat,
+  getSubTabConclusionListTempAttachment,
+  deleteAllData,
+} from "../actions/chatApi";
+import { actions } from "../slices/chat-slice";
+import MemoVisaExecutors from "./MemoVisaExecutors";
+import SubChat from "./SubChat";
+import SubVisa from "./SubVisa";
+
+import RefreshAllData from "./RefreshAllData";
 
 const TitleChat = () => {
   const dispatch = useDispatch();
@@ -21,7 +33,6 @@ const TitleChat = () => {
   const visaUsers = useSelector((store) => store.chat.visaUsers);
 
   const accessLogin = JSON.parse(localStorage.getItem("accessLogin"));
-
   const { setShowVisaPopUp } = actions;
 
   const emblem = "https://i.ibb.co/xCjbnnw/emblem.png";
@@ -48,13 +59,6 @@ const TitleChat = () => {
   };
 
   const toggleDrawer = (open) => () => {
-    // Алгоритм для того чтобы тот кто создал подчат и пользователи подчата моги открыть этот чат
-    // const isActiveToCreatorsSubChat = subUserChats.some(
-    //   (e) =>
-    //     (e.userAuthId === accessLogin.id && e.userChatId === chatById[0]?.id) ||
-    //     (e.userChatId === accessLogin.id && e.userChatId === chatById[0]?.id)
-    // );
-
     if (subUserChats.length < 1) {
       notify();
     } else {
@@ -71,15 +75,124 @@ const TitleChat = () => {
   useEffect(() => {
     dispatch(getChatById());
     dispatch(getUserChatsExecutor());
+    dispatch(getSubTabConclusionList());
+    dispatch(getSubTabConclusionListTemp());
+    dispatch(getSubTabConclusionListEdsTemp());
+    dispatch(getSubTabConclusionListLiveChat());
+    dispatch(getSubTabConclusionListTempAttachment());
   }, [dispatch]);
 
   useEffect(() => {
     window.addEventListener("click", handleCloseVisaPopUp);
-
     return () => {
       window.removeEventListener("click", handleCloseVisaPopUp);
     };
   }, []);
+
+  // Refresh All Data from JSON
+  const visaListTemp = useSelector((store) => store.chat.visaListTemp);
+  const termDate = useSelector((store) => store.chat.termDate);
+  const visaStatusTemp = useSelector((store) => store.chat.visaStatusTemp);
+  const userStructure = useSelector((store) => store.chat.userStructure);
+  const showUserChat = useSelector((store) => store.chat.showUserChat);
+  const messageById = useSelector((store) => store.chat.messageById);
+  const userStructureExecutor = useSelector(
+    (store) => store.chat.userStructureExecutor
+  );
+  const visaMessage = useSelector((store) => store.chat.visaMessage);
+  const subMessages = useSelector((store) => store.chat.subMessages);
+  const subUserChatTabs = useSelector((store) => store.chat.subUserChatTabs);
+  const invitedToSubChatTabs = useSelector(
+    (store) => store.chat.invitedToSubChatTabs
+  );
+  const subTabMessages = useSelector((store) => store.chat.subTabMessages);
+  const subTabVisaUsers = useSelector((store) => store.chat.subTabVisaUsers);
+  const subTabVisaMessages = useSelector(
+    (store) => store.chat.subTabVisaMessages
+  );
+  const subTabConclusionList = useSelector(
+    (store) => store.chat.subTabConclusionList
+  );
+  const subTabConclusionListTemp = useSelector(
+    (store) => store.chat.subTabConclusionListTemp
+  );
+  const subTabConclusionListEdsTemp = useSelector(
+    (store) => store.chat.subTabConclusionListEdsTemp
+  );
+  const liveChatMessages = useSelector((store) => store.chat.liveChatMessages);
+  const conclusionAttachment = useSelector(
+    (store) => store.chat.conclusionAttachment
+  );
+
+  const dataList = [
+    userChats,
+    visaListTemp,
+    termDate,
+    visaStatusTemp,
+    userStructure,
+    showUserChat,
+    messageById,
+    userStructureExecutor,
+    subUserChats,
+    visaUsers,
+    visaMessage,
+    subMessages,
+    subUserChatTabs,
+    invitedToSubChatTabs,
+    subTabMessages,
+    subTabVisaUsers,
+    subTabVisaMessages,
+    subTabConclusionList,
+    subTabConclusionListTemp,
+    subTabConclusionListEdsTemp,
+    liveChatMessages,
+    conclusionAttachment,
+  ];
+
+  const apiList = [
+    import.meta.env.VITE_API_USERS_CHATS,
+    import.meta.env.VITE_API_VISA_LIST_TEMP,
+    import.meta.env.VITE_API_TERM_DATE,
+    import.meta.env.VITE_API_VISA_STATUS_TEMP,
+    import.meta.env.VITE_API_USERS_STRUCTURE,
+    import.meta.env.VITE_API_SHOW_USER_CHAT,
+    import.meta.env.VITE_API_MESSAGES,
+    import.meta.env.VITE_API_USERS_STRUCTURE_EXECUTOR,
+    import.meta.env.VITE_API_USERS_CHAT_EXECUTOR,
+    import.meta.env.VITE_API_VISA_USERS,
+    import.meta.env.VITE_API_VISA_MESSAGE,
+    import.meta.env.VITE_API_SUB_MESSAGES,
+    import.meta.env.VITE_API_SUB_USER_CHAT_TABS,
+    import.meta.env.VITE_API_INVITED_TO_SUB_CHAT_TABS,
+    import.meta.env.VITE_API_SUB_TAB_MESSAGES,
+    import.meta.env.VITE_API_SUB_TAB_VISA_USERS,
+    import.meta.env.VITE_API_SUB_TAB_VISA_MESSAGES,
+    import.meta.env.VITE_API_SUB_TAB_CONCLUSION_LIST,
+    import.meta.env.VITE_API_SUB_TAB_CONCLUSION_LIST_TEMP,
+    import.meta.env.VITE_API_SUB_TAB_CONCLUSION_LIST_EDS_TEMP,
+    import.meta.env.VITE_API_SUB_TAB_CONCLUSION_LIST_LIVE_CHAT,
+    import.meta.env.VITE_API_SUB_TAB_CONCLUSION_LIST_TEMP_ATTACHMENT,
+  ];
+
+  const [showRefreshModal, setShowRefreshModal] = useState();
+
+  const handleShowRefreshModal = (state) => {
+    setShowRefreshModal(state);
+  };
+
+  const refreshAllData = async () => {
+    for (let i = 0; i < dataList.length; i++) {
+      const api = apiList[i];
+      const dataArray = dataList[i];
+
+      if (Array.isArray(dataArray)) {
+        for (let data of dataArray) {
+          await dispatch(deleteAllData({ api, id: data.id }));
+        }
+      }
+    }
+    handleShowRefreshModal(false);
+  };
 
   return (
     <>
@@ -110,15 +223,17 @@ const TitleChat = () => {
                 }
               })}
           </div>
-          <div className="settings flex items-center gap-5">
+          <div className="settings flex items-center gap-3">
             {subUserChats.length < 1 && (
               <Button onClick={() => handleShowSubVisa(true)}>
                 Создать визу
               </Button>
             )}
-
             <IconButton onClick={toggleDrawer(true)}>
               <EmailOutlinedIcon />
+            </IconButton>
+            <IconButton onClick={() => handleShowRefreshModal(true)}>
+              <SettingsOutlinedIcon />
             </IconButton>
           </div>
         </div>
@@ -132,6 +247,12 @@ const TitleChat = () => {
         <SubChat />
       </SwipeableDrawer>
       {showSubVisa && <SubVisa handleShowSubVisa={handleShowSubVisa} />}
+      {showRefreshModal && (
+        <RefreshAllData
+          handleShowRefreshModal={handleShowRefreshModal}
+          refreshAllData={refreshAllData}
+        />
+      )}
     </>
   );
 };
