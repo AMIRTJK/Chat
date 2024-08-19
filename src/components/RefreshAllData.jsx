@@ -10,7 +10,7 @@ const RefreshAllData = ({ handleShowRefreshModal, refreshAllData }) => {
         <div className="info p-[20px]">
           <p>
             При нажатии на кнопку удалить все данные очистятся и процесс
-            насчется с нуля.
+            начнется с нуля.
           </p>
         </div>
         <div className="panel-control p-[20px] flex justify-end">
