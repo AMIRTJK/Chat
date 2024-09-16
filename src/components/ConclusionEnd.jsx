@@ -3,6 +3,7 @@ import React from "react";
 import { Avatar, IconButton, Button } from "@mui/material";
 
 import FindInPageOutlinedIcon from "@mui/icons-material/FindInPageOutlined";
+import ForwardToInboxOutlinedIcon from "@mui/icons-material/ForwardToInboxOutlined";
 
 const ConclusionEnd = ({ user, creatorEndingConclusion, date }) => {
   return (
@@ -26,6 +27,10 @@ const ConclusionEnd = ({ user, creatorEndingConclusion, date }) => {
           <Button sx={{ display: "flex", gap: "5px", textTransform: "none" }}>
             <FindInPageOutlinedIcon />
             <p>Посмотреть</p>
+          </Button>
+          <Button sx={{ display: "flex", gap: "5px", textTransform: "none" }}>
+            <ForwardToInboxOutlinedIcon />
+            <p>Отправить</p>
           </Button>
         </div>
       </div>

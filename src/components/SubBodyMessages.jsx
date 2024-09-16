@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from "react-redux";
 import SubTabVisaUser from "./SubTabVisaUser";
 
 import ConclusionEnd from "./ConclusionEnd";
+import MemoVisaExecutors from "./MemoVisaExecutors";
 
 const SubBodyMessages = () => {
   const users = useSelector((store) => store.chat.users);
@@ -73,6 +74,10 @@ const SubBodyMessages = () => {
           ?.subUserChatTabId
     );
 
+  const isActiveSubVisa =
+    Array.isArray(subUserChatTabs) &&
+    subUserChatTabs.some((e) => e.status === false);
+
   const subTabConclusionList = useSelector(
     (store) => store.chat.subTabConclusionList
   );
@@ -120,6 +125,9 @@ const SubBodyMessages = () => {
         <SubTabVisaUser filteredSubTabVisaUser={filteredSubTabVisaUser} />
       )}
       <ul>
+        {/* ======================= */}
+        {isActiveSubVisa && <MemoVisaExecutors />}
+
         {Array.isArray(filteredSubMessages) &&
           filteredSubMessages.map((e) => {
             if (e.subUserTabId === false) {

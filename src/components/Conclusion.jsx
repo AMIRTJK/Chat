@@ -495,6 +495,8 @@ const Conclusion = ({ handleModalConclusion }) => {
     }
   }, [filteredConclusionListTemp[0]?.id]);
 
+  console.log(currentSubTabConclusionListEdsTemp);
+
   return (
     <>
       <div
@@ -663,6 +665,7 @@ const Conclusion = ({ handleModalConclusion }) => {
                         }
                       })}
                   </div>
+                  <Button fullWidth>Добавить бланк</Button>
                   <ReactQuill
                     ref={inputRef}
                     theme="snow"
@@ -756,27 +759,12 @@ const Conclusion = ({ handleModalConclusion }) => {
                   />
                 </div>
               )}
-
-              {/* <div className="attachment absolute w-full bottom-0">
-                <p className="px-[15px] py-[5px] font-[500] bg-[#007cd2] text-[#fff]">
-                  Вложение
-                </p>
-                <ul className="flex flex-col">
-                  <li className="border-b-[1px] py-[5px] px-[15px] text-[15px]">
-                    Вложение №1
-                  </li>
-                  <li className="border-b-[1px] py-[5px] px-[15px] text-[15px]">
-                    Вложение №2
-                  </li>
-                  <li className="border-b-[1px] py-[5px] px-[15px] text-[15px]">
-                    Вложение №3
-                  </li>
-                </ul>
-              </div> */}
             </main>
             {/* Подпись ======= */}
-            <aside className="right aside-left-conclusion h-full min-w-[180px] relative  flex flex-col items-center gap-5 py-[20px]">
-              <p className="text-[14px] text-[#939393] font-[500]">Подписи</p>
+            <aside className="right aside-left-conclusion h-full min-w-[180px] relative  flex flex-col items-center py-[20px]">
+              <p className="text-[14px] text-[#939393] font-[500] mb-[30px]">
+                Подписи
+              </p>
               {Array.isArray(currentSubTabConclusionListEdsTemp) &&
                 currentSubTabConclusionListEdsTemp.map((e) => {
                   // Раньше вместо e.subTabConclusionListId было subTabConclusionListTempId
@@ -786,21 +774,33 @@ const Conclusion = ({ handleModalConclusion }) => {
                   )
                     return (
                       <>
-                        <IconButton
-                          onClick={() =>
-                            handlePutShowInfoBlockOfConclusionEds(e)
-                          }
-                          className={`${
-                            e.edsStatus ? "opacity-100" : "opacity-30"
+                        <div
+                          className={`eds-item w-full flex justify-center py-[15px] ${
+                            e.comments !== "" && e.edsStatus === true
+                              ? "bg-[#ffa600ae]"
+                              : e.comments === "" && e.edsStatus === true
+                              ? "bg-[#28ff2880]"
+                              : "bg-transparent"
                           }`}
-                          key={e.id}
-                          sx={{ padding: "0px" }}
                         >
-                          <Avatar
-                            src={e.image}
-                            className="border-[2px] border-[#007cd2]"
-                          />
-                        </IconButton>
+                          <IconButton
+                            onClick={() =>
+                              handlePutShowInfoBlockOfConclusionEds(e)
+                            }
+                            className={`${
+                              e.edsStatus ? "opacity-100" : "opacity-30"
+                            }`}
+                            key={e.id}
+                            sx={{
+                              padding: "0px",
+                            }}
+                          >
+                            <Avatar
+                              src={e.image}
+                              className="border-[2px] border-[#007cd2]"
+                            />
+                          </IconButton>
+                        </div>
                         {e.status ? (
                           <div className="bg-[#ffffffbd] flex flex-col gap-1 items-start py-[20px] px-[10px] w-full">
                             <p className="text-[14px] font-[600]">{e.name}</p>
@@ -889,17 +889,17 @@ const Conclusion = ({ handleModalConclusion }) => {
               >
                 Завершить
               </Button>
-              <Button
+              {/* <Button
                 onClick={() => setShowLiveChat(!showLiveChat)}
                 className="flex gap-2"
               >
                 <EmailIcon />
                 <p>Live Chat</p>
-              </Button>
-              <Button className="flex gap-2">
+              </Button> */}
+              {/* <Button className="flex gap-2">
                 <VideocamIcon />
                 <p>Video Chat</p>
-              </Button>
+              </Button> */}
               <Button
                 type="submit"
                 className="flex gap-2"
@@ -913,7 +913,7 @@ const Conclusion = ({ handleModalConclusion }) => {
                   className="hidden"
                 />
                 <ArrowCircleUpIcon />
-                <p>Загрузить</p>
+                <p>Вложение</p>
               </Button>
               {/* <Button
                 disabled={true}

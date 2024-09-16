@@ -29,7 +29,7 @@ const SubWrapperInputMessage = () => {
     <>
       <div className="wrapper-input-message border-t-[1px] p-[30px] justify-center flex flex-col items-center gap-4">
         <div className="panel-control flex items-center gap-5">
-          <Button variant="contained">Упомянуть</Button>
+          {/* <Button variant="contained">Упомянуть</Button> */}
           <Button onClick={() => handleModalInvite(true)} variant="contained">
             Пригласить
           </Button>

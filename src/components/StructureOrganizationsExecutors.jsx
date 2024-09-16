@@ -14,6 +14,7 @@ import {
   getUserStructureExecutor,
   deleteUsersExecutor,
   // postVisaUsers,
+  postUserChat,
   getVisaUsers,
 } from "../actions/chatApi";
 
@@ -41,10 +42,10 @@ const StructureOrganizationsExecutors = ({ handleShowStructure }) => {
     Dispatch(getVisaUsers());
   }, [Dispatch]);
 
-  console.log(visaUsers);
+
 
   const handlePostUser = (newObj) => {
-    Dispatch(postUsersStructureExecutor(newObj));
+    // Dispatch(postUsersStructureExecutor(newObj));
 
     // Алгоритм для добавление только уникальных id в массив subUserChats
     if (

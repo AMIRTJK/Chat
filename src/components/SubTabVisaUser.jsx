@@ -81,7 +81,7 @@ const SubTabVisaUser = ({ filteredSubTabVisaUser }) => {
       </div>
       <div className="visa-date">
         <p className="hover:text-[#ff0000] cursor-pointer">
-          {subVisa.eds ? "Подпись" : "Нет подписи"}
+          {subVisa.eds ? "Подпись" : "Подпись"}
         </p>
         <p className="font-semibold text-[#345581]">{filteredUser[0]?.name}</p>
         <div className="term flex gap-2">

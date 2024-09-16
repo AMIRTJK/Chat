@@ -124,10 +124,19 @@ const SubTitleChat = () => {
     Array.isArray(subUserChatTabs) &&
     subUserChatTabs.every((e) => e.status === false);
 
+    console.log(subUserChatTabs);
+    
+
   useEffect(() => {
     Dispatch(getSubUserChatTabs());
     Dispatch(getInvitedToSubChatTabs());
   }, [Dispatch, subMessages]);
+
+  const isActiveSubVisa =
+    Array.isArray(subUserChatTabs) &&
+    subUserChatTabs.some((e) => e.status === false);
+
+  console.log(isActiveSubVisa);
 
   return (
     <>
@@ -222,13 +231,22 @@ const SubTitleChat = () => {
           {tabName && <InputTabName handleShowTabName={handleShowTabName} />}
         </div>
         <div className="panel-user flex items-end gap-3">
+          {/* Аватарка визирующего */}
+          {isActiveSubVisa && (
+            <IconButton key={chatById[0]?.id} sx={{ padding: "0px" }}>
+              <Avatar src={chatById[0]?.image} />
+            </IconButton>
+          )}
           {/* Аватарки - отрисовка пользователей subChats */}
           {Array.isArray(subUserChats) &&
             subUserChats?.map((e) => {
               if (e.userChatId === chatById[0]?.id && subChatMemberIsActive)
                 return (
                   <IconButton key={e.id} sx={{ padding: "0px" }}>
-                    <Avatar src={e.image} />
+                    <Avatar
+                      src={e.image}
+                      sx={{ width: "25px", height: "25px" }}
+                    />
                   </IconButton>
                 );
             })}

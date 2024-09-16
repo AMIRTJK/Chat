@@ -1,7 +1,11 @@
 import React, { useEffect } from "react";
 import { Button, Avatar, IconButton } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
-import { getUsers, postInvitedToSubChatTabs } from "../actions/chatApi";
+import {
+  getUsers,
+  postInvitedToSubChatTabs,
+  postUserChatsExecutor,
+} from "../actions/chatApi";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 const InviteToSubChat = ({ handleModal }) => {
@@ -16,7 +20,24 @@ const InviteToSubChat = ({ handleModal }) => {
   );
   const subUserChatTabs = useSelector((store) => store.chat.subUserChatTabs);
 
+  const isActivePostActionExecutorV2 = subUserChatTabs.some(
+    (e) => e.status === false
+  );
+
+  console.log(isActivePostActionExecutorV2);
+
   const accessLogin = JSON.parse(localStorage.getItem("accessLogin"));
+
+  const handlePostExecutorV2 = (newObj) => {
+    isActivePostActionExecutorV2 &&
+      Dispatch(
+        postUserChatsExecutor({
+          ...newObj,
+          userChatId: chatById[0].id,
+          showInSubChat: true,
+        })
+      );
+  };
 
   const handlePostInvitedToSubChatTabs = (item) => {
     const newObj = {
@@ -37,6 +58,8 @@ const InviteToSubChat = ({ handleModal }) => {
     ) {
       Dispatch(postInvitedToSubChatTabs(newObj));
     }
+
+    handlePostExecutorV2(newObj);
   };
 
   useEffect(() => {

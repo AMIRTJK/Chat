@@ -71,8 +71,6 @@ const SubVisa = ({ handleShowSubVisa }) => {
     setDateTerm(event.target.value);
   };
 
-  console.log(visaUsers[visaUsers.length - 1]);
-
   const handlePutSubVisaTerm = () => {
     const [year, month, day] = dateTerm.split("-");
 

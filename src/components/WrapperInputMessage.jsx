@@ -62,11 +62,7 @@ const WrapperInputMessage = () => {
   const [showStructure, setShowStructure] = useState(false);
 
   const handleShowStructure = (state) => {
-    if (visaUsers.length < 1) {
-      notify();
-    } else {
-      setShowStructure(state);
-    }
+    setShowStructure(state);
   };
 
   useEffect(() => {
@@ -86,7 +82,7 @@ const WrapperInputMessage = () => {
       >
         {renderOfRole && (
           <div className="panel-control flex items-center gap-5">
-            <PanelTabVisa name="Упомянуть" handleShowTab={handleShowMention} />
+            {/* <PanelTabVisa name="Упомянуть" handleShowTab={handleShowMention} /> */}
             <PanelTabVisa
               name="Пригласить"
               handleShowTab={handleShowStructure}

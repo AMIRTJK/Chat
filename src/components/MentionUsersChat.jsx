@@ -24,7 +24,7 @@ const MentionUsersChat = () => {
     (e) => subChatMemberIsActive && chatById[0]?.id !== accessLogin.id
   );
 
-  console.log(chatById[0]);
+
 
   useEffect(() => {
     Dispatch(getUserChats());

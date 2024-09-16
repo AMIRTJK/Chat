@@ -46,9 +46,9 @@ const TitleChat = () => {
     dispatch(setShowVisaPopUp(false));
   };
 
-  const isActive =
-    Array.isArray(userChats) &&
-    userChats.some((e) => e.status === true && subUserChats.length > 0);
+  // const isActive =
+  //   Array.isArray(userChats) &&
+  //   userChats.some((e) => e.status === true && subUserChats.length > 0);
 
   const [state, setState] = useState(false);
 
@@ -206,7 +206,7 @@ const TitleChat = () => {
             <p className="text-[#989898] text-[14px]">{chatById[0]?.role}</p>
           </div>
         </div>
-        {isActive && <MemoVisaExecutors />}
+        {/* {isActive && <MemoVisaExecutors />} */}
         <div className="panel-monitoring flex items-center gap-5">
           <div className="visa-users flex gap-2 items-center">
             {subUserChats.length > 0 &&

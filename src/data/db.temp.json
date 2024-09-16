@@ -59,13 +59,7 @@
       ]
     }
   ],
-  "visaListTemp": [
-    {
-      "id": "1",
-      "name": "Барои барраси ва пешниходи маълумоти мавриди назар",
-      "status": true
-    }
-  ],
+  "visaListTemp": [],
   "termDate": [],
   "visaStatus": [
     {
@@ -223,27 +217,8 @@
     }
   ],
   "userStructure": [],
-  "userChats": [
-    {
-      "id": "2",
-      "name": "Сарвар Собирович",
-      "image": "src/assets/Курбониён Сарвар.jpg",
-      "role": "Заместитель Министра Финансов",
-      "status": true
-    },
-    {
-      "id": "3",
-      "name": "Юсуф Хайрулло",
-      "image": "src/assets/Мачиди Юсуф.jpg",
-      "role": "Первый Заместитель Министра Финансов",
-      "status": false
-    }
-  ],
-  "showUserChat": [
-    {
-      "id": "1725963495702"
-    }
-  ],
+  "userChats": [],
+  "showUserChat": [],
   "messages": [],
   "defaultVisa": [
     {
@@ -310,199 +285,19 @@
     }
   ],
   "userStructureExecutor": [],
-  "subUserChats": [
-    {
-      "id": "1725963515298",
-      "name": "Акрамшох Рамазонович",
-      "role": "Директор ГУП «ЦФИТ»",
-      "image": "src/assets/Акрамшох Рамазонович.png",
-      "status": false,
-      "login": "a.ramazonovich",
-      "userAuthId": "4",
-      "userChatId": "2"
-    },
-    {
-      "id": "1725963516402",
-      "name": "Зафар Исмоил",
-      "role": "Начальник управления государственного бюджета",
-      "image": "src/assets/Зафар Исмоил.png",
-      "status": false,
-      "login": "z.ismoil",
-      "userAuthId": "5",
-      "userChatId": "2"
-    }
-  ],
-  "visaUsers": [
-    {
-      "id": "1725963518402",
-      "userAuthId": "2",
-      "login": "s.sobir",
-      "term": "13.09.2024",
-      "status": "",
-      "eds": "",
-      "createdAt": "10-09-2024"
-    }
-  ],
-  "visaMessage": [
-    {
-      "id": "2",
-      "name": "Барои барраси тибки тартиби мукарраргардида",
-      "status": true,
-      "visaUserId": "2"
-    }
-  ],
+  "subUserChats": [],
+  "visaUsers": [],
+  "visaMessage": [],
   "subMessages": [],
-  "subUserChatTabs": [
-    {
-      "id": "1726028254870",
-      "subUserChatId": "1725963515298",
-      "userAuthId": "4",
-      "userChatId": "2",
-      "name": "123",
-      "status": false
-    }
-  ],
-  "invitedToSubChatTabs": [
-    {
-      "id": "1726028259101",
-      "subUserChatTabId": "1726028254870",
-      "name": "Бехруз Рамазонович",
-      "role": "Начальник отдела разработки и внедрения ИС",
-      "image": "src/assets/Бехруз Рамазонович.jpg",
-      "status": true,
-      "login": "b.ramazonovich",
-      "userAuthId": "6",
-      "userChatId": "2"
-    },
-    {
-      "id": "1726047748530",
-      "subUserChatTabId": "1726028254870",
-      "name": "Махмуд Абдурахмонович",
-      "role": "Начальник отдела по работе с клиентами",
-      "image": "src/assets/Махмуд Абдурахмонович.jpg",
-      "status": false,
-      "login": "m.abdurahmonovich",
-      "userAuthId": "7",
-      "userChatId": "2"
-    }
-  ],
+  "subUserChatTabs": [],
+  "invitedToSubChatTabs": [],
   "subTabMessages": [],
-  "subTabVisaUsers": [
-    {
-      "id": "1726028259102",
-      "subUserChatTabId": "1726028254870",
-      "userAuthId": "4",
-      "userChatId": "2",
-      "term": "2024-09-12",
-      "status": "",
-      "eds": "",
-      "createdAt": "11-09-2024"
-    }
-  ],
-  "subTabVisaMessages": [
-    {
-      "id": "1",
-      "name": "Барои барраси ва пешниходи маълумоти мавриди назар",
-      "status": false,
-      "subVisaUserId": "1726028259102"
-    }
-  ],
-  "subTabConclusionList": [
-    {
-      "id": "1726047838659",
-      "title": "123",
-      "invitedToSubChatTabId": "1726028259101",
-      "subUserChatTabId": "1726028254870",
-      "status": true,
-      "login": "b.ramazonovich",
-      "userAuthId": "6",
-      "userChatId": "2"
-    }
-  ],
+  "subTabVisaUsers": [],
+  "subTabVisaMessages": [],
+  "subTabConclusionList": [],
   "subTabConclusionListEds": [],
-  "subTabConclusionListTemp": [
-    {
-      "id": "1726047838915",
-      "title": "V1",
-      "invitedToSubChatTabId": "1726028259101",
-      "subUserChatTabId": "1726028254870",
-      "status": false,
-      "login": "b.ramazonovich",
-      "userAuthId": "6",
-      "userChatId": "2",
-      "subTabConclusionListId": "1726047838659",
-      "image": "src/assets/Бехруз Рамазонович.jpg",
-      "statusTemp": false,
-      "statusEnd": false,
-      "text": "<p>Документ №1</p>"
-    },
-    {
-      "id": "1726047886602",
-      "title": "V2",
-      "invitedToSubChatTabId": "1726028259101",
-      "subUserChatTabId": "1726028254870",
-      "status": false,
-      "login": "b.ramazonovich",
-      "userAuthId": "6",
-      "userChatId": "2",
-      "subTabConclusionListId": "1726047838659",
-      "image": "src/assets/Махмуд Абдурахмонович.jpg",
-      "statusTemp": true,
-      "text": "<p>Данный документ предназначен для подготовки...</p>",
-      "statusEnd": true,
-      "endTime": "12.09.2024"
-    }
-  ],
-  "subTabConclusionListEdsTemp": [
-    {
-      "id": "1726047839162",
-      "subTabConclusionListId": "1726047838659",
-      "userAuthId": "6",
-      "comments": "",
-      "status": false,
-      "edsStatus": true,
-      "name": "Бехруз Рамазонович",
-      "role": "Начальник отдела разработки и внедрения ИС",
-      "image": "src/assets/Бехруз Рамазонович.jpg",
-      "subTabConclusionListTempId": "1726047838915"
-    },
-    {
-      "id": "1726047864330",
-      "subTabConclusionListId": "1726047838659",
-      "userAuthId": "7",
-      "comments": "",
-      "status": false,
-      "edsStatus": false,
-      "name": "Махмуд Абдурахмонович",
-      "role": "Начальник отдела по работе с клиентами",
-      "image": "src/assets/Махмуд Абдурахмонович.jpg",
-      "subTabConclusionListTempId": "1726047838915"
-    },
-    {
-      "id": "1ec8f1bb-9986-4b2f-8d5c-ce5e216455a7",
-      "subTabConclusionListId": "1726047838659",
-      "userAuthId": "6",
-      "comments": "",
-      "status": false,
-      "edsStatus": true,
-      "name": "Бехруз Рамазонович",
-      "role": "Начальник отдела разработки и внедрения ИС",
-      "image": "src/assets/Бехруз Рамазонович.jpg",
-      "subTabConclusionListTempId": "1726047886602"
-    },
-    {
-      "id": "c00a4a52-1fe2-409d-bac6-3f1d92e9fe93",
-      "subTabConclusionListId": "1726047838659",
-      "userAuthId": "7",
-      "comments": "1",
-      "status": false,
-      "edsStatus": true,
-      "name": "Махмуд Абдурахмонович",
-      "role": "Начальник отдела по работе с клиентами",
-      "image": "src/assets/Махмуд Абдурахмонович.jpg",
-      "subTabConclusionListTempId": "1726047886602"
-    }
-  ],
+  "subTabConclusionListTemp": [],
+  "subTabConclusionListEdsTemp": [],
   "liveChatMessages": [],
   "conclusionAttachment": []
 }

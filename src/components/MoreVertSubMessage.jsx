@@ -12,7 +12,7 @@ const MoreVertSubMessage = ({ item }) => {
     Array.isArray(subUserChatTabs) &&
     subUserChatTabs.every((e) => e.status === false);
 
-  console.log(isActivePostSubMessageStatus);
+
 
   const handleDeleteSubMessage = (id) => {
     if (isActivePostSubMessageStatus) {

@@ -17,6 +17,8 @@ import { Button } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { actions } from "../slices/chat-slice";
 
+import { TextField } from "@mui/material";
+
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -56,6 +58,14 @@ import TitleChat from "../components/TitleChat";
 import WrapperInputMessage from "../components/WrapperInputMessage";
 
 import BodyMessages from "../components/BodyMessages";
+
+import WebToolBox from "../components/WebToolBox";
+
+import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
+
+import FileDownloadIcon from "@mui/icons-material/FileDownload";
+
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const Chat = () => {
   const Dispatch = useDispatch();
@@ -168,6 +178,7 @@ const Chat = () => {
   return (
     <>
       <main className="flex overflow-hidden">
+        <WebToolBox />
         <aside className="left category-scrollbar bg-[#f9f9f9] p-[20px] h-[100vh] flex flex-col justify-between w-[20%] overflow-auto">
           <div
             className={`${showStructure ? "blur-[3px]" : "none"} wrapperNo1`}
@@ -248,18 +259,50 @@ const Chat = () => {
             </div>
 
             <div className="wrapper-documents flex flex-col gap-2 mb-[20px]">
-              <p className="text-[14px] text-[#007cd2] font-medium">
+              <Button
+                sx={{
+                  display: "flex",
+                  justifyContent: "start",
+                  gap: 1,
+                  width: "58%",
+                  textTransform: "none",
+                }}
+              >
+                <FileUploadOutlinedIcon />
+                <p>Загрузить файл</p>
+              </Button>
+              {/* <p className="text-[14px] text-[#007cd2] font-medium">
                 Вложенные документы
-              </p>
+              </p> */}
               <div className="wrapper-list flex gap-4">
-                <AttachedDocuments
+                <div className="wrapper-document flex items-center gap-2 w-full">
+                  <IconButton sx={{ justifyContent: "start" }}>
+                    <FileDownloadIcon className="text-[#1976D2]" />
+                  </IconButton>
+                  <Button
+                    onClick={() => handleShowDocPdf(true)}
+                    variant="outlined"
+                    sx={{
+                      textTransform: "none",
+                      fontWeight: "400",
+                      width: "100%",
+                    }}
+                  >
+                    <p className="text-[14px] text-[#000] overflow-ellipsis overflow-hidden whitespace-nowrap">
+                      Мактуб оиди модернезацияи низоми
+                    </p>
+
+                    <DeleteIcon />
+                  </Button>
+                </div>
+                {/* <AttachedDocuments
                   handleShowDocPdf={handleShowDocPdf}
                   document={docNo1Img}
                 />
                 <AttachedDocuments
                   handleShowDocPdf={handleShowDocPdf}
                   document={docNo1Img}
-                />
+                /> */}
               </div>
             </div>
             <div className="wrapper-chats flex flex-col gap-5">

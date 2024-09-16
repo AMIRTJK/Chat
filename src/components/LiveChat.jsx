@@ -73,7 +73,7 @@ const LiveChat = ({ handleShowLiveChat, filteredConclusionListCurrent }) => {
         onClick={(event) => event.stopPropagation()}
         className="absolute w-full h-[50%] bottom-0 bg-[#fff]"
       >
-        <div className="flex flex-col h-full justify-between items-between justify-between ">
+        <div className="flex flex-col h-full justify-between items-between">
           <header className="bg-[#007cd2] p-[15px] w-full ">
             <p className="text-[#fff]">Live Chat</p>
           </header>

@@ -52,7 +52,7 @@ const VisaModalExecutors = () => {
     Dispatch(getOwnVisa());
   }, []);
 
-  console.log(ownVisaValue);
+
 
   return (
     <div

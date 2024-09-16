@@ -33,7 +33,7 @@ const VisaModal = ({ handleShowVisa }) => {
       return (newObj = e);
     });
 
-  console.log(visaList[0]?.ownVisa);
+
 
   const [stateVisa, setStateVisa] = useState(false);
   const [ownVisaInput, setOwnVisaInput] = useState(false);
@@ -44,7 +44,7 @@ const VisaModal = ({ handleShowVisa }) => {
     status: true,
   };
 
-  console.log(newOwnVisa);
+
 
   const handleShowOwnVisa = () => {
     if (visaListTemp.length > 0) {
