@@ -126,7 +126,9 @@ const SubBodyMessages = () => {
       )}
       <ul>
         {/* ======================= */}
-        {isActiveSubVisa && <MemoVisaExecutors />}
+        {subUserChatTabs.length > 0
+          ? isActiveSubVisa && <MemoVisaExecutors />
+          : true && <MemoVisaExecutors />}
 
         {Array.isArray(filteredSubMessages) &&
           filteredSubMessages.map((e) => {
