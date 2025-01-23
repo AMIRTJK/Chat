@@ -206,7 +206,6 @@ const TitleChat = () => {
             <p className="text-[#989898] text-[14px]">{chatById[0]?.role}</p>
           </div>
         </div>
-        {/* {isActive && <MemoVisaExecutors />} */}
         <div className="panel-monitoring flex items-center gap-5">
           <div className="visa-users flex gap-2 items-center">
             {subUserChats.length > 0 &&
